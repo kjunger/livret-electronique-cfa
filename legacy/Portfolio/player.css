@@ -1,0 +1,392 @@
+/* style de base de toute les balises */
+*{
+font-family: Arial;
+	font-size :12px;
+font-weight : bold;
+	text-align: left ;
+}
+
+body {
+	background-color: #ffffff; /* vert #9BC710   jaune #FFD700   bleu #4682B4 */ 
+	text-align: left !important;
+	text-align: center;
+
+}
+/* toute la page */ 
+#page {
+width :960px;
+ margin : auto;
+
+
+}
+
+
+ul
+{
+list-style : none;
+
+}
+
+a{
+font-size :13px;
+	color : #114477;
+	text-decoration : none;
+font-weight : bold;
+}
+
+a:visited{
+	color : #555555;
+}
+
+a:hover{
+text-decoration : underline;
+
+}
+
+img{
+	border : none;
+}
+
+
+input, select, textarea {
+	font-size : 12px;
+border: 1px solid #79a500   ;
+padding : 0 5px 0 5px;
+color : #555555;
+
+}
+
+textarea{
+
+width : 100%;
+}
+
+table{
+border-collapse : collapse;
+
+}
+
+#tab td{
+padding: 5px;
+
+}
+
+tr.impair td {
+background-color : #F0FFB7;
+
+}
+
+th{
+font-style : italic;
+}
+
+
+tr.pair td {
+
+}
+
+tr.impair *{
+}
+
+td{
+vertical-align : top}
+
+td[colspan]{
+  text-align : center;
+}
+
+
+
+select {
+	margin-left : 20px;
+}
+
+
+.obligatoire{
+color : red;
+font-size : 12px;
+font-weight : normal;
+
+}
+/* fin style de base de toute les balises */
+
+
+/* Style de element de la barre de menu*/
+#barre_menu{
+margin : 0 12px 0 12px;
+}
+
+
+#nom_user{
+float : left;
+font-weight : bold;
+margin-top : 0px;
+}
+
+#menu
+{
+float : right;
+margin-top : 0;
+}
+
+
+#menu li{
+display : inline;
+}
+
+
+
+/* fin */ 
+
+/*style du div encadrant la page incluse*/
+#contenue{
+
+clear : both;
+height : 400px;
+
+
+}
+
+html>body #contenue {
+height : 100%;
+min-height: 500px;
+} 
+
+/*fin */
+
+
+
+
+/* page incluse  */
+
+
+
+
+
+
+/* page profil */
+
+#contenue>div{
+
+height : 100%;
+
+}
+
+#bandeau-gauche{
+  width :200px;
+ float :left;
+
+
+
+
+}
+
+
+#bandeau-gauche #titre-bandeau-gauche{
+text-align : right;
+background-position: left top ;
+background-image: url(images/image-titre-bandeau-gauche.png);
+background-repeat: repeat-x;
+/*background-color : white;*/
+margin :0;
+padding :10px 20 10px 0;
+font-size : 25px;
+font-weight : 900;
+}
+
+#bandeau-gauche ul{
+ padding : 5px;
+background-position: 100% 0px;
+background-image: url(images/tiret.png);
+background-repeat: repeat-y;
+}
+
+#bandeau-gauche li{
+margin-bottom : 5px;
+}
+
+
+
+#affichage{
+
+background-position: top;
+background-image: url(images/barre_verte.png);
+background-repeat: repeat-x;
+padding-top : 15px;
+width :760px;
+float : right;
+}
+
+#affichage table{
+margin :auto;
+}
+
+.information{
+width : 450px;
+margin : auto;
+}
+
+.information img{
+float : left;
+}
+
+.information p{
+float : right;
+clear : right;
+margin-top : 0;
+text-align : right;
+}
+
+#affichage table{
+width : 500px;
+}
+
+#affichage h1{
+padding-top : 20px;
+text-align  : center;
+font-size : 1.2em;
+}
+
+.information p.nom{
+margin-right : 50px;
+font-size : 2em;
+}
+
+.tab-projet td{
+background-color :#F0FFB7;
+}
+
+.tab-projet tr th{
+padding : 20px 0 5px 0;
+}
+
+
+
+
+#affichage form 
+{
+clear : both;
+}
+
+
+/*fin page profil*/
+
+
+
+/*page compte rendu*/
+
+table#large td{
+background-color : #F0FFB7;
+
+text-align : left;
+padding: 0 20px 20px 20px;
+}
+
+table#large th{
+padding-top : 20px;
+}
+
+
+table#large .date {
+text-align : center;
+font-size : 1.2em;
+ 
+}
+
+.observation{
+width : 50%;
+}
+
+td.observation {
+padding-left : 0px}
+
+table.lien td{
+width : 33%;
+text-align : center;
+}
+
+/*fin page compte rendu*/
+
+
+
+/*fin page incluse*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#logo{
+	width: 100%;
+	border-top: 1px solid #9BC710;
+	border-bottom: 1px solid #9BC710;
+	border-left: 30px solid #9BC710;
+border-right : 1px solid #9BC710;
+	height: 80px;
+	background-position: right;
+	background-image: url(logoue.jpg);
+	background-repeat: no-repeat;
+	margin-bottom:5px;
+	margin-right: 20px;
+margin-left : -15px;
+}
+
+
+#logo h1{
+	color: #9BC710;
+	margin-bottom: 5px;
+	margin-top: 20px;
+	margin-left: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size : 20px ;
+	font-weight :bold;
+}
+
+.copyright {
+	width: 100%;
+	border-top: 1px solid #9BC710;
+	border-bottom: 1px solid #9BC710;
+	border-left: 30px solid #9BC710;
+	border-right : 1px solid #9BC710;
+ margin-top: 20px;
+	margin-left : -15px;
+	margin-bottom : 5px;
+	position : Relative;
+	bottom : 0px;
+	clear: both;
+	
+}
+
+
+.copyright>p{
+       
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-small;	
+	font-style: italic;
+	color: #000000;
+}
