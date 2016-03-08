@@ -11,3 +11,4 @@ Dépôt Git des sources du futur Livret Electronique de Suivi de l'Apprenti du C
 
 ### Crédits
  - Normalize.css par Nicolas Gallagher et Jonathan Neal - https://github.com/necolas/normalize.css
+ - Font Awesome par Dave Gandy - https://github.com/FortAwesome/Font-Awesome - http://fontawesome.io
