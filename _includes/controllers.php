@@ -1,10 +1,10 @@
 <?php
-    if(!empty($_GET['page'])){
-        if(is_file('_controllers/'.$_GET['page'].'.php')){
-            include('_controllers/'.$_GET['page'].'.php');
+    if(!empty($_GET['control'])){
+        if(is_file('_controllers/'.$_GET['control'].'.php')){
+            include('_controllers/'.$_GET['control'].'.php');
         }
     }
     else{
-        include('_controllers/login.php');
+        include('_controllers/???.php');
     }
 ?>
