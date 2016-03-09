@@ -2,7 +2,10 @@
     if(is_file('_controllers/'.$_GET['control'].'.php')){
         include('_controllers/'.$_GET['control'].'.php');
     }
+    else{
+        include('_controllers/404.php');
+    }
 }
 else{
-    include('_controllers/???.php');
+    //include('_controllers/public.php');
 } ?>
