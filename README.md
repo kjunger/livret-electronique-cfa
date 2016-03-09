@@ -11,6 +11,4 @@ Dépôt Git des sources du futur Livret Electronique de Suivi de l'Apprenti du C
  - _assets > Dossier contenant d'autres fichiers nécessaires au bon fonctionnement et affichage du site (feuilles de style CSS, fichiers de fontes de caractères, images, etc.).
 
 ### Crédits
- - Normalize.css par Nicolas Gallagher et Jonathan Neal - https://github.com/necolas/normalize.css - https://necolas.github.io/normalize.css/
- - Font Awesome par Dave Gandy - https://github.com/FortAwesome/Font-Awesome - http://fontawesome.io
- - jQuery - https://github.com/jquery/jquery - https://jquery.com/
+ - Materialize, a CSS Framework based on material design - http://materializecss.com/ - https://github.com/Dogfalo/materialize
