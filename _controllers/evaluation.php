@@ -1,9 +1,9 @@
-<nav>
+<nav class="grey lighten-5">
     <div class="row">
         <div class="col s12">
-            <a href="#!" class="breadcrumb grey lighten-5"><?php echo $_GET['control']; ?></a>
+            <a href="#!" class="breadcrumb"><?php echo $_GET['control']; ?></a>
             <?php if(!empty($_GET['view'])){
-                echo '<a href="#!" class="breadcrumb grey lighten-5">'.$_GET['view'].'</a>';
+                echo '<a href="#!" class="breadcrumb">'.$_GET['view'].'</a>';
             } ?>
         </div>
     </div>
