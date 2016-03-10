@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="input-field col s12 m12 l4">
                         <i class="material-icons prefix">email</i>
-                        <input placeholder="Email" id="mailApprenti" type="email" class="validate" required />
+                        <input placeholder="Email" id="mailApprenti" type="email" class="validate" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])" required />
                         <label for="mailApprenti">Email</label>
                     </div>
                     <div class="input-field col s12 m12 l4">
@@ -80,6 +80,7 @@
                     <h6>Siège social</h6>
                     <div class="row">
                         <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">business</i>
                             <input placeholder="Adresse du siège social" id="adSiege" type="text" class="validate" required />
                             <label for="adSiege">Adresse du siège social</label>
                         </div>
@@ -90,7 +91,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m12 l6">
-                            <input placeholder="Code postal" id="cpSiege" type="text" class="validate" required />
+                            <input placeholder="Code postal" id="cpSiege" type="text" class="validate" pattern="[0-9]{5}" required />
                             <label for="cpSiege">Code postal</label>
                         </div>
                         <div class="input-field col s12 m12 l6">
@@ -103,22 +104,23 @@
                     <h6>Site d'accueil de l'apprenti(e), si différent du siège social</h6>
                     <div class="row">
                         <div class="input-field col s12 m12 l6">
+                            <i class="material-icons prefix">domain</i>
                             <input placeholder="Adresse du site d'accueil" id="adAccueil" type="text" class="validate" />
                             <label for="adAccueil">Adresse du site d'accueil</label>
                         </div>
                         <div class="input-field col s12 m12 l6">
                             <input placeholder="Complément d'adresse" id="complementAdSiege" type="text" class="validate" />
-                            <label for="complementAdSiege">Complément d'adresse</label>
+                            <label for="complementAdAccueil">Complément d'adresse</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m12 l6">
-                            <input placeholder="Code postal" id="cpSiege" type="text" class="validate" />
-                            <label for="cpSiege">Code postal</label>
+                            <input placeholder="Code postal" id="cpSiege" type="text" class="validate" pattern="[0-9]{5}" />
+                            <label for="cpAccueil">Code postal</label>
                         </div>
                         <div class="input-field col s6">
                             <input placeholder="Ville" id="villeSiege" type="text" class="validate" />
-                            <label for="villeSiege">Ville</label>
+                            <label for="villeAccueil">Ville</label>
                         </div>
                     </div>
                 </div>
@@ -126,6 +128,7 @@
                     <h6>Maître d'apprentissage</h6>
                     <div class="row">
                         <div class="input-field col s12 m12 l4">
+                            <i class="material-icons prefix">person</i>
                             <input placeholder="Nom" id="nomMaitreApp" type="text" class="validate" required />
                             <label for="nomMaitreApp">Nom</label>
                         </div>
@@ -140,15 +143,18 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m12 l4">
-                            <input placeholder="Email" id="mailMaitreApp" type="text" class="validate" required />
+                            <i class="material-icons prefix">email</i>
+                            <input placeholder="Email" id="mailMaitreApp" type="mail" class="validate" pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])" required />
                             <label for="mailMaitreApp">Email</label>
                         </div>
                         <div class="input-field col s12 m12 l4">
-                            <input placeholder="Téléphone" id="telMaitreApp" type="text" class="validate" required />
+                            <i class="material-icons prefix">phone</i>
+                            <input placeholder="Téléphone" id="telMaitreApp" type="tel" class="validate" pattern="0[0-9]{9}" required />
                             <label for="telMaitreApp">Téléphone</label>
                         </div>
                         <div class="input-field col s12 m12 l4">
-                            <input placeholder="Portable" id="portMaitreApp" type="text" class="validate" />
+                            <i class="material-icons prefix">phonelink_ring</i>
+                            <input placeholder="Portable" id="portMaitreApp" type="tel" class="validate" pattern="0[6-7]{1}[0-9]{8}" />
                             <label for="portMaitreApp">Portable</label>
                         </div>
                     </div>
