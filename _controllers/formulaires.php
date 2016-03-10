@@ -1,5 +1,5 @@
 <nav>
-    <div class="row">
+    <div class="row transparent">
         <div class="col s12">
             <a href="#!" class="breadcrumb"><?php echo $_GET['control']; ?></a>
             <?php if(!empty($_GET['view'])){
