@@ -1,3 +1,13 @@
+<nav>
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="#!" class="breadcrumb"><?php echo $_GET['control']; ?></a>
+            <?php if(!empty($_GET['view'])){
+                echo '<a href="#!" class="breadcrumb">'.$_GET['view'].'</a>';
+            } ?>
+        </div>
+    </div>
+</nav>
 <?php
     echo 'Contacts';
     if(!empty($_GET['view'])){
