@@ -71,7 +71,7 @@
             <div class="card-content grey-text text-darken-4">
                 <span class="card-title">Entreprise</span>
                 <div class="row">
-                    <div class="input-field col s12 m12 l6">
+                    <div class="input-field col s12 m12 l12">
                         <input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" class="validate" required />
                         <label for="raisonSocialeEnt">Raison sociale</label>
                     </div>
@@ -118,7 +118,7 @@
                             <input placeholder="Code postal" id="cpSiege" type="text" class="validate" pattern="[0-9]{5}" />
                             <label for="cpAccueil">Code postal</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12 m12 l6">
                             <input placeholder="Ville" id="villeSiege" type="text" class="validate" />
                             <label for="villeAccueil">Ville</label>
                         </div>
@@ -144,7 +144,7 @@
                     <div class="row">
                         <div class="input-field col s12 m12 l4">
                             <i class="material-icons prefix">email</i>
-                            <input placeholder="Email" id="mailMaitreApp" type="mail" class="validate" required />
+                            <input placeholder="Email" id="mailMaitreApp" type="email" class="validate" required />
                             <label for="mailMaitreApp">Email</label>
                         </div>
                         <div class="input-field col s12 m12 l4">
