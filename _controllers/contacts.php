@@ -1,4 +1,4 @@
-<nav  class="grey lighten-5">
+<nav class="grey lighten-5 blue-grey-text text-darken-4">
     <div class="row">
         <div class="col s12">
             <a href="#!" class="breadcrumb"><?php echo $_GET['control']; ?></a>
