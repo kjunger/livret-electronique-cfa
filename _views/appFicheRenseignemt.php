@@ -1,7 +1,7 @@
 <h4>Fiche de renseignements</h4>
 <div class="row">
     <form class="col s12 m6 l6">
-        <div class="card grey lighten-5">
+        <div class="card large grey lighten-5">
             <div class="card-content grey-text text-darken-4">
                 <span class="card-title">Apprenti(e)</span>
                 <div class="row">
@@ -11,13 +11,13 @@
                         <label for="nomApprenti">Nom</label>
                     </div>
                     <div class="input-field col s12 m12 l6">
-                        <input placeholder="Nom" id="prenomApprenti" type="text" class="validate" required />
+                        <input placeholder="Prénom" id="prenomApprenti" type="text" class="validate" required />
                         <label for="prenomApprenti">Prénom</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12 l6">
-                        <input placeholder="Date de naissance" id="dateNaissanceApprenti" type="text" class="validate" pattern="[0-9]{2}\/[0-9]{2}\/[12]{1}[0-9]{3}" required />
+                        <input placeholder="Date de naissance" id="dateNaissanceApprenti" type="text" class="validate" pattern="[0-9]{2}\/[0-1]{1}[0-9]{2}\/[12]{1}[0-9]{3}" required />
                         <label for="dateNaissanceApprenti">Date de naissance - exemple : 20/02/1994</label>
                     </div>
                     <div class="input-field col s12 m12 l6">
@@ -29,7 +29,7 @@
                     <div class="input-field col s12 m12 l6">
                         <i class="material-icons prefix">location_city</i>
                         <input placeholder="Adresse" id="adresseApprenti" type="text" class="validate" required />
-                        <label for="adresseApprenti">Adresse</label>
+                        <label for="adresseApprenti">Adresse personnelle (en dehors du cadre des études, p.ex. parents)</label>
                     </div>
                     <div class="input-field col s12 m12 l6">
                         <input placeholder="Complément d'adresse" id="complementAdApprenti" type="text" class="validate" />
@@ -67,7 +67,7 @@
         </div>
     </form>
     <form class="col s12 m6 l6">
-        <div class="card grey lighten-5">
+        <div class="card large grey lighten-5">
             <div class="card-content grey-text text-darken-4">
                 <span class="card-title">Entreprise</span>
                 <div class="row">

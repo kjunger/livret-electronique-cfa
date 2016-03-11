@@ -9,7 +9,6 @@
     //Création d'une instance pour la connexion à la DB avec PDO::__construct
     try{
         $db=new PDO("mysql:dbname=$dbname;host=$host",$user,$pwd);  //tentative de connexion à la DB
-        echo 'Connexion à la DB réussie !';
     } catch(PDOException $e){   //si la connexion à la DB échoue
         echo 'Echec de connexion à la base de données : '.$e->getMessage(); //récupération et affichage du message d'erreur
     }
