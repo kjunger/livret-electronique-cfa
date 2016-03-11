@@ -17,7 +17,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12 l6">
-                        <input placeholder="Date de naissance" id="dateNaissanceApprenti" type="text" class="validate" pattern="[0-9]{2}\/[0-1]{1}[0-9]{2}\/[12]{1}[0-9]{3}" required />
+                        <input placeholder="Date de naissance" id="dateNaissanceApprenti" type="date" class="validate" required />
                         <label for="dateNaissanceApprenti">Date de naissance - exemple : 20/02/1994</label>
                     </div>
                     <div class="input-field col s12 m12 l6">
