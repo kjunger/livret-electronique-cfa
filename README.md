@@ -6,8 +6,7 @@ Dépôt Git des sources du futur Livret Electronique de Suivi de l'Apprenti du C
 ### Structure
  - index.php >  Point de départ du site ;
  - _includes > Dossier contenant les snippets à inclure à toutes les pages du site ;
- - _controllers > Dossier contenant les pages principales du site appelées via un controlleur dans index.php ;
- - _views > Dossier contenant le contenu dynamique des pages principales du site, appelé via un controlleur dans lesdites pages ;
+ - _views > Dossier contenant le contenu dynamique des pages principales du site, appelé via un controlleur ;
  - _assets > Dossier contenant d'autres fichiers nécessaires au bon fonctionnement et affichage du site (feuilles de style CSS, fichiers de fontes de caractères, images, etc.).
 
 ### Crédits
