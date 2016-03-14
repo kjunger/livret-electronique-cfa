@@ -18,6 +18,6 @@
     }
 }
 else{
-    include('_view/'.$_GET['cat']._root.php');
+    include('_views/'.$_GET['cat'].'_root.php');
 }?>
 </div>
