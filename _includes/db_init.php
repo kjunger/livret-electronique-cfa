@@ -4,8 +4,8 @@
     //Variables contenant les informations de connexion - à modifier en fonction du serveur de DB utilisé
     $host='127.0.0.1';  //Adresse du serveur de DB (mettre 127.0.0.1 ou localhost s'il est situé sur le même serveur, ou l'IP/l'URL du serveur de DB distant le cas échéant)
     $dbname='portfolio';     //Nom de la base de données à utiliser
-    $user='dev';       //Identifiant de connexion à la DB
-    $pwd='demodemo';        //Mot de passe de connexion à la DB
+    $user='root';       //Identifiant de connexion à la DB
+    $pwd='';        //Mot de passe de connexion à la DB
     //Création d'une instance pour la connexion à la DB avec PDO::__construct
     try{
         $db=new PDO("mysql:dbname=$dbname;host=$host",$user,$pwd);  //tentative de connexion à la DB
