@@ -5,8 +5,8 @@
                 <?php echo $_GET['cat']; ?>
             </a>
             <?php if(!empty($_GET['view'])){
-    echo '<a href="#!" class="breadcrumb blue-grey-text text-darken-4">'.$_GET['view'].'</a>';
-} ?>
+                echo '<a href="#!" class="breadcrumb blue-grey-text text-darken-4">'.$_GET['view'].'</a>';
+            } ?>
         </div>
     </div>
 </nav>

@@ -1,23 +1,23 @@
 <?php 
-if(!empty($_GET['cat'])){
-    if(is_file('_views/'.$_GET['cat'].'_root.php')){
-        if(!empty($_GET['view'])){
-            if(is_file('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php')){
-                include('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php');
+if(!empty($_GET['cat'])){   //Dans le cas d'une URL du type .../index.php?cat=ma_page
+    if(is_file('_views/'.$_GET['cat'].'_root.php')){    //Vérification de l'existence de la page racine
+        if(!empty($_GET['view'])){  //Dans le cas d'une URL du type .../index.php?cat=ma_page&view=une_page_particuliere
+            if(is_file('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php')){   //Vérification de son existence
+                include('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php');   //Inclusion pour affichage
             }
-            else{
-                include('_controllers/404.php');
+            else{   //Si fichier inexistant
+                include('_controllers/404.php');    //Affichage erreur 404
             }
         }
-        else{
-            include('_views/'.$_GET['cat'].'_root.php');
+        else{   //Si pas de _view appelée
+            include('_views/'.$_GET['cat'].'_root.php');    //Affichage page racine
         }
     }
-    else{
-        include('_controllers/404.php');
+    else{   //Si page racine inexistante
+        include('_controllers/404.php');    //Affichage erreur 404  
     }
 }
-else{
-    include('_includes/public.php');
+else{ // A parfaire
+    //include('_includes/public.php');
 }
 ?>
