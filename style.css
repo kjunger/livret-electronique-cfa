@@ -22,7 +22,6 @@ header{
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
 header img{
-	vertical-align:middle;
 	position:absolute;
 	left: 6.250em;
 	top:50%;
@@ -32,7 +31,6 @@ header p{
 	margin:0;
 	position: absolute;
 	line-height:30px;
-	vertical-align:middle;
 	text-align:right;
 	color:#ffffff;
 	top:50%;
@@ -47,6 +45,7 @@ header p{
 	right:6.250em;
 	top:50%;
 	transform: translateY(-50%);
+	cursor:pointer;
 }
 
 
@@ -78,17 +77,31 @@ nav img{
 	height:20px;
 	margin-right:20px;
 }
+nav a, footer a{
+	text-decoration: none;
+	color:#363636;
+}
+nav a:hover{
+	transform:translateX(1.250em);
+	transition-duration:1s;
+}
+#actif{
+	margin-left:1.250em;
+	color:#00767b;
+}
+
 
 main{
 	width:80%;
-	height:75%;
+	height:73%;
 	position: absolute;
 	top:15%;
 	left:20%;
+	overflow: auto;
 }
 
 footer{
-	height:10%;
+	height:12%;
 	width:100%;
 	position:fixed;
 	bottom:0;
@@ -100,3 +113,66 @@ footer{
 	box-shadow: 0px -5px 10px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
+footer ul{
+	list-style-type: none;
+	position: absolute;
+	right:13.125em;
+	top:50%;
+	transform:translateY(-75%);
+}
+footer li{
+	font-size:1.250em;
+	text-align:right;
+}
+.separateur{
+	visibility:hidden;
+}
+footer img{
+	width:150px;
+	position:absolute;
+	top:50%;
+	transform: translateY(-50%);
+}
+#logo_univ{
+	left:6.250em;
+}
+#logo_region{
+	right:6.250em;
+	width:60px;
+}
+
+.conteneur {
+	margin: 2% 5% 2% 5%;
+	width:40%;
+	height:80%;
+	display:inline-block;
+	-moz-box-shadow: 0px 4px 5px 2px #656565;
+	-webkit-box-shadow: 0px 4px 5px 2px #656565;
+	-o-box-shadow: 0px 4px 5px 2px #656565;
+	box-shadow: 0px 4px 5px 2px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+.titre{
+	padding:0.625em 1em;
+	-moz-box-shadow: 0px 4px 5px 0px #656565;
+	-webkit-box-shadow: 0px 4px 5px 0px #656565;
+	-o-box-shadow: 0px 4px 5px 0px #656565;
+	box-shadow: 0px 4px 5px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+.titre h1{
+	margin:0;
+}
+.contenu{
+	padding:0.625em 2em;
+}
+.contenu h2{
+	margin:0;
+	font-size:1.5em;
+	margin-top: 0.75em;
+}
+.contenu p{
+	margin:0;
+	margin-top:0.25em;
+}
+
