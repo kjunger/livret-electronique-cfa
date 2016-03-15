@@ -8,13 +8,11 @@
         <header>
             <?php include('_includes/header.php'); //Section HEADER du code HTML ?>
         </header>
+        <nav>
+            <?php include('_includes/sidebar.php'); //Menu principal ?>
+        </nav>
         <main>
-            <aside>
-                <?php include('_includes/sidebar.php'); //Menu principal ?>
-            </aside>
-            <div>
-                <?php include('_includes/controllers.php'); //Gestion des controlleurs pour l'affichage des pages du site ?>
-            </div>
+            <?php include('_includes/controllers.php'); //Gestion des controlleurs pour l'affichage des pages du site ?>
         </main>
         <footer>
             <?php include('_includes/footer.php'); //Section FOOTER du code HTML ?>
