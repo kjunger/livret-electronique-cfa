@@ -10,7 +10,7 @@
         </header>
         <main>
             <aside>
-                Future sidebar de navigation
+                <?php include('_includes/sidebar.php'); //Menu principal ?>
             </aside>
             <div>
                 <?php include('_includes/controllers.php'); //Gestion des controlleurs pour l'affichage des pages du site ?>

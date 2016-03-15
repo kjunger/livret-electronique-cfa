@@ -17,7 +17,7 @@ if(!empty($_GET['cat'])){   //Dans le cas d'une URL du type .../index.php?cat=ma
         include('_controllers/404.php');    //Affichage erreur 404  
     }
 }
-else{ // A parfaire
-    //include('_includes/public.php');
+else{ //Si aucun des conditions ci-dessus n'est rempli (= visite de la page d'accueil)
+    include('_includes/accueil.php');   //Affichage de la page d'accueil
 }
 ?>
