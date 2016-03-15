@@ -1,3 +1,3 @@
 <nav>
-    <a href="#">Logo</a>
+    <a href="index.php">Logo</a>
 </nav>
