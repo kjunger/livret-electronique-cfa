@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-    <?php include('_includes/head.php'); //Section HEAD du code HTML ?>
+        <?php include('_includes/head.php'); //Section HEAD du code HTML ?>
+        <?php include('_includes/scriptsBefore.php'); //Inclusion des scripts JavaScript devant être chargés en premier (p.ex. jQuery) ?>
     </head>
     <body>
         <header>
@@ -18,5 +19,5 @@
             <?php include('_includes/footer.php'); //Section FOOTER du code HTML ?>
         </footer>
     </body>
-    <?php include('_includes/scripts.php'); //Inclusion des scripts JavaScript ?>
+    <?php include('_includes/scriptsAfter.php'); //Inclusion des scripts JavaScript pouvant être chargés en dernier ?>
 </html>
