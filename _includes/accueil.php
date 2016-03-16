@@ -1,3 +1,4 @@
+<?php include('_includes/breadcrumbs.php'); ?>
 <div class="conteneur">
     <div class="titre">
         <h1>Informations générales</h1>
