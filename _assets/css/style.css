@@ -1,102 +1,260 @@
-html, body, main{
-	width:100%;
-	height:100%;
-	margin:0;
-	padding:0;
-	background-color:#f4f4f4;
+html,
+body,
+main {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
-*{ 
-    font-family: "Arial","Roboto",sans-serif; 
-} 
 
-header{
-	background-color:#00767B;
-	height:15%;
-	width:100%;
-	position:fixed;
-	z-index:2;
-	-moz-box-shadow: 0px 5px 10px 0px #656565;
-	-webkit-box-shadow: 0px 5px 10px 0px #656565;
-	-o-box-shadow: 0px 5px 10px 0px #656565;
-	box-shadow: 0px 5px 10px 0px #656565;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
-}
-header img{
-	vertical-align:middle;
-	position:absolute;
-	left: 6.250em;
-	top:50%;
-	transform: translateY(-50%);
-}
-header p{
-	margin:0;
-	position: absolute;
-	line-height:30px;
-	vertical-align:middle;
-	text-align:right;
-	color:#ffffff;
-	top:50%;
-	transform: translateY(-50%);
-	right:13.125em;
-}
-#nom{
-	font-size:2em;
-}
-#user{
-	position:absolute;
-	right:6.250em;
-	top:50%;
-	transform: translateY(-50%);
+* {
+    font-family: "Arial", "Roboto", sans-serif;
 }
 
 
-nav{
-	height:100%;
-	background-color:#f4f4f4;
-	width:20%;
-	padding-top:7.5em;
-	position: fixed;
-	z-index:1;
-	-moz-box-shadow: 3px 0px 10px 0px #656565;
-	-webkit-box-shadow: 3px 0px 10px 0px #656565;
-	-o-box-shadow: 3px 0px 10px 0px #656565;
-	box-shadow: 3px 0px 10px 0px #656565;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=10);
-}
-nav ul{
-	list-style-type:none;
-	margin-left:1.875em;
-	margin-top:5em;
+/*HEADER*/
 
-}
-nav li{
-	margin-bottom:0.750em;
-	font-size:1.250em;
-}
-nav img{
-	width:20px;
-	height:20px;
-	margin-right:20px;
+header {
+    background-color: #00767b;
+    height: 15%;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    -moz-box-shadow: 0px 5px 10px 0px #656565;
+    -webkit-box-shadow: 0px 5px 10px 0px #656565;
+    -o-box-shadow: 0px 5px 10px 0px #656565;
+    box-shadow: 0px 5px 10px 0px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
 
-main{
-	width:80%;
-	height:75%;
-	position: absolute;
-	top:15%;
-	left:20%;
+
+/*Logo*/
+
+header img {
+    position: absolute;
+    left: 6.250em;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-footer{
-	height:10%;
-	width:100%;
-	position:fixed;
-	bottom:0;
-	z-index:2;
-	background-color:#f4f4f4;
-	-moz-box-shadow: 0px -5px 10px 0px #656565;
-	-webkit-box-shadow: 0px -5px 10px 0px #656565;
-	-o-box-shadow: 0px -5px 10px 0px #656565;
-	box-shadow: 0px -5px 10px 0px #656565;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
+
+/*Texte*/
+
+header p {
+    margin: 0;
+    position: absolute;
+    line-height: 1.875em;
+    text-align: right;
+    color: #ffffff;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 13.125em;
+}
+
+#nom {
+    font-size: 2em;
+}
+
+
+/*Image utilisateur*/
+
+#user {
+    position: absolute;
+    right: 6.250em;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
+/*MENU HORIZONTAL*/
+
+nav {
+    height: 100%;
+    background-color: #f4f4f4;
+    width: 20%;
+    padding-top: 7.5em;
+    position: fixed;
+    z-index: 1;
+    -moz-box-shadow: 3px 0px 10px 0px #656565;
+    -webkit-box-shadow: 3px 0px 10px 0px #656565;
+    -o-box-shadow: 3px 0px 10px 0px #656565;
+    box-shadow: 3px 0px 10px 0px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=10);
+}
+
+
+/*Liste*/
+
+nav ul {
+    list-style-type: none;
+    margin-left: 1.875em;
+    margin-top: 5em;
+}
+
+nav li {
+    margin-bottom: 0.750em;
+    font-size: 1.250em;
+}
+
+
+/*Icônes*/
+
+nav img {
+    width: 1em;
+    height: 1em;
+    margin-right: 1.25em;
+}
+
+
+/*Liens*/
+
+nav a,
+footer a {
+    text-decoration: none;
+    color: #363636;
+}
+
+nav a:hover {
+    transform: translateX(1.250em);
+    transition-duration: 1s;
+}
+
+#actif {
+    margin-left: 1.250em;
+    color: #00767b;
+}
+
+
+/*CONTENT*/
+
+main {
+    width: 80%;
+    height: 73%;
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    overflow: auto;
+}
+
+
+/*Bloc*/
+
+.conteneur {
+    margin: 3.125em;
+    width: 40%;
+    min-height: 80%;
+    float: left;
+    -moz-box-shadow: 0px 4px 5px 2px #656565;
+    -webkit-box-shadow: 0px 4px 5px 2px #656565;
+    -o-box-shadow: 0px 4px 5px 2px #656565;
+    box-shadow: 0px 4px 5px 2px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+
+
+/*Titre principal*/
+
+.titre {
+    padding: 0.625em 1em;
+    -moz-box-shadow: 0px 4px 5px 0px #656565;
+    -webkit-box-shadow: 0px 4px 5px 0px #656565;
+    -o-box-shadow: 0px 4px 5px 0px #656565;
+    box-shadow: 0px 4px 5px 0px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+
+.titre h1 {
+    margin: 0;
+}
+
+
+/*Contenu*/
+
+.contenu {
+    padding: 0.625em 2em;
+}
+
+
+/*Titre secondaire*/
+
+.contenu h2 {
+    margin: 0;
+    font-size: 1.5em;
+    margin-top: 0.75em;
+}
+
+
+/*Texte*/
+
+.contenu p {
+    margin: 0;
+    margin-top: 0.25em;
+}
+
+.info {
+    font-size: 0.75em;
+}
+
+
+/*FOOTER*/
+
+footer {
+    height: 12%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    background-color: #f4f4f4;
+    -moz-box-shadow: 0px -5px 10px 0px #656565;
+    -webkit-box-shadow: 0px -5px 10px 0px #656565;
+    -o-box-shadow: 0px -5px 10px 0px #656565;
+    box-shadow: 0px -5px 10px 0px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
+}
+
+
+/*Liens*/
+
+footer ul {
+    list-style-type: none;
+    position: absolute;
+    right: 16.875em;
+    top: 50%;
+    transform: translateY(-75%);
+}
+
+footer li {
+    font-size: 1.250em;
+    text-align: right;
+}
+
+
+/*Logos*/
+
+footer img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#logo_univ {
+    width: 9.375em;
+    left: 6.250em;
+}
+
+#logo_etab {
+    left: 18.750em;
+    width: 13.750em;
+}
+
+#logo_region {
+    right: 11.875em;
+    width: 3.75em;
+}
+
+#logo_ministere {
+    right: 6.250em;
+    width: 5em;
 }
