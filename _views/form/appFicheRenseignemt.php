@@ -1,7 +1,8 @@
 <?php include('_includes/breadcrumbs.php'); ?>
     <h4>Fiche de renseignements</h4>
     <form>
-        <div><span>Apprenti(e)</span>
+        <div>
+            <span>Apprenti(e)</span>
             <input placeholder="Nom" id="nomApprenti" type="text" required />
             <label for="nomApprenti">Nom</label>
             <input placeholder="Prénom" id="prenomApprenti" type="text" required />
@@ -29,7 +30,7 @@
             <span>Entreprise</span>
             <input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" required />
             <label for="raisonSocialeEnt">Raison sociale</label>
-            <h6>Siège social</h6>
+            <span>Siège social</span>
             <input placeholder="Adresse du siège social" id="adSiege" type="text" required />
             <label for="adSiege">Adresse du siège social</label>
             <input placeholder="Complément d'adresse" id="complementAdSiege" type="text" required />
@@ -38,7 +39,7 @@
             <label for="cpSiege">Code postal</label>
             <input placeholder="Ville" id="villeSiege" type="text" required />
             <label for="villeSiege">Ville</label>
-            <h6>Site d'accueil de l'apprenti(e), si différent du siège social</h6>
+            <span>Site d'accueil de l'apprenti(e), si différent du siège social</h6>
             <input placeholder="Adresse du site d'accueil" id="adAccueil" type="text" />
             <label for="adAccueil">Adresse du site d'accueil</label>
             <input placeholder="Complément d'adresse" id="complementAdSiege" type="text" />
@@ -47,7 +48,7 @@
             <label for="cpAccueil">Code postal</label>
             <input placeholder="Ville" id="villeSiege" type="text" />
             <label for="villeAccueil">Ville</label>
-            <h6>Maître d'apprentissage</h6>
+            <span>Maître d'apprentissage</span>
             <input placeholder="Nom" id="nomMaitreApp" type="text" required />
             <label for="nomMaitreApp">Nom</label>
             <input placeholder="Prénom" id="prenomMaitreApp" type="text" required />

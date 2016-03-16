@@ -11,7 +11,7 @@
         <label for="dateNaissanceApprenti">Date de naissance - exemple : 20/02/1994</label>
         <input placeholder="Âge" id="ageApprenti" type="text" required />
         <label for="ageApprenti">Âge</label>
-        <h6>Adresse personnelle (en dehors du cadre des études, p.ex. parents)</h6>
+        <span>Adresse personnelle (en dehors du cadre des études, p.ex. parents)</span>
         <input placeholder="Adresse" id="adressePersoApprenti" type="text" required />
         <label for="adresseApprenti">Adresse</label>
         <input placeholder="Complément d'adresse" id="complementAdPersoApprenti" type="text" />
@@ -31,8 +31,8 @@
     </div>
     <div>
         <span>L'année prochaine...</span>
-        <select id="anneeProchaine" name="anneeProchaine">
-            <option value="default" selected>Choisissez une option...</option>
+        <select id="anneeProchaine" name="anneeProchaine" required>
+            <option value="default" selected disabled>Choisissez une option...</option>
             <option value="poursuiteEtudes">Vous poursuivez vos études</option>
             <option value="recherchePoursuiteEtudes">Vous êtes toujours en recherche d'une poursuite d'études</option>
             <option value="emploi">Vous avez trouvé un emploi</option>
