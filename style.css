@@ -9,8 +9,9 @@ html, body, main{
     font-family: "Arial","Roboto",sans-serif; 
 } 
 
+/*HEADER*/
 header{
-	background-color:#00767B;
+	background-color:#00767b;
 	height:15%;
 	width:100%;
 	position:fixed;
@@ -21,16 +22,18 @@ header{
 	box-shadow: 0px 5px 10px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
+	/*Logo*/
 header img{
 	position:absolute;
 	left: 6.250em;
 	top:50%;
 	transform: translateY(-50%);
 }
+	/*Texte*/
 header p{
 	margin:0;
 	position: absolute;
-	line-height:30px;
+	line-height:1.875em;
 	text-align:right;
 	color:#ffffff;
 	top:50%;
@@ -40,6 +43,7 @@ header p{
 #nom{
 	font-size:2em;
 }
+	/*Image utilisateur*/
 #user{
 	position:absolute;
 	right:6.250em;
@@ -48,7 +52,7 @@ header p{
 	cursor:pointer;
 }
 
-
+/*MENU HORIZONTAL*/
 nav{
 	height:100%;
 	background-color:#f4f4f4;
@@ -62,6 +66,7 @@ nav{
 	box-shadow: 3px 0px 10px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=10);
 }
+	/*Liste*/
 nav ul{
 	list-style-type:none;
 	margin-left:1.875em;
@@ -72,11 +77,13 @@ nav li{
 	margin-bottom:0.750em;
 	font-size:1.250em;
 }
+	/*Icônes*/
 nav img{
-	width:20px;
-	height:20px;
-	margin-right:20px;
+	width:1em;
+	height:1em;
+	margin-right:1.25em;
 }
+	/*Liens*/
 nav a, footer a{
 	text-decoration: none;
 	color:#363636;
@@ -90,7 +97,7 @@ nav a:hover{
 	color:#00767b;
 }
 
-
+/*CONTENT*/
 main{
 	width:80%;
 	height:73%;
@@ -99,7 +106,50 @@ main{
 	left:20%;
 	overflow: auto;
 }
+	/*Bloc*/
+.conteneur {
+	margin: 3.125em;
+	width:40%;
+	min-height:80%;
+	float: left;
+	-moz-box-shadow: 0px 4px 5px 2px #656565;
+	-webkit-box-shadow: 0px 4px 5px 2px #656565;
+	-o-box-shadow: 0px 4px 5px 2px #656565;
+	box-shadow: 0px 4px 5px 2px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+	/*Titre principal*/
+.titre{
+	padding:0.625em 1em;
+	-moz-box-shadow: 0px 4px 5px 0px #656565;
+	-webkit-box-shadow: 0px 4px 5px 0px #656565;
+	-o-box-shadow: 0px 4px 5px 0px #656565;
+	box-shadow: 0px 4px 5px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+.titre h1{
+	margin:0;
+}
+	/*Contenu*/
+.contenu{
+	padding:0.625em 2em;
+}
+		/*Titre secondaire*/
+.contenu h2{
+	margin:0;
+	font-size:1.5em;
+	margin-top: 0.75em;
+}
+		/*Texte*/
+.contenu p{
+	margin:0;
+	margin-top:0.25em;
+}
+.info{
+	font-size: 0.75em;
+}
 
+/*FOOTER*/
 footer{
 	height:12%;
 	width:100%;
@@ -113,10 +163,11 @@ footer{
 	box-shadow: 0px -5px 10px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
+	/*Liens*/
 footer ul{
 	list-style-type: none;
 	position: absolute;
-	right:13.125em;
+	right:16.875em;
 	top:50%;
 	transform:translateY(-75%);
 }
@@ -124,55 +175,25 @@ footer li{
 	font-size:1.250em;
 	text-align:right;
 }
-.separateur{
-	visibility:hidden;
-}
+	/*Logos*/
 footer img{
-	width:150px;
 	position:absolute;
 	top:50%;
 	transform: translateY(-50%);
 }
 #logo_univ{
+	width:9.375em;
 	left:6.250em;
 }
+#logo_etab{
+	left:18.750em;
+	width:13.750em;
+}
 #logo_region{
+	right:11.875em;
+	width:3.75em;
+}
+#logo_ministere{
 	right:6.250em;
-	width:60px;
+	width:5em;
 }
-
-.conteneur {
-	margin: 2% 5% 2% 5%;
-	width:40%;
-	height:80%;
-	display:inline-block;
-	-moz-box-shadow: 0px 4px 5px 2px #656565;
-	-webkit-box-shadow: 0px 4px 5px 2px #656565;
-	-o-box-shadow: 0px 4px 5px 2px #656565;
-	box-shadow: 0px 4px 5px 2px #656565;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
-}
-.titre{
-	padding:0.625em 1em;
-	-moz-box-shadow: 0px 4px 5px 0px #656565;
-	-webkit-box-shadow: 0px 4px 5px 0px #656565;
-	-o-box-shadow: 0px 4px 5px 0px #656565;
-	box-shadow: 0px 4px 5px 0px #656565;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
-}
-.titre h1{
-	margin:0;
-}
-.contenu{
-	padding:0.625em 2em;
-}
-.contenu h2{
-	margin:0;
-	font-size:1.5em;
-	margin-top: 0.75em;
-}
-.contenu p{
-	margin:0;
-	margin-top:0.25em;
-}
-
