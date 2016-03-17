@@ -9,33 +9,33 @@
    </head> 
    <body> 
 		<header>
-			 <svg height="50" width="70" id="bouton">
-				<rect x="0" y="0" width="70" height="10" fill="white"></rect>
-				<rect x="0" y="18.75" width="70" height="10" fill="white"></rect>
-				<rect x="0" y="37.5" width="70" height="10" fill="white"></rect>
-			</svg>
-			<img src="logo.png" alt="logo de la formation" />
+			<div class="bouton">
+				<img src="bouton.svg" alt="" />
+			</div>
+			<img src="logo.png" alt="logo de la formation" id="header-logo"/>
 			<p>
 				Bienvenue, <br/>
 				<span id="nom">Prénom Nom</span>
 			</p>
-			<svg height="120" width="100" id="user">
-				<circle cx="50" cy="60" r="40" stroke="grey" stroke-width="6" fill="white"></circle>
-				<polygon points="50,50 70,98 30,98" fill="grey"></polygon>
-				<circle cx="50" cy="55" r="15" fill="grey"></circle>
-			</svg>
-        </header> 
-        <nav> 
+			<div id="user">
+				<img src="user.svg" alt="" />
+			</div>
+        </header>
+        <div id="landscape" class="bouton">
+         	<img src="bouton_app.svg" alt="" />
+		</div>
+        <nav id="menu"> 
 			<ul>
-				<li><a href="#" id="actif"><img src="icones/accueil_app.svg" alt="" />Accueil</a></li>
+				<li><a href="#" id="actif"><img src="icones/accueil_app.svg" alt="" class="icn"/>Accueil</a></li>
 				<li><a href="#"><img src="icones/eval.svg" alt="" />Evaluation</a></li>
-				<li><a href="#"><img src="icones/form.svg" alt="" />Formulaires</a></li>
+				<li><a href="form.html"><img src="icones/form.svg" alt="" />Formulaires</a></li>
 				<li><a href="#"><img src="icones/contrat.svg" alt="" />Contrat</a></li>
 				<li><a href="#"><img src="icones/fichiers.svg" alt="" />Fichiers</a></li>
 				<li><a href="#"><img src="icones/contacts.svg" alt="" />Contacts</a></li>
 			</ul>
         </nav>
 		<main>
+			<p id="breadcrumbs"><a href="#">Accueil</a> ></p>
 			<div class="conteneur">
 				<div class="titre">
 					<h1>Informations générales</h1>
