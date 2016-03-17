@@ -38,7 +38,7 @@
             <option value="emploi">Vous avez trouvé un emploi</option>
             <option value="rechercheEmploi">Vous êtes toujours en recherche d'un emploi</option>
         </select>
-        <div id="choixAnneePro"></div>
+        <div id="choixAnneePro"></div>   <!-- NE PAS SUPPRIMER CETTE DIV ! -->
     </div>
     <div>
         <span>L'association des Anciens</span>

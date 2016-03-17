@@ -19,5 +19,5 @@
     <option value="alternance">Formation par alternance</option>
 </select>
 <label for="typeFormation">Type de formation</label>
-<div id="choixTypeFormation"></div>
+<div id="choixTypeFormation"></div>   <!-- NE PAS SUPPRIMER CETTE DIV ! -->
 <script type="application/javascript" src="_assets/js/formChoixTypeFormation.js"></script>
