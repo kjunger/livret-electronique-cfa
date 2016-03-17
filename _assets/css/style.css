@@ -38,6 +38,14 @@ header img {
     transform: translateY(-50%);
 }
 
+#bouton {
+    position: absolute;
+    left: 6.250em;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 
 /*Texte*/
 
@@ -116,11 +124,6 @@ footer a {
     color: #363636;
 }
 
-nav a:hover {
-    transform: translateX(1.250em);
-    transition-duration: 1s;
-}
-
 #actif {
     margin-left: 1.250em;
     color: #00767b;
@@ -130,11 +133,8 @@ nav a:hover {
 /*CONTENT*/
 
 main {
-    width: 80%;
-    height: 73%;
     position: absolute;
     top: 15%;
-    left: 20%;
     overflow: auto;
 }
 
@@ -143,9 +143,7 @@ main {
 
 .conteneur {
     margin: 3.125em;
-    width: 40%;
     min-height: 80%;
-    float: left;
     -moz-box-shadow: 0px 4px 5px 2px #656565;
     -webkit-box-shadow: 0px 4px 5px 2px #656565;
     -o-box-shadow: 0px 4px 5px 2px #656565;
@@ -214,47 +212,190 @@ footer {
     filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=10);
 }
 
-
-/*Liens*/
-
-footer ul {
-    list-style-type: none;
-    position: absolute;
-    right: 16.875em;
-    top: 50%;
-    transform: translateY(-75%);
+@media screen and (min-width:1272px) {
+    header {
+        background-color: #00767b;
+    }
+    #bouton {
+        display: none;
+    }
+    nav a:hover {
+        transform: translateX(1.250em);
+        transition-duration: 1s;
+    }
+    /*CONTENT*/
+    main {
+        width: 80%;
+        height: 73%;
+        left: 20%;
+    }
+    /*Bloc*/
+    .conteneur {
+        margin: 3.125em;
+        width: 40%;
+        float: left;
+    }
+    /*FOOTER*/
+    /*Liens*/
+    footer ul {
+        list-style-type: none;
+        position: absolute;
+        right: 16.875em;
+        top: 50%;
+        transform: translateY(-75%);
+    }
+    footer li {
+        font-size: 1.250em;
+        text-align: right;
+    }
+    /*Logos*/
+    footer img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    #logo_univ {
+        max-width: 9.375em;
+        left: 6.250em;
+        height: auto;
+    }
+    #logo_etab {
+        left: 18.750em;
+        max-width: 13.750em;
+        height: auto;
+    }
+    #logo_region {
+        right: 11.875em;
+        max-width: 3.75em;
+        height: auto;
+    }
+    #logo_ministere {
+        right: 6.250em;
+        max-width: 5em;
+        height: auto;
+    }
 }
 
-footer li {
-    font-size: 1.250em;
-    text-align: right;
+@media screen and (min-width:1000px) and (max-width:1271px) {
+    header {
+        background-color: #00767b;
+    }
+    #bouton {
+        display: none;
+    }
+    /*CONTENT*/
+    main {
+        width: 80%;
+        height: 73%;
+        left: 20%;
+    }
+    /*Bloc*/
+    .conteneur {
+        margin: 1.5em auto;
+        width: 80%;
+        min-height: 80%;
+    }
+    nav ul {
+        margin-left: 0;
+    }
+    #actif {
+        margin-left: 0;
+    }
+    /*FOOTER*/
+    /*Liens*/
+    footer ul {
+        list-style-type: none;
+        position: absolute;
+        right: 13.125em;
+        top: 50%;
+        transform: translateY(-75%);
+    }
+    footer li {
+        font-size: 1.250em;
+        text-align: right;
+    }
+    /*Logos*/
+    footer img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    #logo_univ {
+        max-width: 9.375em;
+        left: 1.875em;
+        height: auto;
+    }
+    #logo_etab {
+        left: 12.50em;
+        max-width: 13.750em;
+        height: auto;
+    }
+    #logo_region {
+        right: 8.125em;
+        max-width: 3.75em;
+        height: auto;
+    }
+    #logo_ministere {
+        right: 1.875em;
+        max-width: 5em;
+        height: auto;
+    }
 }
 
-
-/*Logos*/
-
-footer img {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+@media screen and (min-width:770px) and (max-width:999px) {
+    header {
+        background-color: #00767b;
+    }
+    header img {
+        display: none;
+    }
+    nav {
+        display: none;
+    }
+    /*CONTENT*/
+    main {
+        width: 100%;
+        height: 85%;
+    }
+    /*Bloc*/
+    .conteneur {
+        margin: 1.5em auto;
+        width: 60%;
+        min-height: 80%;
+    }
+    footer {
+        display: none;
+    }
 }
 
-#logo_univ {
-    width: 9.375em;
-    left: 6.250em;
-}
-
-#logo_etab {
-    left: 18.750em;
-    width: 13.750em;
-}
-
-#logo_region {
-    right: 11.875em;
-    width: 3.75em;
-}
-
-#logo_ministere {
-    right: 6.250em;
-    width: 5em;
+@media screen and (max-width:769px) {
+    header img {
+        display: none;
+    }
+    header p {
+        display: none;
+    }
+    #bouton {
+        left: 1.875em;
+    }
+    #user {
+        right: 1.875em;
+    }
+    nav {
+        display: none;
+    }
+    /*CONTENT*/
+    main {
+        width: 100%;
+        height: 85%;
+    }
+    /*Bloc*/
+    .conteneur {
+        margin: 1.5em auto;
+        width: 80%;
+        min-height: 80%;
+    }
+    footer {
+        display: none;
+    }
 }
