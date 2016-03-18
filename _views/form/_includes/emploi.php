@@ -1,11 +1,11 @@
-<label for="typeContrat">Type de Contrat</label>
+<p>Type de Contrat</p>
 <select name="typeContrat" required>
     <option selected disabled>Choisissez une option...</option>
     <option value="cdd">CDD</option>
     <option value="cdi">CDI</option>
 </select>
 <input placeholder="Fonctions attachées au poste" id="posteEmploi" type="text" required />
-<span>Entreprise</span>
+<h2>Entreprise</h2>
 <input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" required />
 <input placeholder="Adresse du siège social" id="adEnt" type="text" required />
 <input placeholder="Complément d'adresse" id="complementAdEnt" type="text" required />
