@@ -1,11 +1,20 @@
-<?php session_start(); include('_includes/db_init.php'); //Initialisation de la connexion à la DB ?>
-<!DOCTYPE html>
-<html lang="fr">
+<?php 
+    session_start();
+    include('_includes/db_init.php'); //Initialisation de la connexion à la DB 
+    /*if(empty($_SESSION['log'])):      //Directives pour la connexion d'utilisateurs
+        include('_includes/login.php');
+    else:*/
+?>
+    <!DOCTYPE html>
+    <html lang="fr">
+
     <head>
         <?php include('_includes/head.php'); //Section HEAD du code HTML ?>
-        <?php include('_includes/scriptsBefore.php'); //Inclusion des scripts JavaScript devant être chargés en premier (p.ex. jQuery) ?>
+            <?php include('_includes/scriptsBefore.php'); //Inclusion des scripts JavaScript devant être chargés en premier (p.ex. jQuery) ?>
     </head>
+
     <body>
+        <!--<form action="_scripts/scriptLogout.php" method="post"><input type="submit" name="disconnect" value="Se déconnecter"></form>--> <!--Bouton de déconnexion à placer-->
         <header>
             <?php include('_includes/header.php'); //Section HEADER du code HTML ?>
         </header>
@@ -20,4 +29,6 @@
         </footer>
     </body>
     <?php include('_includes/scriptsAfter.php'); //Inclusion des scripts JavaScript pouvant être chargés en dernier ?>
-</html>
+
+    </html>
+<!-- <?php /*endif;*/ ?> -->

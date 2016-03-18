@@ -1,23 +1,23 @@
 <?php 
-if(!empty($_GET['cat'])){   //Dans le cas d'une URL du type .../index.php?cat=ma_page
-    if(is_file('_views/'.$_GET['cat'].'_root.php')){    //Vérification de l'existence de la page racine
-        if(!empty($_GET['view'])){  //Dans le cas d'une URL du type .../index.php?cat=ma_page&view=une_page_particuliere
-            if(is_file('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php')){   //Vérification de son existence
-                include('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php');   //Inclusion pour affichage
+    if(!empty($_GET['cat'])){   //Dans le cas d'une URL du type .../index.php?cat=ma_page
+        if(is_file('_views/'.$_GET['cat'].'_root.php')){    //Vérification de l'existence de la page racine
+            if(!empty($_GET['view'])){  //Dans le cas d'une URL du type .../index.php?cat=ma_page&view=une_page_particuliere
+                if(is_file('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php')){   //Vérification de son existence
+                    include('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php');   //Inclusion pour affichage
+                }
+                else{   //Si fichier inexistant
+                    include('_controllers/404.php');    //Affichage erreur 404
+                }
             }
-            else{   //Si fichier inexistant
-                include('_controllers/404.php');    //Affichage erreur 404
+            else{   //Si pas de _view appelée
+                include('_views/'.$_GET['cat'].'_root.php');    //Affichage page racine
             }
         }
-        else{   //Si pas de _view appelée
-            include('_views/'.$_GET['cat'].'_root.php');    //Affichage page racine
+        else{   //Si page racine inexistante
+            include('_controllers/404.php');    //Affichage erreur 404  
         }
     }
-    else{   //Si page racine inexistante
-        include('_controllers/404.php');    //Affichage erreur 404  
+    else{ //Si aucun des conditions ci-dessus n'est rempli (= visite de la page d'accueil)
+        include('_includes/accueil.php');   //Affichage de la page d'accueil
     }
-}
-else{ //Si aucun des conditions ci-dessus n'est rempli (= visite de la page d'accueil)
-    include('_includes/accueil.php');   //Affichage de la page d'accueil
-}
 ?>

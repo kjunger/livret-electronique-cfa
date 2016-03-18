@@ -1,0 +1,1 @@
+<?php session_start(); $_SESSION['log']="apprenti"; header('Location:../index.php'); ?>
