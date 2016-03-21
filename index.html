@@ -3,9 +3,10 @@
    <head> 
 		<title>Livret Electronique de Suivi de l'Apprenti - Université de Rouen</title> 
 		<meta charset="utf-8" /> 
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 		<link type="text/css" rel="stylesheet" href="style.css" /> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		<script src="script.js"></script>
    </head> 
    <body> 
 		<header>
@@ -15,20 +16,39 @@
 			<img src="logo.png" alt="logo de la formation" id="header-logo"/>
 			<p>
 				Bienvenue, <br/>
-				<span id="nom">Prénom Nom</span>
+				<span id="nom">Prénom NOM</span>
 			</p>
 			<div id="user">
 				<img src="user.svg" alt="" />
 			</div>
+			<div id="deconnexion" class="">
+				<ul class="hidden">
+					<li><a href=""><img src="icones/form.svg" alt="" />Profil</a></li>
+					<li class="separateur">-</li>
+					<li><a href=""><img src="icones/form.svg" alt="" />Deconnexion</a></li>
+				</ul>
+			</div>
         </header>
-        <div id="landscape" class="bouton">
+        <!--<div id="deconnexion-mobile" class="">
+        	<p>Prénom NOM</p>
+				<ul>
+					<li><a href=""><img src="icones/form_app.svg" alt="" />Profil</a></li>
+					<li><a href=""><img src="icones/form_app.svg" alt="" />Deconnexion</a></li>
+				</ul>
+		</div>-->
+        <!--<div id="landscape" class="bouton">
          	<img src="bouton_app.svg" alt="" />
-		</div>
-        <nav id="menu"> 
+		</div>-->
+        <nav id="cssmenu"> 
 			<ul>
 				<li><a href="#" id="actif"><img src="icones/accueil_app.svg" alt="" class="icn"/>Accueil</a></li>
 				<li><a href="#"><img src="icones/eval.svg" alt="" />Evaluation</a></li>
-				<li><a href="form.html"><img src="icones/form.svg" alt="" />Formulaires</a></li>
+				<li class="has-sub"><a href="#"><img src="icones/form.svg" alt="" />Formulaires</a>
+					<ul>
+						<li><a href="form.html">Fiche de renseignements</a></li>
+						<li><a href="insertionPro.html">Insertion professionnelle</a></li>
+					</ul>
+				</li>
 				<li><a href="#"><img src="icones/contrat.svg" alt="" />Contrat</a></li>
 				<li><a href="#"><img src="icones/fichiers.svg" alt="" />Fichiers</a></li>
 				<li><a href="#"><img src="icones/contacts.svg" alt="" />Contacts</a></li>
@@ -36,6 +56,7 @@
         </nav>
 		<main>
 			<p id="breadcrumbs"><a href="#">Accueil</a> ></p>
+			<div id="#test"></div>
 			<div class="conteneur">
 				<div class="titre">
 					<h1>Informations générales</h1>
