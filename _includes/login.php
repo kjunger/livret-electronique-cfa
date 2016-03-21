@@ -15,16 +15,16 @@
         </div>
         <div class="contenu">
             <form method="post" action="_scripts/scriptLogin.php">
-                <select id="" name="" required>
+                <select name="situation" required>
                     <option value="default" selected disabled>Sélectionnez votre situation</option>
-                    <option value="">Apprenti(e)</option>
-                    <option value="">Maître d'apprentissage</option>
+                    <option value="apprenti">Apprenti(e)</option>
+                    <option value="">Maît../...re d'apprentissage</option>
                     <option value="">Tuteur pédagogique</option>
                     <option value="">Responsable pédagogique</option>
                     <option value="">Responsabe CFA</option>
                 </select>
-                <input placeholder="Login" id="" type="text" required />
-                <input placeholder="Mot de passe" id="" type="password" required />
+                <input placeholder="Login" name="login" type="text" required />
+                <input placeholder="Mot de passe" name="mdp" type="password" required />
                 <p class="btn">
                     <input type="submit" value="Valider" />
                 </p>
