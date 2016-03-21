@@ -7,3 +7,14 @@
 <div id="user">
     <img src="_assets/icons/user.svg" alt="" />
 </div>
+<div id="deconnexion" class="">
+    <ul class="hidden">
+        <li>
+            <a href=""><img src="_assets/icons/form.svg" alt="" />Profil</a>
+        </li>
+        <li class="separateur">-</li>
+        <li>
+            <a href=""><img src="_assets/icons/form.svg" alt="" />Deconnexion</a>
+        </li>
+    </ul>
+</div>

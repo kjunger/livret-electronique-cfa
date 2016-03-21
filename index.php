@@ -1,9 +1,9 @@
 <?php 
     session_start();
     include('_includes/db_init.php'); //Initialisation de la connexion à la DB 
-    /*if(empty($_SESSION['log'])):      //Directives pour la connexion d'utilisateurs
+    if(empty($_SESSION['log'])):      //Directives pour la connexion d'utilisateurs
         include('_includes/login.php');
-    else:*/
+    else:
 ?>
     <!DOCTYPE html>
     <html lang="fr">
@@ -18,7 +18,7 @@
         <header>
             <?php include('_includes/header.php'); //Section HEADER du code HTML ?>
         </header>
-        <nav>
+        <nav id="cssmenu">
             <?php include('_includes/sidebar.php'); //Menu principal ?>
         </nav>
         <main>
@@ -31,4 +31,4 @@
     <?php include('_includes/scriptsAfter.php'); //Inclusion des scripts JavaScript pouvant être chargés en dernier ?>
 
     </html>
-<!-- <?php /*endif;*/ ?> -->
+<?php endif; ?>

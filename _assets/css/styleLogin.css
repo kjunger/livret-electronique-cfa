@@ -1,0 +1,105 @@
+html,
+body,
+main {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+* {
+    font-family: "Arial", "Roboto", sans-serif;
+}
+
+.conteneur {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    margin-top: 5em;
+    -moz-box-shadow: 0px 4px 5px 2px #656565;
+    -webkit-box-shadow: 0px 4px 5px 2px #656565;
+    -o-box-shadow: 0px 4px 5px 2px #656565;
+    box-shadow: 0px 4px 5px 2px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.titre {
+    padding: 0.625em 1em;
+    text-align: center;
+    -moz-box-shadow: 0px 4px 5px 0px #656565;
+    -webkit-box-shadow: 0px 4px 5px 0px #656565;
+    -o-box-shadow: 0px 4px 5px 0px #656565;
+    box-shadow: 0px 4px 5px 0px #656565;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+}
+
+.contenu {
+    padding: 2em 2em;
+}
+
+input[type=text],
+input[type=password],
+select {
+    max-width: 100%;
+    min-width: 100%;
+    height: 45px;
+    border: none;
+    border-bottom: 1px solid #363636;
+    background-color: transparent;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding-left: 0.625em;
+    color: #363636;
+    font-size: 1em;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+select:focus {
+    border-bottom: 1px solid #00767b;
+    box-shadow: 0 1px 1px 0 #00767b;
+    outline: none;
+    transition-duration: 0.2s;
+}
+
+select:focus {
+    border-bottom: 1px solid #00767b;
+    box-shadow: 0px 1px 1px 0px #00767b;
+}
+
+input[type=submit] {
+    width: 50%;
+    height: 45px;
+    border: 1px solid #363636;
+    background-color: transparent;
+    font-size: 1.25em;
+    color: #363636;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    border-right: 4px solid #00767b;
+    transform: translateY(-3px);
+    transition-duration: 0.4s;
+    -moz-box-shadow: 3px 3px 5px 0px #363636;
+    -webkit-box-shadow: 3px 3px 5px 0px #363636;
+    -o-box-shadow: 3px 3px 5px 0px #363636;
+    box-shadow: 3px 3px 5px 0px #363636;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#363636, Direction=135, Strength=5);
+}
+
+input[type=submit]:focus {
+    color: #ffffff;
+    background-color: #00767b;
+    border: none;
+    outline: none;
+}
+
+.btn {
+    text-align: center;
+}
