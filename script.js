@@ -36,10 +36,9 @@ $(document).ready(function(){
 				$('header ul').removeClass('hidden');
 			}
 		});
-	}else{
+	}
+	else{
 
-$('#cssmenu').css('display','none');
-$('#deconnexion-mobile').css('display','none');
 $('div.screen').css('right','0');
 $('div.screen').css('left','0');
 
@@ -61,7 +60,7 @@ function openMenu(){
 	$('div.bouton').addClass('open');	
     $('div.y').fadeOut(100);
     $('div.screen').addClass('animate');
-    $('#cssmenu').css('display','');
+    $('#deconnexion-mobile').css('display','none');
     $('div.screen').css('left','80%');	
 		
 	setTimeout(function(){					
@@ -82,7 +81,7 @@ function closeMenu(){
 	$('div.x').removeClass('rotate45').addClass('rotate30'); 
 	$('div.z').removeClass('rotate135').addClass('rotate150');	
 	$('div.screen').css('left','0');
-	$('#cssmenu').css('display','none');			
+	$('#deconnexion-mobile').css('display','');			
 		
 	setTimeout(function(){ 			
 		$('div.x').removeClass('rotate30'); 
@@ -105,7 +104,7 @@ $('header #user').on('click', function(){
 function openMenuUser(){
 	$('header #user').addClass('open');	
     $('div.screen').addClass('animate-user');
-    $('#deconnexion-mobile').css('display','');
+    $('#cssmenu').css('display','none');
     $('div.screen').css('left','');	
     $('div.screen').css('right','80%');	
 }
@@ -114,7 +113,7 @@ function closeMenuUser(){
 	
 	$('div.screen').removeClass('animate-user');
 	$('header #user').removeClass('open');
-	$('#deconnexion-mobile').css('display','none');
+	$('#cssmenu').css('display','');
 	$('div.screen').css('right','80%');	
 	$('div.screen').css('left','0');	
 }
