@@ -18,7 +18,7 @@
                 <select name="situation" required>
                     <option value="default" selected disabled>Sélectionnez votre situation</option>
                     <option value="apprenti">Apprenti(e)</option>
-                    <option value="">Maît../...re d'apprentissage</option>
+                    <option value="maitreapprentissage">Maître d'apprentissage</option>
                     <option value="">Tuteur pédagogique</option>
                     <option value="">Responsable pédagogique</option>
                     <option value="">Responsabe CFA</option>

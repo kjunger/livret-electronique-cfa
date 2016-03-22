@@ -1,7 +1,7 @@
 <?php 
     session_start();
     include('_includes/db_init.php'); //Initialisation de la connexion à la DB 
-    if(empty($_SESSION['log'])):      //Directives pour la connexion d'utilisateurs
+    if(empty($_SESSION['login']) && empty($_SESSION['situation'])):      //Directives pour la connexion d'utilisateurs
         include('_includes/login.php');
     else:
 ?>
