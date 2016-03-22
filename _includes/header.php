@@ -19,6 +19,13 @@
                     echo '<span id="nom">'.$answer[0]['prenomMaitreApprentissage'].' '.$answer[0]['nomMaitreApprentissage'].'</span>';
                 }
                 break;
+            case "tuteurpedagogique":
+                $name=$db->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='".$_SESSION['login']."';");
+                $answer=$name->fetchAll();
+                if(count($answer)==1){
+                    echo '<span id="nom">'.$answer[0]['prenomTuteurPedagogique'].' '.$answer[0]['nomTuteurPedagogique'].'</span>';
+                }
+                break;
         }
     ?></p>
 <div id="user">
