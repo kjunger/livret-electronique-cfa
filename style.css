@@ -92,10 +92,6 @@ header p{
 	height:1em;
 	margin-right:1.25em;
 }
-#icn-deco{
-	width:1em;
-	height:1.5em;
-}
 .separateur{
 	visibility:hidden;
 	font-size:1.5em;
@@ -206,10 +202,6 @@ ul#img-footer-menu{
 	width:1em;
 	height:1em;
 	margin-right:1.25em;
-}
-
-#cssmenu li #actif{
-	color:#00767b;
 }
 
 #cssmenu,
@@ -544,17 +536,22 @@ input[type=text], input[type=email], input[type=tel], textarea, select{
 	font-size:1em;
 }
 input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, textarea:focus, select:focus{
-	border-bottom:1px solid #00767b;
-	box-shadow: 0 1px 1px 0 #00767b;
+	border-bottom:1px solid #363636;
+	box-shadow: 0 1px 1px 0 #363636;
 	outline:none;
-	transition-duration: 0.2s;
+	transform:translateY(-3px);
+	-moz-box-shadow: 3px 3px 5px 0px #363636;
+	-webkit-box-shadow: 3px 3px 5px 0px #363636;
+	-o-box-shadow: 3px 3px 5px 0px #363636;
+	box-shadow: 3px 3px 5px 0px #363636;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#363636, Direction=135, Strength=5);
 }
 textarea{
 	height:60px;
 }
 select:focus{
-	border-bottom:1px solid #00767b;
-	box-shadow: 0px 1px 1px 0px #00767b;
+	border-bottom:1px solid #363636;
+	box-shadow: 0px 1px 1px 0px #363636;
 }
 
 .checkbox{
@@ -587,7 +584,7 @@ input[type="checkbox"]+label:before {
     width: 18px;
     height: 18px;
     z-index: 0;
-    border: 2px solid #5a5a5a;
+    border: 2px solid #363636;
     border-radius: 1px;
     margin-top: 2px;
     transition: .2s;
@@ -599,8 +596,8 @@ input[type="checkbox"]:checked+label:before {
     height: 22px;
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
-    border-right: 2px solid #26a69a;
-    border-bottom: 2px solid #26a69a;
+    border-right: 2px solid #363636;
+    border-bottom: 2px solid #363636;
     -webkit-transform: rotate(40deg);
     transform: rotate(40deg);
     -webkit-backface-visibility: hidden;
@@ -620,8 +617,7 @@ input[type=submit]{
 	margin-bottom:50px;
 	cursor:pointer;
 }
-input[type=submit]:hover{
-	border-right:4px solid #00767b;
+input[type=text]:hover, input[type=email]:hover, input[type=tel]:hover, textarea:hover, select:hover, input[type=submit]:hover{
 	transform:translateY(-3px);
 	transition-duration:0.4s;
 	-moz-box-shadow: 3px 3px 5px 0px #363636;
@@ -632,7 +628,7 @@ input[type=submit]:hover{
 }
 input[type=submit]:focus{
 	color:#ffffff;
-	background-color:#00767b;
+	background-color:#363636;
 	border:none;
 	outline:none;
 }
@@ -709,7 +705,7 @@ main{
 footer ul{
 	list-style-type: none;
 	position: absolute;
-	right:16.875em;
+	right:18em;
 	top:50%;
 	transform:translateY(-75%);
 }
@@ -735,7 +731,7 @@ footer img{
 }
 #logo_region{
 	right:11.875em;
-	max-width:3.75em;
+	max-width:5em;
 	height: auto;
 }
 #logo_ministere{
@@ -789,7 +785,7 @@ main{
 footer ul{
 	list-style-type: none;
 	position: absolute;
-	right:13.125em;
+	right:14em;
 	top:50%;
 	transform:translateY(-75%);
 }
@@ -815,7 +811,7 @@ footer img{
 }
 #logo_region{
 	right:8.125em;
-	max-width:3.75em;
+	max-width:5em;
 	height: auto;
 }
 #logo_ministere{
