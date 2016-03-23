@@ -1,0 +1,201 @@
+html,
+body,
+main {
+    width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+* {
+    font-family: "Arial", "Roboto", sans-serif;
+}
+
+img {
+    display: block;
+    margin: 5em auto;
+}
+
+h2 {
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
+
+span {
+    font-weight: 100;
+}
+
+input[type=text],
+input[type=password],
+select {
+    height: 70px;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    border-bottom: 1px solid #363636;
+    background-color: transparent;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding-left: 0.625em;
+    color: #363636;
+    font-size: 1em;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+select:focus {
+    border-bottom: 1px solid #363636;
+    box-shadow: 0 1px 1px 0 #363636;
+    transform: translateY(-3px);
+    outline: none;
+    -moz-box-shadow: 3px 3px 5px 0px #363636;
+    -webkit-box-shadow: 3px 3px 5px 0px #363636;
+    -o-box-shadow: 3px 3px 5px 0px #363636;
+    box-shadow: 3px 3px 5px 0px #363636;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#363636, Direction=135, Strength=5);
+}
+
+select:focus {
+    border-bottom: 1px solid #363636;
+    box-shadow: 0px 1px 1px 0px #363636;
+}
+
+input[type=submit] {
+    height: 70px;
+    border: 1px solid #363636;
+    background-color: transparent;
+    font-size: 1.25em;
+    color: #363636;
+    cursor: pointer;
+}
+
+input[type=text]:hover,
+input[type=password]:hover,
+select:hover,
+input[type=submit]:hover {
+    transform: translateY(-3px);
+    transition-duration: 0.4s;
+    -moz-box-shadow: 3px 3px 5px 0px #363636;
+    -webkit-box-shadow: 3px 3px 5px 0px #363636;
+    -o-box-shadow: 3px 3px 5px 0px #363636;
+    box-shadow: 3px 3px 5px 0px #363636;
+    filter: progid: DXImageTransform.Microsoft.Shadow(color=#363636, Direction=135, Strength=5);
+}
+
+input[type=submit]:focus {
+    color: #ffffff;
+    background-color: #363636;
+    border: none;
+    outline: none;
+}
+
+.btn {
+    text-align: center;
+}
+
+@media screen and (min-width:1299px) {
+    img {
+        width: 20%;
+    }
+    h2 {
+        width: 30%;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    select {
+        max-width: 30%;
+        min-width: 30%;
+    }
+}
+
+@media screen and (min-width:973px) and (max-width:1299px) {
+    img {
+        width: 22%;
+    }
+    h2 {
+        width: 40%;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    select {
+        max-width: 40%;
+        min-width: 40%;
+    }
+}
+
+@media screen and (min-width:866px) and (max-width:972px) {
+    img {
+        width: 25%;
+    }
+    h2 {
+        width: 45%;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    select {
+        max-width: 45%;
+        min-width: 45%;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:865px) {
+    img {
+        width: 30%;
+    }
+    h2 {
+        display: none;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    select {
+        max-width: 45%;
+        min-width: 45%;
+    }
+}
+
+@media screen and (min-width:440px) and (max-width:599px) {
+    img {
+        width: 35%;
+        margin: 1em auto;
+    }
+    h2 {
+        display: none;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    select {
+        max-width: 55%;
+        min-width: 55%;
+    }
+}
+
+@media screen and (max-width:439px) {
+    img {
+        width: 40%;
+        margin: 1em auto;
+    }
+    #content {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    h2 {
+        display: none;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=submit],
+    select {
+        max-width: 80%;
+        min-width: 80%;
+    }
+}
+
+@media screen and (max-width:599px) and (orientation:landscape) {}
