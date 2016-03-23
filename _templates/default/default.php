@@ -85,7 +85,23 @@
             <li class="has-sub">
                 <a href="#"><img src="_templates/default/assets/icons/form.svg" alt="Formulaires" class="icn" />Formulaires</a>
                 <ul>
-                    <li><a href="index.php?cat=form&view=appFicheRenseignemt">Fiche de renseignement</a></li>
+                    <?php try {
+                            $form = $db->query("select * from forms where idForm=1;");
+                            $answer = $form->fetchAll();
+                        }
+                        
+                        catch (PDOException $e) {
+                            echo 'Erreur de transaction : ' . $e->getMessage();
+                        }
+                        
+                        if (count($answer) == 1) {
+                            $cat = $answer[0]['catForm'];
+                            $nom = $answer[0]['nomForm'];
+                            $view = $answer[0]['idForm'];
+                        }
+                        
+                        echo '<li><a href="index.php?cat=' . $cat . '&view=' . $view . '">' . $nom . '</a></li>';
+                    ?>
                     <li><a href="index.php?cat=form&view=appInsertionPro">Insertion professionnelle et suivi des diplômés</a></li>
                     <li><a href="index.php?cat=form&view=tutEntrevues">Entrevues</a></li>
                     <li><a href="index.php?cat=form&view=tutVisiteEnt">Visites en entreprise</a></li>
