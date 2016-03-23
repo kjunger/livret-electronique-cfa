@@ -13,4 +13,13 @@
     <option value="alternance">Formation par alternance</option>
 </select>
 <div id="choixTypeFormation"></div><!-- NE PAS SUPPRIMER CETTE DIV ! -->
-<script type="application/javascript" src="_assets/js/formChoixTypeFormation.js"></script>
+<script type="application/javascript">
+    $('#typeFormation').change(function () {
+        var choixSelect = $('#typeFormation option:selected').val();
+        if (choixSelect == "alternance") {
+            $('#choixTypeFormation').load('_views/form/_includes/' + choixSelect + '.php');
+        } else {
+            $('#choixTypeFormation').empty();
+        }
+    });
+</script>

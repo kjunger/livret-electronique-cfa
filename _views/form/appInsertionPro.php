@@ -43,4 +43,16 @@
         <input type="submit" value="Valider" />
     </p>
 </form>
-<script type="application/javascript" src="_assets/js/formAppInsertionPro.js"></script>
+<script type="application/javascript">
+    $('document').ready(function () {
+        $('#anneeProchaine').change(function () {
+            var choixSelect = $('#anneeProchaine option:selected').val();
+            if (choixSelect != "recherchePoursuiteEtudes") {
+                $('#choixAnneePro').load('_views/form/_includes/' + choixSelect + '.php');
+            }
+            else {
+                $('#choixAnneePro').empty();
+            }
+        });
+    });
+</script>

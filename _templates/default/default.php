@@ -1,4 +1,10 @@
 <?php
+    if(isset($_GET['logout'])){
+        unset($_SESSION['login']);
+        unset($_SESSION['situation']);
+        session_destroy();
+        header('Location:index.php'); 
+    }
     $host='127.0.0.1';
     $dbname='portfolio';
     $user='root';
@@ -29,30 +35,30 @@
         <p>Bienvenue,
             <br/>
             <?php
-                switch($_SESSION['situation']){
-                    case "apprenti":
-                        $name=$db->query("select prenomApprenti, nomApprenti from apprenti where loginApprenti='".$_SESSION['login']."';");
-                        $answer=$name->fetchAll();
-                        if(count($answer)==1){
-                            echo '<span id="nom">'.$answer[0]['prenomApprenti'].' '.$answer[0]['nomApprenti'];
-                        }
-                        break;
-                    case "maitreapprentissage":
-                        $name=$db->query("select prenomMaitreApprentissage, nomMaitreApprentissage from maitreapprentissage where loginMaitreApprentissage='".$_SESSION['login']."';");
-                        $answer=$name->fetchAll();
-                        if(count($answer)==1){
-                            echo '<span id="nom">'.$answer[0]['prenomMaitreApprentissage'].' '.$answer[0]['nomMaitreApprentissage'].'</span>';
-                        }
-                        break;
-                    case "tuteurpedagogique":
-                        $name=$db->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='".$_SESSION['login']."';");
-                        $answer=$name->fetchAll();
-                        if(count($answer)==1){
-                            echo '<span id="nom">'.$answer[0]['prenomTuteurPedagogique'].' '.$answer[0]['nomTuteurPedagogique'].'</span>';
-                        }
-                        break;
-                }
-            ?></p>
+            switch($_SESSION['situation']){
+                case "apprenti":
+                    $name=$db->query("select prenomApprenti, nomApprenti from apprenti where loginApprenti='".$_SESSION['login']."';");
+                    $answer=$name->fetchAll();
+                    if(count($answer)==1){
+                        echo '<span id="nom">'.$answer[0]['prenomApprenti'].' '.$answer[0]['nomApprenti'];
+                    }
+                    break;
+                case "maitreapprentissage":
+                    $name=$db->query("select prenomMaitreApprentissage, nomMaitreApprentissage from maitreapprentissage where loginMaitreApprentissage='".$_SESSION['login']."';");
+                    $answer=$name->fetchAll();
+                    if(count($answer)==1){
+                        echo '<span id="nom">'.$answer[0]['prenomMaitreApprentissage'].' '.$answer[0]['nomMaitreApprentissage'].'</span>';
+                    }
+                    break;
+                case "tuteurpedagogique":
+                    $name=$db->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='".$_SESSION['login']."';");
+                    $answer=$name->fetchAll();
+                    if(count($answer)==1){
+                        echo '<span id="nom">'.$answer[0]['prenomTuteurPedagogique'].' '.$answer[0]['nomTuteurPedagogique'].'</span>';
+                    }
+                    break;
+            }
+        ?></p>
         <div id="user">
             <img src="_templates/default/assets/icons/user.svg" alt="" />
         </div>
@@ -63,7 +69,7 @@
                 </li>
                 <li class="separateur">-</li>
                 <li>
-                    <a href="_scripts/scriptLogout.php"><img src="_templates/default/assets/icons/form.svg" alt="" />Deconnexion</a>
+                    <a href="index.php?logout=1"><img src="_templates/default/assets/icons/form.svg" alt="" />Deconnexion</a>
                 </li>
             </ul>
         </div>
@@ -99,29 +105,29 @@
     <main>
         <p id="breadcrumbs">
             <?php 
-                if (!empty($_GET['cat'])) {
-                    echo '<a href="index.php?cat='.$_GET['cat'].'">'.$_GET['cat'].'</a> > ';
-                    if (!empty($_GET['view'])) {
-                        echo '<a href="index.php?cat='.$_GET['cat'].'&view='.$_GET['view'].'">'.$_GET['view'].'</a>';
-                    }
-                } else {
-                    echo '<a href="index.php">Accueil</a> > ';
-                } 
-            ?>
+            if (!empty($_GET['cat'])) {
+                echo '<a href="index.php?cat='.$_GET['cat'].'">'.$_GET['cat'].'</a> > ';
+                if (!empty($_GET['view'])) {
+                    echo '<a href="index.php?cat='.$_GET['cat'].'&view='.$_GET['view'].'">'.$_GET['view'].'</a>';
+                }
+            } else {
+                echo '<a href="index.php">Accueil</a> > ';
+            } 
+        ?>
         </p>
         <?php 
-            if(!empty($_GET['cat']) && !empty($_GET['view'])){
-                if(is_file('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php')){
-                    include('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php');
-                }
-                else{
-                    include('_views/404.php');
-                }
+        if(!empty($_GET['cat']) && !empty($_GET['view'])){
+            if(is_file('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php')){
+                include('_views/'.$_GET['cat'].'/'.$_GET['view'].'.php');
             }
             else{
-                include('_views/accueil.php');
+                include('_views/404.php');
             }
-        ?>
+        }
+        else{
+            include('_views/accueil.php');
+        }
+    ?>
     </main>
     <footer>
         <img src="_templates/default/assets/img/footer/logo_univ_rouen.png" alt="Logo de l'Université de Rouen" id="logo_univ" />
@@ -135,4 +141,5 @@
     </footer>
 </body>
 <script type="application/javascript" src="_templates/default/assets/js/btnConnexion.js"></script>
+
 </html>
