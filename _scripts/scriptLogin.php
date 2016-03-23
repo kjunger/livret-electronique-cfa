@@ -1,6 +1,14 @@
 <?php
 session_start();
-include ('../_includes/db_init.php');
+$host='127.0.0.1';
+$dbname='portfolio';
+$user='root';
+$pwd='';
+try{
+    $db=new PDO("mysql:dbname=$dbname;host=$host",$user,$pwd);
+} catch(PDOException $e){
+    echo 'Impossible de se connecter à la base de données : '.$e->getMessage();
+}
 if (isset($_POST['situation'])) {
     if (isset($_POST['login'])) {
         if (isset($_POST['mdp'])) {
@@ -17,7 +25,7 @@ if (isset($_POST['situation'])) {
                         $_SESSION['situation'] = $_POST['situation'];
                         header('Location:../index.php');
                     } else {
-                        header('Location:../_includes/login.php?error');
+                        header('Location:../_templates/login.php?error');
                     }
                     break;
                 case "maitreapprentissage":
@@ -32,7 +40,7 @@ if (isset($_POST['situation'])) {
                         $_SESSION['situation'] = $_POST['situation'];
                         header('Location:../index.php');
                     } else {
-                        header('Location:../_includes/login.php?error');
+                        header('Location:../_templates/login.php?error');
                     }
                     break;
                 case "tuteurpedagogique":
@@ -47,7 +55,7 @@ if (isset($_POST['situation'])) {
                         $_SESSION['situation'] = $_POST['situation'];
                         header('Location:../index.php');
                     } else {
-                        header('Location:../_includes/login.php?error');
+                        header('Location:../_templates/login.php?error');
                     }
                     break;
             }
