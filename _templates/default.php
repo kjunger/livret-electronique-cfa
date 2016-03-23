@@ -108,7 +108,7 @@
                 }
             }
             else{
-                include('_includes/accueil.php');
+                include('_views/accueil.php');
             }
         ?>
     </main>

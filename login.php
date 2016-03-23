@@ -4,15 +4,15 @@
 <head>
     <title>Livret Electronique de Suivi de l'Apprenti - Université de Rouen</title>
     <meta charset="utf-8" />
-    <link type="text/css" rel="stylesheet" href="../_assets/css/styleLogin.css" />
+    <link type="text/css" rel="stylesheet" href="_assets/css/styleLogin.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-    <img src="../_assets/img/login/lesa.png" alt="logo" />
+    <img src="_assets/img/login/lesa.png" alt="logo" />
     <div id="content">
         <h2>Bienvenue, <span>veuillez vous connecter.</span></h2>
-        <form method="post" action="../_scripts/scriptLogin.php">
+        <form method="post" action="_scripts/scriptLogin.php">
             <select name="situation" required>
                 <option value="default" selected disabled>Sélectionnez votre situation</option>
                 <option value="apprenti">Apprenti(e)</option>

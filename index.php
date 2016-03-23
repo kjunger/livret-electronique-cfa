@@ -1,8 +1,8 @@
 <?php 
     session_start();
-    include('_includes/db_init.php');
+    include('_scripts/db_init.php');
     if(empty($_SESSION['login']) && empty($_SESSION['situation'])):
-        header('Location:_includes/login.php');
+        header('Location:login.php');
     else:
         include('_templates/default.php');
     endif; 
