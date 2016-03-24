@@ -3,7 +3,7 @@
         unset($_SESSION['login']);
         unset($_SESSION['situation']);
         session_destroy();
-        header('Location:index.php'); 
+        header('Location:index.php');
     }
     $host='127.0.0.1';
     $dbname='portfolio';
