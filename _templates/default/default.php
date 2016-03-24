@@ -124,7 +124,7 @@
                         }
 
                         try {
-                            $formName = $db->query('select nomForm from froms where idForm=' . $_GET['id'] . ';');
+                            $formName = $db->query('select nomForm from forms where idForm=' . $_GET['id'] . ';');
                             $answer = $formName->fetchAll();
                         }
 
