@@ -96,7 +96,7 @@
                             }
 
                             foreach ($answer as $row) {
-                                echo '<li><a href="index.php?id=' . $row['idForm'] . '">' . $row['nomForm'] . '</a></li>';
+                                echo '<li><a href="index.php?cat=' . $row['catForm'] . '&amp;id=' . $row['idForm'] . '">' . $row['nomForm'] . '</a></li>';
                             }
                         ?>
                     </ul>
@@ -113,18 +113,34 @@
             </ul>
         </nav>
         <main>
-            <!-- <p id="breadcrumbs">
-            <?php 
-            /*if (!empty($_GET['cat'])) {
-                echo '<a href="index.php?cat='.$_GET['cat'].'">'.$_GET['cat'].'</a> > ';
-                if (!empty($_GET['view'])) {
-                    echo '<a href="index.php?cat='.$_GET['cat'].'&view='.$_GET['view'].'">'.$_GET['view'].'</a>';
-                }
-            } else {
-                echo '<a href="index.php">Accueil</a> > ';
-            } */
-        ?>
-        </p> -->
+            <p id="breadcrumbs">
+                <?php
+                    if (!empty($_GET['cat']) && !empty($_GET['id'])) {
+
+                        switch ($_GET['cat']) {
+                            case "form":
+                                echo 'Formulaires > ';
+                                break;
+                        }
+
+                        try {
+                            $formName = $db->query('select nomForm from froms where idForm=' . $_GET['id'] . ';');
+                            $answer = $formName->fetchAll();
+                        }
+
+                        catch (PDOException $e) {
+                            echo 'Erreur de transaction : ' . $e->getMessage();
+                        }
+
+                        if (count($answer) == 1){
+                            echo $answer[0]['nomForm'];
+                        }
+
+                    } else {
+                        echo '<a href="index.php">Accueil</a> > ';
+                    }
+                ?>
+            </p>
             <?php
                 if (!empty($_GET['id'])) {
                     try {
