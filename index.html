@@ -12,19 +12,20 @@
         <nav id="cssmenu"> 
         	<img src="logo.png" alt="logo de la formation" id="menu-logo"/> 
 			<ul>
-				<li><a href="#" id="actif"><div id="accueil">Accueil</div></a></li>
-				<li><a href="#"><div id="eval">Evaluation</div></a></li>
-				<li class="has-sub"><a href="#"><div id="form">Formulaires</div></a>
+				<li><a href="#"><div class="accueil">Accueil</div></a></li>
+				<li><a href="#"><div class="eval">Evaluation</div></a></li>
+				<li class="has-sub"><a href="#"><div class="form">Formulaires</div></a>
 					<ul>
 						<li><a href="form.html">Fiche de renseignements</a></li>
 						<li><a href="insertionPro.html">Insertion professionnelle</a></li>
 					</ul>
 				</li>
-				<li><a href="#"><div id="contrat">Contrat</div></a></li>
-				<li><a href="#"><div id="fichiers">Fichiers</div></a></li>
-				<li><a href="#"><div id="contacts">Contacts</div></a></li>
+				<li><a href="#"><div class="contrat">Contrat</div></a></li>
+				<li><a href="#"><div class="fichiers">Fichiers</div></a></li>
+				<li><a href="#"><div class="contacts">Contacts</div></a></li>
 			</ul>
         </nav>
+
         <div id="deconnexion-mobile">
         	<p>Prénom NOM</p>
 			<ul>
@@ -33,19 +34,61 @@
 			</ul>
 			<img src="logo_univ_rouen_blanc.png" alt="logo de l'université de rouen" id="logo_univ_blanc"/>
 			<img src="logo_iut_rouen.png" alt="logo de l'établissement" id="logo_etab_blanc"/>
-			<div id="footer_menu">
+			<div class="footer-menu">
 				<ul>
 					<li><a href="">Contact</a></li>
 					<li><a href="">Mentions légales</a></li>
 				</ul>
-				<ul id="img-footer-menu">
-					<li><img src="logo_region.png" alt="logo de la région" id="logo_region_menu"/></li>
+				<ul class="img-footer-menu">
+					<li><img src="logo_region.png" alt="logo de la région" class="logo_region_menu"/></li>
 					<li class="separateur">-</li>
-					<li><img src="logo_ministere.png" alt="logo du ministère de l'enseignement supérieur et de la recherche" id="logo_ministere_menu"/></li>
+					<li><img src="logo_ministere.png" alt="logo du ministère de l'enseignement supérieur et de la recherche" class="logo_ministere_menu"/></li>
 				</ul>
 			</div>
-
 		</div>
+
+		<!--<div class="bouton-landscape">
+			<div class="x"></div>
+			<div class="y"></div>
+			<div class="z"></div>
+		</div>
+
+		<div id="menu-landscape">
+			<ul id="logos-landscape">
+				<li><img src="logo.png" alt="logo de la formation" id="l1"/></li>
+				<li class="separateur">-</li>
+				<li><img src="logo_univ_rouen_blanc.png" alt="logo de l'université de rouen" id="l2"/></li>
+				<li class="separateur">-</li>
+				<li><img src="logo_iut_rouen.png" alt="logo de l'établissement" id="l3"/></li>
+			</ul>
+			<ul id="liste-menu-landscape">
+				<li><a href="#"><div class="accueil">Accueil</div></a></li>
+				<li><a href="#"><div class="eval">Evaluation</div></a></li>
+				<li class="has-sub"><a href="#"><div class="form">Formulaires</div></a>
+					<ul>
+						<li><a href="form.html">Fiche de renseignements</a></li>
+						<li><a href="insertionPro.html">Insertion professionnelle</a></li>
+					</ul>
+				</li>
+				<li><a href="#"><div class="contrat">Contrat</div></a></li>
+				<li><a href="#"><div class="fichiers">Fichiers</div></a></li>
+				<li><a href="#"><div class="contacts">Contacts</div></a></li>
+			</ul>
+			<div class="footer-menu">
+				<div id="content-footer-menu">
+					<ul>
+						<li><a href="">Contact</a></li>
+						<li><a href="">Mentions légales</a></li>
+					</ul>
+					<ul class="img-footer-menu">
+						<li><img src="logo_region.png" alt="logo de la région" class="logo_region_menu"/></li>
+						<li class="separateur">-</li>
+						<li><img src="logo_ministere.png" alt="logo du ministère de l'enseignement supérieur et de la recherche" class="logo_ministere_menu"/></li>
+					</ul>
+				</div>
+			</div>
+		</div>-->
+
         <div class="screen"> 
 		<header>
 			<div class="bouton">
@@ -69,13 +112,10 @@
 				</ul>
 			</div>
         </header>
-        <!--<div id="landscape" class="bouton">
-         	<img src="bouton_app.svg" alt="" />
-		</div>-->
-
 		<main>
+			<!--<button id="fake-button"></button>-->
 			<p id="breadcrumbs"><a href="#">Accueil</a> ></p>
-			<div id="#test"></div>
+			<div id="content">
 			<div class="conteneur">
 				<div class="titre">
 					<h1>Informations générales</h1>
@@ -126,6 +166,7 @@
 					</p>
 				</div>
 			</div>
+		</div>
 		</main>
         <footer> 
             <img src="logo_univ_rouen.png" alt="logo de l'université de rouen" id="logo_univ"/>
