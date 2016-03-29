@@ -170,8 +170,8 @@
                             <p>
                                 <?php
                                 try {
-                                    $idformation = $db->query("select idFormation from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
-                                    $answer=$idformation->fetchAll();
+                                    $idFormation = $db->query("select idFormation from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
+                                    $answer=$idFormation->fetchAll();
                                 } catch (PDOException $e) {
                                     echo 'Erreur de transaction : ' . $e->getMessage();
                                 }
@@ -188,22 +188,47 @@
                                 }
                             ?>
                             </p>
+                            <h2>Entreprise</h2>
+                            <p>
+                                SARL ...
+                                <br/> 1 rue Truc - BP666 - 76123 Quelque-Part
+                            </p>
+                            <h2>Maître d'apprentissage</h2>
+                            <p>
+                                <?php
+                                    try {
+                                        $idApprenti = $db->query("select idApprenti from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
+                                        $answer = $idApprenti->fetchAll();
+                                    } catch (PDOException $e) {
+                                        echo 'Erreur de transaction : ' . $e->getMessage();
+                                    }
+                                    if (count($answer) == 1) {
+                                        try {
+                                            $idMaitreApprentissage = $db->query('select idMaitreApprentissage from contratapprentissage where idApprenti=' . $answer[0]['idApprenti'] . ';');
+                                            $answer = $idMaitreApprentissage->fetchAll();
+                                        } catch (PDOException $e) {
+                                            echo 'Erreur de transaction : ' . $e->getMessage();
+                                        }
+                                        if (count($answer) == 1) {
+                                            try {
+                                                $maitreApprentissage = $db->query('select * from maitreapprentissage where idMaitreApprentissage=' . $answer[0]['idMaitreApprentissage'] . ';');
+                                                $answer = $maitreApprentissage->fetchAll();
+                                            } catch (PDOException $e) {
+                                                echo 'Erreur de transaction : ' . $e->getMessage();
+                                            }
+                                            if (count($answer) == 1) {
+                                                echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br/> ' . $answer[0]['fonctionMaitreApprentissage'];
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </p>
+                            <h2>Tuteur pédagogique</h2>
+                            <p>
+                                Mme YYYYY Yyyyy
+                                <br/> IUT de Rouen
+                            </p>
                             <?php endif; ?>
-                                <h2>Entreprise</h2>
-                                <p>
-                                    SARL ...
-                                    <br/> 1 rue Truc - BP666 - 76123 Quelque-Part
-                                </p>
-                                <h2>Maître d'apprentissage</h2>
-                                <p>
-                                    M. XXXX Xxxxxx
-                                    <br/> Directeur des ressources humaines
-                                </p>
-                                <h2>Tuteur pédagogique</h2>
-                                <p>
-                                    Mme YYYYY Yyyyy
-                                    <br/> IUT de Rouen
-                                </p>
                     </div>
                 </div>
                 <div class="conteneur">
