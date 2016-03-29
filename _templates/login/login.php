@@ -4,7 +4,7 @@
 
         /* Initialisation de la connexion à la base de données */
         try{    //tentative de connexion à la base de données
-            $db=new PDO('mysql:dbname=portfolio;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
+            $db=new PDO('mysql:dbname=livretelectronique;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
         } catch(PDOException $e){   //si la tentative de connexion échoue
             echo 'Impossible de se connecter à la base de données : '.$e->getMessage();     //récupération et affichage du message d'erreur
         }

@@ -9,7 +9,7 @@
 
     /* Initialisation de la connexion à la base de données */
     try{    //tentative de connexion à la base de données
-        $db=new PDO('mysql:dbname=portfolio;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
+        $db=new PDO('mysql:dbname=livretelectronique;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
     } catch(PDOException $e){   //si la tentative de connexion échoue
         echo 'Impossible de se connecter à la base de données : '.$e->getMessage();     //récupération et affichage du message d'erreur
     }
@@ -87,7 +87,7 @@
                     <ul>
                         <?php   //Script de récupération des liens pour le menu Formulaires
                             try {
-                                $formLinks = $db->query("select * from forms where catForm='form';");
+                                $formLinks = $db->query("select * from formulairestandard where catFormulaireStandard='form';");
                                 $answer = $formLinks->fetchAll();
                             }
 
@@ -96,7 +96,7 @@
                             }
 
                             foreach ($answer as $row) {
-                                echo '<li><a href="index.php?cat=' . $row['catForm'] . '&amp;id=' . $row['idForm'] . '">' . $row['nomForm'] . '</a></li>';
+                                echo '<li><a href="index.php?cat=' . $row['catFormulaireStandard'] . '&amp;slug=' . $row['slugFormulaireStandard'] . '">' . $row['nomFormulaireStandard'] . '</a></li>';
                             }
                         ?>
                     </ul>
@@ -124,7 +124,7 @@
                         }
 
                         try {
-                            $formName = $db->query('select nomForm from forms where idForm=' . $_GET['id'] . ';');
+                            $formName = $db->query("select nomFormulaireStandard from formulairestandard where slugFormulaireStandard='" . $_GET['slug'] . "';");
                             $answer = $formName->fetchAll();
                         }
 
@@ -133,7 +133,7 @@
                         }
 
                         if (count($answer) == 1){
-                            echo $answer[0]['nomForm'];
+                            echo $answer[0]['nomFormulaireStandard'];
                         }
 
                     } else {
@@ -142,9 +142,9 @@
                 ?>
             </p>
             <?php   //Controlleur pour l'affichage du contenu
-                if (!empty($_GET['id'])) {
+                if (!empty($_GET['slug'])):
                     try {
-                        $form = $db->query('select contentForm from forms where idForm=' . $_GET['id'] . ';');
+                        $form = $db->query("select * from formulairestandard where slugFormulaireStandard='" . $_GET['slug'] . "';");
                         $answer = $form->fetchAll();
                     }
 
@@ -153,18 +153,87 @@
                     }
 
                     if (count($answer) == 1) {
-                        echo $answer[0]['contentForm'];
+                        echo $answer[0]['contenuFormulaireStandard'];
                     }
                     else {
-                        include ('_views/404.php');
-
+                        echo 'La page que vous cherchez à consulter n\'existe pas.';
                     }
-                }
-                else {
-                    include ('_views/accueil.php');
-
-                }
+                else:
             ?>
+                <div class="conteneur">
+                    <div class="titre">
+                        <h1>Informations générales</h1>
+                    </div>
+                    <div class="contenu">
+                        <?php if($_SESSION['situation']=='apprenti'): ?>
+                            <h2>Formation actuelle</h2>
+                            <p>
+                                <?php
+                                try {
+                                    $idformation = $db->query("select idFormation from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
+                                    $answer=$idformation->fetchAll();
+                                } catch (PDOException $e) {
+                                    echo 'Erreur de transaction : ' . $e->getMessage();
+                                }
+                                if (count($answer) == 1) {
+                                    try {
+                                        $formation = $db->query('select nomFormation from formation where idFormation=' . $answer[0]['idFormation'] . ';');
+                                        $answer = $formation->fetchAll();
+                                    } catch (PDOException $e) {
+                                        echo 'Erreur de transaction : ' . $e->getMessage();
+                                    }
+                                    if (count($answer) == 1) {
+                                        echo $answer[0]['nomFormation'];
+                                    }
+                                }
+                            ?>
+                            </p>
+                            <?php endif; ?>
+                                <h2>Entreprise</h2>
+                                <p>
+                                    SARL ...
+                                    <br/> 1 rue Truc - BP666 - 76123 Quelque-Part
+                                </p>
+                                <h2>Maître d'apprentissage</h2>
+                                <p>
+                                    M. XXXX Xxxxxx
+                                    <br/> Directeur des ressources humaines
+                                </p>
+                                <h2>Tuteur pédagogique</h2>
+                                <p>
+                                    Mme YYYYY Yyyyy
+                                    <br/> IUT de Rouen
+                                </p>
+                    </div>
+                </div>
+                <div class="conteneur">
+                    <div class="titre">
+                        <h1>Important</h1>
+                    </div>
+                    <div class="contenu">
+                        <h2>Formulaire à remplir</h2>
+                        <p>
+                            Vous devez compléter le formulaire suivant :
+                            <br/> "Retour d'expérience"
+                            <br/>
+                            <span class="info">Date limite : 05/09/20xx</span>
+                        </p>
+                        <h2>Formulaire à remplir</h2>
+                        <p>
+                            Vous devez compléter le formulaire suivant :
+                            <br/> "Insertion professionnelle et suivi des diplômés"
+                            <br/>
+                            <span class="info">Date limite : 05/09/20xx</span>
+                        </p>
+                        <h2>Contrat pédagogique</h2>
+                        <p>
+                            Vous devez imprimer et faire signer votre contrat pédagogique.
+                            <br/>
+                            <span class="info">Date limite : 02/10/20xx</span>
+                        </p>
+                    </div>
+                </div>
+                <?php endif; ?>
         </main>
         <footer>
             <img src="_templates/default/assets/img/footer/logo_univ_rouen.png" alt="Logo de l'Université de Rouen" id="logo_univ" />
