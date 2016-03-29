@@ -107,9 +107,6 @@
                 <li>
                     <a href="index.php?cat=fichiers" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='fichiers') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/fichiers.svg" alt="Fichiers" class="icn" />Fichiers</a>
                 </li>
-                <li>
-                    <a href="index.php?cat=contacts" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='contacts') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/contacts.svg" alt="Contacts" class="icn" />Contacts</a>
-                </li>
             </ul>
         </nav>
         <main>
@@ -197,60 +194,28 @@
                             <p>
                                 <?php
                                     try {
-                                        $idApprenti = $db->query("select idApprenti from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
-                                        $answer = $idApprenti->fetchAll();
+                                        $maitreApprentissage = $db->query('SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`=\'' . $_SESSION['login'] . '\';');
+                                        $answer = $maitreApprentissage->fetchAll();
                                     } catch (PDOException $e) {
                                         echo 'Erreur de transaction : ' . $e->getMessage();
                                     }
                                     if (count($answer) == 1) {
-                                        try {
-                                            $idMaitreApprentissage = $db->query('select idMaitreApprentissage from contratapprentissage where idApprenti=' . $answer[0]['idApprenti'] . ';');
-                                            $answer = $idMaitreApprentissage->fetchAll();
-                                        } catch (PDOException $e) {
-                                            echo 'Erreur de transaction : ' . $e->getMessage();
-                                        }
-                                        if (count($answer) == 1) {
-                                            try {
-                                                $maitreApprentissage = $db->query('select * from maitreapprentissage where idMaitreApprentissage=' . $answer[0]['idMaitreApprentissage'] . ';');
-                                                $answer = $maitreApprentissage->fetchAll();
-                                            } catch (PDOException $e) {
-                                                echo 'Erreur de transaction : ' . $e->getMessage();
-                                            }
-                                            if (count($answer) == 1) {
-                                                echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'];
-                                            }
-                                        }
+                                        echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
                                     }
                                 ?>
                             </p>
                             <h2>Tuteur pédagogique</h2>
                             <p>
                                 <?php
-                                try {
-                                    $idApprenti = $db->query("select idApprenti from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
-                                    $answer = $idApprenti->fetchAll();
-                                } catch (PDOException $e) {
-                                    echo 'Erreur de transaction : ' . $e->getMessage();
-                                }
-                                if (count($answer) == 1) {
                                     try {
-                                        $idMaitreApprentissage = $db->query('select idTuteurPedagogique from contratapprentissage where idApprenti=' . $answer[0]['idApprenti'] . ';');
-                                        $answer = $idMaitreApprentissage->fetchAll();
+                                        $tuteurPedagogique = $db->query("SELECT `tuteurpedagogique`.`nomTuteurPedagogique`,`tuteurpedagogique`.`prenomTuteurPedagogique` FROM `tuteurpedagogique` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `tuteurpedagogique`.`idTuteurPedagogique`=`contratapprentissage`.`idTuteurPedagogique` WHERE `apprenti`.`loginApprenti`='" . $_SESSION['login'] . "';");
+                                        $answer = $tuteurPedagogique->fetchAll();
                                     } catch (PDOException $e) {
                                         echo 'Erreur de transaction : ' . $e->getMessage();
                                     }
                                     if (count($answer) == 1) {
-                                        try {
-                                            $maitreApprentissage = $db->query('select * from tuteurpedagogique where idTuteurPedagogique=' . $answer[0]['idTuteurPedagogique'] . ';');
-                                            $answer = $maitreApprentissage->fetchAll();
-                                        } catch (PDOException $e) {
-                                            echo 'Erreur de transaction : ' . $e->getMessage();
-                                        }
-                                        if (count($answer) == 1) {
-                                            echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
-                                        }
+                                        echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
                                     }
-                                }
                                 ?>
                             </p>
                             <?php endif; ?>

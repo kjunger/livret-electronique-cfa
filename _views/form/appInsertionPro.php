@@ -33,7 +33,7 @@
                 <option value="rechercheEmploi">Vous êtes toujours en recherche d'un emploi</option>
             </select>
             <div id="choixAnneePro"></div>
-            <h2>L'association des anciens</h2>
+            <h2>L'association des Anciens</h2>
             <p>Acceptez-vous l'inscription de ces données dans notre fichier des Anciens et à un éventuel contact entre votre composante et vous par la suite (transmission d'offres, information des anciens, proposition de témoignage...) ?</p>
             <input type="checkbox" id="inscriptionAnciensApp" />
             <label for="inscriptionAnciensApp" class="checkbox">Oui, je l'accepte.</label>
