@@ -19,7 +19,6 @@
                 <option value="absent">Non</option>
             </select>
             <div id="choixPresenceApp"></div>
-            <!-- NE PAS SUPPRIMER CETTE DIV ! -->
             <input placeholder="Durée de l'entretien" id="duree" type="text" required />
             <span>Lieu de la soutenance (??)</span>
             <select id="lieu" name="lieu" required>
