@@ -1,18 +1,17 @@
-<?php
-    if(isset($_GET['logout'])){
-        unset($_SESSION['login']);
-        unset($_SESSION['situation']);
-        session_destroy();
-        header('Location:index.php');
+<?php   //Script préliminaire pour le bon déroulement de l'affichage
+    /* Gestion de la déconnexion */
+    if(isset($_GET['logout'])){         //si l'utilisateur a demandé à se connecter (via lien de déconnexion)
+        unset($_SESSION['login']);      //Effacement des variables
+        unset($_SESSION['situation']);  //de session (login et type d'utilisateur)
+        session_destroy();              //Fermeture de la session
+        header('Location:index.php');   //Retour à la page racine, qui affichera le formulaire de connexion
     }
-    $host='127.0.0.1';
-    $dbname='portfolio';
-    $user='root';
-    $pwd='';
-    try{
-        $db=new PDO("mysql:dbname=$dbname;host=$host",$user,$pwd);
-    } catch(PDOException $e){
-        echo 'Impossible de se connecter à la base de données : '.$e->getMessage();
+
+    /* Initialisation de la connexion à la base de données */
+    try{    //tentative de connexion à la base de données
+        $db=new PDO('mysql:dbname=portfolio;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
+    } catch(PDOException $e){   //si la tentative de connexion échoue
+        echo 'Impossible de se connecter à la base de données : '.$e->getMessage();     //récupération et affichage du message d'erreur
     }
 ?>
     <!DOCTYPE html>
@@ -34,31 +33,32 @@
             <a href="index.php"><img src="_templates/default/assets/img/header/logo.png" alt="Logo CFA-CFC" id="header-logo" /></a>
             <p>Bienvenue,
                 <br/>
-                <?php
-            switch($_SESSION['situation']){
-                case "apprenti":
-                    $name=$db->query("select prenomApprenti, nomApprenti from apprenti where loginApprenti='".$_SESSION['login']."';");
-                    $answer=$name->fetchAll();
-                    if(count($answer)==1){
-                        echo '<span id="nom">'.$answer[0]['prenomApprenti'].' '.$answer[0]['nomApprenti'].'</span>';
+                <?php   //Script gérant l'affichage du nom de l'utilisateur
+                    switch($_SESSION['situation']){     //Détection du type d'utilisateur en cours
+                        case "apprenti":    //Si apprenti
+                            $name=$db->query("select prenomApprenti, nomApprenti from apprenti where loginApprenti='".$_SESSION['login']."';");
+                            $answer=$name->fetchAll();
+                            if(count($answer)==1){
+                                echo '<span id="nom">'.$answer[0]['prenomApprenti'].' '.$answer[0]['nomApprenti'].'</span>';
+                            }
+                            break;
+                        case "maitreapprentissage":     //Si maître d'apprentissage
+                            $name=$db->query("select prenomMaitreApprentissage, nomMaitreApprentissage from maitreapprentissage where loginMaitreApprentissage='".$_SESSION['login']."';");
+                            $answer=$name->fetchAll();
+                            if(count($answer)==1){
+                                echo '<span id="nom">'.$answer[0]['prenomMaitreApprentissage'].' '.$answer[0]['nomMaitreApprentissage'].'</span>';
+                            }
+                            break;
+                        case "tuteurpedagogique":       //Si tuteur pédagogique
+                            $name=$db->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='".$_SESSION['login']."';");
+                            $answer=$name->fetchAll();
+                            if(count($answer)==1){
+                                echo '<span id="nom">'.$answer[0]['prenomTuteurPedagogique'].' '.$answer[0]['nomTuteurPedagogique'].'</span>';
+                            }
+                            break;
                     }
-                    break;
-                case "maitreapprentissage":
-                    $name=$db->query("select prenomMaitreApprentissage, nomMaitreApprentissage from maitreapprentissage where loginMaitreApprentissage='".$_SESSION['login']."';");
-                    $answer=$name->fetchAll();
-                    if(count($answer)==1){
-                        echo '<span id="nom">'.$answer[0]['prenomMaitreApprentissage'].' '.$answer[0]['nomMaitreApprentissage'].'</span>';
-                    }
-                    break;
-                case "tuteurpedagogique":
-                    $name=$db->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='".$_SESSION['login']."';");
-                    $answer=$name->fetchAll();
-                    if(count($answer)==1){
-                        echo '<span id="nom">'.$answer[0]['prenomTuteurPedagogique'].' '.$answer[0]['nomTuteurPedagogique'].'</span>';
-                    }
-                    break;
-            }
-        ?></p>
+                ?>
+            </p>
             <div id="user">
                 <img src="_templates/default/assets/icons/user.svg" alt="" />
             </div>
@@ -85,7 +85,7 @@
                 <li class="has-sub">
                     <a href="#" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='form') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/form.svg" alt="Formulaires" class="icn" />Formulaires</a>
                     <ul>
-                        <?php
+                        <?php   //Script de récupération des liens pour le menu Formulaires
                             try {
                                 $formLinks = $db->query("select * from forms where catForm='form';");
                                 $answer = $formLinks->fetchAll();
@@ -114,7 +114,7 @@
         </nav>
         <main>
             <p id="breadcrumbs">
-                <?php
+                <?php   //Script de récupération et d'affichage dynamique du fil d'Ariane
                     if (!empty($_GET['cat']) && !empty($_GET['id'])) {
 
                         switch ($_GET['cat']) {
@@ -141,7 +141,7 @@
                     }
                 ?>
             </p>
-            <?php
+            <?php   //Controlleur pour l'affichage du contenu
                 if (!empty($_GET['id'])) {
                     try {
                         $form = $db->query('select contentForm from forms where idForm=' . $_GET['id'] . ';');

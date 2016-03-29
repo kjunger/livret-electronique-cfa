@@ -1,88 +1,88 @@
-<?php if (isset($_GET['login'])) {
-    session_start();
-    $host = '127.0.0.1';
-    $dbname = 'portfolio';
-    $user = 'root';
-    $pwd = '';
-    try {
-        $db = new PDO("mysql:dbname=$dbname;host=$host", $user, $pwd);
-    }
+<?php   //Script préliminaire pour le bon déroulement de l'affichage
+    if (isset($_GET['login'])) {
+        session_start();
 
-    catch (PDOException $e) {
-        echo 'Impossible de se connecter à la base de données : ' . $e->getMessage();
-    }
+        /* Initialisation de la connexion à la base de données */
+        try{    //tentative de connexion à la base de données
+            $db=new PDO('mysql:dbname=portfolio;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
+        } catch(PDOException $e){   //si la tentative de connexion échoue
+            echo 'Impossible de se connecter à la base de données : '.$e->getMessage();     //récupération et affichage du message d'erreur
+        }
 
-    if (isset($_POST['situation'])) {
-        if (isset($_POST['login'])) {
-            if (isset($_POST['mdp'])) {
-                switch ($_POST['situation']) {
-                    case "apprenti":
-                        try {
-                            $connect = $db->query("select * from apprenti where loginApprenti='" . $_POST['login'] . "' and mdpApprenti='" . md5($_POST['mdp']) . "';");
-                            $answer = $connect->fetchAll();
-                        }
+        /* Gestion de la connexion */
 
-                        catch (PDOException $e) {
-                            echo 'Erreur de transaction : ' . $e->getMessage();
-                        }
+        if (isset($_POST['situation'])) {           // Vérification des différentes variables $_POST
+            if (isset($_POST['login'])) {           // pour déterminer si l'utilisateur
+                if (isset($_POST['mdp'])) {         // a bien renseigné tout le formulaire de connexion
+                    switch ($_POST['situation']) {      // Détermination du type d'utilisateur
+                        case "apprenti":    // S'il s'agit d'un apprenti
+                            try {
+                                $connect = $db->query("select * from apprenti where loginApprenti='" . $_POST['login'] . "' and mdpApprenti='" . md5($_POST['mdp']) . "';");
+                                $answer = $connect->fetchAll();
+                            }
 
-                        if (count($answer) == 1) {
-                            $_SESSION['login'] = $answer[0]['loginApprenti'];
-                            $_SESSION['situation'] = $_POST['situation'];
-                            header('Location:index.php');
-                        }
-                        else {
-                            header('Location:index.php?error');
-                        }
+                            catch (PDOException $e) {
+                                echo 'Erreur de transaction : ' . $e->getMessage();
+                            }
 
-                        break;
+                            if (count($answer) == 1) {
+                                $_SESSION['login'] = $answer[0]['loginApprenti'];
+                                $_SESSION['situation'] = $_POST['situation'];
+                                header('Location:index.php');
+                            }
+                            else {
+                                header('Location:index.php?error');
+                            }
 
-                    case "maitreapprentissage":
-                        try {
-                            $connect = $db->query("select * from maitreapprentissage where loginMaitreApprentissage='" . $_POST['login'] . "' and mdpMaitreApprentissage='" . md5($_POST['mdp']) . "';");
-                            $answer = $connect->fetchAll();
-                        }
+                            break;
 
-                        catch (PDOException $e) {
-                            echo 'Erreur de transaction : ' . $e->getMessage();
-                        }
+                        case "maitreapprentissage":     // S'il s'agit d'un maître d'apprentissage
+                            try {
+                                $connect = $db->query("select * from maitreapprentissage where loginMaitreApprentissage='" . $_POST['login'] . "' and mdpMaitreApprentissage='" . md5($_POST['mdp']) . "';");
+                                $answer = $connect->fetchAll();
+                            }
 
-                        if (count($answer) == 1) {
-                            $_SESSION['login'] = $answer[0]['loginMaitreApprentissage'];
-                            $_SESSION['situation'] = $_POST['situation'];
-                            header('Location:index.php');
-                        }
-                        else {
-                            header('Location:index.php?error');
-                        }
+                            catch (PDOException $e) {
+                                echo 'Erreur de transaction : ' . $e->getMessage();
+                            }
 
-                        break;
+                            if (count($answer) == 1) {
+                                $_SESSION['login'] = $answer[0]['loginMaitreApprentissage'];
+                                $_SESSION['situation'] = $_POST['situation'];
+                                header('Location:index.php');
+                            }
+                            else {
+                                header('Location:index.php?error');
+                            }
 
-                    case "tuteurpedagogique":
-                        try {
-                            $connect = $db->query("select * from tuteurpedagogique where loginTuteurPedagogique='" . $_POST['login'] . "' and mdpTuteurPedagogique='" . md5($_POST['mdp']) . "';");
-                            $answer = $connect->fetchAll();
-                        }
+                            break;
 
-                        catch (PDOException $e) {
-                            echo 'Erreur de transaction : ' . $e->getMessage();
-                        }
+                        case "tuteurpedagogique":       // S'il s'agit d'un tuteur pédagogique
+                            try {
+                                $connect = $db->query("select * from tuteurpedagogique where loginTuteurPedagogique='" . $_POST['login'] . "' and mdpTuteurPedagogique='" . md5($_POST['mdp']) . "';");
+                                $answer = $connect->fetchAll();
+                            }
 
-                        if (count($answer) == 1) {
-                            $_SESSION['login'] = $answer[0]['loginTuteurPedagogique'];
-                            $_SESSION['situation'] = $_POST['situation'];
-                            header('Location:index.php');
-                        }
-                        else {
-                            header('Location:index.php?error');
-                        }
+                            catch (PDOException $e) {
+                                echo 'Erreur de transaction : ' . $e->getMessage();
+                            }
 
-                        break;
+                            if (count($answer) == 1) {
+                                $_SESSION['login'] = $answer[0]['loginTuteurPedagogique'];
+                                $_SESSION['situation'] = $_POST['situation'];
+                                header('Location:index.php');
+                            }
+                            else {
+                                header('Location:index.php?error');
+                            }
+
+                            break;
+                    }
                 }
             }
         }
     }
-} ?>
+?>
     <!DOCTYPE html>
     <html lang="fr">
 
