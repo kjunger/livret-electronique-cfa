@@ -217,7 +217,7 @@
                                                 echo 'Erreur de transaction : ' . $e->getMessage();
                                             }
                                             if (count($answer) == 1) {
-                                                echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br/> ' . $answer[0]['fonctionMaitreApprentissage'];
+                                                echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'];
                                             }
                                         }
                                     }
@@ -225,8 +225,33 @@
                             </p>
                             <h2>Tuteur pédagogique</h2>
                             <p>
-                                Mme YYYYY Yyyyy
-                                <br/> IUT de Rouen
+                                <?php
+                                try {
+                                    $idApprenti = $db->query("select idApprenti from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
+                                    $answer = $idApprenti->fetchAll();
+                                } catch (PDOException $e) {
+                                    echo 'Erreur de transaction : ' . $e->getMessage();
+                                }
+                                if (count($answer) == 1) {
+                                    try {
+                                        $idMaitreApprentissage = $db->query('select idTuteurPedagogique from contratapprentissage where idApprenti=' . $answer[0]['idApprenti'] . ';');
+                                        $answer = $idMaitreApprentissage->fetchAll();
+                                    } catch (PDOException $e) {
+                                        echo 'Erreur de transaction : ' . $e->getMessage();
+                                    }
+                                    if (count($answer) == 1) {
+                                        try {
+                                            $maitreApprentissage = $db->query('select * from tuteurpedagogique where idTuteurPedagogique=' . $answer[0]['idTuteurPedagogique'] . ';');
+                                            $answer = $maitreApprentissage->fetchAll();
+                                        } catch (PDOException $e) {
+                                            echo 'Erreur de transaction : ' . $e->getMessage();
+                                        }
+                                        if (count($answer) == 1) {
+                                            echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
+                                        }
+                                    }
+                                }
+                                ?>
                             </p>
                             <?php endif; ?>
                     </div>
