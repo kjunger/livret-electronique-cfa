@@ -110,6 +110,7 @@ function controller($database, $slug)
     }
     else {
         echo 'La page que vous cherchez Ãƒ  consulter n\'existe pas.';
+        echo 'La page que vous cherchez à consulter n\'existe pas.';
     }
 }
 
