@@ -1,18 +1,12 @@
-<?php   //Script préliminaire pour le bon déroulement de l'affichage
-    /* Gestion de la déconnexion */
-    if(isset($_GET['logout'])){         //si l'utilisateur a demandé à se connecter (via lien de déconnexion)
-        unset($_SESSION['login']);      //Effacement des variables
-        unset($_SESSION['situation']);  //de session (login et type d'utilisateur)
-        session_destroy();              //Fermeture de la session
-        header('Location:index.php');   //Retour à la page racine, qui affichera le formulaire de connexion
-    }
+<?php
+include ('_templates/default/functions.php');
 
-    /* Initialisation de la connexion à la base de données */
-    try{    //tentative de connexion à la base de données
-        $db=new PDO('mysql:dbname=livretelectronique;host=127.0.0.1','root','');     //où resp. le nom de la BDD (ici, portfolio), l'adresse du serveur de BDD (ici, 127.0.0.1), l'utilisateur de la BDD (ici, root) et le mot de passe (ici, rien du tout) doivent être remplacés par les valeurs adéquates le cas échéant
-    } catch(PDOException $e){   //si la tentative de connexion échoue
-        echo 'Impossible de se connecter à la base de données : '.$e->getMessage();     //récupération et affichage du message d'erreur
-    }
+$db = dbInit('livretelectronique', 'localhost', 'root', '');
+
+if (isset($_GET['logout'])) {
+    userLogout();
+}
+
 ?>
     <!DOCTYPE html>
     <html lang="fr">
@@ -32,33 +26,7 @@
             </div>
             <a href="index.php"><img src="_templates/default/assets/img/header/logo.png" alt="Logo CFA-CFC" id="header-logo" /></a>
             <p>Bienvenue,
-                <br/>
-                <?php   //Script gérant l'affichage du nom de l'utilisateur
-                    switch($_SESSION['situation']){     //Détection du type d'utilisateur en cours
-                        case "apprenti":    //Si apprenti
-                            $name=$db->query("select prenomApprenti, nomApprenti from apprenti where loginApprenti='".$_SESSION['login']."';");
-                            $answer=$name->fetchAll();
-                            if(count($answer)==1){
-                                echo '<span id="nom">'.$answer[0]['prenomApprenti'].' '.$answer[0]['nomApprenti'].'</span>';
-                            }
-                            break;
-                        case "maitreapprentissage":     //Si maître d'apprentissage
-                            $name=$db->query("select prenomMaitreApprentissage, nomMaitreApprentissage from maitreapprentissage where loginMaitreApprentissage='".$_SESSION['login']."';");
-                            $answer=$name->fetchAll();
-                            if(count($answer)==1){
-                                echo '<span id="nom">'.$answer[0]['prenomMaitreApprentissage'].' '.$answer[0]['nomMaitreApprentissage'].'</span>';
-                            }
-                            break;
-                        case "tuteurpedagogique":       //Si tuteur pédagogique
-                            $name=$db->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='".$_SESSION['login']."';");
-                            $answer=$name->fetchAll();
-                            if(count($answer)==1){
-                                echo '<span id="nom">'.$answer[0]['prenomTuteurPedagogique'].' '.$answer[0]['nomTuteurPedagogique'].'</span>';
-                            }
-                            break;
-                    }
-                ?>
-            </p>
+                <br/><span id="nom"><?php userName($db, $_SESSION['login'], $_SESSION['situation']); ?></span></p>
             <div id="user">
                 <img src="_templates/default/assets/icons/user.svg" alt="" />
             </div>
@@ -85,20 +53,7 @@
                 <li class="has-sub">
                     <a href="#" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='form') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/form.svg" alt="Formulaires" class="icn" />Formulaires</a>
                     <ul>
-                        <?php   //Script de récupération des liens pour le menu Formulaires
-                            try {
-                                $formLinks = $db->query("select * from formulairestandard where catFormulaireStandard='form';");
-                                $answer = $formLinks->fetchAll();
-                            }
-
-                            catch (PDOException $e) {
-                                echo 'Erreur de transaction : ' . $e->getMessage();
-                            }
-
-                            foreach ($answer as $row) {
-                                echo '<li><a href="index.php?cat=' . $row['catFormulaireStandard'] . '&amp;slug=' . $row['slugFormulaireStandard'] . '">' . $row['nomFormulaireStandard'] . '</a></li>';
-                            }
-                        ?>
+                        <?php subLinks($db, 'form'); ?>
                     </ul>
                 </li>
                 <li>
@@ -111,144 +66,116 @@
         </nav>
         <main>
             <p id="breadcrumbs">
-                <?php   //Script de récupération et d'affichage dynamique du fil d'Ariane
-                    if (!empty($_GET['cat']) && !empty($_GET['id'])) {
+                <?php
 
-                        switch ($_GET['cat']) {
-                            case "form":
-                                echo 'Formulaires > ';
-                                break;
-                        }
+                if (!empty($_GET['cat']) && !empty($_GET['slug'])) {
+                    breadcrumbs($db, $_GET['cat'], $_GET['slug']);
+                }
+                else {
+                    echo '<a href="index.php">Accueil</a> > ';
+                }
 
-                        try {
-                            $formName = $db->query("select nomFormulaireStandard from formulairestandard where slugFormulaireStandard='" . $_GET['slug'] . "';");
-                            $answer = $formName->fetchAll();
-                        }
-
-                        catch (PDOException $e) {
-                            echo 'Erreur de transaction : ' . $e->getMessage();
-                        }
-
-                        if (count($answer) == 1){
-                            echo $answer[0]['nomFormulaireStandard'];
-                        }
-
-                    } else {
-                        echo '<a href="index.php">Accueil</a> > ';
-                    }
                 ?>
             </p>
-            <?php   //Controlleur pour l'affichage du contenu
-                if (!empty($_GET['slug'])):
-                    try {
-                        $form = $db->query("select * from formulairestandard where slugFormulaireStandard='" . $_GET['slug'] . "';");
-                        $answer = $form->fetchAll();
-                    }
+            <?php
 
-                    catch(PDOException $e) {
-                        echo 'Erreur de transaction : ' . $e->getMessage();
-                    }
+            if (!empty($_GET['slug'])):
+                controller($db, $_GET['slug']);
+            else:
 
-                    if (count($answer) == 1) {
-                        echo $answer[0]['contenuFormulaireStandard'];
-                    }
-                    else {
-                        echo 'La page que vous cherchez à consulter n\'existe pas.';
-                    }
-                else:
             ?>
-                <div class="conteneur">
-                    <div class="titre">
-                        <h1>Informations générales</h1>
-                    </div>
-                    <div class="contenu">
-                        <?php if($_SESSION['situation']=='apprenti'): ?>
-                            <h2>Formation actuelle</h2>
-                            <p>
-                                <?php
+            <div class="conteneur">
+                <div class="titre">
+                    <h1>Informations générales</h1>
+                </div>
+                <div class="contenu">
+                    <?php if($_SESSION['situation']=='apprenti'): ?>
+                        <h2>Formation actuelle</h2>
+                        <p>
+                            <?php
+                            try {
+                                $idFormation = $db->query("select idFormation from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
+                                $answer=$idFormation->fetchAll();
+                            } catch (PDOException $e) {
+                                echo 'Erreur de transaction : ' . $e->getMessage();
+                            }
+                            if (count($answer) == 1) {
                                 try {
-                                    $idFormation = $db->query("select idFormation from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
-                                    $answer=$idFormation->fetchAll();
+                                    $formation = $db->query('select nomFormation from formation where idFormation=' . $answer[0]['idFormation'] . ';');
+                                    $answer = $formation->fetchAll();
                                 } catch (PDOException $e) {
                                     echo 'Erreur de transaction : ' . $e->getMessage();
                                 }
                                 if (count($answer) == 1) {
-                                    try {
-                                        $formation = $db->query('select nomFormation from formation where idFormation=' . $answer[0]['idFormation'] . ';');
-                                        $answer = $formation->fetchAll();
-                                    } catch (PDOException $e) {
-                                        echo 'Erreur de transaction : ' . $e->getMessage();
-                                    }
-                                    if (count($answer) == 1) {
-                                        echo $answer[0]['nomFormation'];
-                                    }
+                                    echo $answer[0]['nomFormation'];
+                                }
+                            }
+                        ?>
+                        </p>
+                        <h2>Entreprise</h2>
+                        <p>
+                            SARL ...
+                            <br/> 1 rue Truc - BP666 - 76123 Quelque-Part
+                        </p>
+                        <h2>Maître d'apprentissage</h2>
+                        <p>
+                            <?php
+                                try {
+                                    $maitreApprentissage = $db->query('SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`=\'' . $_SESSION['login'] . '\';');
+                                    $answer = $maitreApprentissage->fetchAll();
+                                } catch (PDOException $e) {
+                                    echo 'Erreur de transaction : ' . $e->getMessage();
+                                }
+                                if (count($answer) == 1) {
+                                    echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
                                 }
                             ?>
-                            </p>
-                            <h2>Entreprise</h2>
-                            <p>
-                                SARL ...
-                                <br/> 1 rue Truc - BP666 - 76123 Quelque-Part
-                            </p>
-                            <h2>Maître d'apprentissage</h2>
-                            <p>
-                                <?php
-                                    try {
-                                        $maitreApprentissage = $db->query('SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`=\'' . $_SESSION['login'] . '\';');
-                                        $answer = $maitreApprentissage->fetchAll();
-                                    } catch (PDOException $e) {
-                                        echo 'Erreur de transaction : ' . $e->getMessage();
-                                    }
-                                    if (count($answer) == 1) {
-                                        echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
-                                    }
-                                ?>
-                            </p>
-                            <h2>Tuteur pédagogique</h2>
-                            <p>
-                                <?php
-                                    try {
-                                        $tuteurPedagogique = $db->query("SELECT `tuteurpedagogique`.`nomTuteurPedagogique`,`tuteurpedagogique`.`prenomTuteurPedagogique` FROM `tuteurpedagogique` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `tuteurpedagogique`.`idTuteurPedagogique`=`contratapprentissage`.`idTuteurPedagogique` WHERE `apprenti`.`loginApprenti`='" . $_SESSION['login'] . "';");
-                                        $answer = $tuteurPedagogique->fetchAll();
-                                    } catch (PDOException $e) {
-                                        echo 'Erreur de transaction : ' . $e->getMessage();
-                                    }
-                                    if (count($answer) == 1) {
-                                        echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
-                                    }
-                                ?>
-                            </p>
-                            <?php endif; ?>
-                    </div>
+                        </p>
+                        <h2>Tuteur pédagogique</h2>
+                        <p>
+                            <?php
+                                try {
+                                    $tuteurPedagogique = $db->query("SELECT `tuteurpedagogique`.`nomTuteurPedagogique`,`tuteurpedagogique`.`prenomTuteurPedagogique` FROM `tuteurpedagogique` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `tuteurpedagogique`.`idTuteurPedagogique`=`contratapprentissage`.`idTuteurPedagogique` WHERE `apprenti`.`loginApprenti`='" . $_SESSION['login'] . "';");
+                                    $answer = $tuteurPedagogique->fetchAll();
+                                } catch (PDOException $e) {
+                                    echo 'Erreur de transaction : ' . $e->getMessage();
+                                }
+                                if (count($answer) == 1) {
+                                    echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
+                                }
+                            ?>
+                        </p>
+                        <?php endif; ?>
                 </div>
-                <div class="conteneur">
-                    <div class="titre">
-                        <h1>Important</h1>
-                    </div>
-                    <div class="contenu">
-                        <h2>Formulaire à remplir</h2>
-                        <p>
-                            Vous devez compléter le formulaire suivant :
-                            <br/> "Retour d'expérience"
-                            <br/>
-                            <span class="info">Date limite : 05/09/20xx</span>
-                        </p>
-                        <h2>Formulaire à remplir</h2>
-                        <p>
-                            Vous devez compléter le formulaire suivant :
-                            <br/> "Insertion professionnelle et suivi des diplômés"
-                            <br/>
-                            <span class="info">Date limite : 05/09/20xx</span>
-                        </p>
-                        <h2>Contrat pédagogique</h2>
-                        <p>
-                            Vous devez imprimer et faire signer votre contrat pédagogique.
-                            <br/>
-                            <span class="info">Date limite : 02/10/20xx</span>
-                        </p>
-                    </div>
+            </div>
+            <div class="conteneur">
+                <div class="titre">
+                    <h1>Important</h1>
                 </div>
-                <?php endif; ?>
+                <div class="contenu">
+                    <h2>Formulaire à remplir</h2>
+                    <p>
+                        Vous devez compléter le formulaire suivant :
+                        <br/> "Retour d'expérience"
+                        <br/>
+                        <span class="info">Date limite : 05/09/20xx</span>
+                    </p>
+                    <h2>Formulaire à remplir</h2>
+                    <p>
+                        Vous devez compléter le formulaire suivant :
+                        <br/> "Insertion professionnelle et suivi des diplômés"
+                        <br/>
+                        <span class="info">Date limite : 05/09/20xx</span>
+                    </p>
+                    <h2>Contrat pédagogique</h2>
+                    <p>
+                        Vous devez imprimer et faire signer votre contrat pédagogique.
+                        <br/>
+                        <span class="info">Date limite : 02/10/20xx</span>
+                    </p>
+                </div>
+            </div>
+            <?php endif; ?>
         </main>
         <footer>
             <img src="_templates/default/assets/img/footer/logo_univ_rouen.png" alt="Logo de l'Université de Rouen" id="logo_univ" />
