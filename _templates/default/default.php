@@ -90,20 +90,6 @@ if (isset($_GET['logout'])) {
                 </div>
                 <div class="contenu">
                     <?php homeGeneralInfos($db, $_SESSION['login'], $_SESSION['situation']); ?>
-                        <h2>Tuteur pédagogique</h2>
-                        <p>
-                            <?php
-                                try {
-                                    $tuteurPedagogique = $db->query("SELECT `tuteurpedagogique`.`nomTuteurPedagogique`,`tuteurpedagogique`.`prenomTuteurPedagogique` FROM `tuteurpedagogique` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `tuteurpedagogique`.`idTuteurPedagogique`=`contratapprentissage`.`idTuteurPedagogique` WHERE `apprenti`.`loginApprenti`='" . $_SESSION['login'] . "';");
-                                    $answer = $tuteurPedagogique->fetchAll();
-                                } catch (PDOException $e) {
-                                    echo 'Erreur de transaction : ' . $e->getMessage();
-                                }
-                                if (count($answer) == 1) {
-                                    echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
-                                }
-                            ?>
-                        </p>
                 </div>
             </div>
             <div class="conteneur">
