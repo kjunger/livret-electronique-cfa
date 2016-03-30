@@ -1,22 +1,23 @@
 <nav id="cssmenu">
+    <img src="_templates/default/assets/img/logo.png" alt="Logo CFA-CFC" id="menu-logo"/>
     <ul>
         <li>
-            <a href="index.php" id="<?php if (!isset($_GET['cat'])) { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/accueil.svg" alt="Accueil" class="icn" />Accueil</a>
+            <a href="index.php"><div class="accueil">Accueil</div></a>
         </li>
         <li>
-            <a href="index.php?cat=eval" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='eval') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/eval.svg" alt="Evaluation" class="icn" />Evaluation</a>
+            <a href="index.php?cat=eval"><div class="eval">Evaluation</div></a>
         </li>
         <li class="has-sub">
-            <a href="#" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='form') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/form.svg" alt="Formulaires" class="icn" />Formulaires</a>
+            <a href="#"><div class="form">Formulaires</div></a>
             <ul>
                 <?php subLinks($db, 'form'); ?>
             </ul>
         </li>
         <li>
-            <a href="index.php?cat=contrat" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='contrat') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/contrat.svg" alt="Contrat" class="icn" />Contrat</a>
+            <a href="index.php?cat=contrat"><div class="contrat">Contrat</div></a>
         </li>
         <li>
-            <a href="index.php?cat=fichiers" id="<?php if (isset($_GET['cat']) && $_GET['cat']=='fichiers') { echo 'actif'; } ?>"><img src="_templates/default/assets/icons/fichiers.svg" alt="Fichiers" class="icn" />Fichiers</a>
+            <a href="index.php?cat=fichiers"><div class="fichiers">Fichiers</div></a>
         </li>
     </ul>
 </nav>
