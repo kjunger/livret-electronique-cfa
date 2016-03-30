@@ -109,12 +109,7 @@ function controller($database, $slug)
         echo $answer[0]['contenuFormulaireStandard'];
     }
     else {
-<<<<<<< HEAD
-        echo "La page que vous cherchez Ã  consulter n'existe pas.";
-=======
-        echo 'La page que vous cherchez Ãƒ  consulter n\'existe pas.';
         echo 'La page que vous cherchez à consulter n\'existe pas.';
->>>>>>> origin/dev
     }
 }
 
@@ -136,7 +131,7 @@ function homeGeneralInfos($database, $login, $usrType)
                 echo $answer[0]['nomFormation'];
             }
 
-            echo "</p><h2>Entreprise</h2><p>SARL ...<br/> 1 rue Truc - BP666 - 76123 Quelque-Part</p><h2>MaÃ®tre d'apprentissage</h2><p>";
+            echo "</p><h2>Entreprise</h2><p>SARL ...<br/> 1 rue Truc - BP666 - 76123 Quelque-Part</p><h2>Maître d'apprentissage</h2><p>";
             try {
                 $maitreApprentissage = $database->query("SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`='$login';");
                 $answer = $maitreApprentissage->fetchAll();
@@ -150,7 +145,7 @@ function homeGeneralInfos($database, $login, $usrType)
                 echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
             }
 
-            echo "</p><h2>Tuteur pÃ©dagogique</h2><p>";
+            echo "</p><h2>Tuteur pédagogique</h2><p>";
             try {
                 $tuteurPedagogique = $database->query("SELECT `tuteurpedagogique`.`nomTuteurPedagogique`,`tuteurpedagogique`.`prenomTuteurPedagogique` FROM `tuteurpedagogique` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `tuteurpedagogique`.`idTuteurPedagogique`=`contratapprentissage`.`idTuteurPedagogique` WHERE `apprenti`.`loginApprenti`='$login';");
                 $answer = $tuteurPedagogique->fetchAll();
