@@ -109,7 +109,12 @@ function controller($database, $slug)
         echo $answer[0]['contenuFormulaireStandard'];
     }
     else {
+<<<<<<< HEAD
         echo "La page que vous cherchez Ã  consulter n'existe pas.";
+=======
+        echo 'La page que vous cherchez Ãƒ  consulter n\'existe pas.';
+        echo 'La page que vous cherchez à consulter n\'existe pas.';
+>>>>>>> origin/dev
     }
 }
 
