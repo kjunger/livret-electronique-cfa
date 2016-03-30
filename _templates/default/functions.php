@@ -64,7 +64,7 @@ function subLinks($database, $cat)
     }
 
     catch(PDOException $e) {
-        echo 'Erreur de transaction : ' . $e->getMessage();
+        $e->getMessage();
     }
 
     foreach($answer as $row) {
@@ -86,7 +86,7 @@ function breadcrumbs($database, $cat, $slug)
     }
 
     catch(PDOException $e) {
-        echo 'Erreur de transaction : ' . $e->getMessage();
+        $e->getMessage();
     }
 
     if (count($answer) == 1) {
@@ -94,7 +94,7 @@ function breadcrumbs($database, $cat, $slug)
     }
 }
 
-function controller($database,$slug)
+function controller($database, $slug)
 {
     try {
         $form = $database->query("select * from formulairestandard where slugFormulaireStandard='" . $slug . "';");
@@ -102,14 +102,51 @@ function controller($database,$slug)
     }
 
     catch(PDOException $e) {
-        echo 'Erreur de transaction : ' . $e->getMessage();
+        $e->getMessage();
     }
 
     if (count($answer) == 1) {
         echo $answer[0]['contenuFormulaireStandard'];
     }
     else {
-        echo 'La page que vous cherchez à consulter n\'existe pas.';
+        echo 'La page que vous cherchez Ãƒ  consulter n\'existe pas.';
+    }
+}
+
+function homeGeneralInfos($database, $login, $usrType)
+{
+    switch ($usrType) {
+        case "apprenti":
+            echo "<h2>Formation actuelle</h2><p>";
+            try {
+                $formation = $database->query("SELECT `formation`.`nomFormation` FROM `formation` INNER JOIN `apprenti` ON `formation`.`idFormation`=`apprenti`.`idFormation` WHERE `apprenti`.`loginApprenti`='$login';");
+                $answer = $formation->fetchAll();
+            }
+
+            catch(PDOException $e) {
+                $e->getMessage();
+            }
+
+            if (count($answer) == 1) {
+                echo $answer[0]['nomFormation'];
+            }
+
+            echo "</p><h2>Entreprise</h2><p>SARL ...<br/> 1 rue Truc - BP666 - 76123 Quelque-Part</p><h2>Maître d'apprentissage</h2><p>";
+            try {
+                $maitreApprentissage = $database->query("SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`='$login';");
+                $answer = $maitreApprentissage->fetchAll();
+            }
+
+            catch(PDOException $e) {
+                $e->getMessage();
+            }
+
+            if (count($answer) == 1) {
+                echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
+            }
+
+            echo "</p>";
+            break;
     }
 }
 

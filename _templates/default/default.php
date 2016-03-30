@@ -89,48 +89,7 @@ if (isset($_GET['logout'])) {
                     <h1>Informations générales</h1>
                 </div>
                 <div class="contenu">
-                    <?php if($_SESSION['situation']=='apprenti'): ?>
-                        <h2>Formation actuelle</h2>
-                        <p>
-                            <?php
-                            try {
-                                $idFormation = $db->query("select idFormation from apprenti where loginApprenti='" . $_SESSION['login'] . "';");
-                                $answer=$idFormation->fetchAll();
-                            } catch (PDOException $e) {
-                                echo 'Erreur de transaction : ' . $e->getMessage();
-                            }
-                            if (count($answer) == 1) {
-                                try {
-                                    $formation = $db->query('select nomFormation from formation where idFormation=' . $answer[0]['idFormation'] . ';');
-                                    $answer = $formation->fetchAll();
-                                } catch (PDOException $e) {
-                                    echo 'Erreur de transaction : ' . $e->getMessage();
-                                }
-                                if (count($answer) == 1) {
-                                    echo $answer[0]['nomFormation'];
-                                }
-                            }
-                        ?>
-                        </p>
-                        <h2>Entreprise</h2>
-                        <p>
-                            SARL ...
-                            <br/> 1 rue Truc - BP666 - 76123 Quelque-Part
-                        </p>
-                        <h2>Maître d'apprentissage</h2>
-                        <p>
-                            <?php
-                                try {
-                                    $maitreApprentissage = $db->query('SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`=\'' . $_SESSION['login'] . '\';');
-                                    $answer = $maitreApprentissage->fetchAll();
-                                } catch (PDOException $e) {
-                                    echo 'Erreur de transaction : ' . $e->getMessage();
-                                }
-                                if (count($answer) == 1) {
-                                    echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
-                                }
-                            ?>
-                        </p>
+                    <?php homeGeneralInfos($db, $_SESSION['login'], $_SESSION['situation']); ?>
                         <h2>Tuteur pédagogique</h2>
                         <p>
                             <?php
@@ -145,7 +104,6 @@ if (isset($_GET['logout'])) {
                                 }
                             ?>
                         </p>
-                        <?php endif; ?>
                 </div>
             </div>
             <div class="conteneur">

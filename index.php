@@ -1,14 +1,13 @@
 <?php
+session_start();
 
-    /* Page racine du site, d'où part toute la navigation */
+if (empty($_SESSION['login']) && empty($_SESSION['situation'])) {
+    include ('_templates/login/login.php');
 
-    session_start();
+}
+else {
+    include ('_templates/default/default.php');
 
-    mb_internal_encoding("UTF-8");
+}
 
-    if (empty($_SESSION['login']) && empty($_SESSION['situation'])) {   // Si aucune session n'est ouverte
-        include ('_templates/login/login.php');     // Affichage de la page de connexion
-    } else {
-        include ('_templates/default/default.php');     // Affichage de l'interface utilisateur
-    }
 ?>
