@@ -15,10 +15,8 @@ function dbInit($name, $host, $user, $pwd)
 
 function userLogout()
 {
-    $nbArgs = func_num_args();
-    for ($i = 0; $i < $nbArgs; $i++) {
-        unset($_SESSION[func_get_arg($i) ]);
-    }
+    unset($_SESSION['login']);
+    unset($_SESSION['situation']);
 
     session_destroy();
     header('Location:index.php');
@@ -119,7 +117,7 @@ function homeGeneralInfos($database, $login, $usrType)
         case "apprenti":
             echo "<h2>Formation actuelle</h2><p>";
             try {
-                $formation = $database->query("SELECT `formation`.`nomFormation` FROM `formation` INNER JOIN `apprenti` ON `formation`.`idFormation`=`apprenti`.`idFormation` WHERE `apprenti`.`loginApprenti`='$login';");
+                $formation = $database->query("SELECT `formation`.`intituleFormation` FROM `formation` INNER JOIN `apprenti` ON `formation`.`idFormation`=`apprenti`.`idFormation` WHERE `apprenti`.`loginApprenti`='$login';");
                 $answer = $formation->fetchAll();
             }
 
@@ -128,10 +126,24 @@ function homeGeneralInfos($database, $login, $usrType)
             }
 
             if (count($answer) == 1) {
-                echo $answer[0]['nomFormation'];
+                echo $answer[0]['intituleFormation'];
             }
 
-            echo "</p><h2>Entreprise</h2><p>SARL ...<br/> 1 rue Truc - BP666 - 76123 Quelque-Part</p><h2>Maître d'apprentissage</h2><p>";
+            echo "</p><h2>Entreprise</h2><p>";
+            try {
+                $entreprise = $database->query("SELECT `entreprise`.`raisonSocialeEntreprise` FROM `entreprise` INNER JOIN (`maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage`) ON `entreprise`.`idEntreprise`=`maitreapprentissage`.`idEntreprise` WHERE `apprenti`.`loginApprenti`='$login';");
+                $answer = $entreprise->fetchAll();
+            }
+
+            catch(PDOException $e) {
+                $e->getMessage();
+            }
+
+            if (count($answer) == 1) {
+                echo $answer[0]['raisonSocialeEntreprise'];
+            }
+
+            echo "</p><h2>Maître d'apprentissage</h2><p>";
             try {
                 $maitreApprentissage = $database->query("SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`='$login';");
                 $answer = $maitreApprentissage->fetchAll();
@@ -160,6 +172,11 @@ function homeGeneralInfos($database, $login, $usrType)
             }
 
             echo "</p>";
+
+            break;
+
+        case "maitreapprentissage":
+
 
             break;
     }
