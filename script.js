@@ -39,7 +39,7 @@ function redimensionnement_menu(){
 
 function redimensionnement_menu_user(){
 	var hauteurMenuUser = $('#contenu-menu-user').height();
-	var hauteurP = $('#deconnexion-mobile p').height();
+	var hauteurP = $('#deconnexion-mobile p').outerHeight();
 	var hauteurFooterMenu = $('.footer-menu').outerHeight();
 	hauteurMenuUser = hauteurMenuUser - hauteurP - hauteurFooterMenu;
 	$('#contenu-menu-user').css('height', hauteurMenuUser);
@@ -56,6 +56,11 @@ function redimensionnement_main_mobile(){
 }
 
 function affichage_deconnexion(){
+	var tailleDeconnexion = $('#deconnexion').width();
+	tailleUser = $('#user').width();
+	tailleNom = $('#nom').width();
+	tailleDeconnexion = tailleUser + tailleNom + 140;
+	$('#deconnexion').css('width', tailleDeconnexion);
 	$('#bouton-deconnexion').on('click', function(){
 		var elem = $('#deconnexion');
 		if(elem.hasClass('open')){

@@ -1021,8 +1021,8 @@ footer{
 	text-align:center;
 	color:#ffffff;
 	font-size:2em;
-	height:100px;
-	line-height: 100px;
+	height:85px;
+	padding-top: 15px;
 	margin:0;
 }
 #deconnexion-mobile ul{
