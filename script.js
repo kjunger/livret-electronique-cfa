@@ -1,5 +1,15 @@
 $(document).ready(function(){
 
+$('.titre').append('<svg height:"25" width:"25" class=""><polygon points="0,0 25,12.5 0,25" fill="#363636" stroke="none" /></svg>');
+$('.conteneur').addClass('open');
+sousmenu();
+menu();
+menu_user();
+affichage_deconnexion();
+redimensionnement();
+contenu_mobile();
+$(window).resize(redimensionnement);
+
 //Variables
 var largeurEcran = $(window).width();
 var hauteurEcran = $(window).height();
@@ -7,16 +17,16 @@ var hauteurEcran = $(window).height();
 
 //Fonctions
 function redimensionnement_main(){
-	var hauteurMain = $('main').height();
+	var hauteurMain = $('#main').height();
 	var hauteurHeader = $('header').height();
 	var hauteurFooter = $('footer').height();
-	var largeurMain = $('main').width();
+	var largeurMain = $('#main').width();
 	var largeurMenu = $('#cssmenu').outerWidth() + 3;
 	hauteurMain = hauteurMain - hauteurFooter - hauteurHeader;
 	largeurMain = largeurMain - largeurMenu;
-	$('main').css('height', hauteurMain);
-	$('main').css('width', largeurMain + 17);
-	$('main').css('left', largeurMenu);
+	$('#main').css('height', hauteurMain);
+	$('#main').css('width', largeurMain + 17);
+	$('#main').css('left', largeurMenu);
 }
 
 function redimensionnement_menu(){
@@ -36,12 +46,12 @@ function redimensionnement_menu_user(){
 }
 
 function redimensionnement_main_mobile(){
-	var hauteurMain = $('main').height();
+	var hauteurMain = $('#main').height();
 	var hauteurHeader = $('header').height();
 	hauteurMain = hauteurMain - hauteurHeader;
-	$('main').css('height', hauteurMain);
-	$('main').css('width', '');
-	$('main').css('left', '');
+	$('#main').css('height', hauteurMain);
+	$('#main').css('width', '');
+	$('#main').css('left', '');
 
 }
 
@@ -149,11 +159,11 @@ function sousmenu(){
 		if (element.hasClass('open')) {
 			element.removeClass('open');
 			element.find('li').removeClass('open');
-			element.find('ul').slideUp(200);
+			element.find('ul').stop().slideUp(200);
 		}
 		else {
 			element.addClass('open');
-			element.children('ul').slideDown(200);
+			element.children('ul').stop().slideDown(200);
 			element.siblings('li').children('ul').slideUp(200);
 			element.siblings('li').removeClass('open');
 			element.siblings('li').find('li').removeClass('open');
@@ -165,78 +175,42 @@ function sousmenu(){
 function redimensionnement(){
 	if(window.matchMedia('(min-width: 1000px)').matches){
 		$('#cssmenu').css('display','');
-		$('main').css('height', '100%');
-		$('main').css('width', '100%');
+		$('#main').css('height', '100%');
+		$('#main').css('width', '100%');
 		$('#cssmenu').css('height', '100%');
+		$('div.conteneur').addClass('open');
+		$('div.contenu').slideDown();
 		redimensionnement_main();
 		redimensionnement_menu();
+
+		$('.titre svg').css('display', 'none');
 	} else {
 		$('#cssmenu').css('display','none');
 		$('div.screen').css('right','0');
 		$('div.screen').css('left','0');
-		$('main').css('height', '100%');
+		$('#main').css('height', '100%');
 		$('#contenu-menu-user').css('height', '100%');
 		$('#cssmenu').css('height', '100%');
 		redimensionnement_main_mobile();
 		redimensionnement_menu_user();
+
+		$('.titre svg').css('display', '');
 	}
 }
+
+function contenu_mobile(){
+	$('.titre svg').on('click', function(){
+		var element = $(this).parent('div.titre').parent('div.conteneur');
+		if (element.hasClass('open')){
+			element.removeClass('open');
+			element.find('div.conteneur').removeClass('open');
+			element.find('div.contenu').stop().slideUp();
+		} else {
+			element.addClass('open');
+			element.children('div.contenu').stop().slideDown();
+		}
+		
+	});
+}
 //
-
-sousmenu();
-menu();
-menu_user();
-affichage_deconnexion();
-redimensionnement();
-$(window).resize(redimensionnement);
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
