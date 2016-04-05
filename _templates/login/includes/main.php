@@ -4,9 +4,9 @@
     <form method="post" action="index.php?login=1">
         <select name="situation" required>
             <option value="default" selected disabled>Sélectionnez votre situation</option>
-            <option value="apprenti">Apprenti(e)</option>
-            <option value="maitreapprentissage">Maître d'apprentissage</option>
-            <option value="tuteurpedagogique">Tuteur pédagogique</option>
+            <option value="Apprenti">Apprenti(e)</option>
+            <option value="MaitreApprentissage">Maître d'apprentissage</option>
+            <option value="TuteurPedagogique">Tuteur pédagogique</option>
         </select>
         <input placeholder="Login" name="login" type="text" required />
         <input placeholder="Mot de passe" name="mdp" type="password" required />

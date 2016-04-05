@@ -16,9 +16,9 @@ function dbInit($name, $host, $user, $pwd)
 function userLogin($login, $mdp, $usrType, $database)
 {
     switch ($usrType) {
-        case "apprenti":    // S'il s'agit d'un apprenti
+        case "Apprenti":
             try {
-                $connect = $database->query("select * from apprenti where loginApprenti='" . $login . "' and mdpApprenti='" . md5($mdp) . "';");
+                $connect = $database->query("select * from Apprenti where loginApprenti='" . $login . "' and mdpApprenti='" . md5($mdp) . "';");
                 $answer = $connect->fetchAll();
             }
 
@@ -37,9 +37,9 @@ function userLogin($login, $mdp, $usrType, $database)
 
             break;
 
-        case "maitreapprentissage":     // S'il s'agit d'un maître d'apprentissage
+        case "MaitreApprentissage":
             try {
-                $connect = $database->query("select * from maitreapprentissage where loginMaitreApprentissage='" . $login . "' and mdpMaitreApprentissage='" . md5($mdp) . "';");
+                $connect = $database->query("select * from MaitreApprentissage where loginMaitreApprentissage='" . $login . "' and mdpMaitreApprentissage='" . md5($mdp) . "';");
                 $answer = $connect->fetchAll();
             }
 
@@ -58,9 +58,9 @@ function userLogin($login, $mdp, $usrType, $database)
 
             break;
 
-        case "tuteurpedagogique":       // S'il s'agit d'un tuteur pédagogique
+        case "TuteurPedagogique":
             try {
-                $connect = $database->query("select * from tuteurpedagogique where loginTuteurPedagogique='" . $login . "' and mdpTuteurPedagogique='" . md5($mdp) . "';");
+                $connect = $database->query("select * from TuteurPedagogique where loginTuteurPedagogique='" . $login . "' and mdpTuteurPedagogique='" . md5($mdp) . "';");
                 $answer = $connect->fetchAll();
             }
 

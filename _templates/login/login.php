@@ -3,7 +3,7 @@
 
     if (isset($_GET['login'])) {
 
-        $db = dbInit('livretelectronique', 'localhost', 'root', '');
+        $db = dbInit('LivretElectroniq', '10.0.2.15', 'LivretElectroniq', 'test');
 
         if (isset($_POST['situation'])) {
             if (isset($_POST['login'])) {

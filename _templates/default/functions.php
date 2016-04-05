@@ -24,40 +24,24 @@ function userLogout()
 
 function userName($database, $login, $usrType)
 {
-    switch ($usrType) {
-        case "apprenti":
-            $name = $database->query("select prenomApprenti, nomApprenti from apprenti where loginApprenti='" . $login . "';");
-            $answer = $name->fetchAll();
-            if (count($answer) == 1) {
-                echo $answer[0]['prenomApprenti'] . ' ' . $answer[0]['nomApprenti'];
-            }
+    try {
+        $query = $database->query("SELECT `$usrType`.`prenom" . $usrType . "`, `$usrType`.`nom" . $usrType . "` from `$usrType` where `$usrType`.`login" . $usrType . "`='$login';");
+        $answer = $query->fetchAll();
+    }
 
-            break;
+     catch(PDOException $e) {
+        $e->getMessage();
+    }
 
-        case "maitreapprentissage":
-            $name = $database->query("select prenomMaitreApprentissage, nomMaitreApprentissage from maitreapprentissage where loginMaitreApprentissage='" . $login . "';");
-            $answer = $name->fetchAll();
-            if (count($answer) == 1) {
-                echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'];
-            }
-
-            break;
-
-        case "tuteurpedagogique":
-            $name = $database->query("select prenomTuteurPedagogique, nomTuteurPedagogique from tuteurpedagogique where loginTuteurPedagogique='" . $login . "';");
-            $answer = $name->fetchAll();
-            if (count($answer) == 1) {
-                echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
-            }
-
-            break;
+    if (count($answer) == 1){
+        echo $answer[0]['prenom' . $usrType] . ' ' . $answer[0]['nom' . $usrType];
     }
 }
 
 function subLinks($database, $cat)
 {
     try {
-        $formLinks = $database->query("select * from formulairestandard where catFormulaireStandard='$cat';");
+        $formLinks = $database->query("select * from FormulaireStandard where catFormulaireStandard='$cat';");
         $answer = $formLinks->fetchAll();
     }
 
@@ -79,7 +63,7 @@ function breadcrumbs($database, $cat, $slug)
     }
 
     try {
-        $formName = $database->query("select nomFormulaireStandard from formulairestandard where slugFormulaireStandard='" . $slug . "';");
+        $formName = $database->query("select nomFormulaireStandard from FormulaireStandard where slugFormulaireStandard='" . $slug . "';");
         $answer = $formName->fetchAll();
     }
 
@@ -95,7 +79,7 @@ function breadcrumbs($database, $cat, $slug)
 function controller($database, $slug)
 {
     try {
-        $form = $database->query("select * from formulairestandard where slugFormulaireStandard='" . $slug . "';");
+        $form = $database->query("select * from FormulaireStandard where slugFormulaireStandard='" . $slug . "';");
         $answer = $form->fetchAll();
     }
 
@@ -114,10 +98,10 @@ function controller($database, $slug)
 function homeGeneralInfos($database, $login, $usrType)
 {
     switch ($usrType) {
-        case "apprenti":
+        case "Apprenti":
             echo "<h2>Formation actuelle</h2><p>";
             try {
-                $formation = $database->query("SELECT `formation`.`intituleFormation` FROM `formation` INNER JOIN `apprenti` ON `formation`.`idFormation`=`apprenti`.`idFormation` WHERE `apprenti`.`loginApprenti`='$login';");
+                $formation = $database->query("SELECT `Formation`.`intituleFormation` FROM `Formation` INNER JOIN `Apprenti` ON `Formation`.`idFormation`=`Apprenti`.`idFormation` WHERE `Apprenti`.`loginApprenti`='$login';");
                 $answer = $formation->fetchAll();
             }
 
@@ -131,7 +115,7 @@ function homeGeneralInfos($database, $login, $usrType)
 
             echo "</p><h2>Entreprise</h2><p>";
             try {
-                $entreprise = $database->query("SELECT `entreprise`.`raisonSocialeEntreprise` FROM `entreprise` INNER JOIN (`maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage`) ON `entreprise`.`idEntreprise`=`maitreapprentissage`.`idEntreprise` WHERE `apprenti`.`loginApprenti`='$login';");
+                $entreprise = $database->query("SELECT `Entreprise`.`raisonSocialeEntreprise` FROM `Entreprise` INNER JOIN (`MaitreApprentissage` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `MaitreApprentissage`.`idMaitreApprentissage`=`ContratApprentissage`.`idMaitreApprentissage`) ON `Entreprise`.`idEntreprise`=`MaitreApprentissage`.`idEntreprise` WHERE `Apprenti`.`loginApprenti`='$login';");
                 $answer = $entreprise->fetchAll();
             }
 
@@ -145,7 +129,7 @@ function homeGeneralInfos($database, $login, $usrType)
 
             echo "</p><h2>Maître d'apprentissage</h2><p>";
             try {
-                $maitreApprentissage = $database->query("SELECT `maitreapprentissage`.`nomMaitreApprentissage`,`maitreapprentissage`.`prenomMaitreApprentissage`,`maitreapprentissage`.`fonctionMaitreApprentissage` FROM `maitreapprentissage` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `maitreapprentissage`.`idMaitreApprentissage`=`contratapprentissage`.`idMaitreApprentissage` WHERE `apprenti`.`loginApprenti`='$login';");
+                $maitreApprentissage = $database->query("SELECT `MaitreApprentissage`.`nomMaitreApprentissage`,`MaitreApprentissage`.`prenomMaitreApprentissage`,`MaitreApprentissage`.`fonctionMaitreApprentissage` FROM `MaitreApprentissage` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `MaitreApprentissage`.`idMaitreApprentissage`=`ContratApprentissage`.`idMaitreApprentissage` WHERE `Apprenti`.`loginApprenti`='$login';");
                 $answer = $maitreApprentissage->fetchAll();
             }
 
@@ -159,7 +143,7 @@ function homeGeneralInfos($database, $login, $usrType)
 
             echo "</p><h2>Tuteur pédagogique</h2><p>";
             try {
-                $tuteurPedagogique = $database->query("SELECT `tuteurpedagogique`.`nomTuteurPedagogique`,`tuteurpedagogique`.`prenomTuteurPedagogique` FROM `tuteurpedagogique` INNER JOIN (`contratapprentissage` INNER JOIN `apprenti` ON `contratapprentissage`.`idApprenti`=`apprenti`.`idApprenti`) ON `tuteurpedagogique`.`idTuteurPedagogique`=`contratapprentissage`.`idTuteurPedagogique` WHERE `apprenti`.`loginApprenti`='$login';");
+                $tuteurPedagogique = $database->query("SELECT `TuteurPedagogique`.`nomTuteurPedagogique`,`TuteurPedagogique`.`prenomTuteurPedagogique` FROM `TuteurPedagogique` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `TuteurPedagogique`.`idTuteurPedagogique`=`ContratApprentissage`.`idTuteurPedagogique` WHERE `Apprenti`.`loginApprenti`='$login';");
                 $answer = $tuteurPedagogique->fetchAll();
             }
 
