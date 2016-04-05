@@ -1,37 +1,32 @@
 <?php
-	abstract class User {
-		protected $login; protected $name; protected $mail; protected $tel; protected $cell;
+	class User {
+		protected $login; protected $name; protected $email; protected $tel; protected $cell; protected $type;
 
-		public function $__construct($pLogin, $pName, $pMail, $pTel, $pCell) {
+		public function __construct($pLogin, $pName, $pEmail, $pTel, $pCell, $pType) {
 			$this->login = $pLogin;
 			$this->name = $pName;
-			$this->mail = $pMail;
+			$this->email = $pEmail;
 			$this->tel = $pTel;
 			$this->cell = $pCell;
 		}
 
-		public function $getLogin() {
+		public function getLogin() {
 			return $this->login;
 		}
-		public function $getName() {
+		public function getName() {
 			return $this->name;
 		}
-		public function $getMail() {
-			return $this->mail;
+		public function getEmail() {
+			return $this->email;
 		}
-		public function $getTel() {
+		public function getTel() {
 			return $this->tel;
 		}
-		public function $getCell() {
+		public function getCell() {
 			return $this->cell;
 		}
-	}
-
-	class Apprenti extends User {
-		private $_formation; private $_idMaitreApprentissage; private $_idTuteurPedagogique;
-
-		public function $affichageAccueil($pDb) {
-
+		public function getType() {
+			return $this->type;
 		}
 	}
 ?>

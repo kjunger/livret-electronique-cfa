@@ -1,5 +1,4 @@
 <main>
-    <!--<button id="fake-button"></button>-->
     <p id="breadcrumbs">
         <?php
 

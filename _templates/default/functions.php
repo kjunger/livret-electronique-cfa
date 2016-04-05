@@ -1,17 +1,9 @@
 <?php
 function userLogout()
 {
-	unset($_SESSION['login']);
-	unset($_SESSION['situation']);
+	unset($_SESSION['user']);
 	session_destroy();
 	header('Location:index.php');
-}
-function userName($database, $login, $usrType)
-{
-	$answer = dbSelect("SELECT `$usrType`.`prenom" . $usrType . "`, `$usrType`.`nom" . $usrType . "` FROM `$usrType` WHERE `$usrType`.`login" . $usrType . "`='$login';", $database);
-	if (count($answer) == 1) {
-		echo $answer[0]['prenom' . $usrType] . ' ' . $answer[0]['nom' . $usrType];
-	}
 }
 function subLinks($database, $cat)
 {
