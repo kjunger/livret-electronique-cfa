@@ -3,7 +3,9 @@ if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp'])
 	$db = dbInit('LivretElectroniq', '10.0.2.15', 'LivretElectroniq', 'test');
 	$answer = dbSelect("SELECT * FROM `" . $_POST['situation'] . "` WHERE `" . $_POST['situation'] . "`.`login" . $_POST['situation'] . "`='" . $_POST['login'] . "' AND `" . $_POST['situation'] . "`.`mdp" . $_POST['situation'] . "`='" . md5($_POST['mdp']) . "';", $db);
 	if (count($answer) == 1) {
-		$_SESSION['user'] = new User($answer[0]['login' . $_POST['situation']], $answer[0]['prenom' . $_POST['situation']] . ' ' . $answer[0]['nom' . $_POST['situation']], $answer[0]['mail' . $_POST['situation']], $answer[0]['tel' . $_POST['situation']], $answer[0]['port' . $_POST['situation']], $_POST['situation']);
+		$_SESSION['user'] = new $_POST['situation'] ($answer[0]['login' . $_POST['situation']], $answer[0]['prenom' . $_POST['situation']] . ' ' . $answer[0]['nom' . $_POST['situation']], $answer[0]['mail' . $_POST['situation']], $answer[0]['tel' . $_POST['situation']], $answer[0]['port' . $_POST['situation']]);
+		$_SESSION['user']->whoIsMaitreApprentissage($db);
+		$_SESSION['user']->whoIsTuteurPedagogique($db);
 		header('Location:index.php');
 	}
 	else {

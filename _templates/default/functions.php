@@ -34,32 +34,18 @@ function controller($database, $slug)
 		echo 'La page que vous cherchez à consulter n\'existe pas.';
 	}
 }
-function homeGeneralInfos($database, $login, $usrType)
+function homeGeneralInfos(/*$pDatabase, $pLogin, $pType*/$pUser)
 {
-	switch ($usrType) {
-	case "Apprenti":
-		echo "<h2>Formation actuelle</h2><p>";
-		$answer = dbSelect("SELECT `Formation`.`intituleFormation` FROM `Formation` INNER JOIN `Apprenti` ON `Formation`.`idFormation`=`Apprenti`.`idFormation` WHERE `Apprenti`.`loginApprenti`='$login';", $database);
-		if (count($answer) == 1) {
-			echo $answer[0]['intituleFormation'];
-		}
-		echo "</p><h2>Entreprise</h2><p>";
-		$answer = dbSelect("SELECT `Entreprise`.`raisonSocialeEntreprise` FROM `Entreprise` INNER JOIN (`MaitreApprentissage` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `MaitreApprentissage`.`idMaitreApprentissage`=`ContratApprentissage`.`idMaitreApprentissage`) ON `Entreprise`.`idEntreprise`=`MaitreApprentissage`.`idEntreprise` WHERE `Apprenti`.`loginApprenti`='$login';", $database);
-		if (count($answer) == 1) {
-			echo $answer[0]['raisonSocialeEntreprise'];
-		}
-		echo "</p><h2>Maître d'apprentissage</h2><p>";
-		$answer = dbSelect("SELECT `MaitreApprentissage`.`nomMaitreApprentissage`,`MaitreApprentissage`.`prenomMaitreApprentissage`,`MaitreApprentissage`.`fonctionMaitreApprentissage` FROM `MaitreApprentissage` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `MaitreApprentissage`.`idMaitreApprentissage`=`ContratApprentissage`.`idMaitreApprentissage` WHERE `Apprenti`.`loginApprenti`='$login';", $database);
-		if (count($answer) == 1) {
-			echo $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'] . '<br /> ' . $answer[0]['fonctionMaitreApprentissage'];
-		}
-		echo "</p><h2>Tuteur pédagogique</h2><p>";
-		$answer = dbSelect("SELECT `TuteurPedagogique`.`nomTuteurPedagogique`,`TuteurPedagogique`.`prenomTuteurPedagogique` FROM `TuteurPedagogique` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `TuteurPedagogique`.`idTuteurPedagogique`=`ContratApprentissage`.`idTuteurPedagogique` WHERE `Apprenti`.`loginApprenti`='$login';", $database);
-		if (count($answer) == 1) {
-			echo $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'];
-		}
-		echo "</p>";
-		break;
+	$userGetClass = get_class($pUser);
+	switch ($userGetClass) {
+		case "Apprenti":
+			echo "<h2>Entreprise</h2><p>";
+			$company = $pUser->getCompanyInfos();
+			echo $company['companyName'] . "</p><h2>Maître d'apprentissage</h2><p>";
+			$maitreApprentissage = $pUser->getMaitreApprentissageInfos();
+			echo $maitreApprentissage['nameMaitreApprentissage'] . "<br />" . $maitreApprentissage['functionMaitreApprentissage'] . "</p><h2>Tuteur pédagogique</h2><p>";
+			$tuteurPedagogique = $pUser->getTuteurPedagogiqueInfos();
+			echo $tuteurPedagogique['nameTuteurPedagogique'] . '</h1>';
 	}
 }
 ?>
