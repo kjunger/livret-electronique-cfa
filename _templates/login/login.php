@@ -1,15 +1,18 @@
 <?php
-if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp'])) {
+if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp']))
+{
 	$db = dbInit('LivretElectroniq', '10.0.2.15', 'LivretElectroniq', 'test');
 	$answer = dbSelect("SELECT * FROM `" . $_POST['situation'] . "` WHERE `" . $_POST['situation'] . "`.`login" . $_POST['situation'] . "`='" . $_POST['login'] . "' AND `" . $_POST['situation'] . "`.`mdp" . $_POST['situation'] . "`='" . md5($_POST['mdp']) . "';", $db);
-	if (count($answer) == 1) {
-		$_SESSION['user'] = new $_POST['situation'] ($answer[0]['login' . $_POST['situation']], $answer[0]['prenom' . $_POST['situation']] . ' ' . $answer[0]['nom' . $_POST['situation']], $answer[0]['mail' . $_POST['situation']], $answer[0]['tel' . $_POST['situation']], $answer[0]['port' . $_POST['situation']]);
+	if (count($answer) == 1)
+	{
+		$_SESSION['user'] = new $_POST['situation']($answer[0]['login' . $_POST['situation']], $answer[0]['prenom' . $_POST['situation']] . ' ' . $answer[0]['nom' . $_POST['situation']], $answer[0]['mail' . $_POST['situation']], $answer[0]['tel' . $_POST['situation']], $answer[0]['port' . $_POST['situation']]);
 		$_SESSION['user']->whoIsMaitreApprentissage($db);
 		$_SESSION['user']->whoIsTuteurPedagogique($db);
 		$_SESSION['user']->aboutFormation($db);
 		header('Location:index.php');
 	}
-	else {
+	else
+	{
 		header('Location:index.php?error');
 	}
 }
@@ -41,10 +44,11 @@ if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp'])
 		</form>
 		<div class="error">
 			<?php
-			if (isset($_GET['error'])) {
+			if (isset($_GET['error']))
+			{
 				echo "L'identification a échoué. Veuillez réessayer.";
 			}
-		?>
+			?>
 		</div>
 	</div>
 </body>
