@@ -6,6 +6,7 @@ if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp'])
 		$_SESSION['user'] = new $_POST['situation'] ($answer[0]['login' . $_POST['situation']], $answer[0]['prenom' . $_POST['situation']] . ' ' . $answer[0]['nom' . $_POST['situation']], $answer[0]['mail' . $_POST['situation']], $answer[0]['tel' . $_POST['situation']], $answer[0]['port' . $_POST['situation']]);
 		$_SESSION['user']->whoIsMaitreApprentissage($db);
 		$_SESSION['user']->whoIsTuteurPedagogique($db);
+		$_SESSION['user']->aboutFormation($db);
 		header('Location:index.php');
 	}
 	else {

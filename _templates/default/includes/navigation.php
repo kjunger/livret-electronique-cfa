@@ -10,7 +10,7 @@
         <li class="has-sub">
             <a href="#"><div class="form">Formulaires</div></a>
             <ul>
-                <?php subLinks($db, 'form'); ?>
+                <?php displaySubLinks($db, 'form'); ?>
             </ul>
         </li>
         <li>

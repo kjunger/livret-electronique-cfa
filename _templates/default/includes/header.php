@@ -8,7 +8,7 @@
     <p>
         Bienvenue,
         <br/>
-        <span id="nom"><?php echo $_SESSION['user']->getName(); ?></span>
+        <span id="nom"><?php userDisplayName($_SESSION['user']); ?></span>
     </p>
     <div id="user">
         <img src="_templates/default/assets/icons/user.svg" alt="" />

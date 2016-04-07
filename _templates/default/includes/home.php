@@ -4,7 +4,7 @@
             <h1>Informations générales</h1>
         </div>
         <div class="contenu">
-            <?php homeGeneralInfos($_SESSION['user']); ?>
+            <?php userDisplayGeneralInfos($_SESSION['user']); ?>
         </div>
     </div>
     <div class="conteneur">

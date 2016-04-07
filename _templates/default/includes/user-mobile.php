@@ -1,5 +1,5 @@
 <div id="deconnexion-mobile">
-    <p><?php echo $_SESSION['user']->getName(); ?></p>
+    <p><?php userDisplayName($_SESSION['user']); ?></p>
     <div id="contenu-menu-user">
         <ul>
             <li><a href=""><img src="_templates/default/assets/icons/user_blanc.svg" alt="" />Profil</a></li>

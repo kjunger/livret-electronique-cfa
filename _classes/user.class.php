@@ -9,24 +9,12 @@
 				'tel' => $pTel,
 				'cell' => $pCell);
 		}
-		public function getLogin() {
-			return $this->userBasicInfos['login'];
-		}
-		public function getName() {
-			return $this->userBasicInfos['name'];
-		}
-		public function getEmail() {
-			return $this->userBasicInfos['email'];
-		}
-		public function getTel() {
-			return $this->userBasicInfos['tel'];
-		}
-		public function getCell() {
-			return $this->userBasicInfos['cell'];
+		public function getUserBasicInfos() {
+			return $this->userBasicInfos;
 		}
 	}
 	final class Apprenti extends User {
-		private $_apprentiMaitreApprentissage; private $_apprentiCompany; private $_apprentiTuteurPedagogique;
+		private $_apprentiMaitreApprentissage; private $_apprentiCompany; private $_apprentiTuteurPedagogique; private $_apprentiFormation;
 		public function getMaitreApprentissageInfos() {
 			return $this->_apprentiMaitreApprentissage;
 		}
@@ -35,6 +23,9 @@
 		}
 		public function getTuteurPedagogiqueInfos() {
 			return $this->_apprentiTuteurPedagogique;
+		}
+		public function getFormationInfos() {
+			return $this->_apprentiFormation;
 		}
 		public function whoIsMaitreApprentissage($pDatabase) {
 			$answer = dbSelect("SELECT * FROM `Entreprise` INNER JOIN (`MaitreApprentissage` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `MaitreApprentissage`.`idMaitreApprentissage`=`ContratApprentissage`.`idMaitreApprentissage`) ON `Entreprise`.`idEntreprise`=`MaitreApprentissage`.`idEntreprise` WHERE `Apprenti`.`loginApprenti`='" . $this->userBasicInfos['login'] . "';",$pDatabase);
@@ -58,6 +49,20 @@
 					'mailTuteurPedagogique' => $answer[0]['mailTuteurPedagogique'],
 					'telTuteurPedagogique' => $answer[0]['telTuteurPedagogique'],
 					'cellTuteurPedagogique' => $answer[0]['portTuteurPedagogique']);
+			}
+		}
+		public function aboutFormation($pDatabase) {
+			$answerNameFormation = dbSelect("SELECT * FROM `Formation` INNER JOIN `Apprenti` ON `Formation`.`idFormation`=`Apprenti`.`idFormation` WHERE `Apprenti`.`loginApprenti`='" . $this->userBasicInfos['login'] . "';",$pDatabase);
+			$answerAboutComposante = dbSelect("SELECT * FROM `Composante` INNER JOIN `Formation` ON `Composante`.`idComposante`=`Formation`.`idComposante` WHERE `Formation`.`idFormation`=" . $answerNameFormation[0]['idFormation'] . ";",$pDatabase);
+			$answerWhoIsRepresentantPedagogique = dbSelect("SELECT * FROM `RepresentantPedagogique` INNER JOIN `Formation` ON `RepresentantPedagogique`.`idRepresentantPedagogique`=`Formation`.`idRepresentantPedagogique` WHERE `Formation`.`idFormation`=" . $answerNameFormation[0]['idFormation'] . ";",$pDatabase);
+			if (count($answerNameFormation) == 1 && count($answerAboutComposante) == 1 && count($answerWhoIsRepresentantPedagogique) == 1){
+				$this->_apprentiFormation = array(
+					'nameFormation' => $answerNameFormation[0]['intituleFormation'],
+					'nameComposante' => $answerAboutComposante[0]['nomComposante'],
+					'nameRepresentantPedagogique' => $answerWhoIsRepresentantPedagogique[0]['prenomRepresentantPedagogique'] . ' ' . $answerWhoIsRepresentantPedagogique[0]['nomRepresentantPedagogique'],
+					'mailRepresentantPedagogique' => $answerWhoIsRepresentantPedagogique[0]['mailRepresentantPedagogique'],
+					'telRepresentantPedagogique' => $answerWhoIsRepresentantPedagogique[0]['telRepresentantPedagogique'],
+					'cellRepresentantPedagogique' => $answerWhoIsRepresentantPedagogique[0]['portRepresentantPedagogique']);
 			}
 		}
 	}
