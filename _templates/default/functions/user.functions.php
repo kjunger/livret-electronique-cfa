@@ -24,8 +24,16 @@ function userDisplayGeneralInfos($pUser)
   case "MaitreApprentissage":
     echo '<h2>Votre entreprise</h2><p>';
     $company = $pUser->getCompanyInfos();
-    echo $company['companyName'] . '<br /><span class="info">' . $company['companyAdress'] . '</span></p>';
+    echo $company['companyName'] . '<br /><span class="info">' . $company['companyAdress'] . "</span></p><h2>L'apprenti suivi</h2><p>";
+    $apprenti = $pUser->getApprentiInfos();
+    echo $apprenti['nameApprenti'] . '<br /><span class="info">Téléphone : ' . $apprenti['telApprenti'] . ' - Portable : ' . $apprenti['cellApprenti'] . '<br />Email : ' . $apprenti['mailApprenti'] . '</span></p>';
     break;
+
+    case "TuteurPedagogique":
+      echo "<h2>L'apprenti suivi</h2><p>";
+      $apprenti = $pUser->getApprentiInfos();
+      echo $apprenti['nameApprenti'];
+      break;
   }
 }
 function userLogout()

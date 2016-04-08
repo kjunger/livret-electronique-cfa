@@ -141,4 +141,46 @@ final class MaitreApprentissage extends User
     return $this->_maitreApprentissageCompany;
   }
 }
+final class TuteurPedagogique extends User
+
+{
+  private $_tuteurPedagogiqueApprenti;
+  private $_tuteurMaitreApprentissage;
+  public function whoIsApprenti($pDatabase)
+
+  {
+    $answer = dbSelect("SELECT * FROM `Apprenti` INNER JOIN (`ContratApprentissage` INNER JOIN `TuteurPedagogique` ON `ContratApprentissage`.`idTuteurPedagogique`=`TuteurPedagogique`.`idTuteurPedagogique`) ON `Apprenti`.`idApprenti`=`ContratApprentissage`.`idApprenti` WHERE `TuteurPedagogique`.`loginTuteurPedagogique`='" . $this->userBasicInfos['login'] . "';",$pDatabase);
+    if (count($answer) == 1)
+    {
+      $this->_tuteurPedagogiqueApprenti = array(
+        'nameApprenti' => $answer[0]['prenomApprenti'] . ' ' . $answer[0]['nomApprenti'],
+        'mailApprenti' => $answer[0]['mailApprenti'],
+        'telApprenti' => $answer[0]['telApprenti'],
+        'cellApprenti' => $answer[0]['portApprenti']
+      );
+    }
+  }
+  public function whoIsMaitreApprentissage($pDatabase)
+
+  {
+    $answer = dbSelect("SELECT * FROM `MaitreApprentissage` INNER JOIN (`ContratApprentissage` INNER JOIN `TuteurPedagogique` ON `ContratApprentissage`.`idTuteurPedagogique`=`TuteurPedagogique`.`idTuteurPedagogique`) ON `MaitreApprentissage`.`idMaitreApprentissage`=`ContratApprentissage`.`idMaitreApprentissage` WHERE `TuteurPedagogique`.`loginTuteurPedagogique`='" . $this->userBasicInfos['login'] . "';",$pDatabase);
+    if (count($answer) == 1)
+    {
+      $this->_tuteurMaitreApprentissage = array(
+        'nameMaitreApprentissage' => $answer[0]['prenomMaitreApprentissage'] . ' ' . $answer[0]['nomMaitreApprentissage'],
+        'mailMaitreApprentissage' => $answer[0]['mailMaitreApprentissage'],
+        'telMaitreApprentissage' => $answer[0]['telMaitreApprentissage'],
+        'cellMaitreApprentissage' => $answer[0]['portMaitreApprentissage']
+      );
+    }
+  }
+
+  public function getApprentiInfos() {
+    return $this->_tuteurPedagogiqueApprenti;
+  }
+
+  public function getMaitreApprentissageInfos() {
+    return $this->_tuteurMaitreApprentissage;
+  }
+}
 ?>
