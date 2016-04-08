@@ -1,6 +1,6 @@
 <h1>Fiche de renseignements</h1>
-<form action="" method="">
-    <div id="content">
+<div id="content">
+    <form action="" method="">
         <div class="conteneur_large">
             <div class="titre">
                 <h1>Apprenti</h1>
@@ -96,8 +96,8 @@
                 </p>
             </div>
         </div>
+        <p class="btn">
+            <input type="submit" value="Valider" />
+        </p>
     </div>
-    <p class="btn">
-        <input type="submit" value="Valider" />
-    </p>
 </form>

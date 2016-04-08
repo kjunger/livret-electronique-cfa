@@ -1,5 +1,6 @@
 <?php
-  include ('_templates/default/functions.php');
+  include ('_templates/default/functions/display.functions.php');
+  include ('_templates/default/functions/user.functions.php');
   $db = dbInit('LivretElectroniq', '10.0.2.15', 'LivretElectroniq', 'test');
   if (isset($_GET['logout']))
   {
@@ -13,11 +14,9 @@
     </title>
     <meta charset="utf-8" />
     <link type="text/css" rel="stylesheet" href="_templates/default/assets/css/style.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js">
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="_templates/default/assets/js/jquery-2.2.1.min.js">
-    </script>
-    <script type="text/javascript" src="_templates/default/assets/js/script.js">
-    </script>
   </head>
   <body>
     <?php
@@ -32,4 +31,6 @@
       ?>
     </div>
   </body>
+  <script type="text/javascript" src="_templates/default/assets/js/script.js">
+  </script>
 </html>

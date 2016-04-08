@@ -14,7 +14,15 @@
     <?php
       if (!empty($_GET['slug']))
       {
-        viewController($db, $_GET['slug']);
+        $answer = dbSelect("SELECT * FROM `FormulaireStandard` WHERE `FormulaireStandard`.`slugFormulaireStandard`='" . $_GET['slug'] . "';", $db);
+        if (count($answer) == 1)
+         {
+          echo $answer[0]['contenuFormulaireStandard'];
+         }
+        else
+         {
+          echo "La page que vous cherchez à consulter n'existe pas.";
+         }
       }
       else
       {

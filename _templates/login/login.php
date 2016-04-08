@@ -6,9 +6,19 @@ if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp'])
 	if (count($answer) == 1)
 	{
 		$_SESSION['user'] = new $_POST['situation']($answer[0]['login' . $_POST['situation']], $answer[0]['prenom' . $_POST['situation']] . ' ' . $answer[0]['nom' . $_POST['situation']], $answer[0]['mail' . $_POST['situation']], $answer[0]['tel' . $_POST['situation']], $answer[0]['port' . $_POST['situation']]);
-		$_SESSION['user']->whoIsMaitreApprentissage($db);
-		$_SESSION['user']->whoIsTuteurPedagogique($db);
-		$_SESSION['user']->aboutFormation($db);
+		$userGetClass = get_class($_SESSION['user']);
+		switch ($userGetClass)
+		{
+			case "Apprenti":
+				$_SESSION['user']->whoIsMaitreApprentissage($db);
+				$_SESSION['user']->whoIsTuteurPedagogique($db);
+				$_SESSION['user']->aboutFormation($db);
+				break;
+			case "MaitreApprentissage":
+				$_SESSION['user']->whoIsApprenti($db);
+				$_SESSION['user']->aboutCompany($db);
+				break;
+		}
 		header('Location:index.php');
 	}
 	else
