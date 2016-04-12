@@ -1,8 +1,7 @@
 <?php
   include ('_templates/default/functions/display.functions.php');
   include ('_templates/default/functions/user.functions.php');
-  $db = dbInit('LivretElectroniq', '127.0.0.1', 'LivretElectroniq', 'test');
-  if (isset($_GET['logout']))
+  $db = dbInit('LivretElectroniq', '10.0.2.15', 'LivretElectroniq', 'test');  if (isset($_GET['logout']))
   {
       userLogout();
   }

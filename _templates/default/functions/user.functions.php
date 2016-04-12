@@ -12,28 +12,56 @@ function userDisplayGeneralInfos($pUser)
   case "Apprenti":
     echo '<h2>Formation suivie</h2><p>';
     $formation = $pUser->getFormationInfos();
-    echo $formation['nameFormation'] . '<br /><span class="info">' . $formation['nameComposante'] . '<br />Représentant pédagogique : ' . $formation['nameRepresentantPedagogique'] . '<br />Téléphone : ' . $formation['telRepresentantPedagogique'] . ' - Portable : ' . $formation['cellRepresentantPedagogique'] . '<br />Email : ' . $formation['mailRepresentantPedagogique'] . '</span></p><h2>Entreprise</h2><p>';
+    echo $formation['nameFormation'] . '<br /><span class="info">' . $formation['nameComposante'] . '</span></p><h2>Entreprise</h2><p>';
     $company = $pUser->getCompanyInfos();
-    echo $company['companyName'] . '<br /><span class="info">' . $company['companyAdress'] . "</span></p><h2>Maître d'apprentissage</h2><p>";
+    echo $company['companyName'] . "</p><h2>Maître d'apprentissage</h2><p>";
     $maitreApprentissage = $pUser->getMaitreApprentissageInfos();
-    echo $maitreApprentissage['nameMaitreApprentissage'] . '<br/><span class="info">' . $maitreApprentissage['functionMaitreApprentissage'] . '<br/>Téléphone : ' . $maitreApprentissage['telMaitreApprentissage'] . " - Portable : " . $maitreApprentissage['cellMaitreApprentissage'] . '<br/>Email : ' . $maitreApprentissage['mailMaitreApprentissage'] . '</span></p><h2>Tuteur pédagogique</h2><p>';
+    echo $maitreApprentissage['nameMaitreApprentissage'] . '</p><h2>Tuteur pédagogique</h2><p>';
     $tuteurPedagogique = $pUser->getTuteurPedagogiqueInfos();
-    echo $tuteurPedagogique['nameTuteurPedagogique'] . '<span class="info"><br />Téléphone : ' . $tuteurPedagogique['telTuteurPedagogique'] . ' - Portable : ' . $tuteurPedagogique['cellTuteurPedagogique'] . '<br />Email : ' . $tuteurPedagogique['mailTuteurPedagogique'] . '</span></p>';
+    echo $tuteurPedagogique['nameTuteurPedagogique'] . '</p>';
     break;
 
   case "MaitreApprentissage":
     echo '<h2>Votre entreprise</h2><p>';
     $company = $pUser->getCompanyInfos();
-    echo $company['companyName'] . '<br /><span class="info">' . $company['companyAdress'] . "</span></p><h2>L'apprenti suivi</h2><p>";
+    echo $company['companyName'] . "</p><h2>L'apprenti suivi</h2><p>";
     $apprenti = $pUser->getApprentiInfos();
-    echo $apprenti['nameApprenti'] . '<br /><span class="info">Téléphone : ' . $apprenti['telApprenti'] . ' - Portable : ' . $apprenti['cellApprenti'] . '<br />Email : ' . $apprenti['mailApprenti'] . '</span></p>';
+    echo $apprenti['nameApprenti'] . '</p><h2>Tuteur pédagogique</h2><p>';
+    $tuteurPedagogique = $pUser->getTuteurPedagogiqueInfos();
+    echo $tuteurPedagogique['nameTuteurPedagogique'] . '</p>';
     break;
 
     case "TuteurPedagogique":
       echo "<h2>L'apprenti suivi</h2><p>";
       $apprenti = $pUser->getApprentiInfos();
-      echo $apprenti['nameApprenti'];
+      echo $apprenti['nameApprenti'] . "</p><h2>Maître d'apprentissage</h2><p>";
+      $maitreApprentissage = $pUser->getMaitreApprentissageInfos();
+      echo $maitreApprentissage['nameMaitreApprentissage'] . '</p>';
       break;
+  }
+}
+function userDisplayImportantInfos($pUser, $pDatabase)
+{
+  $userGetClass = get_class($pUser);
+  switch ($userGetClass)
+  {
+    case "Apprenti":
+      $user = $pUser->getUserBasicInfos();
+      $answer = dbSelect("SELECT * FROM `DroitsFormulaireStandard` INNER JOIN (`ContratApprentissage` INNER JOIN `Apprenti` ON `ContratApprentissage`.`idApprenti`=`Apprenti`.`idApprenti`) ON `DroitsFormulaireStandard`.`idContratApprentissage`=`ContratApprentissage`.`idContratApprentissage` WHERE `loginApprenti`='" . $user['name'] . "';", $pDatabase);
+      foreach ($answer as $row) {
+        if($row['droitsApprentiDroitsFormulaireStandard'] == 2 && $row['aCompleteApprentiDroitsFormulaireStandard'] == NULL) {
+          echo '<h2>Formulaire à compléter</h2><p>Vous devez compléter le formulaire suivant : ' . $row['idFormulaireStandard'] . '</p>';
+        }
+      }
+      break;
+    
+    /*case "MaitreApprentissage":
+      
+      break;
+    
+    case "TuteurPedagogique":
+      
+      break;*/
   }
 }
 function userLogout()

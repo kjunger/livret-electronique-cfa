@@ -14,7 +14,8 @@
       </h1>
     </div>
     <div class="contenu">
-      <h2>Formulaire à remplir
+      <?php userDisplayImportantInfos($_SESSION['user'], $db); ?>
+     <!-- <h2>Formulaire à remplir
       </h2>
       <p>
         Vous devez compléter le formulaire suivant :
@@ -39,7 +40,7 @@
         <br/>
         <span class="info">Date limite : 02/10/20xx
         </span>
-      </p>
+      </p> -->
     </div>
   </div>
 </div>

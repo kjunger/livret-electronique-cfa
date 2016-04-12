@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp']))
 {
-	$db = dbInit('LivretElectroniq', '127.0.0.1', 'LivretElectroniq', 'test');
+	$db = dbInit('LivretElectroniq', '10.0.2.15', 'LivretElectroniq', 'test');
 	$answer = dbSelect("SELECT * FROM `" . $_POST['situation'] . "` WHERE `" . $_POST['situation'] . "`.`login" . $_POST['situation'] . "`='" . $_POST['login'] . "' AND `" . $_POST['situation'] . "`.`mdp" . $_POST['situation'] . "`='" . md5($_POST['mdp']) . "';", $db);
 	if (count($answer) == 1)
 	{
@@ -16,11 +16,13 @@ if (isset($_POST['situation']) && isset($_POST['login']) && isset($_POST['mdp'])
 				break;
 			case "MaitreApprentissage":
 				$_SESSION['user']->whoIsApprenti($db);
+				$_SESSION['user']->whoIsTuteurPedagogique($db);
 				$_SESSION['user']->aboutCompany($db);
 				break;
 			case "TuteurPedagogique":
 				$_SESSION['user']->whoIsApprenti($db);
 				$_SESSION['user']->whoIsMaitreApprentissage($db);
+				break;
 		}
 		header('Location:index.php');
 	}

@@ -104,6 +104,7 @@ final class MaitreApprentissage extends User
 {
   private $_maitreApprentissageApprenti;
   private $_maitreApprentissageCompany;
+  private $_maitreApprentissageTuteurPedagogique;
   public function whoIsApprenti($pDatabase)
 
   {
@@ -115,6 +116,19 @@ final class MaitreApprentissage extends User
         'mailApprenti' => $answer[0]['mailApprenti'],
         'telApprenti' => $answer[0]['telApprenti'],
         'cellApprenti' => $answer[0]['portApprenti']
+      );
+    }
+  }
+  public function whoIsTuteurPedagogique($pDatabase)
+
+  {
+    $answer = dbSelect("SELECT * FROM `TuteurPedagogique` INNER JOIN (`ContratApprentissage` INNER JOIN `MaitreApprentissage` ON `ContratApprentissage`.`idMaitreApprentissage`=`MaitreApprentissage`.`idMaitreApprentissage`) ON `TuteurPedagogique`.`idTuteurPedagogique`=`ContratApprentissage`.`idTuteurPedagogique` WHERE `MaitreApprentissage`.`loginMaitreApprentissage`='" . $this->userBasicInfos['login'] . "';", $pDatabase);
+    if (count($answer) == 1){
+      $this->_maitreApprentissageTuteurPedagogique = array(
+        'nameTuteurPedagogique' => $answer[0]['prenomTuteurPedagogique'] . ' ' . $answer[0]['nomTuteurPedagogique'],
+        'mailTuteurPedagogique' => $answer[0]['mailTuteurPedagogique'],
+        'telTuteurPedagogique' => $answer[0]['telTuteurPedagogique'],
+        'cellTuteurPedagogique' => $answer[0]['portTuteurPedagogique']
       );
     }
   }
@@ -134,6 +148,11 @@ final class MaitreApprentissage extends User
 
   {
     return $this->_maitreApprentissageApprenti;
+  }
+  public function getTuteurPedagogiqueInfos()
+
+  {
+    return $this->_maitreApprentissageTuteurPedagogique;
   }
   public function getCompanyInfos()
 
