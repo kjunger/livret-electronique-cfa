@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     $('.titre').append('<svg height:"25" width:"25" class=""><polygon points="0,0 25,12.5 0,25" fill="#363636" stroke="none" /></svg>');
     $('.conteneur').addClass('open');
@@ -61,7 +61,7 @@ $(document).ready(function() {
         tailleNom = $('#nom').width();
         tailleDeconnexion = tailleUser + tailleNom + 140;
         $('#deconnexion').css('width', tailleDeconnexion);
-        $('#bouton-deconnexion').on('click', function() {
+        $('#bouton-deconnexion').on('click', function () {
             var elem = $('#deconnexion');
             if (elem.hasClass('open')) {
                 $('header p').css('color', '');
@@ -86,10 +86,10 @@ $(document).ready(function() {
         $('#deconnexion-mobile').css('display', 'none');
         $('div.screen').css('left', '80%');
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('div.x').addClass('rotate30');
             $('div.z').addClass('rotate150');
-            setTimeout(function() {
+            setTimeout(function () {
                 $('div.x').addClass('rotate45');
                 $('div.z').addClass('rotate135');
             }, 100);
@@ -106,11 +106,11 @@ $(document).ready(function() {
         $('div.screen').css('left', '0');
         $('#deconnexion-mobile').css('display', '');
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('div.x').removeClass('rotate30');
             $('div.z').removeClass('rotate150');
         }, 50);
-        setTimeout(function() {
+        setTimeout(function () {
             $('div.x, div.z').removeClass('collapse');
         }, 70);
 
@@ -134,21 +134,21 @@ $(document).ready(function() {
     }
 
     function menu() {
-        $('div.bouton').on('click', function() {
+        $('div.bouton').on('click', function () {
             if (!$(this).hasClass('open')) {
                 openMenu();
             } else {
                 closeMenu();
             }
         });
-        $('div #cssmenu ul li a').on('click', function(e) {
+        $('div #cssmenu ul li a').on('click', function (e) {
             e.preventDefault();
             closeMenu();
         });
     }
 
     function menu_user() {
-        $('#bouton-menu-user').on('click', function() {
+        $('#bouton-menu-user').on('click', function () {
             if (!$(this).hasClass('open')) {
                 openMenuUser();
             } else {
@@ -158,7 +158,7 @@ $(document).ready(function() {
     }
 
     function sousmenu() {
-        $('#cssmenu li.has-sub>a').on('click', function() {
+        $('#cssmenu li.has-sub>a').on('click', function () {
             $(this).removeAttr('href');
             var element = $(this).parent('li');
             if (element.hasClass('open')) {
@@ -203,7 +203,7 @@ $(document).ready(function() {
     }
 
     function contenu_mobile() {
-        $('.titre svg').on('click', function() {
+        $('.titre svg').on('click', function () {
             var element = $(this).parent('div.titre').parent('div.conteneur');
             if (element.hasClass('open')) {
                 element.removeClass('open');

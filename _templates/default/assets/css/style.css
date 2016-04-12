@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     position: relative;
@@ -9,10 +10,12 @@ html, body {
 }
 
 * {
-    font-family: "Arial",sans-serif;
+    font-family: "Arial", sans-serif;
 }
 
+
 /*HEADER*/
+
 header {
     background-color: #00767b;
     height: 130px;
@@ -24,7 +27,10 @@ header {
     -o-box-shadow: 0px 5px 10px 0px #656565;
     box-shadow: 0px 5px 10px 0px #656565;
 }
-    /*Logo*/
+
+
+/*Logo*/
+
 #header-logo {
     position: absolute;
     left: 6.250em;
@@ -32,7 +38,9 @@ header {
     transform: translateY(-50%);
 }
 
-    /*Texte*/
+
+/*Texte*/
+
 header p {
     margin: 0;
     position: absolute;
@@ -49,7 +57,9 @@ header p {
     font-size: 2em;
 }
 
-    /*Bouton utilisateur*/
+
+/*Bouton utilisateur*/
+
 #user {
     width: 6.25em;
     position: absolute;
@@ -60,7 +70,8 @@ header p {
     z-index: 4;
 }
 
-#bouton-deconnexion, #bouton-menu-user {
+#bouton-deconnexion,
+#bouton-menu-user {
     width: 100px;
     position: absolute;
     right: 100px;
@@ -142,7 +153,9 @@ header p {
     height: auto;
 }
 
+
 /*MENU*/
+
 #cssmenu {
     height: 100%;
     background-color: #f4f4f4;
@@ -329,7 +342,9 @@ div.z {
     transition: all 200ms ease-out;
 }
 
-div.x, div.y, div.z {
+div.x,
+div.y,
+div.z {
     height: 3px;
     width: 60px;
     -webkit-transition: all 100ms ease-out;
@@ -360,7 +375,8 @@ div.z {
     top: 40px;
 }
 
-div.open div.x, div.open div.z {
+div.open div.x,
+div.open div.z {
     top: 20px;
     -webkit-transition: all 70ms ease-out;
     -moz-transition: all 70ms ease-out;
@@ -452,7 +468,9 @@ div.screen.animate-user {
     transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
 
+
 /*CONTENT*/
+
 #main {
     position: relative;
     height: 100%;
@@ -460,7 +478,10 @@ div.screen.animate-user {
     overflow: auto;
     background-color: #f4f4f4;
 }
-    /*Bloc*/
+
+
+/*Bloc*/
+
 #content {
     display: block;
     margin: 0 auto;
@@ -491,7 +512,10 @@ div.screen.animate-user {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-    /*Titre principal*/
+
+
+/*Titre principal*/
+
 .titre {
     padding: 0.625em 1em;
     position: relative;
@@ -527,18 +551,27 @@ div.screen.animate-user {
     -o-transform: translateY(-50%) rotate(90deg);
     transform: translateY(-50%) rotate(90deg);
 }
-    /*Contenu*/
+
+
+/*Contenu*/
+
 .contenu {
     padding: 0.625em 2em;
     padding-bottom: 2em;
 }
-        /*Titre secondaire*/
+
+
+/*Titre secondaire*/
+
 .contenu h2 {
     margin: 0;
     font-size: 1.5em;
     margin-top: 0.75em;
 }
-        /*Texte*/
+
+
+/*Texte*/
+
 .contenu p {
     margin: 0;
     margin-top: 0.25em;
@@ -548,8 +581,14 @@ div.screen.animate-user {
     font-size: 0.75em;
 }
 
-    /*Formulaires*/
-input[type=text], input[type=email], input[type=tel], textarea, select {
+
+/*Formulaires*/
+
+input[type=text],
+input[type=email],
+input[type=tel],
+textarea,
+select {
     max-width: 100%;
     min-width: 100%;
     height: 45px;
@@ -563,7 +602,11 @@ input[type=text], input[type=email], input[type=tel], textarea, select {
     font-size: 1em;
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, textarea:focus, select:focus {
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=tel]:focus,
+textarea:focus,
+select:focus {
     border-bottom: 1px solid #363636;
     box-shadow: 0 1px 1px 0 #363636;
     outline: none;
@@ -588,7 +631,8 @@ select:focus {
     margin-bottom: 10px;
 }
 
-input[type="checkbox"]:not(:checked), input[type="checkbox"]:checked {
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
     position: absolute;
     left: -9999px;
     visibility: hidden;
@@ -650,7 +694,12 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=text]:hover, input[type=email]:hover, input[type=tel]:hover, textarea:hover, select:hover, input[type=submit]:hover {
+input[type=text]:hover,
+input[type=email]:hover,
+input[type=tel]:hover,
+textarea:hover,
+select:hover,
+input[type=submit]:hover {
     transform: translateY(-3px);
     transition-duration: 0.4s;
     -moz-box-shadow: 3px 3px 5px 0px #363636;
@@ -687,7 +736,9 @@ h1 {
     font-weight: bold;
 }
 
+
 /*FOOTER*/
+
 footer {
     height: 90px;
     width: 100%;
@@ -711,31 +762,25 @@ footer a {
     .bouton {
         display: none;
     }
-
     #bouton-menu-user {
         display: none;
     }
-
     #deconnexion-mobile {
         display: none;
     }
-
     nav {
         -moz-box-shadow: 3px 0px 10px 0px #656565;
         -webkit-box-shadow: 3px 0px 10px 0px #656565;
         -o-box-shadow: 3px 0px 10px 0px #656565;
         box-shadow: 3px 0px 10px 0px #656565;
     }
-
     #menu-logo {
         display: none;
     }
-
     #menu-landscape {
         display: none;
     }
-
-/*CONTENT*/
+    /*CONTENT*/
     #cssmenu {
         top: 130px;
     }
@@ -745,12 +790,10 @@ footer a {
         height: 460px;
         float: left;
     }
-
     .contenu {
         overflow: auto;
     }
-
-/*FOOTER*/
+    /*FOOTER*/
     /*Liens*/
     footer ul {
         list-style-type: none;
@@ -759,7 +802,6 @@ footer a {
         top: 50%;
         transform: translateY(-75%);
     }
-
     footer li {
         font-size: 1.250em;
         text-align: right;
@@ -770,61 +812,52 @@ footer a {
         top: 50%;
         transform: translateY(-50%);
     }
-
     #logo_univ {
         max-width: 9.375em;
         left: 6.250em;
         height: auto;
     }
-
     #logo_etab {
         left: 18.750em;
         max-width: 13.750em;
         height: auto;
     }
-
     #logo_region {
         right: 11.875em;
         max-width: 5em;
         height: auto;
     }
-
     #logo_ministere {
         right: 6.250em;
         max-width: 5em;
         height: auto;
-    };
+    }
+    ;
 }
 
 @media screen and (min-width:1000px) and (max-width:1271px) {
     .bouton {
         display: none;
     }
-
     #bouton-menu-user {
         display: none;
     }
-
     #deconnexion-mobile {
         display: none;
     }
-
     nav {
         -moz-box-shadow: 3px 0px 10px 0px #656565;
         -webkit-box-shadow: 3px 0px 10px 0px #656565;
         -o-box-shadow: 3px 0px 10px 0px #656565;
         box-shadow: 3px 0px 10px 0px #656565;
     }
-
     #menu-logo {
         display: none;
     }
-
     #menu-landscape {
         display: none;
     }
-
-/*CONTENT*/
+    /*CONTENT*/
     #cssmenu {
         top: 130px;
         padding-top: 5em;
@@ -834,13 +867,11 @@ footer a {
         margin: 1.5em auto;
         width: 80%;
     }
-
     #cssmenu ul {
         margin-left: 0;
         padding-left: 5px;
     }
-
-/*FOOTER*/
+    /*FOOTER*/
     /*Liens*/
     footer ul {
         list-style-type: none;
@@ -849,7 +880,6 @@ footer a {
         top: 50%;
         transform: translateY(-75%);
     }
-
     footer li {
         font-size: 1.250em;
         text-align: right;
@@ -860,60 +890,51 @@ footer a {
         top: 50%;
         transform: translateY(-50%);
     }
-
     #logo_univ {
         max-width: 9.375em;
         left: 1.875em;
         height: auto;
     }
-
     #logo_etab {
         left: 12.50em;
         max-width: 13.750em;
         height: auto;
     }
-
     #logo_region {
         right: 8.125em;
         max-width: 5em;
         height: auto;
     }
-
     #logo_ministere {
         right: 1.875em;
         max-width: 5em;
         height: auto;
-    };
+    }
+    ;
 }
 
 @media screen and (min-width:401px) and (max-width:999px) {
     #header-logo {
         display: none;
     }
-
     header p {
         display: none;
     }
-
     #bouton-menu-user {
         width: 80px;
         height: 80px;
         right: 30px;
     }
-
     #bouton-deconnexion {
         display: none;
     }
-
     .bouton {
         left: 1.875em;
     }
-
     #user {
         width: 5em;
         right: 1.875em;
     }
-
     #cssmenu {
         background-color: #363636;
         height: 100%;
@@ -924,48 +945,38 @@ footer a {
         -o-box-shadow: inset -5px 0px 15px 0px #000000;
         box-shadow: inset -5px 0px 15px 0px #000000;
     }
-
-    #cssmenu ul li a, #cssmenu ul ul li a {
+    #cssmenu ul li a,
+    #cssmenu ul ul li a {
         color: #ffffff;
     }
-
     #cssmenu ul > li.has-sub > a:after {
         background: #ffffff;
     }
-
     #cssmenu ul > li.has-sub > a:before {
         background: #ffffff;
     }
-
     .accueil {
         background-image: url('../icons/accueil_blanc.svg');
     }
-
     .eval {
         background-image: url('../icons/eval_blanc.svg');
     }
-
     .form {
         background-image: url('../icons/form_blanc.svg');
     }
-
     .contrat {
         background-image: url('../icons/contrat_blanc.svg');
     }
-
     .fichiers {
         background-image: url('../icons/fichiers_blanc.svg');
     }
-
     .contacts {
         background-image: url('../icons/contacts_blanc.svg');
     }
-
     #breadcrumbs {
         display: none;
     }
-
-/*CONTENT*/
+    /*CONTENT*/
     #main {
         width: 100%;
         z-index: 2;
@@ -976,44 +987,37 @@ footer a {
         width: 90%;
         min-height: 50%;
     }
-
     footer {
         display: none;
-    };
+    }
+    ;
 }
 
 @media screen and (max-width:400px) {
     #header-logo {
         display: none;
     }
-
     header p {
         display: none;
     }
-
     #menu-landscape {
         display: none;
     }
-
     #bouton-deconnexion {
         display: none;
     }
-
     #bouton-menu-user {
         width: 60px;
         height: 60px;
         right: 30px;
     }
-
     .bouton {
         left: 1.875em;
     }
-
     #user {
         width: 3.75em;
         right: 1.875em;
     }
-
     #cssmenu {
         background-color: #363636;
         height: 100%;
@@ -1024,53 +1028,42 @@ footer a {
         -o-box-shadow: inset -5px 0px 15px 0px #000000;
         box-shadow: inset -5px 0px 15px 0px #000000;
     }
-
     #cssmenu ul {
         padding: 0;
         padding-top: 2em;
     }
-
-    #cssmenu ul li a, #cssmenu ul ul li a {
+    #cssmenu ul li a,
+    #cssmenu ul ul li a {
         color: #ffffff;
     }
-
     #cssmenu ul > li.has-sub > a:after {
         background: #ffffff;
     }
-
     #cssmenu ul > li.has-sub > a:before {
         background: #ffffff;
     }
-
     #accueil {
         background-image: url('../icons/accueil_blanc.svg');
     }
-
     #eval {
         background-image: url('../icons/eval_blanc.svg');
     }
-
     #form {
         background-image: url('../icons/form_blanc.svg');
     }
-
     #contrat {
         background-image: url('../icons/contrat_blanc.svg');
     }
-
     #fichiers {
         background-image: url('../icons/fichiers_blanc.svg');
     }
-
     #contacts {
         background-image: url('../icons/contacts_blanc.svg');
     }
-
     #breadcrumbs {
         display: none;
     }
-
-/*CONTENT*/
+    /*CONTENT*/
     #main {
         width: 100%;
         height: 100%;
@@ -1082,10 +1075,10 @@ footer a {
         width: 90%;
         min-height: 80%;
     }
-
     footer {
         display: none;
-    };
+    }
+    ;
 }
 
 #deconnexion-mobile {
