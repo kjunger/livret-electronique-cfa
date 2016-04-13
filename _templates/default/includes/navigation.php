@@ -6,10 +6,13 @@
                 <div class="accueil">Accueil</div>
             </a>
         </li>
-        <li>
-            <a href="index.php?cat=eval">
+        <li class="has-sub">
+            <a href="#">
                 <div class="eval">Evaluation</div>
             </a>
+            <ul>
+                <?php displaySubLinks($db, 'eval'); ?>
+            </ul>
         </li>
         <li class="has-sub">
             <a href="#">

@@ -1,20 +1,17 @@
 <div id="main">
     <p id="breadcrumbs">
         <?php
-            if (!empty($_GET['cat']) && !empty($_GET['slug']))
+            echo '<a href="index.php">Accueil</a> > ';
+            if (isset($_GET['cat']) && isset($_GET['slug']))
             {
                 displayBreadcrumbs($db, $_GET['cat'], $_GET['slug']);
-            }
-            else
-            {
-                echo '<a href="index.php">Accueil</a> > ';
             }
         ?>
     </p>
     <?php
-        if (!empty($_GET['slug']))
+        if (isset($_GET['cat']) && isset($_GET['slug']))
         {
-            include('_views/form/' . $_GET['slug'] . '.php');
+            include('_views/default/' . $_GET['cat'] . '/' . $_GET['slug'] . '.php');
         }
         else
         {
