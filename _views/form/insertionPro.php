@@ -50,7 +50,29 @@
         $('#anneeProchaine').change(function () {
             var choixSelect = $('#anneeProchaine option:selected').val();
             if (choixSelect != "recherchePoursuiteEtudes") {
-                $('#choixAnneePro').load('_views/form/includes/' + choixSelect + '.php');
+                switch (choixSelect) {
+                    case "poursuiteEtudes":
+                        $('#choixAnneePro').empty();
+                        $('#choixAnneePro').append('<h2>Etablissement</h2><input placeholder="Nom de l\'établissement" id="nomEtablissementApp" type="text" required /><input placeholder="Lieu (composante, IUT, etc.)" id="lieuEtablissementApp" type="text" required /><input placeholder="Adresse" id="adresseEtablissementApp" type="text" required /><input placeholder="Complément d\'adresse" id="complementAdEtablissementApp" type="text" /><input placeholder="Code postal" id="cpEtablissementApprenti" type="text" pattern="[0-9]{5}" required /><input placeholder="Ville" id="villeEtablissementApprenti" type="text" required /><input placeholder="Diplôme visé" id="diplomeEtablissementApprenti" type="text" required /><p>Type de formation</p><select id="typeFormation" name="typeFormation" required><option selected disabled>Choisissez une option...</option><option value="classique">Formation classique</option><option value="alternance">Formation par alternance</option></select><div id="choixTypeFormation"></div>');
+                        $('#typeFormation').change(function () {
+                            var choixSelect = $('#typeFormation option:selected').val();
+                            if (choixSelect == "alternance") {
+                                $('#choixTypeFormation').empty();
+                                $('#choixTypeFormation').append('<input placeholder="Fonctions attachées au poste" id="posteAlternanceApp" type="text" required /><h2>Entreprise</h2><input placeholder="Raison sociale" id="raisonSocialeEntAltApp" type="text" required /><input placeholder="Adresse du siège social" id="adEntAltApp" type="text" required /><input placeholder="Complément d\'adresse" id="complementAdEntAltApp" type="text" required /><input placeholder="Code postal" id="cpEntAltApp" type="text" pattern="[0-9]{5}" required /><input placeholder="Ville" id="villeEntAltApp" type="text" required />');
+                            } else {
+                                $('#choixTypeFormation').empty();
+                            }
+                        });
+                        break;
+                    case "emploi":
+                        $('#choixAnneePro').empty();
+                        $('#choixAnneePro').append('<p>Type de Contrat</p><select name="typeContrat" required><option selected disabled>Choisissez une option...</option><option value="cdd">CDD</option><option value="cdi">CDI</option></select><input placeholder="Fonctions attachées au poste" id="posteEmploi" type="text" required /><h2>Entreprise</h2><input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" required /><input placeholder="Adresse du siège social" id="adEnt" type="text" required /><input placeholder="Complément d\'adresse" id="complementAdEnt" type="text" required /><input placeholder="Code postal" id="cpEnt" type="text" pattern="[0-9]{5}" required /><input placeholder="Ville" id="villeEnt" type="text" required />');
+                        break;
+                    case "rechercheEmploi":
+                        $('#choixAnneePro').empty();
+                        $('#choixAnneePro').append('<p>Mobilité</p><select name="mobilite" required><option selected disabled>Choisissez une option...</option><option value="locale">Locale</option><option value="regionale">Regionale</option></select><p>Souhaits de fonction(s) ou d\'entreprise(s)</p><textarea id="souhaits"></textarea>');
+                        break;
+                }
             } else {
                 $('#choixAnneePro').empty();
             }
