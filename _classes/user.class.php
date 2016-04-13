@@ -5,6 +5,8 @@
             $this->userBasicInfos = array(
                 'login' => $pLogin,
                 'name' => $pName,
+                'firstName' => $pFirstName,
+                'lastName' => $pLastName,
                 'email' => $pEmail,
                 'tel' => $pTel,
                 'cell' => $pCell
