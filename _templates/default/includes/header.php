@@ -12,7 +12,7 @@
         Bienvenue,
         <br/>
         <span id="nom">
-      <?php userDisplayName($_SESSION['user']); ?>
+      <?php echo $_SESSION['userInfos']['user']['name']; ?>
     </span>
     </p>
     <div id="user">

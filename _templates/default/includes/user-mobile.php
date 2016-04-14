@@ -1,6 +1,6 @@
 <div id="deconnexion-mobile">
     <p>
-        <?php userDisplayName($_SESSION['user']); ?>
+        <?php echo $_SESSION['userInfos']['user']['name']; ?>
     </p>
     <div id="contenu-menu-user">
         <ul>

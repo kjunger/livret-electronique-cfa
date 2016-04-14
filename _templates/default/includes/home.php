@@ -5,7 +5,7 @@
       </h1>
         </div>
         <div class="contenu">
-            <?php userDisplayGeneralInfos($_SESSION['user']); ?>
+            <?php userDisplayGeneralInfos($_SESSION['user'], $_SESSION['userInfos']); ?>
         </div>
     </div>
     <div class="conteneur">

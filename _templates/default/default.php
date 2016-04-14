@@ -2,6 +2,7 @@
     include ('_templates/default/functions/display.functions.php');
     include ('_templates/default/functions/user.functions.php');
     $db = dbInit('LivretElectroniq', '127.0.0.1', 'LivretElectroniq', 'test');
+    $_SESSION['userInfos'] = userGetAllInfos($_SESSION['user']);
     if (isset($_GET['logout'])) {
         userLogout();
     }

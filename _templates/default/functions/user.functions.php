@@ -1,26 +1,53 @@
 <?php
 
-    function userDisplayName($pUser)
+    function userGetAllInfos($pUser)
     {
-        $user = $pUser->getUserBasicInfos();
-        echo $user['name'];
+        $userGetClass = get_class($pUser);
+        switch ($userGetClass) {
+            case "Apprenti":
+                $userInfos = array(
+                    'user' => $pUser->getUserBasicInfos(),
+                    'maitreApprentissage' => $pUser->getMaitreApprentissageInfos(),
+                    'company' => $pUser->getCompanyInfos(),
+                    'tuteurPedagogique' => $pUser->getTuteurPedagogiqueInfos(),
+                    'formation' => $pUser->getFormationInfos()
+                );
+                break;
+            case "MaitreApprentissage":
+                $userInfos = array(
+                  'user' => $pUser->getUserBasicInfos(),
+                  'apprenti' => $pUser->getApprentiInfos(),
+                  'tuteurPedagogique' => $pUser->getTuteurPedagogiqueInfos(),
+                  'company' => $pUser->getCompanyInfos()
+                );
+                break;
+            case "TuteurPedagogique":
+                $userInfos = array(
+                  'user' => $pUser->getUserBasicInfos(),
+                  'apprenti' => $pUser->getApprentiInfos(),
+                  'maitreApprentissage' => $pUser->getTuteurPedagogiqueInfos()
+                );
+                break;
+        }
+        return $userInfos;
     }
 
-    function userDisplayGeneralInfos($pUser)
+    function userDisplayGeneralInfos($pUser,$pUserInfos)
     {
         $userGetClass = get_class($pUser);
         switch ($userGetClass)
         {
         case "Apprenti":
-            echo '<h2>Formation suivie</h2><p>';
-            $formation = $pUser->getFormationInfos();
-            echo $formation['nameFormation'] . '<br /><span class="info">' . $formation['nameComposante'] . '</span></p><h2>Entreprise</h2><p>';
-            $company = $pUser->getCompanyInfos();
-            echo $company['companyName'] . "</p><h2>Maître d'apprentissage</h2><p>";
-            $maitreApprentissage = $pUser->getMaitreApprentissageInfos();
-            echo $maitreApprentissage['nameMaitreApprentissage'] . '</p><h2>Tuteur pédagogique</h2><p>';
-            $tuteurPedagogique = $pUser->getTuteurPedagogiqueInfos();
-            echo $tuteurPedagogique['nameTuteurPedagogique'] . '</p>';
+            echo '<h2>Formation suivie</h2><p>' . $pUserInfos['formation']['nameFormation'] . '<br /><span class="info">' . $pUserInfos['formation']['nameComposante'] . '</span></p>';
+            // echo '<h2>Formation suivie</h2><p>';
+            // $formation = $pUser->getFormationInfos();
+            // echo $formation['nameFormation'] . '<br /><span class="info">' . $formation['nameComposante'] . '</span></p><h2>Entreprise</h2><p>';
+            // $company = $pUser->getCompanyInfos();
+            // echo $company['companyName'] . "</p><h2>Maître d'apprentissage</h2><p>";
+            // $maitreApprentissage = $pUser->getMaitreApprentissageInfos();
+            // echo $maitreApprentissage['nameMaitreApprentissage'] . '</p><h2>Tuteur pédagogique</h2><p>';
+            // $tuteurPedagogique = $pUser->getTuteurPedagogiqueInfos();
+            // echo $tuteurPedagogique['nameTuteurPedagogique'] . '</p>';
             break;
 
         case "MaitreApprentissage":
