@@ -1,5 +1,5 @@
 <nav id="cssmenu">
-    <img src="_templates/default/assets/img/logo.png" alt="Logo CFA-CFC" id="menu-logo" />
+    <img src="<?php echo VIEW_DIR; ?>/assets/private/img/logo.png" alt="Logo CFA-CFC" id="menu-logo" />
     <ul>
         <li>
             <a href="index.php">
@@ -11,7 +11,7 @@
                 <div class="eval">Evaluation</div>
             </a>
             <ul>
-                <?php displaySubLinks($db, 'eval'); ?>
+                <?php /*displaySubLinks($db, 'eval');*/ ?>
             </ul>
         </li>
         <li class="has-sub">
@@ -19,7 +19,7 @@
                 <div class="form">Formulaires</div>
             </a>
             <ul>
-                <?php displaySubLinks($db, 'form'); ?>
+                <?php /*displaySubLinks($db, 'form');*/ ?>
             </ul>
         </li>
         <li>
