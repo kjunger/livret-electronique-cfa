@@ -3,7 +3,7 @@
     require_once CLSS_DIR . '/user.class.php';
     require_once VIEW_DIR . '/functions/private/display.php';
     $user = new $_SESSION['type'](DB, $_SESSION['id']);
-    $userInfo = $user->getUser();
+    $userInfo = $user->returnUser();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +25,6 @@
     <div class="screen">
         <?php
             include_once(VIEW_DIR . '/includes/private/header.php');
-            // var_dump($user); var_dump($userInfo);
             include_once(VIEW_DIR . '/includes/private/main.php');
             include_once(VIEW_DIR . '/includes/private/footer.php');
         ?>

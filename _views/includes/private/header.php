@@ -1,4 +1,4 @@
-<header>
+<header class="header-<?php echo $_SESSION['type']; ?>">
     <div class="bouton">
         <div class="x">
         </div>
