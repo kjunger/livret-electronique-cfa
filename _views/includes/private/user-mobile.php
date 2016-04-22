@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <a href="index.php?logout=1">
+                <a href="<?php echo FUNC_DIR; ?>/logout_process.php">
                     <img src="<?php echo VIEW_DIR; ?>/assets/private/icons/deconnexion_blanc.svg" alt="" />Deconnexion
                 </a>
             </li>

@@ -25,34 +25,7 @@
           </h1>
             </div>
             <div class="contenu">
-                <?php 
-                switch($_SESSION['type']) {
-                    case "apprenti":
-                        echo <<<STR
-    <h2>Formation actuelle</h2>
-    <p>
-STR;
-                        echo $userInfo['formation']['intitule'];
-                        echo <<<STR
-    </p>
-    <h2>Entreprise</h2>
-    <p>
-STR;
-                        echo $userInfo['entreprise']['raisonsociale'] . '<br />' . $userInfo['entreprise']['adresse'] . '<br />' . $userInfo['entreprise']['cp'] . ' ' . $userInfo['entreprise']['ville'];
-                        echo <<<STR
-    </p>
-    <h2>Maître d'apprentissage</h2>
-    <p>
-STR;
-                        echo $userInfo['maitreapprentissage']['prenom'] . ' ' . $userInfo['maitreapprentissage']['nom'] . '<br />' . $userInfo['maitreapprentissage']['fonction'];
-                        echo <<<STR
-    </p>
-    <h2>Tuteur pédagogique</h2>
-    <p>
-STR;
-                        echo $userInfo['tuteurpedagogique']['prenom'] . ' ' . $userInfo['tuteurpedagogique']['nom'] . '</p>';
-                }
-                ?>
+                <?php home_info($userInfo, $_SESSION['type']); ?>
             </div>
         </div>
         <div class="conteneur">

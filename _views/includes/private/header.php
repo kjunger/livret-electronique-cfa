@@ -32,7 +32,7 @@
             <li class="separateur">-
             </li>
             <li>
-                <a href="">
+                <a href="<?php echo FUNC_DIR; ?>/logout_process.php">
                     <img src="<?php echo VIEW_DIR; ?>/assets/private/icons/deconnexion.svg" alt="" />Deconnexion
                 </a>
             </li>
