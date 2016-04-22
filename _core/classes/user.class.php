@@ -9,7 +9,7 @@ abstract class user {
         $stmt = <<<STR
                 SET CHARACTER SET utf8;
 STR;
-        $this->db->run($stmt);
+        $this->db->run( $stmt );
         $search = $this->db->select( "Utilisateur", "idUtilisateur = " . $id );
         $this->user[ 'user' ] = array(
              'id' => $search[ 0 ][ 'idUtilisateur' ],

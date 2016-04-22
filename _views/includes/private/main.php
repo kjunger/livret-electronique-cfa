@@ -21,12 +21,9 @@
     <div id="content">
         <div class="conteneur">
             <div class="titre">
-                <h1>Informations générales
-          </h1>
+                <h1>Informations générales</h1>
             </div>
-            <div class="contenu">
-                <?php home_info($userInfo, $_SESSION['type']); ?>
-            </div>
+            <?php home_info($userInfo, $_SESSION['type']); ?>
         </div>
         <div class="conteneur">
             <div class="titre">

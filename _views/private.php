@@ -1,9 +1,10 @@
 <?php
-    require_once '_core/config.php';
-    require_once CLSS_DIR . '/user.class.php';
-    require_once VIEW_DIR . '/functions/private/display.php';
-    $user = new $_SESSION['type'](DB, $_SESSION['id']);
-    $userInfo = $user->returnUser();
+require_once '_core/config.php';
+require_once CLSS_DIR . '/user.class.php';
+require_once CLSS_DIR . '/phpQuery.class.php';
+require_once VIEW_DIR . '/functions/private/display.php';
+$user = new $_SESSION[ 'type' ]( DB, $_SESSION[ 'id' ] );
+$userInfo = $user->returnUser();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
