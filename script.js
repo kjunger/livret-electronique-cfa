@@ -57,8 +57,8 @@ function redimensionnement_main_mobile(){
 
 function affichage_deconnexion(){
 	var tailleDeconnexion = $('#deconnexion').width();
-	tailleUser = $('#user').width();
-	tailleNom = $('#nom').width();
+	var tailleUser = $('#user').width();
+	var tailleNom = $('#nom').width();
 	tailleDeconnexion = tailleUser + tailleNom + 140;
 	$('#deconnexion').css('width', tailleDeconnexion);
 	$('#bouton-deconnexion').on('click', function(){
@@ -140,10 +140,6 @@ function menu(){
 		}else { 
 			closeMenu(); 
 		}
-	});
-	$('div #cssmenu ul li a').on('click', function(e){
-		e.preventDefault();
-		closeMenu();
 	});
 }
 
