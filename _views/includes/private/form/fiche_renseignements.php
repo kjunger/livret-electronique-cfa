@@ -6,10 +6,10 @@
         </div>
         <div class="contenu">
             <p>
-                <input placeholder="Nom" id="nomApprenti" type="text" required />
+                <input placeholder="Nom" id="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" required />
             </p>
             <p>
-                <input placeholder="Prénom" id="prenomApprenti" type="text" required />
+                <input placeholder="Prénom" id="prenomApprenti" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" required />
             </p>
             <p>
                 <input placeholder="Date de naissance (XX/XX/XXXX)" id="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required />
@@ -18,25 +18,22 @@
                 <input placeholder="Lieu de naissance" id="lieuNaissanceApprenti" type="text" required />
             </p>
             <p>
-                <input placeholder="Adresse" id="adresseApprenti" type="text" required />
+                <input placeholder="Adresse" id="adresseApprenti" type="text" value="<?php echo $userInfo['user']['adresse']; ?>" required />
             </p>
             <p>
-                <input placeholder="Complément d'adresse" id="complementAdApprenti" type="text" />
+                <input placeholder="Code postal" id="cpApprenti" type="text" pattern="[0-9]{5}" value="<?php echo $userInfo['user']['cp']; ?>" required />
             </p>
             <p>
-                <input placeholder="Code postal" id="cpApprenti" type="text" pattern="[0-9]{5}" required />
+                <input placeholder="Ville" id="villeApprenti" type="text" value="<?php echo $userInfo['user']['ville']; ?>" required />
             </p>
             <p>
-                <input placeholder="Ville" id="villeApprenti" type="text" required />
+                <input placeholder="Email" id="mailApprenti" type="email" value="<?php echo $userInfo['user']['email']; ?>" required />
             </p>
             <p>
-                <input placeholder="Email" id="mailApprenti" type="email" required />
+                <input placeholder="Téléphone" id="telApprenti" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel']; ?>" required />
             </p>
             <p>
-                <input placeholder="Téléphone" id="telApprenti" type="tel" pattern="0[0-9]{9}" required />
-            </p>
-            <p>
-                <input placeholder="Portable" id="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" required />
+                <input placeholder="Portable" id="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" value="<?php echo $userInfo['user']['port']; ?>" required />
             </p>
         </div>
     </div>
