@@ -10,6 +10,12 @@ abstract class user {
                 SET CHARACTER SET utf8;
 STR;
         $this->db->run( $stmt );
+        $this->initUser( $id );
+    }
+    private function initDb( $db ) {
+        $this->db = new db( "mysql:host=" . $db[ "host" ] . ";port=" . $db[ "port" ] . ";dbname=" . $db[ "name" ], $db[ "user" ], $db[ "pass" ] );
+    }
+    private function initUser( $id ) {
         $search = $this->db->select( "Utilisateur", "idUtilisateur = " . $id );
         $this->user[ 'user' ] = array(
              'id' => $search[ 0 ][ 'idUtilisateur' ],
@@ -21,11 +27,11 @@ STR;
             'email' => $search[ 0 ][ 'email' ] 
         );
     }
-    private function initDb( $db ) {
-        $this->db = new db( "mysql:host=" . $db[ "host" ] . ";port=" . $db[ "port" ] . ";dbname=" . $db[ "name" ], $db[ "user" ], $db[ "pass" ] );
-    }
     public function returnUser() {
         return $this->user;
+    }
+    public function returnDb() {
+        return $this->db;
     }
 }
 final class apprenti extends user {

@@ -1,5 +1,5 @@
 <nav id="cssmenu">
-    <img src="<?php echo VIEW_DIR; ?>/assets/private/img/logo.png" alt="Logo CFA-CFC" id="menu-logo" />
+    <img src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/img/logo.png" alt="Logo CFA-CFC" id="menu-logo" />
     <ul>
         <li>
             <a href="index.php">
@@ -8,18 +8,38 @@
         </li>
         <li class="has-sub">
             <a href="#">
-                <div class="eval">Evaluation</div>
+                <div class="form">Formulaires</div>
             </a>
             <ul>
-                <?php /*displaySubLinks($db, 'eval');*/ ?>
+                <?php 
+                for ($i = 0; $i <= count( $userForms ) - 1; $i++ ) {
+                    if( $userForms[ $i ]['type'] == "form" ) {
+                        $form_subs = phpQuery::newDocument("<li/>");
+                        $form_subs["li"]->append("<a></a>");
+                        $form_subs["a"]->attr("href","index.php?cat=form&id=" . $userForms[ $i ]['idFormulaire'] . "&name=" . $userForms[ $i ]['nom'] );
+                        $form_subs["a"]->append( $userForms[ $i ]['intitule'] );
+                        print $form_subs;
+                    }
+                }
+                ?>
             </ul>
         </li>
         <li class="has-sub">
             <a href="#">
-                <div class="form">Formulaires</div>
+                <div class="eval">Evaluations</div>
             </a>
             <ul>
-                <?php /*displaySubLinks($db, 'form');*/ ?>
+                <?php
+                   for ($i = 0; $i <= count( $userForms ) - 1; $i++ ) {
+                        if( $userForms[ $i ]['type'] == "eval" ) {
+                            $eval_subs = phpQuery::newDocument("<li/>");
+                            $eval_subs["li"]->append("<a></a>");
+                            $eval_subs["a"]->attr("href","index.php?cat=eval&id=" . $userForms[ $i ]['idFormulaire'] . "&name=" . $userForms[ $i ]['nom'] );
+                            $eval_subs["a"]->append( $userForms[ $i ]['intitule'] );
+                            print $eval_subs;
+                        }
+                    }
+                ?>
             </ul>
         </li>
         <li>
