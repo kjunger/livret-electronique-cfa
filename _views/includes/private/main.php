@@ -8,6 +8,7 @@
                     switch($_GET['cat']) {
                         case "form": echo "Formulaires > "; break;
                         case "eval": echo "Evaluations > "; break;
+                        case "contrat": echo "Contrat pédagogique"; break;
                     }
                     for($i = 0; $i <= count( $userForms ) - 1; $i++) {
                         if( $userForms[ $i ][ 'idFormulaire' ] == $_GET[ 'id' ] ) {
@@ -20,8 +21,10 @@
     </p>
     <?php
         if (isset($_GET['cat'])):
-            if(isset($_GET['id'], $_GET['name'])):
+            if(($_GET['cat'] == "form" || $_GET['cat'] == "eval") && (isset($_GET['id'], $_GET['name']))):
                 include VIEW_DIR . '/' . INCLUDES . '/' . $_GET['cat'] . '/' . $_GET['name'] . '.php';
+            elseif($_GET['cat'] == "contrat"):
+                include VIEW_DIR . '/' . INCLUDES . '/contrat.php';
             endif;
         else:
     ?>
