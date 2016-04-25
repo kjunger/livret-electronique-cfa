@@ -24,14 +24,14 @@ $userForms = $forms->returnFormList();
 </head>
 <body>
     <?php
-        include_once VIEW_DIR . '/' . INCLUDES . '/navigation.php';
-        include_once VIEW_DIR . '/' . INCLUDES . '/user-mobile.php';
+    include_once VIEW_DIR . '/' . INCLUDES . '/navigation.php';
+    include_once VIEW_DIR . '/' . INCLUDES . '/user-mobile.php';
     ?>
     <div class="screen">
         <?php
-            include_once VIEW_DIR . '/' . INCLUDES . '/header.php';
-            include_once VIEW_DIR . '/' . INCLUDES . '/main.php';
-            include_once VIEW_DIR . '/' . INCLUDES . '/footer.php';
+        include_once VIEW_DIR . '/' . INCLUDES . '/header.php';
+        include_once VIEW_DIR . '/' . INCLUDES . '/main.php';
+        include_once VIEW_DIR . '/' . INCLUDES . '/footer.php';
         ?>
     </div>
 </body>

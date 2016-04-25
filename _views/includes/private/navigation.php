@@ -11,16 +11,16 @@
                 <div class="form">Formulaires</div>
             </a>
             <ul>
-                <?php 
-                for ($i = 0; $i <= count( $userForms ) - 1; $i++ ) {
-                    if( $userForms[ $i ]['type'] == "form" ) {
-                        $form_subs = phpQuery::newDocument("<li/>");
-                        $form_subs["li"]->append("<a></a>");
-                        $form_subs["a"]->attr("href","index.php?cat=form&id=" . $userForms[ $i ]['idFormulaire'] . "&name=" . $userForms[ $i ]['nom'] );
-                        $form_subs["a"]->append( $userForms[ $i ]['intitule'] );
+                <?php
+                for ( $i = 0; $i <= count( $userForms ) - 1; $i++ ) {
+                    if ( $userForms[ $i ][ 'type' ] == "form" && $userForms[ $i ][ 'typeDroit' ] != 0 ) {
+                        $form_subs = phpQuery::newDocument( "<li/>" );
+                        $form_subs[ "li" ]->append( "<a></a>" );
+                        $form_subs[ "a" ]->attr( "href", "index.php?cat=form&id=" . $userForms[ $i ][ 'idFormulaire' ] . "&name=" . $userForms[ $i ][ 'nom' ] );
+                        $form_subs[ "a" ]->append( $userForms[ $i ][ 'intitule' ] );
                         print $form_subs;
-                    }
-                }
+                    } //$userForms[ $i ][ 'type' ] == "form" && $userForms[ $i ][ 'typeDroit' ] != 0
+                } //$i = 0; $i <= count( $userForms ) - 1; $i++
                 ?>
             </ul>
         </li>
@@ -30,15 +30,15 @@
             </a>
             <ul>
                 <?php
-                   for ($i = 0; $i <= count( $userForms ) - 1; $i++ ) {
-                        if( $userForms[ $i ]['type'] == "eval" ) {
-                            $eval_subs = phpQuery::newDocument("<li/>");
-                            $eval_subs["li"]->append("<a></a>");
-                            $eval_subs["a"]->attr("href","index.php?cat=eval&id=" . $userForms[ $i ]['idFormulaire'] . "&name=" . $userForms[ $i ]['nom'] );
-                            $eval_subs["a"]->append( $userForms[ $i ]['intitule'] );
-                            print $eval_subs;
-                        }
-                    }
+                for ( $i = 0; $i <= count( $userForms ) - 1; $i++ ) {
+                    if ( $userForms[ $i ][ 'type' ] == "eval" && $userForms[ $i ][ 'typeDroit' ] != 0 ) {
+                        $eval_subs = phpQuery::newDocument( "<li/>" );
+                        $eval_subs[ "li" ]->append( "<a></a>" );
+                        $eval_subs[ "a" ]->attr( "href", "index.php?cat=eval&id=" . $userForms[ $i ][ 'idFormulaire' ] . "&name=" . $userForms[ $i ][ 'nom' ] );
+                        $eval_subs[ "a" ]->append( $userForms[ $i ][ 'intitule' ] );
+                        print $eval_subs;
+                    } //$userForms[ $i ][ 'type' ] == "eval" && $userForms[ $i ][ 'typeDroit' ] != 0
+                } //$i = 0; $i <= count( $userForms ) - 1; $i++
                 ?>
             </ul>
         </li>
