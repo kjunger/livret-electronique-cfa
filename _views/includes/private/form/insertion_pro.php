@@ -5,18 +5,17 @@
             <h1>Promotion <?php echo date('Y'); ?></h1>
         </div>
         <div class="contenu">
-            <input placeholder="Nom" id="nomApprenti" type="text" required />
-            <input placeholder="Prénom" id="prenomApprenti" type="text" required />
+            <input placeholder="Nom" id="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" required />
+            <input placeholder="Prénom" id="prenomApprenti" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" required />
             <input placeholder="Date de naissance" id="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required />
             <input placeholder="Âge" id="ageApprenti" type="text" required />
-            <p class="info">Adresse personnelle (en dehors du cadre des études, p.ex. parents)</p>
-            <input placeholder="Adresse" id="adressePersoApprenti" type="text" required />
-            <input placeholder="Complément d'adresse" id="complementAdPersoApprenti" type="text" />
-            <input placeholder="Code postal" id="cpPersoApprenti" type="text" pattern="[0-9]{5}" required />
-            <input placeholder="Ville" id="villePersoApprenti" type="text" required />
-            <input placeholder="Email" id="mailApprenti" type="email" required />
-            <input placeholder="Téléphone" id="telApprenti" type="tel" pattern="0[0-9]{9}" required />
-            <input placeholder="Portable" id="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" required />
+            <p class="info">Adresse</p>
+            <input placeholder="Adresse" id="adressePersoApprenti" value="<?php echo $userInfo['user']['adresse']; ?>" type="text" required />
+            <input placeholder="Code postal" id="cpPersoApprenti" type="text" pattern="[0-9]{5}" value="<?php echo $userInfo['user']['cp']; ?>" required />
+            <input placeholder="Ville" id="villePersoApprenti" type="text" value="<?php echo $userInfo['user']['ville']; ?>" required />
+            <input placeholder="Email" id="mailApprenti" type="email" value="<?php echo $userInfo['user']['email']; ?>" required />
+            <input placeholder="Téléphone" id="telApprenti" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel']; ?>" required />
+            <input placeholder="Portable" id="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" value="<?php echo $userInfo['user']['port']; ?>" required />
             <textarea id="diversApprenti" placeholder="Autres renseignements (réseau social, blog, portfolio...)"></textarea>
         </div>
     </div>

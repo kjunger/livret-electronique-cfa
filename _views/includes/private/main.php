@@ -3,7 +3,7 @@
         <?php
         echo '<a href="index.php">Accueil</a> > ';
         if ( isset( $_GET[ 'cat' ] ) ) {
-            if ( ( $_GET[ 'cat' ] == "form" || $_GET[ "cat" ] == "form" ) && isset( $_GET[ 'id' ] ) ) {
+            if ( ( $_GET[ 'cat' ] == "form" || $_GET[ "cat" ] == "eval" ) && isset( $_GET[ 'id' ] ) ) {
                 switch ( $_GET[ 'cat' ] ) {
                     case "form":
                         echo "Formulaires > ";
