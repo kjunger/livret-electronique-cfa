@@ -20,7 +20,7 @@
             </select>
             <div id="choixPresenceApp"></div>
             <input placeholder="Durée de l'entretien" id="duree" type="text" required />
-            <span>Lieu de la soutenance (??)</span>
+            <span>Lieu de la soutenance</span>
             <select id="lieu" name="lieu" required>
                 <option value="default" selected disabled>Choisissez une option...</option>
                 <option value="etablissement">Etablissement de l'apprenti(e)</option>

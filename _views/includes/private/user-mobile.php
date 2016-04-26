@@ -5,7 +5,7 @@
     <div id="contenu-menu-user">
         <ul>
             <li>
-                <a href="">
+                <a href="index.php?cat=profil">
                     <img src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/icons/user_blanc.svg" alt="" />Profil
                 </a>
             </li>

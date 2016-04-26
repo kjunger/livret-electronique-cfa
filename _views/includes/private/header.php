@@ -25,7 +25,7 @@
     <div id="deconnexion" class="">
         <ul class="hidden">
             <li>
-                <a href="">
+                <a href="index.php?cat=profil">
                     <img src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/icons/user.svg" alt="" />Profil
                 </a>
             </li>

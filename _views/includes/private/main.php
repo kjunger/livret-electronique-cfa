@@ -3,18 +3,27 @@
         <?php
         echo '<a href="index.php">Accueil</a> > ';
         if ( isset( $_GET[ 'cat' ] ) ) {
+            switch ( $_GET[ 'cat' ] ) {
+                case "form":
+                    echo "Formulaires > ";
+                    break;
+                case "eval":
+                    echo "Evaluations > ";
+                    break;
+                case "contrat":
+                    echo "Contrat pédagogique";
+                    break;
+                case "fichiers":
+                    echo "Fichiers";
+                    break;
+                case "contacts":
+                    echo "Contacts";
+                    break;
+                case "profil":
+                    echo "Profil";
+                    break;
+            } //$_GET[ 'cat' ]
             if ( ( $_GET[ 'cat' ] == "form" || $_GET[ "cat" ] == "eval" ) && isset( $_GET[ 'id' ] ) ) {
-                switch ( $_GET[ 'cat' ] ) {
-                    case "form":
-                        echo "Formulaires > ";
-                        break;
-                    case "eval":
-                        echo "Evaluations > ";
-                        break;
-                    case "contrat":
-                        echo "Contrat pédagogique";
-                        break;
-                } //$_GET[ 'cat' ]
                 for ( $i = 0; $i <= count( $userForms ) - 1; $i++ ) {
                     if ( $userForms[ $i ][ 'idFormulaire' ] == $_GET[ 'id' ] ) {
                         echo $userForms[ $i ][ 'intitule' ];
@@ -28,8 +37,8 @@
     if ( isset( $_GET[ 'cat' ] ) ):
         if ( ( $_GET[ 'cat' ] == "form" || $_GET[ 'cat' ] == "eval" ) && ( isset( $_GET[ 'id' ], $_GET[ 'name' ] ) ) ):
             include VIEW_DIR . '/' . INCLUDES . '/' . $_GET[ 'cat' ] . '/' . $_GET[ 'name' ] . '.php';
-        elseif ( $_GET[ 'cat' ] == "contrat" ):
-            include VIEW_DIR . '/' . INCLUDES . '/contrat.php';
+        elseif ( $_GET[ 'cat' ] == "contrat" || $_GET[ 'cat' ] == "profil" ):
+            include VIEW_DIR . '/' . INCLUDES . '/' . $_GET[ 'cat' ] . '.php';
         endif;
     else:
     ?>

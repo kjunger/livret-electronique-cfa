@@ -50,6 +50,9 @@
         <p>Je soussigné, M./Mme <?php echo $userInfo['user']['prenom'] . ' ' . $userInfo['user']['nom']; ?>, accepte par la présente signature les différentes clauses du contrat et m'engage à les respecter.</p>
         <input type="checkbox" />
         <label>Oui, je m'y engage.</label>
+        <p>
+            <input type="password" placeholder="Entrez votre mot de passe" />
+        </p>
         <p class="btn">
             <input type="submit" value="Valider" />
         </p>

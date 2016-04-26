@@ -52,5 +52,10 @@
                 <div class="fichiers">Fichiers</div>
             </a>
         </li>
+        <li>
+            <a href="index.php?cat=contacts">
+                <div class="contacts">Contacts</div>
+            </a>
+        </li>
     </ul>
 </nav>
