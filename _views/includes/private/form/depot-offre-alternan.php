@@ -20,6 +20,9 @@
             <p>
                 <input placeholder="Site Internet" id="siteInternet" type="text" required />
             </p>
+            <p>
+                <input placeholder="Service de rattachement" id="serviceRattachement" type="text" required />
+            </p>
         </div>
     </div>
     <div class="conteneur_large">
@@ -42,9 +45,44 @@
             <p>
                 <input placeholder="Portable" id="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" value="<?php echo $userInfo['user']['port']; ?>" required />
             </p>
+            <p>
+                <input placeholder="Fonction" id="fonctionMaitreApp" type="text" required />
+            </p>
         </div>
     </div>
     <div class="conteneur_large">
-        
+        <div class="titre">
+            <h1>Activité de l'entreprise</h1>
+        </div>
+        <div class="contenu">
+            <textarea></textarea>
+        </div>
     </div>
+    <div class="conteneur_large">
+        <div class="titre">
+            <h1>Intitulé et description du poste</h1>
+        </div>
+        <div class="contenu">
+            <textarea></textarea>
+        </div>
+    </div>
+    <div class="conteneur_large">
+        <div class="titre">
+            <h1>Nature de la (des) mission(s) à accomplir par l'apprenti(e)</h1>
+        </div>
+        <div class="contenu">
+            <textarea></textarea>
+        </div>
+    </div>
+    <div class="conteneur_large">
+        <div class="titre">
+            <h1>Profil de candidat souhaité</h1>
+        </div>
+        <div class="contenu">
+            <textarea></textarea>
+        </div>
+    </div>
+    <p class="btn">
+        <input type="submit" value="Valider" />
+    </p>
 </form>
