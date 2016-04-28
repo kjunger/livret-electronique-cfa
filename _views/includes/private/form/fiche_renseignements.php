@@ -50,9 +50,6 @@
                 <input placeholder="Adresse du siège social" id="adSiege" type="text" required />
             </p>
             <p>
-                <input placeholder="Complément d'adresse" id="complementAdSiege" type="text" required />
-            </p>
-            <p>
                 <input placeholder="Code postal" id="cpSiege" type="text" pattern="[0-9]{5}" required />
             </p>
             <p>
@@ -61,9 +58,6 @@
             <h2>Site d'accueil de l'apprenti(e) <span class="info">(si différent du siège social)</span></h2>
             <p>
                 <input placeholder="Adresse du site d'accueil" id="adAccueil" type="text" />
-            </p>
-            <p>
-                <input placeholder="Complément d'adresse" id="complementAdSiege" type="text" />
             </p>
             <p>
                 <input placeholder="Code postal" id="cpSiege" type="text" pattern="[0-9]{5}" />

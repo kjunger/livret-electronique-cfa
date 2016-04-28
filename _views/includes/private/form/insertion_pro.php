@@ -31,7 +31,8 @@
                 <option value="emploi">Vous avez trouvé un emploi</option>
                 <option value="rechercheEmploi">Vous êtes toujours en recherche d'un emploi</option>
             </select>
-            <div id="choixAnneePro"></div>
+            <div id="choixAnneePro">
+            </div>
             <h2>L'association des Anciens</h2>
             <p>Acceptez-vous l'inscription de ces données dans notre fichier des Anciens et à un éventuel contact entre votre composante et vous par la suite (transmission d'offres, information des anciens, proposition de témoignage...) ?</p>
             <input type="checkbox" id="inscriptionAnciensApp" />
@@ -50,12 +51,31 @@
                 switch (choixSelect) {
                     case "poursuiteEtudes":
                         $('#choixAnneePro').empty();
-                        $('#choixAnneePro').append('<h2>Etablissement</h2><input placeholder="Nom de l\'établissement" id="nomEtablissementApp" type="text" required /><input placeholder="Lieu (composante, IUT, etc.)" id="lieuEtablissementApp" type="text" required /><input placeholder="Adresse" id="adresseEtablissementApp" type="text" required /><input placeholder="Complément d\'adresse" id="complementAdEtablissementApp" type="text" /><input placeholder="Code postal" id="cpEtablissementApprenti" type="text" pattern="[0-9]{5}" required /><input placeholder="Ville" id="villeEtablissementApprenti" type="text" required /><input placeholder="Diplôme visé" id="diplomeEtablissementApprenti" type="text" required /><p>Type de formation</p><select id="typeFormation" name="typeFormation" required><option selected disabled>Choisissez une option...</option><option value="classique">Formation classique</option><option value="alternance">Formation par alternance</option></select><div id="choixTypeFormation"></div>');
+                        $('#choixAnneePro').append('<h2>Etablissement</h2>\n\
+                        <input placeholder="Nom de l\'établissement" id="nomEtablissementApp" type="text" required />\n\
+                        <input placeholder="Lieu (composante, IUT, etc.)" id="lieuEtablissementApp" type="text" required />\n\
+                        <input placeholder="Adresse" id="adresseEtablissementApp" type="text" required />\n\
+                        <input placeholder="Code postal" id="cpEtablissementApprenti" type="text" pattern="[0-9]{5}" required />\n\
+                        <input placeholder="Ville" id="villeEtablissementApprenti" type="text" required />\n\
+                        <input placeholder="Diplôme visé" id="diplomeEtablissementApprenti" type="text" required />\n\
+                        <p>Type de formation</p>\n\
+                        <select id="typeFormation" name="typeFormation" required>\n\
+                            <option selected disabled>Choisissez une option...</option>\n\
+                            <option value="classique">Formation classique</option>\n\
+                            <option value="alternance">Formation par alternance</option>\n\
+                        </select>\n\
+                        <div id="choixTypeFormation"></div>');
                         $('#typeFormation').change(function () {
                             var choixSelect = $('#typeFormation option:selected').val();
                             if (choixSelect == "alternance") {
                                 $('#choixTypeFormation').empty();
-                                $('#choixTypeFormation').append('<input placeholder="Fonctions attachées au poste" id="posteAlternanceApp" type="text" required /><h2>Entreprise</h2><input placeholder="Raison sociale" id="raisonSocialeEntAltApp" type="text" required /><input placeholder="Adresse du siège social" id="adEntAltApp" type="text" required /><input placeholder="Complément d\'adresse" id="complementAdEntAltApp" type="text" required /><input placeholder="Code postal" id="cpEntAltApp" type="text" pattern="[0-9]{5}" required /><input placeholder="Ville" id="villeEntAltApp" type="text" required />');
+                                $('#choixTypeFormation').append('<input placeholder="Fonctions attachées au poste" id="posteAlternanceApp" type="text" required />\n\
+                                <h2>Entreprise</h2>\n\
+                                <input placeholder="Raison sociale" id="raisonSocialeEntAltApp" type="text" required />\n\
+                                <input placeholder="Adresse du siège social" id="adEntAltApp" type="text" required />\n\
+                                <input placeholder="Complément d\'adresse" id="complementAdEntAltApp" type="text" required />\n\
+                                <input placeholder="Code postal" id="cpEntAltApp" type="text" pattern="[0-9]{5}" required />\n\
+                                <input placeholder="Ville" id="villeEntAltApp" type="text" required />');
                             } else {
                                 $('#choixTypeFormation').empty();
                             }
@@ -63,11 +83,30 @@
                         break;
                     case "emploi":
                         $('#choixAnneePro').empty();
-                        $('#choixAnneePro').append('<p>Type de Contrat</p><select name="typeContrat" required><option selected disabled>Choisissez une option...</option><option value="cdd">CDD</option><option value="cdi">CDI</option></select><input placeholder="Fonctions attachées au poste" id="posteEmploi" type="text" required /><h2>Entreprise</h2><input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" required /><input placeholder="Adresse du siège social" id="adEnt" type="text" required /><input placeholder="Complément d\'adresse" id="complementAdEnt" type="text" required /><input placeholder="Code postal" id="cpEnt" type="text" pattern="[0-9]{5}" required /><input placeholder="Ville" id="villeEnt" type="text" required />');
+                        $('#choixAnneePro').append('<p>Type de Contrat</p>\n\
+                        <select name="typeContrat" required>\n\
+                            <option selected disabled>Choisissez une option...</option>\n\
+                            <option value="cdd">CDD</option>\n\
+                            <option value="cdi">CDI</option>\n\
+                        </select>\n\
+                        <input placeholder="Fonctions attachées au poste" id="posteEmploi" type="text" required />\n\
+                        <h2>Entreprise</h2>\n\
+                        <input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" required />\n\
+                        <input placeholder="Adresse du siège social" id="adEnt" type="text" required />\n\
+                        <input placeholder="Complément d\'adresse" id="complementAdEnt" type="text" required />\n\
+                        <input placeholder="Code postal" id="cpEnt" type="text" pattern="[0-9]{5}" required />\n\
+                        <input placeholder="Ville" id="villeEnt" type="text" required />');
                         break;
                     case "rechercheEmploi":
                         $('#choixAnneePro').empty();
-                        $('#choixAnneePro').append('<p>Mobilité</p><select name="mobilite" required><option selected disabled>Choisissez une option...</option><option value="locale">Locale</option><option value="regionale">Regionale</option></select><p>Souhaits de fonction(s) ou d\'entreprise(s)</p><textarea id="souhaits"></textarea>');
+                        $('#choixAnneePro').append('<p>Mobilité</p>\n\
+                        <select name="mobilite" required>\n\
+                            <option selected disabled>Choisissez une option...</option>\n\
+                            <option value="locale">Locale</option>\n\
+                            <option value="regionale">Regionale</option>\n\
+                        </select>\n\
+                        <p>Souhaits de fonction(s) ou d\'entreprise(s)</p>\n\
+                        <textarea id="souhaits"></textarea>');
                         break;
                 }
             } else {

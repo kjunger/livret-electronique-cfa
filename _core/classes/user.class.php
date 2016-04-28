@@ -1,5 +1,9 @@
 <?php
-require_once 'db.class.php';
+/*
+ * Classe user
+ * Gère les différents utilisateurs et les informations qu'ils sont amenés à manipuler
+ */
+require_once 'db.class.php';    //Inclusion de la classe db, utilisée par la classe abstraite user
 abstract class user {
     protected $db;
     protected $user = array();

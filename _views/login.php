@@ -1,5 +1,5 @@
 <?php
-require_once '_core/config.php';
+require_once '_core/config.php';    //Contient les différentes variables pour la configuration de base
 ?>
 <!DOCTYPE html>
 <html>
