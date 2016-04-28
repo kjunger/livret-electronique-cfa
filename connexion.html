@@ -1,26 +1,35 @@
 <!DOCTYPE html> 
 <html lang="fr"> 
    <head> 
-            <title>Livret Electronique de Suivi de l'Apprenti - Université de Rouen</title> 
-            <meta charset="utf-8" /> 
-            <link type="text/css" rel="stylesheet" href="styleConnexion.css" /> 
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Livret Electronique de Suivi de l'Apprenti - Université de Rouen</title> 
+        <meta charset="utf-8" /> 
+        <link type="text/css" rel="stylesheet" href="styleConnexion.css" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	    <script src="classie.js"></script>
+	    <script src="fancySelect.js"></script>
+	    <script src="script.js"></script>
+	    <script>
+	      $(document).ready(function(){
+	        $('.basic').fancySelect();
+	      });
+	    </script>
    </head> 
    <body>
 		<img src="lesa.png" alt="logo" />
 		<div id="content">
 			<h2>Bienvenue, <span>veuillez vous connecter.</span></h2>
 			<form method="" action="">
-				<select required>
+				<select class="basic" id="situation" name="situation" required>
 		            <option value="default" selected disabled>Sélectionnez votre situation</option>
-		            <option value="">Apprenti(e)</option>
-		            <option value="">Maître d'apprentissage</option>
-		            <option value="">Tuteur pédagogique</option>
-		            <option value="">CFA</option>
+		            <option value="apprenti">Apprenti(e)</option>
+		            <option value="maitreApp">Maître d'apprentissage</option>
+		            <option value="tutApp">Tuteur pédagogique</option>
+		            <option value="cfa">CFA</option>
 		        </select>
 		        <input placeholder="Login" id="" type="text" required />
 		        <input placeholder="Mot de passe" id="" type="password" required />
-		        <p class="btn"><input type="submit" value="Connexion" /></p>
+		        <input type="submit" value="Connexion" />
 	        </form>
 		</div>
    </body>
