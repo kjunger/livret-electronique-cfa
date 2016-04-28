@@ -18,7 +18,14 @@ $userForms = $forms->returnFormList();
     <link type="text/css" rel="stylesheet" href="<?php echo VIEW_DIR . '/' . ASSETS; ?>/css/style.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js">
     </script>
+    <script type="text/javascript" src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/js/classie.js"></script>
+    <script type="text/javascript" src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/js/fancySelect.js"></script>
     <script type="text/javascript" src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/js/script.js">
+    </script>
+    <script type="text/javascript"> 
+      $(document).ready(function(){ 
+        $('.basic').fancySelect(); 
+      }); 
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
