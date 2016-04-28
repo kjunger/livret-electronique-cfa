@@ -126,6 +126,13 @@ footer{
 
 
 /*TEXTES*/
+h3{
+	margin: 0;
+	margin-top: 2em;
+	margin-left: 2em;
+	font-size: 1.2em;
+}
+
 .info{
 	font-size: 0.75em;
 }
@@ -977,7 +984,7 @@ div.select {
 	position: relative;
 	font-weight: bold;
 	color: #363636;
-	font-size: 1.2em;
+	font-size: 1em;
 	margin-top: 0.5em;
 }
 
@@ -1104,6 +1111,7 @@ input[type="checkbox"]:not(:checked), input[type="checkbox"]:checked {
 input[type="checkbox"]+label {
     position: relative;
     padding-left: 35px;
+    margin: 1em;
     cursor: pointer;
     display: inline-block;
     height: 25px;
@@ -1158,6 +1166,7 @@ input[type="radio"]:not(:checked), input[type="radio"]:checked {
 input[type="radio"]+label {
     position: relative;
     padding-left: 35px;
+    margin: 1em 2em;
     cursor: pointer;
     display: inline-block;
     height: 25px;
@@ -1274,8 +1283,9 @@ input[type="radio"]:checked+label:before {
 
 
 /*LISTES*/
-ul{
+.ul-simple{
 	list-style-type: none;
+	padding: 0;
 }
 
 /*liste simple*/

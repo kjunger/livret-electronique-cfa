@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 $('.titre').append('<svg height:"25" width:"25" class=""><polygon points="0,0 25,12.5 0,25" fill="#363636" stroke="none" /></svg>');
 $('.conteneur').addClass('open');
+$('select').addClass('basic');
 sousmenu();
 sousliens();
 menu();
@@ -243,7 +244,7 @@ function appInput(){
 	$(input).wrap('<span class="input">');
 	$(input).after('<label class="input-label"><span class="input-label-content">');
 	$('textarea').addClass('textarea');
-	if($('input').hasClass('input-field')){
+	if($('input, textarea').hasClass('input-field')){
 		$(input).each(function(){
 			var placeholder = $(this).attr('placeholder');
 			var ident = $(this).attr('id');
