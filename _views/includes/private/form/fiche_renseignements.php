@@ -1,15 +1,15 @@
 <h1>Fiche de renseignements</h1>
-<form action="" method="">
+<form action="<?php echo VIEW_DIR; ?>/includes/private/form/fiche_renseignements_pdf.php" method="post">
     <div class="conteneur_large">
         <div class="titre">
             <h1>Apprenti</h1>
         </div>
         <div class="contenu">
             <p>
-                <input placeholder="Nom" id="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" required />
+                <input placeholder="Nom" name="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" required />
             </p>
             <p>
-                <input placeholder="Prénom" id="prenomApprenti" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" required />
+                <input placeholder="Prénom" name="prenomApprenti" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" required />
             </p>
             <p>
                 <input placeholder="Date de naissance (XX/XX/XXXX)" id="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required />
