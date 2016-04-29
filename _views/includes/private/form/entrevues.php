@@ -1,6 +1,6 @@
 <h1>Entrevues</h1>
 <form action="" method="">
-    <div class="conteneur_large">
+    <div class="conteneur large">
         <div class="titre">
             <h1>Nouvelle entrevue</h1>
         </div>

@@ -1,5 +1,5 @@
 <h1>Contrat pédagogique</h1>
-<div class="conteneur_large">
+<div class="conteneur large">
     <div class="titre">
         <h2>L'apprenti(e) s'engage à :</h2>
     </div>
@@ -20,7 +20,7 @@
         <p><strong>La bonne tenue du livret de suivi de l'apprenti(e) et le respect des échéances feront l'objet d'une évaluation.</strong></p>
     </div>
 </div>
-<div class="conteneur_large">
+<div class="conteneur large">
     <div class="titre">
         <h2>L'entreprise s'engage à :</h2>
     </div>
@@ -41,7 +41,7 @@
         </ul>
     </div>
 </div>
-<div class="conteneur_large">
+<div class="conteneur large">
     <div class="titre">
         <h2>L'établissement scolaire de rattachement (<?php 
                 if ( $_SESSION[ 'type' ] == "maitreapprentissage" ) {
@@ -60,7 +60,7 @@
     </div>
 </div>
 <form action="" method="">
-    <div class="conteneur_large">
+    <div class="conteneur large">
     <div class="titre">
         <h2>Signature</h2>
     </div>

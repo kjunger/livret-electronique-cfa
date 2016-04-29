@@ -1,6 +1,6 @@
 <h1>Fiche de renseignements</h1>
 <form action="<?php echo VIEW_DIR; ?>/includes/private/form/fiche_renseignements_pdf.php" method="post">
-    <div class="conteneur_large">
+    <div class="conteneur large">
         <div class="titre">
             <h1>Apprenti</h1>
         </div>
@@ -17,7 +17,7 @@
             <input placeholder="Portable" name="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" value="<?php echo $userInfo['user']['port']; ?>" required />
         </div>
     </div>
-    <div class="conteneur_large">
+    <div class="conteneur large">
         <div class="titre">
             <h1>Entreprise</h1>
         </div>
