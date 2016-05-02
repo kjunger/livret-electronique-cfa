@@ -21,7 +21,7 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
     $fiche->Cell(95,10,'Portable : ' . $_POST['portApprenti'],0,1);
     $fiche->SetFont('Arial','',15);
     $fiche->Cell(190,20,'Entreprise',1,1,'C');
-    $fiche->Output('F','../../../../_files/formulaires/fichesRenseignements/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);
+    $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);
     header('Location:../../../../index.php');
 }
 ?>
