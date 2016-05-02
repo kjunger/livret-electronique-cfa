@@ -41,18 +41,25 @@
             <ul class="ul-simple">
                 <li class="li-simple">Pour vos démarches administratives concernant vos contrats en alternance ?</li>
                 <li class="li-simple">Sur le contrat d'apprentissage ou de professionnalisation (modalités, rémunération, droits et obligations...) ?</li>
-                <input type="radio" id="infos-contrat-oui" value="yes" name="infos_necessaires" /><label for="infos-contrat-oui" class="radio">Oui</label>
-                <input type="radio" id="infos-contrat-non" value="no" name="infos_necessaires" /><label for="infos-contrat-non" class="radio">Non</label>
             </ul>
-
+            <input type="radio" id="infos-contrat-oui" value="yes" name="infos_necessaires" /><label for="infos-contrat-oui" class="radio">Oui</label>
+            <input type="radio" id="infos-contrat-non" value="no" name="infos_necessaires" /><label for="infos-contrat-non" class="radio">Non</label>
             <h3>Avez-vous participé aux Ateliers Techniques de Recherche d'Emploi proposés par le CFA</h3>
             <select id="participation_ateliers" name="participation_ateliers" required>
-                <option value="default" selected disabled>Choisissez une réponse</option>
                 <option value="yes">Oui</option>
                 <option value="no">Non</option>
                 <option value="non-concerne">Non concerné (LP DISTRISUP, Master Bioinfo.)</option>
             </select>
-            <div id="choixParticipationAteliers"></div>
+            <h3>Si oui, comment jugez-vous ces Ateliers ?</h3>
+            <select id="jugement_ateliers" name="jugement_ateliers" required="">
+                <option value="default" selected disabled>Choisissez une réponse</option>
+                <option value="tres-utiles">Très utiles</option>
+                <option value="moyennement-utiles">Moyennement utiles</option>
+                <option value="inutiles">Inutiles</option>
+            </select>
+            <h3>Recommanderiez-vous les Ateliers Techniques de Recherche d'Emploi à un étudiant en recherche d'une entreprise ?</h3>
+            <input type="radio" id="recommander-oui" value="yes" name="recommander" /><label for="recommander-oui" class="radio">Oui</label>
+            <input type="radio" id="recommander-non" value="no" name="recommander" /><label for="recommander-non" class="radio">Non</label>
             <h3>Pour vous, trouver une entreprise a été...</h3>
             <select id="trouver_entreprise" name="trouver_entreprise" required="">
                 <option value="default" selected disabled>Choisissez une réponse</option>
