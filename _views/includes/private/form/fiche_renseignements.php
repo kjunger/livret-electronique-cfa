@@ -22,22 +22,22 @@
             <h1>Entreprise</h1>
         </div>
         <div class="contenu">
-            <input placeholder="Raison sociale" id="raisonSocialeEnt" type="text" />
+            <input placeholder="Raison sociale" type="text" />
             <h2>Siège social</h2>
-            <input placeholder="Adresse du siège social" id="adSiege" type="text" />
-            <input placeholder="Code postal" id="cpSiege" type="text" pattern="[0-9]{5}" />
-            <input placeholder="Ville" id="villeSiege" type="text" />
+            <input placeholder="Adresse du siège social" type="text" />
+            <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
+            <input placeholder="Ville" type="text" />
             <h2>Site d'accueil de l'apprenti(e) <span class="info">(si différent du siège social)</span></h2>
-            <input placeholder="Adresse du site d'accueil" id="adAccueil" type="text" />
-            <input placeholder="Code postal" id="cpSiege" type="text" pattern="[0-9]{5}" />
-            <input placeholder="Ville" id="villeSiege" type="text" />
+            <input placeholder="Adresse du site d'accueil" type="text" />
+            <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
+            <input placeholder="Ville" type="text" />
             <h2>Maître d'apprentissage</h2>
-            <input placeholder="Nom" id="nomMaitreApp" type="text" />
-            <input placeholder="Prénom" id="prenomMaitreApp" type="text" />
-            <input placeholder="Fonction" id="fonctionMaitreApp" type="text" />
-            <input placeholder="Email" id="mailMaitreApp" type="email" />
-            <input placeholder="Téléphone" id="telMaitreApp" type="tel" pattern="0[0-9]{9}" />
-            <input placeholder="Portable" id="portMaitreApp" type="tel" pattern="0[6-7]{1}[0-9]{8}" />
+            <input placeholder="Nom" type="text" />
+            <input placeholder="Prénom" type="text" />
+            <input placeholder="Fonction" type="text" />
+            <input placeholder="Email" type="email" />
+            <input placeholder="Téléphone" type="tel" pattern="0[0-9]{9}" />
+            <input placeholder="Portable" type="tel" pattern="0[6-7]{1}[0-9]{8}" />
         </div>
     </div>
     <input class="submit-field" type="submit" value="Valider" />
