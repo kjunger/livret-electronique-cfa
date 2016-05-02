@@ -31,7 +31,7 @@
             <ul>
                 <?php
                 for ( $i = 0; $i <= count( $userForms ) - 1; $i++ ) {
-                    if ( $userForms[ $i ][ 'type' ] == "eval" && $userForms[ $i ][ 'typeDroit' ] != 0 ) {
+                    if ( $userForms[ $i ][ 'type' ] == "eval" && $userForms[ $i ][ 'typeDroit' ] > 1 ) {
                         $eval_subs = phpQuery::newDocument( "<li/>" );
                         $eval_subs[ "li" ]->append( "<a></a>" );
                         $eval_subs[ "a" ]->attr( "href", "index.php?cat=eval&id=" . $userForms[ $i ][ 'idFormulaire' ] . "&name=" . $userForms[ $i ][ 'nom' ] );

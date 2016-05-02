@@ -25,5 +25,8 @@ STR;
     public function returnFormList() {
         return $this->form_list;
     }
+    /*public function registerFormComplete() {
+        
+    }*/
 }
 ?>

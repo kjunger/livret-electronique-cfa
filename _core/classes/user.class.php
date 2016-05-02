@@ -31,6 +31,7 @@ STR;
             'email' => $search[ 0 ][ 'email' ] 
         );
     }
+    
     public function returnUser() {
         return $this->user;
     }
@@ -48,9 +49,11 @@ final class apprenti extends user {
     //Getters
     private function getApprenti() {
         $searchApprenti = $this->db->select( "InfosApprenti", "idApprenti = " . $this->user[ 'user' ][ 'id' ] );
+        $searchIdContrat = $this->db->select( "ContratApprentissage", "idApprenti = " . $this->user[ 'user' ][ 'id' ] );
         $this->user[ 'user' ][ 'adresse' ] = $searchApprenti[ 0 ][ 'adApprenti' ];
         $this->user[ 'user' ][ 'cp' ] = $searchApprenti[ 0 ][ 'cpApprenti' ];
         $this->user[ 'user' ][ 'ville' ] = $searchApprenti[ 0 ][ 'villeApprenti' ];
+        $this->user[ 'user' ][ 'idcontrat' ] = $searchIdContrat[ 0 ][ 'idContratApprentissage' ];
         $stmtFormation = <<<STR
                 SELECT * FROM `Composante`
                 INNER JOIN (`Formation`
