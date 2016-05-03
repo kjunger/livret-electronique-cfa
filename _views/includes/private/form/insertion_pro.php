@@ -1,21 +1,33 @@
+<?php
+if(isset($_GET['save'], $_GET['id_contrat'])) {
+    require_once '../../../../_core/config.php';
+    require_once '../../../../' . CLSS_DIR . '/fpdf.php';
+    $fiche = new FPDF('P','mm','A4');
+    $fiche->AddPage();
+    $fiche->SetFont('Helvetica','B',18);
+    $fiche->Cell(190,20,'Insertion professionnelle et suivi des diplômés',1,1,'C');
+    $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-insertionPro.pdf',TRUE);
+    header('Location:../../../../index.php');
+}
+?>
 <h1>Insertion professionnelle</h1>
-<form action="" method="">
+<form action="<?php echo VIEW_DIR . '/' . INCLUDES; ?>/form/insertion_pro.php?save=1&id_contrat=<?php echo $userInfo['user']['idcontrat']; ?>" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h1>Promotion <?php echo date('Y'); ?></h1>
         </div>
         <div class="contenu">
-            <input placeholder="Nom" type="text" value="<?php echo $userInfo['user']['nom']; ?>" required />
-            <input placeholder="Prénom" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" required />
-            <input placeholder="Date de naissance" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required />
-            <input placeholder="Âge" id="ageApprenti" type="text" required />
+            <input placeholder="Nom" name="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" />
+            <input placeholder="Prénom" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" />
+            <input placeholder="Date de naissance" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" />
+            <input placeholder="Âge" id="ageApprenti" type="text" />
             <p class="info">Adresse</p>
-            <input placeholder="Adresse" type="text" value="<?php echo $userInfo['user']['adresse']; ?>" required />
-            <input placeholder="Code postal" type="text" value="<?php echo $userInfo['user']['cp']; ?>" required />
-            <input placeholder="Ville" type="text" value="<?php echo $userInfo['user']['ville']; ?>" required />
-            <input placeholder="Email" type="email" value="<?php echo $userInfo['user']['email']; ?>" required />
-            <input placeholder="Téléphone" type="text" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel']; ?>" required />
-            <input placeholder="Portable" type="text" pattern="0[6-7]{1}[0-9]{9}" value="<?php echo $userInfo['user']['port']; ?>" required />
+            <input placeholder="Adresse" type="text" value="<?php echo $userInfo['user']['adresse']; ?>" />
+            <input placeholder="Code postal" type="text" value="<?php echo $userInfo['user']['cp']; ?>" />
+            <input placeholder="Ville" type="text" value="<?php echo $userInfo['user']['ville']; ?>" />
+            <input placeholder="Email" type="email" value="<?php echo $userInfo['user']['email']; ?>" />
+            <input placeholder="Téléphone" type="text" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel']; ?>" />
+            <input placeholder="Portable" type="text" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['port']; ?>" />
             <textarea placeholder="Autres renseignements (réseau social, blog, portfolio...)"></textarea>
         </div>
     </div>
@@ -43,7 +55,7 @@
                 <input placeholder="Adresse du siège social" type="text" />
                 <input placeholder="Complément d'adresse" type="text" />
                 <input placeholder="Code postal" id="cpEntAltApp" type="text" pattern="[0-9]{5}" />
-                <input placeholder="Ville" id="villeEntAltApp" type="text" required />
+                <input placeholder="Ville" id="villeEntAltApp" type="text" />
                 <input placeholder="Fonctions attachées au poste" type="text" />
             </div>
         </div>

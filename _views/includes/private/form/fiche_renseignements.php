@@ -4,11 +4,11 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
     require_once '../../../../' . CLSS_DIR . '/fpdf.php';
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();
-    $fiche->SetFont('Arial','B',18);
+    $fiche->SetFont('Helvetica','B',18);
     $fiche->Cell(190,20,'Fiche de renseignements',1,1,'C');
-    $fiche->SetFont('Arial','',15);
+    $fiche->SetFont('Helvetica','',15);
     $fiche->Cell(190,20,'Apprenti',1,1,'C');
-    $fiche->SetFont('Arial','',11);
+    $fiche->SetFont('Helvetica','',11);
     $fiche->Cell(95,10,'Nom : ' . $_POST['nomApprenti']);
     $fiche->Cell(95,10,'Prénom : ' . $_POST['prenomApprenti'],0,1);
     $fiche->Cell(95,10,'Date de naissance : ' . $_POST['dateNaissanceApprenti']);
@@ -19,7 +19,7 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
     $fiche->Cell(190,10,'Email : ' . $_POST['mailApprenti'],0,1);
     $fiche->Cell(95,10,'Téléphone : ' . $_POST['telApprenti']);
     $fiche->Cell(95,10,'Portable : ' . $_POST['portApprenti'],0,1);
-    $fiche->SetFont('Arial','',15);
+    $fiche->SetFont('Helvetica','',15);
     $fiche->Cell(190,20,'Entreprise',1,1,'C');
     $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);
     header('Location:../../../../index.php');
@@ -32,16 +32,16 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
             <h1>Apprenti</h1>
         </div>
         <div class="contenu">
-            <input placeholder="Nom" name="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" required />
-            <input placeholder="Prénom" name="prenomApprenti" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" required />
-            <input placeholder="Date de naissance (jj/mm/aaaa)" name="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required />
-            <input placeholder="Lieu de naissance" name="lieuNaissanceApprenti" type="text" required />
-            <input placeholder="Adresse" name="adresseApprenti" type="text" value="<?php echo $userInfo['user']['adresse']; ?>" required />
-            <input placeholder="Code postal" name="cpApprenti" type="text" pattern="[0-9]{5}" value="<?php echo $userInfo['user']['cp']; ?>" required />
-            <input placeholder="Ville" name="villeApprenti" type="text" value="<?php echo $userInfo['user']['ville']; ?>" required />
-            <input placeholder="Email" name="mailApprenti" type="email" value="<?php echo $userInfo['user']['email']; ?>" required />
-            <input placeholder="Téléphone" name="telApprenti" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel']; ?>" required />
-            <input placeholder="Portable" name="portApprenti" type="tel" pattern="0[6-7]{1}[0-9]{8}" value="<?php echo $userInfo['user']['port']; ?>" required />
+            <input placeholder="Nom" name="nomApprenti" type="text" value="<?php echo $userInfo['user']['nom']; ?>" />
+            <input placeholder="Prénom" name="prenomApprenti" type="text" value="<?php echo $userInfo['user']['prenom']; ?>" />
+            <input placeholder="Date de naissance (jj/mm/aaaa)" name="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" />
+            <input placeholder="Lieu de naissance" name="lieuNaissanceApprenti" type="text" />
+            <input placeholder="Adresse" name="adresseApprenti" type="text" value="<?php echo $userInfo['user']['adresse']; ?>" />
+            <input placeholder="Code postal" name="cpApprenti" type="text" pattern="[0-9]{5}" value="<?php echo $userInfo['user']['cp']; ?>" />
+            <input placeholder="Ville" name="villeApprenti" type="text" value="<?php echo $userInfo['user']['ville']; ?>" />
+            <input placeholder="Email" name="mailApprenti" type="email" value="<?php echo $userInfo['user']['email']; ?>" />
+            <input placeholder="Téléphone" name="telApprenti" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel']; ?>" />
+            <input placeholder="Portable" name="portApprenti" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['port']; ?>" />
         </div>
     </div>
     <div class="conteneur large">
