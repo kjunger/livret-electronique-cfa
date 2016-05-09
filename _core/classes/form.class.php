@@ -25,13 +25,13 @@ STR;
     public function returnFormList() {
         return $this->form_list;
     }
-    public function completeForm( $id_form, ) {
+    /*public function completeForm( $id_form, ) {
         
-    }
+    }*/
     public function registerFormComplete( $id_form, $path ) {
         $values = array(
-            "idFormulaireOrigine" = $id_form,
-            "emplacement" = $path
+            "idFormulaireOrigine" => $id_form,
+            "emplacement" => $path
         );
         $this->user_db->insert("FormulaireRempli", $values);
         $update = array(
