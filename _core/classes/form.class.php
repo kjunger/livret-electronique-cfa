@@ -25,8 +25,23 @@ STR;
     public function returnFormList() {
         return $this->form_list;
     }
-    /*public function registerFormComplete() {
+    public function completeForm( $id_form, ) {
         
-    }*/
+    }
+    public function registerFormComplete( $id_form, $path ) {
+        $values = array(
+            "idFormulaireOrigine" = $id_form,
+            "emplacement" = $path
+        );
+        $this->user_db->insert("FormulaireRempli", $values);
+        $update = array(
+            "typeDroit" => 1
+        );
+        $attr = array(
+            ":idUtilisateur" => $this->user_id,
+            ":idContenu" => $id_form
+        );
+        $this->user_db->update("DroitAcces", $update, "idUtilisateur = :idUtilisateur AND idContenu = :idContenu", $attr);
+    }
 }
 ?>

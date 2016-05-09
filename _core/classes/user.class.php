@@ -136,6 +136,8 @@ final class maitreapprentissage extends user {
         $this->getEntreprise();
         $this->getApprenti();
         $this->getTuteurPedagogique();
+        $searchIdContrat = $this->db->select( "ContratApprentissage", "idMaitreApprentissage = " . $this->user[ 'user' ][ 'id' ] );
+        $this->user[ 'user' ][ 'idcontrat' ] = $searchIdContrat[ 0 ][ 'idContratApprentissage' ];
     }
     //Getters
     private function getEntreprise() {

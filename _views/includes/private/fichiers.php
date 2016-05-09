@@ -4,29 +4,33 @@
         <h1>Formulaires</h1>
     </div>
     <div class="contenu">
-        <h2>Contrat d'apprentissage</h2>
-        <ul>
+        <ul class="ul-simple">
             <?php
             if ($handle = opendir('_files/formulaires')) {
                 while (false !== ($entry = readdir($handle))) {
                     if ($entry != "." && $entry != "..") {
                         if ($entry == "Contrat" . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-ficheRenseignements.pdf') {
-                            echo "<li><a href=\"_files/formulaires/$entry\">Contrat d'apprentissage</a></li>";
+                            echo "<li class=\"li-simple\"><a href=\"_files/formulaires/$entry\">Fiche de renseignements</a></li>";
                         }
                     }
                 }
                 closedir($handle);
             }
-            ?>
-        </ul>
-        <h2>Insertion professionnelle et suivi des diplômés</h2>
-        <ul>
-            <?php
             if ($handle = opendir('_files/formulaires')) {
                 while (false !== ($entry = readdir($handle))) {
                     if ($entry != "." && $entry != "..") {
                         if ($entry == "Contrat" . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-insertionPro.pdf') {
-                            echo "<li><a href=\"_files/formulaires/$entry\">Insertion professionnelle et suivi des diplômés</a></li>";
+                            echo "<li class=\"li-simple\"><a href=\"_files/formulaires/$entry\">Insertion professionnelle et suivi des diplômés</a></li>";
+                        }
+                    }
+                }
+                closedir($handle);
+            }
+            if ($handle = opendir('_files/formulaires')) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != "..") {
+                        if ($entry == "Contrat" . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-depotOffreAlternance.pdf') {
+                            echo "<li class=\"li-simple\"><a href=\"_files/formulaires/$entry\">Dépôt d'offre d'alternance</a></li>";
                         }
                     }
                 }

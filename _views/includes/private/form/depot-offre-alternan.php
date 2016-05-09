@@ -1,16 +1,28 @@
+<?php
+if(isset($_GET['save'], $_GET['id_contrat'])) {
+    require_once '../../../../_core/config.php';
+    require_once '../../../../' . CLSS_DIR . '/fpdf.php';
+    $fiche = new FPDF('P','mm','A4');
+    $fiche->AddPage();
+    $fiche->SetFont('Helvetica','B',18);
+    $fiche->Cell(190,20,'Dépôt d\'offre d\'alternance',1,1,'C');
+    $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomContact'] . '-depotOffreAlternance.pdf',TRUE);
+    header('Location:../../../../index.php');
+}
+?>
 <h1>Dépôt d'offre d'alternance</h1>
-<form action="" method="">
+<form action="<?php echo VIEW_DIR . '/' . INCLUDES; ?>/form/depot-offre-alternan.php?save=1&id_contrat=<?php echo $userInfo['user']['idcontrat']; ?>" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h2>Entreprise</h2>
         </div>
         <div class="contenu">
-                <input placeholder="Raison sociale" type="text" required />
-                <input placeholder="Adresse du siège social" type="text" required />
-                <input placeholder="Code postal" type="text" pattern="[0-9]{5}" required />
-                <input placeholder="Ville" type="text" required />
-                <input placeholder="Site Internet" type="text" required />
-                <input placeholder="Service de rattachement" type="text" required />
+                <input placeholder="Raison sociale" type="text" />
+                <input placeholder="Adresse du siège social" type="text" />
+                <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
+                <input placeholder="Ville" type="text" />
+                <input placeholder="Site Internet" type="text" />
+                <input placeholder="Service de rattachement" type="text" />
         </div>
     </div>
     <div class="conteneur large">
@@ -18,12 +30,12 @@
             <h2>Contact</h2>
         </div>
         <div class="contenu">
-                <input placeholder="Nom" type="text" required />
-                <input placeholder="Prénom" type="text" required />
-                <input placeholder="Email" type="email" required />
-                <input placeholder="Téléphone" type="tel" pattern="0[0-9]{9}"  required />
-                <input placeholder="Portable" type="tel" pattern="0[6-7]{1}[0-9]{8}"  required />
-                <input placeholder="Fonction" type="text" required />
+                <input placeholder="Nom" name="nomContact" type="text" value="<?php echo $userInfo['user']['nom'] ?>" />
+                <input placeholder="Prénom" type="text" />
+                <input placeholder="Email" type="email" />
+                <input placeholder="Téléphone" type="tel" pattern="0[0-9]{9}"  />
+                <input placeholder="Portable" type="tel" pattern="0[0-9]{9}"  />
+                <input placeholder="Fonction" type="text" />
         </div>
     </div>
     <div class="conteneur large">

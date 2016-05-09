@@ -5,9 +5,9 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();
     $fiche->SetFont('Helvetica','B',18);
-    $fiche->Cell(190,20,'Fiche de renseignements',1,1,'C');
+    $fiche->Cell(190,20,'Fiche de renseignements',0,1,'C');
     $fiche->SetFont('Helvetica','',15);
-    $fiche->Cell(190,20,'Apprenti',1,1,'C');
+    $fiche->Cell(190,20,'Apprenti',0,1,'C');
     $fiche->SetFont('Helvetica','',11);
     $fiche->Cell(95,10,'Nom : ' . $_POST['nomApprenti']);
     $fiche->Cell(95,10,'Prénom : ' . $_POST['prenomApprenti'],0,1);
@@ -20,7 +20,20 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
     $fiche->Cell(95,10,'Téléphone : ' . $_POST['telApprenti']);
     $fiche->Cell(95,10,'Portable : ' . $_POST['portApprenti'],0,1);
     $fiche->SetFont('Helvetica','',15);
-    $fiche->Cell(190,20,'Entreprise',1,1,'C');
+    $fiche->Cell(190,20,'Entreprise',0,1,'C');
+    $fiche->SetFont('Helvetica','',11);
+    $fiche->Cell(190,10,'Raison sociale : ' . $_POST['raisonSociale'],0,1);
+    $fiche->Cell(190,10,'Adresse : ' . $_POST['adresseSiegeSocial'],0,1);
+    $fiche->Cell(55,10,'Code postal : ' . $_POST['cpSiegeSocial']);
+    $fiche->Cell(135,10,'Ville : ' . $_POST['villeSiegeSocial'],0,1);
+    if(isset($_POST['adresseSiteAccueil'], $_POST['cpSiteAccueil'], $_POST['villeSiteAccueil'])) {
+        $fiche->Cell(190,10,'Adresse du site d\'accueil (le cas échéant) : ' . $_POST['adresseSiteAccueil'],0,1);
+        $fiche->Cell(55,10,'Code postal : ' . $_POST['cpSiteAccueil']);
+        $fiche->Cell(135,10,'Ville : ' . $_POST['villeSiteAccueil']);
+    }
+    $fiche->SetFont('Helvetica','',15);
+    $fiche->Cell(190,20,'Maître d\'apprentissage',0,1,'C');
+    $fiche->SetFont('Helvetica','',11);
     $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);
     header('Location:../../../../index.php');
 }
@@ -49,15 +62,15 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
             <h1>Entreprise</h1>
         </div>
         <div class="contenu">
-            <input placeholder="Raison sociale" type="text" />
+            <input placeholder="Raison sociale" name="raisonSociale" type="text" />
             <h2>Siège social</h2>
-            <input placeholder="Adresse du siège social" type="text" />
-            <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
-            <input placeholder="Ville" type="text" />
+            <input placeholder="Adresse du siège social" name="adresseSiegeSocial" type="text" />
+            <input placeholder="Code postal" name="cpSiegeSocial" type="text" pattern="[0-9]{5}" />
+            <input placeholder="Ville" name="villeSiegeSocial" type="text" />
             <h2>Site d'accueil de l'apprenti(e) <span class="info">(si différent du siège social)</span></h2>
-            <input placeholder="Adresse du site d'accueil" type="text" />
-            <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
-            <input placeholder="Ville" type="text" />
+            <input placeholder="Adresse du site d'accueil" name="adresseSiteAccueil" type="text" />
+            <input placeholder="Code postal" name="cpSiteAccueil" type="text" pattern="[0-9]{5}" />
+            <input placeholder="Ville" name="villeSiteAccueil" type="text" />
             <h2>Maître d'apprentissage</h2>
             <input placeholder="Nom" type="text" />
             <input placeholder="Prénom" type="text" />
