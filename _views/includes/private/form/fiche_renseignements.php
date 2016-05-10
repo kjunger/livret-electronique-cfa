@@ -1,7 +1,7 @@
 <?php
-if(isset($_GET['save'], $_GET['id_contrat'])) {
-    require_once '../../../../_core/config.php';
-    require_once '../../../../' . CLSS_DIR . '/fpdf.php';
+if(isset($_GET['save'])) {
+    /*require_once '_core/config.php';
+    require_once CLSS_DIR . '/fpdf.php';
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();
     $fiche->SetFont('Helvetica','B',18);
@@ -34,12 +34,13 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
     $fiche->SetFont('Helvetica','',15);
     $fiche->Cell(190,20,'Maître d\'apprentissage',0,1,'C');
     $fiche->SetFont('Helvetica','',11);
-    $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);
-    header('Location:../../../../index.php');
+    $fiche->Output('F','../../_files/formulaires/Contrat' . $userInfo[ 'user' ][ 'idcontrat' ] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);*/
+    $forms->setFormComplete( $_GET['id'], '_files/formulaires/Contrat' . $userInfo[ 'user' ][ 'idcontrat' ] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf' );
+    header('Location:index.php');
 }
 ?>
 <h1>Fiche de renseignements</h1>
-<form action="<?php echo VIEW_DIR . '/' . INCLUDES; ?>/form/fiche_renseignements.php?save=1&id_contrat=<?php echo $userInfo['user']['idcontrat']; ?>" method="post">
+<form action="index.php?cat=form&id=3&name=fiche_renseignements&save=1" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h1>Apprenti</h1>

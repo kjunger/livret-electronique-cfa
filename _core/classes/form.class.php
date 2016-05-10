@@ -25,23 +25,25 @@ STR;
     public function returnFormList() {
         return $this->form_list;
     }
-    /*public function completeForm( $id_form, ) {
-        
-    }*/
-    /*public function registerFormComplete( $id_form, $path ) {
+    public function setFormComplete( $id_form, $path ) {
         $values = array(
-            "idFormulaireOrigine" => $id_form,
-            "emplacement" => $path
+            "emplacementFichier" => $path
+        );
+        $this->user_db->insert("Fichier", $values);
+        $search_id_file = $this->user_db->select("Fichier",  "emplacementFichier LIKE " . $path);
+        $values = array(
+            "idFormulaireRempli" => $search_id_file[ 0 ][ 'idFichier' ],
+            "idFormulaireOrigine" => $id_form
         );
         $this->user_db->insert("FormulaireRempli", $values);
-        $update = array(
+        /*$update = array(
             "typeDroit" => 1
         );
         $attr = array(
             ":idUtilisateur" => $this->user_id,
             ":idFormulaire" => $id_form
         );
-        $this->user_db->update("DroitAccesFormulaire", $update, "idUtilisateur = :idUtilisateur AND idFormulaire = :idFormulaire", $attr);
-    }*/
+        $this->user_db->update("DroitAccesFormulaire", $update, "idUtilisateur = :idUtilisateur AND idFormulaire = :idFormulaire", $attr);*/
+    }
 }
 ?>
