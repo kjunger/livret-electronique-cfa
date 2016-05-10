@@ -9,12 +9,12 @@ class form {
         $user = $user_obj->returnUser();
         $this->user_id = $user[ 'user' ][ 'id' ];
         $stmt = <<<STR
-                    SELECT `Formulaire`.`idFormulaire`, `Formulaire`.`nom`, `Formulaire`.`intitule`, `Formulaire`.`type`, `DroitEdition`.`typeDroit`
+                    SELECT `Formulaire`.`idFormulaire`, `Formulaire`.`nom`, `Formulaire`.`intitule`, `Formulaire`.`type`, `DroitAccesFormulaire`.`typeDroit`
                     FROM `Formulaire`
-                    INNER JOIN (`DroitEdition`
+                    INNER JOIN (`DroitAccesFormulaire`
                         INNER JOIN `Utilisateur`
-                        ON `Utilisateur`.`idUtilisateur` = `DroitEdition`.`idUtilisateur`
-                    ) ON `DroitEdition`.`idContenu` = `Formulaire`.`idFormulaire`
+                        ON `Utilisateur`.`idUtilisateur` = `DroitAccesFormulaire`.`idUtilisateur`
+                    ) ON `DroitAccesFormulaire`.`idFormulaire` = `Formulaire`.`idFormulaire`
                     WHERE `Utilisateur`.`idUtilisateur` = :idUtilisateur;
 STR;
         $attr = array(
@@ -28,7 +28,7 @@ STR;
     /*public function completeForm( $id_form, ) {
         
     }*/
-    public function registerFormComplete( $id_form, $path ) {
+    /*public function registerFormComplete( $id_form, $path ) {
         $values = array(
             "idFormulaireOrigine" => $id_form,
             "emplacement" => $path
@@ -39,9 +39,9 @@ STR;
         );
         $attr = array(
             ":idUtilisateur" => $this->user_id,
-            ":idContenu" => $id_form
+            ":idFormulaire" => $id_form
         );
-        $this->user_db->update("DroitAcces", $update, "idUtilisateur = :idUtilisateur AND idContenu = :idContenu", $attr);
-    }
+        $this->user_db->update("DroitAccesFormulaire", $update, "idUtilisateur = :idUtilisateur AND idFormulaire = :idFormulaire", $attr);
+    }*/
 }
 ?>

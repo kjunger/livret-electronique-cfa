@@ -85,7 +85,11 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
             <h1>Tuteur pédagogique</h1>
         </div>
         <div class="contenu">
-            <input type="text" />
+            <input placeholder="Nom" type="text" />
+            <input placeholder="Prénom" type="text" />
+            <input placeholder="Email" type="email" />
+            <input placeholder="Téléphone" type="tel" pattern="0[0-9]{9}" />
+            <input placeholder="Portable" type="tel" pattern="0[6-7]{1}[0-9]{8}" />
         </div>
     </div>
     <input class="submit-field" type="submit" value="Valider" />

@@ -1,10 +1,11 @@
 <?php
-const INCLUDES = 'includes/private';
-const ASSETS = 'assets/private';
 require_once '_core/config.php';
 require_once CLSS_DIR . '/user.class.php';
 require_once CLSS_DIR . '/phpQuery.class.php';
 require_once CLSS_DIR . '/form.class.php';
+const INCLUDES = 'includes/private';
+const ASSETS = 'assets/private';
+require_once VIEW_DIR . '/' . INCLUDES . '/functions.php';
 $user = new $_SESSION[ 'type' ]( DB, $_SESSION[ 'id' ] );
 $forms = new form( $user );
 $userInfo = $user->returnUser();

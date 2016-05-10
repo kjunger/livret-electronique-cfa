@@ -1,3 +1,8 @@
+<?php
+if(isset($_GET['save'])) {
+    signature_contrat( $user, $_POST[ 'password' ] );
+}
+?>
 <h1>Contrat pédagogique</h1>
 <div class="conteneur large">
     <div class="titre">
@@ -59,19 +64,37 @@
         </ul>
     </div>
 </div>
-<form action="" method="">
-    <div class="conteneur large">
-    <div class="titre">
-        <h2>Signature</h2>
-    </div>
-    <div class="contenu">
-        <p>Je soussigné, M./Mme <?php echo $userInfo['user']['prenom'] . ' ' . $userInfo['user']['nom']; ?>, accepte par la présente signature les différentes clauses du contrat et m'engage à les respecter.</p>
-        <input id="signature" type="checkbox" />
-        <label for="signature">Oui, je m'y engage.</label>
-        <p>
-            <input type="password" placeholder="Entrez votre mot de passe" />
-        </p>
-    </div>
-</div>
-<input class="submit-field" type="submit" value="Valider" />
-</form>
+<?php if( $user->getSignature() == false ){
+    echo <<<STR
+            <form action="index.php?cat=contrat&save=1" method="post">
+                <div class="conteneur large">
+                    <div class="titre">
+                        <h2>Signature</h2>
+                    </div>
+                    <div class="contenu">
+                        <p>Je soussigné, M./Mme
+STR;
+    echo $userInfo['user']['prenom'] . ' ' . $userInfo['user']['nom'];
+    echo <<<STR
+                        , accepte par la présente signature les différentes clauses du contrat et m'engage à les respecter.</p>
+                        <input id="signature" type="checkbox" />
+                        <label for="signature">Oui, je m'y engage.</label>
+                        <p>
+                            <input type="password" name="password" placeholder="Entrez votre mot de passe" />
+                        </p>
+                        <span>
+STR;
+    if(isset($_GET['error'])) {
+        echo "Mot de passe incorrect.";
+    }
+    echo <<<STR
+                        </span>
+                    </div>
+                </div>
+                <input class="submit-field" type="submit" value="Valider" />
+            </form>
+STR;
+} else {
+    echo "Ce contrat a déjà été signé";
+}
+?>

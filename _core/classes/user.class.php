@@ -38,6 +38,12 @@ STR;
     public function returnDb() {
         return $this->db;
     }
+    public function checkPassword( $pass ) {
+        $search = $this->db->select( "Utilisateur", "idUtilisateur = " . $this->user[ 'user' ][ 'id' ]);
+        if( $search[ 0 ][ 'pass' ] == md5( $pass ) ) {
+            return true;
+        } else { return false; }
+    }
 }
 final class apprenti extends user {
     public function __construct( $db, $id ) {
@@ -128,6 +134,21 @@ STR;
             'port' => $search[ 0 ][ 'port' ],
             'email' => $search[ 0 ][ 'email' ] 
         );
+    }
+    public function getSignature() {
+        $search = $this->db->select( "ContratApprentissage", "idApprenti = " . $this->user[ 'user' ][ 'id' ] . " AND idContratApprentissage = " . $this->user[ 'user' ][ 'idcontrat' ] );
+        if($search[ 0 ][ 'dateSignatureApprenti' ] != NULL) { return true; } else { return false; }
+    }
+    public function setSignature() {
+        $date = date(Y-m-d);
+        $update = array(
+            "dateSignatureApprenti" => $date
+        );
+        $attr = array(
+            ":idApprenti" => $this->user[ 'user' ][ 'id' ],
+            ":idContratApprentissage" => $this->user[ 'user' ][ 'idcontrat' ]
+        );
+        $this->db->update( "ContratApprentissage", $update, "idApprenti = :idApprenti AND idContratApprentissage = :idContratApprentissage", $attr );
     }
 }
 final class maitreapprentissage extends user {
