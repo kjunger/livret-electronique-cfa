@@ -8,7 +8,7 @@ class db extends PDO {
     public function __construct( $dsn, $user = "", $passwd = "" ) {
         $options = array(
              PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
         try {
             parent::__construct( $dsn, $user, $passwd, $options );
@@ -20,7 +20,7 @@ class db extends PDO {
     private function debug() {
         if ( !empty( $this->errorCallbackFunction ) ) {
             $error = array(
-                 "Error" => $this->error 
+                 "Error" => $this->error
             );
             if ( !empty( $this->sql ) )
                 $error[ "SQL Statement" ] = $this->sql;
@@ -82,7 +82,7 @@ class db extends PDO {
         if ( !is_array( $bind ) ) {
             if ( !empty( $bind ) )
                 $bind = array(
-                     $bind 
+                     $bind
                 );
             else
                 $bind = array();
@@ -107,13 +107,13 @@ class db extends PDO {
                 if ( preg_match( "/^(" . implode( "|", array(
                      "select",
                     "describe",
-                    "pragma" 
+                    "pragma"
                 ) ) . ") /i", $this->sql ) )
                     return $pdostmt->fetchAll( PDO::FETCH_ASSOC );
                 elseif ( preg_match( "/^(" . implode( "|", array(
                      "delete",
                     "insert",
-                    "update" 
+                    "update"
                 ) ) . ") /i", $this->sql ) )
                     return $pdostmt->rowCount();
             } //$pdostmt->execute( $this->bind ) !== false
@@ -135,14 +135,14 @@ class db extends PDO {
         //Variable functions for won't work with language constructs such as echo and print, so these are replaced with print_r.
         if ( in_array( strtolower( $errorCallbackFunction ), array(
              "echo",
-            "print" 
+            "print"
         ) ) )
             $errorCallbackFunction = "print_r";
         if ( function_exists( $errorCallbackFunction ) ) {
             $this->errorCallbackFunction = $errorCallbackFunction;
             if ( !in_array( strtolower( $errorMsgFormat ), array(
                  "html",
-                "text" 
+                "text"
             ) ) )
                 $errorMsgFormat = "html";
             $this->errorMsgFormat = $errorMsgFormat;

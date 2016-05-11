@@ -170,7 +170,7 @@ STR;
     public function setSignature()
 
     {
-        $date = date(Y - m - d);
+        $date = date(Y-m-d);
         $update = array(
             "dateSignatureApprenti" => $date
         );
@@ -269,6 +269,30 @@ STR;
             'email' => $search[0]['email']
         );
     }
+    public function getSignature()
+
+    {
+        $search = $this->db->select("ContratApprentissage", "idMaitreApprentissage = " . $this->user['user']['id'] . " AND idContratApprentissage = " . $this->user['user']['idcontrat']);
+        if ($search[0]['dateSignatureMaitreApprentissage'] != NULL) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public function setSignature()
+
+    {
+        $date = date(Y-m-d);
+        $update = array(
+            "dateSignatureMaitreApprentissage" => $date
+        );
+        $attr = array(
+            ":idMaitreApprentissage" => $this->user['user']['id'],
+            ":idContratApprentissage" => $this->user['user']['idcontrat']
+        );
+        $this->db->update("ContratApprentissage", $update, "idMaitreApprentissage = :idMaitreApprentissage AND idContratApprentissage = :idContratApprentissage", $attr);
+    }
 }
 final class tuteurpedagogique extends user
 
@@ -360,6 +384,30 @@ STR;
             'cp' => $searchEntreprise[0]['cpEntreprise'],
             'ville' => $searchEntreprise[0]['villeEntreprise']
         );
+    }
+    public function getSignature()
+
+    {
+        $search = $this->db->select("ContratApprentissage", "idTuteurPedagogique = " . $this->user['user']['id'] . " AND idContratApprentissage = " . $this->user['user']['idcontrat']);
+        if ($search[0]['dateSignatureTuteurPedagogique'] != NULL) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public function setSignature()
+
+    {
+        $date = date(Y-m-d);
+        $update = array(
+            "dateSignatureTuteurPedagogique" => $date
+        );
+        $attr = array(
+            ":TuteurPedagogique" => $this->user['user']['id'],
+            ":idContratApprentissage" => $this->user['user']['idcontrat']
+        );
+        $this->db->update("ContratApprentissage", $update, "TuteurPedagogique = :TuteurPedagogique AND idContratApprentissage = :idContratApprentissage", $attr);
     }
 }
 ?>

@@ -31,10 +31,10 @@ if(isset($_GET['save'])) {
         </div>
         <div class="contenu">
                 <input placeholder="Nom" name="nomContact" type="text" value="<?php echo $userInfo['user']['nom'] ?>" />
-                <input placeholder="Prénom" type="text" />
-                <input placeholder="Email" type="email" />
-                <input placeholder="Téléphone" type="tel" pattern="0[0-9]{9}"  />
-                <input placeholder="Portable" type="tel" pattern="0[0-9]{9}"  />
+                <input placeholder="Prénom" type="text" value="<?php echo $userInfo['user']['prenom'] ?>" />
+                <input placeholder="Email" type="email" value="<?php echo $userInfo['user']['email'] ?>" />
+                <input placeholder="Téléphone" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['tel'] ?>" />
+                <input placeholder="Portable" type="tel" pattern="0[0-9]{9}" value="<?php echo $userInfo['user']['port'] ?>" />
                 <input placeholder="Fonction" type="text" />
         </div>
     </div>

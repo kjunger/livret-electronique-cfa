@@ -34,10 +34,10 @@ require_once '_core/config.php';    //Contient les différentes variables pour l
                 <input type="submit" value="Connexion" />
             </form>
             <div class="error">
-                <?php 
+                <?php
                 if ( isset( $_GET[ 'error' ] ) ) {
-                        echo "L'identification a échoué. Veuillez réessayer."; 
-                } 
+                        echo "L'identification a échoué. Veuillez réessayer.";
+                }
                 ?>
             </div>
         </div>

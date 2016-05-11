@@ -34,7 +34,7 @@ if (isset($_GET['save'])) {
     $fiche->Cell(190,20,'Maître d\'apprentissage',0,1,'C');
     $fiche->SetFont('Helvetica','',11);
     $fiche->Output('F','_files/formulaires/Contrat' . $userInfo[ 'user' ][ 'idcontrat' ] . '-' . $_POST['nomApprenti'] . '-' . $_GET['name'] . '.pdf',TRUE);
-    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-' . $_GET['name'] . '.pdf');
+    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-' . $_GET['name'] . '.pdf', TRUE);
     header('Location:index.php');
 }
 ?>
