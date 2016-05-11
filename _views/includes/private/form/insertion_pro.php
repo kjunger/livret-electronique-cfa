@@ -5,8 +5,8 @@ if(isset($_GET['save'])) {
     $fiche->AddPage();
     $fiche->SetFont('Helvetica','B',18);
     $fiche->Cell(190,20,'Insertion professionnelle et suivi des diplômés',1,1,'C');
-    $fiche->Output('F','_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $_POST['nomApprenti'] . '-insertionPro.pdf',TRUE);
-    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-insertionPro.pdf');
+    $fiche->Output('F','_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $_POST['nomApprenti'] . '-' . $_GET['name'] . '.pdf',TRUE);
+    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-' . $_GET['name'] . '.pdf');
     header('Location:index.php');
 }
 ?>

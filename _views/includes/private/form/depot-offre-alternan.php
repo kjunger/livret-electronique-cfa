@@ -1,17 +1,17 @@
 <?php
-if(isset($_GET['save'], $_GET['id_contrat'])) {
-    require_once '../../../../_core/config.php';
-    require_once '../../../../' . CLSS_DIR . '/fpdf.php';
+if(isset($_GET['save'])) {
+    require_once CLSS_DIR . '/fpdf.php';
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();
     $fiche->SetFont('Helvetica','B',18);
     $fiche->Cell(190,20,'Dépôt d\'offre d\'alternance',1,1,'C');
-    $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomContact'] . '-depotOffreAlternance.pdf',TRUE);
-    header('Location:../../../../index.php');
+    $fiche->Output('F','_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-' . $_GET['name'] . '.pdf',TRUE);
+    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-' . $_GET['name'] . '.pdf');
+    header('Location:index.php');
 }
 ?>
 <h1>Dépôt d'offre d'alternance</h1>
-<form action="<?php echo VIEW_DIR . '/' . INCLUDES; ?>/form/depot-offre-alternan.php?save=1&id_contrat=<?php echo $userInfo['user']['idcontrat']; ?>" method="post">
+<form action="index.php?cat=<?php echo $_GET['cat']; ?>&id=<?php echo $_GET['id']; ?>&name=<?php echo $_GET['name']; ?>&save=1" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h2>Entreprise</h2>
