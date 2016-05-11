@@ -23,10 +23,10 @@ $userForms = $forms->returnFormList();
     <script type="text/javascript" src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/js/fancySelect.js"></script>
     <script type="text/javascript" src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/js/script.js">
     </script>
-    <script type="text/javascript"> 
-      $(document).ready(function(){ 
-        $('.basic').fancySelect(); 
-      }); 
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.basic').fancySelect();
+      });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>

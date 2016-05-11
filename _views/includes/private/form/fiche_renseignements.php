@@ -1,46 +1,45 @@
 <?php
 if (isset($_GET['save'])) {
-	/*require_once '_core/config.php';
-	require_once CLSS_DIR . '/fpdf.php';
-	$fiche = new FPDF('P','mm','A4');
-	$fiche->AddPage();
-	$fiche->SetFont('Helvetica','B',18);
-	$fiche->Cell(190,20,'Fiche de renseignements',0,1,'C');
-	$fiche->SetFont('Helvetica','',15);
-	$fiche->Cell(190,20,'Apprenti',0,1,'C');
-	$fiche->SetFont('Helvetica','',11);
-	$fiche->Cell(95,10,'Nom : ' . $_POST['nomApprenti']);
-	$fiche->Cell(95,10,'Prénom : ' . $_POST['prenomApprenti'],0,1);
-	$fiche->Cell(95,10,'Date de naissance : ' . $_POST['dateNaissanceApprenti']);
-	$fiche->Cell(95,10,'Lieu de naissance : ' . $_POST['lieuNaissanceApprenti'],0,1);
-	$fiche->Cell(190,10,'Adresse : ' . $_POST['adresseApprenti'],0,1);
-	$fiche->Cell(55,10,'Code postal : ' . $_POST['cpApprenti']);
-	$fiche->Cell(135,10,'Ville : ' . $_POST['villeApprenti'],0,1);
-	$fiche->Cell(190,10,'Email : ' . $_POST['mailApprenti'],0,1);
-	$fiche->Cell(95,10,'Téléphone : ' . $_POST['telApprenti']);
-	$fiche->Cell(95,10,'Portable : ' . $_POST['portApprenti'],0,1);
-	$fiche->SetFont('Helvetica','',15);
-	$fiche->Cell(190,20,'Entreprise',0,1,'C');
-	$fiche->SetFont('Helvetica','',11);
-	$fiche->Cell(190,10,'Raison sociale : ' . $_POST['raisonSociale'],0,1);
-	$fiche->Cell(190,10,'Adresse : ' . $_POST['adresseSiegeSocial'],0,1);
-	$fiche->Cell(55,10,'Code postal : ' . $_POST['cpSiegeSocial']);
-	$fiche->Cell(135,10,'Ville : ' . $_POST['villeSiegeSocial'],0,1);
-	if(isset($_POST['adresseSiteAccueil'], $_POST['cpSiteAccueil'], $_POST['villeSiteAccueil'])) {
-	$fiche->Cell(190,10,'Adresse du site d\'accueil (le cas échéant) : ' . $_POST['adresseSiteAccueil'],0,1);
-	$fiche->Cell(55,10,'Code postal : ' . $_POST['cpSiteAccueil']);
-	$fiche->Cell(135,10,'Ville : ' . $_POST['villeSiteAccueil']);
-	}
-	$fiche->SetFont('Helvetica','',15);
-	$fiche->Cell(190,20,'Maître d\'apprentissage',0,1,'C');
-	$fiche->SetFont('Helvetica','',11);
-	$fiche->Output('F','../../_files/formulaires/Contrat' . $userInfo[ 'user' ][ 'idcontrat' ] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);*/
-	$forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf');
-	header('Location:index.php');
+    require_once CLSS_DIR . '/fpdf.php';
+    $fiche = new FPDF('P','mm','A4');
+    $fiche->AddPage();
+    $fiche->SetFont('Helvetica','B',18);
+    $fiche->Cell(190,20,'Fiche de renseignements',0,1,'C');
+    $fiche->SetFont('Helvetica','',15);
+    $fiche->Cell(190,20,'Apprenti',0,1,'C');
+    $fiche->SetFont('Helvetica','',11);
+    $fiche->Cell(95,10,'Nom : ' . $_POST['nomApprenti']);
+    $fiche->Cell(95,10,'Prénom : ' . $_POST['prenomApprenti'],0,1);
+    $fiche->Cell(95,10,'Date de naissance : ' . $_POST['dateNaissanceApprenti']);
+    $fiche->Cell(95,10,'Lieu de naissance : ' . $_POST['lieuNaissanceApprenti'],0,1);
+    $fiche->Cell(190,10,'Adresse : ' . $_POST['adresseApprenti'],0,1);
+    $fiche->Cell(55,10,'Code postal : ' . $_POST['cpApprenti']);
+    $fiche->Cell(135,10,'Ville : ' . $_POST['villeApprenti'],0,1);
+    $fiche->Cell(190,10,'Email : ' . $_POST['mailApprenti'],0,1);
+    $fiche->Cell(95,10,'Téléphone : ' . $_POST['telApprenti']);
+    $fiche->Cell(95,10,'Portable : ' . $_POST['portApprenti'],0,1);
+    $fiche->SetFont('Helvetica','',15);
+    $fiche->Cell(190,20,'Entreprise',0,1,'C');
+    $fiche->SetFont('Helvetica','',11);
+    $fiche->Cell(190,10,'Raison sociale : ' . $_POST['raisonSociale'],0,1);
+    $fiche->Cell(190,10,'Adresse : ' . $_POST['adresseSiegeSocial'],0,1);
+    $fiche->Cell(55,10,'Code postal : ' . $_POST['cpSiegeSocial']);
+    $fiche->Cell(135,10,'Ville : ' . $_POST['villeSiegeSocial'],0,1);
+    if(isset($_POST['adresseSiteAccueil'], $_POST['cpSiteAccueil'], $_POST['villeSiteAccueil'])) {
+    $fiche->Cell(190,10,'Adresse du site d\'accueil (le cas échéant) : ' . $_POST['adresseSiteAccueil'],0,1);
+    $fiche->Cell(55,10,'Code postal : ' . $_POST['cpSiteAccueil']);
+    $fiche->Cell(135,10,'Ville : ' . $_POST['villeSiteAccueil']);
+    }
+    $fiche->SetFont('Helvetica','',15);
+    $fiche->Cell(190,20,'Maître d\'apprentissage',0,1,'C');
+    $fiche->SetFont('Helvetica','',11);
+    $fiche->Output('F','_files/formulaires/Contrat' . $userInfo[ 'user' ][ 'idcontrat' ] . '-' . $_POST['nomApprenti'] . '-ficheRenseignements.pdf',TRUE);
+    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-ficheRenseignements.pdf');
+    header('Location:index.php');
 }
 ?>
 <h1>Fiche de renseignements</h1>
-<form action="index.php?cat=form&id=3&name=fiche_renseignements&save=1" method="post">
+<form action="index.php?cat=<?php echo $_GET['cat']; ?>&id=<?php echo $_GET['id']; ?>&name=<?php echo $_GET['name']; ?>&save=1" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h1>Apprenti</h1>

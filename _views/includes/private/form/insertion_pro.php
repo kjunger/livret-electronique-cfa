@@ -1,17 +1,17 @@
 <?php
-if(isset($_GET['save'], $_GET['id_contrat'])) {
-    require_once '../../../../_core/config.php';
-    require_once '../../../../' . CLSS_DIR . '/fpdf.php';
+if(isset($_GET['save'])) {
+    require_once CLSS_DIR . '/fpdf.php';
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();
     $fiche->SetFont('Helvetica','B',18);
     $fiche->Cell(190,20,'Insertion professionnelle et suivi des diplômés',1,1,'C');
-    $fiche->Output('F','../../../../_files/formulaires/Contrat' . $_GET['id_contrat'] . '-' . $_POST['nomApprenti'] . '-insertionPro.pdf',TRUE);
-    header('Location:../../../../index.php');
+    $fiche->Output('F','_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $_POST['nomApprenti'] . '-insertionPro.pdf',TRUE);
+    $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-insertionPro.pdf');
+    header('Location:index.php');
 }
 ?>
 <h1>Insertion professionnelle</h1>
-<form action="<?php echo VIEW_DIR . '/' . INCLUDES; ?>/form/insertion_pro.php?save=1&id_contrat=<?php echo $userInfo['user']['idcontrat']; ?>" method="post">
+<form action="index.php?cat=<?php echo $_GET['cat']; ?>&id=<?php echo $_GET['id']; ?>&name=<?php echo $_GET['name']; ?>&save=1" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h1>Promotion <?php echo date('Y'); ?></h1>
@@ -74,7 +74,7 @@ if(isset($_GET['save'], $_GET['id_contrat'])) {
             <h2>Entreprise</h2>
             <input placeholder="Raison sociale" type="text" />
             <input placeholder="Adresse du siège social" type="text" />
-            <input placeholder="Complément d\'adresse" type="text" />
+            <input placeholder="Complément d'adresse" type="text" />
             <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
             <input placeholder="Ville" type="text" />
         </div>
