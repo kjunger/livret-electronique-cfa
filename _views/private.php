@@ -16,7 +16,7 @@ $userForms = $forms->returnFormList();
 <head>
     <title>Livret Electronique de Suivi de l'Apprenti - Université de Rouen</title>
     <meta charset="utf-8" />
-    <link type="text/css" rel="stylesheet" href="<?php echo VIEW_DIR . '/' . ASSETS; ?>/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo VIEW_DIR . '/' . ASSETS; ?>/css/style.min.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js">
     </script>
     <script type="text/javascript" src="<?php echo VIEW_DIR . '/' . ASSETS; ?>/js/classie.js"></script>

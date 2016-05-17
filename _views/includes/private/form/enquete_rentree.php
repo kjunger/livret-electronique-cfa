@@ -1,5 +1,6 @@
 <?php
 if(isset($_GET['save'])) {
+    //Test PDF
     require_once CLSS_DIR . '/fpdf.php';
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();

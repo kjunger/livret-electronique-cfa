@@ -1,33 +1,59 @@
 <?php
-/*
-* Classe user
-* Gère les différents utilisateurs et les informations qu'ils sont amenés à manipuler
-*/
-require_once 'db.class.php';
- // Inclusion de la classe db, utilisée par la classe abstraite user
-abstract class user
 
+/*
+ * CLASSE USER
+ * POUR LA GESTION DES UTILISATEURS
+ * --Description:
+ * --Chaque type d'utilisateurs dérive d'une même classe abstraite "user"
+ * --disposant des méthodes de base communes à chaque type (initialisation de la
+ * --base de données, récupération des informations de base de l'utilisateur,
+ * --vérification du mot de passe...). Toutefois, le constructeur de la classe
+ * --abstraite ne peut être appellé (car impossible d'instancier un objet
+ * --à partir d'une classe abstraite) ; chaque objet créé doit être un instance
+ * --d'une classe fille de la classe abstraite, et chaque classe fille doit
+ * --posséder son propre constructeur avec au moins les mêmes paramètres que le
+ * --constructeur parent, contenant un appel à ce même constucteur parent
+ * --(celui de la classe abstraite) suivi de ses propres instructions,
+ * --comme dans cet exemple simple de classe fille :
+ * final class classe_fille extends user {
+ *      public function __construct($db, $id) {
+ *          parent::__construct($db,$id);
+ *          //Autres instructions propres au constructeur de la classe fille
+ *      }
+ * }
+ */
+
+require_once 'db.class.php';    //La classe db est requise pour instancier et gérer la base de données
+
+abstract class user             //Classe abstraite user, dont dérive toutes les filles.
 {
-    protected $db;
-    protected $user = array();
+    //Variables de la classe, dont bénéficient ses filles
+    protected $db;              //Stocke une instance de base de données
+    protected $user = array();  //Tableau associatif pour stocker les informations de l'utilisateur
+
+    //Constructeur de la classe abstraite user
     protected function __construct($db, $id)
     {
-        $this->initDb($db);
-        $this->db->setErrorCallbackFunction("echo");
+        $this->initDb($db);     //Instanciation et stockage d'une connexion à la base de données
+        $this->initUser($id);   //Récupération et stockage des informations de base pour l'utilisateur
+    }
+
+    //Méthodes de la classe user (héritées par chaque classe fille)
+    private function initDb($db)    //Pour instancier et stocker un base de données, avec en paramètre un tableau associatif contenant les informations de connexion à celle-ci
+    {
+        $this->db = new db("mysql:host=" . $db["host"] . ";port=" . $db["port"] . ";dbname=" . $db["name"], $db["user"], $db["pass"]);  //Instanciation d'un objet de classe db
+        $this->db->setErrorCallbackFunction("echo");    //Paramétrage de l'affichage des erreurs SQL renvoyées (le cas échéant) par la base de données
+        /** Forcer l'encodage des chaînes de caractères en UTF-8 **/
         $stmt = <<<STR
                 SET CHARACTER SET utf8;
 STR;
         $this->db->run($stmt);
-        $this->initUser($id);
+        /*****/
     }
-    private function initDb($db)
+    private function initUser($id)  //Pour récupérer et stocker les données de base de l'utilisateur
     {
-        $this->db = new db("mysql:host=" . $db["host"] . ";port=" . $db["port"] . ";dbname=" . $db["name"], $db["user"], $db["pass"]);
-    }
-    private function initUser($id)
-    {
-        $search = $this->db->select("Utilisateur", "idUtilisateur = " . $id);
-        $this->user['user'] = array(
+        $search = $this->db->select("Utilisateur", "idUtilisateur = " . $id);   //Exécution d'une requête SELECT sur la base de données
+        $this->user['user'] = array(    //Stockage des résultats dans le tableau associatif $user
             'id' => $search[0]['idUtilisateur'],
             'login' => $search[0]['login'],
             'nom' => $search[0]['nom'],
@@ -37,40 +63,48 @@ STR;
             'email' => $search[0]['email']
         );
     }
-    public function returnUser()
-
+    public function checkPassword($pass)    //Pour vérifier le mot de passe utilisateur (par exemple, si le mot de passe est demandé pour la validation d'un formulaire)
     {
-        return $this->user;
-    }
-    public function returnDb()
-
-    {
-        return $this->db;
-    }
-    public function checkPassword($pass)
-
-    {
-        $search = $this->db->select("Utilisateur", "idUtilisateur = " . $this->user['user']['id']);
-        if ($search[0]['pass'] == md5($pass)) {
+        $search = $this->db->select("Utilisateur", "idUtilisateur = " . $this->user['user']['id']); //Récupération des infos utilisateur
+        if ($search[0]['pass'] == md5($pass)) {     //Si mot de passe stocké dans base == mot de passe saisi
             return true;
         }
-        else {
+        else {      //Si mot de passe incorrect
             return false;
         }
     }
-}
-final class apprenti extends user
-
-{
-    public function __construct($db, $id)
-
+    public function returnUser()    //Retourne le tableau associatif contenant les informations de l'utilisateur
     {
-        parent::__construct($db, $id);
-        $this->getApprenti();
-        $this->getMaitreApprentissage();
-        $this->getTuteurPedagogique();
+        return $this->user;
     }
-    // Getters
+    public function returnDb()      //Retourne la base de données associée à l'utilisateur en cours
+    {
+        return $this->db;
+    }
+}
+
+/*
+ * CLASSES FILLES
+ * --Une par type d'utilisateur
+ */
+
+final class apprenti extends user
+{
+    //Constructeur de la classe apprenti
+    public function __construct($db, $id)
+    {
+        parent::__construct($db, $id);      //Appel du constructeur de la classe mère
+        $this->getApprenti();               //Récupération des infos supplémentaires de l'apprenti(e)
+        $this->getMaitreApprentissage();    //Récupération des infos du maître d'apprentissage associé à l'apprenti(e)
+        $this->getTuteurPedagogique();      //Récupération des infos du tuteur pédagogique associé à l'apprenti(e)
+    }
+
+    /*
+     * GETTERS
+     * --Récupère les informations supplémentaires nécessaires à un utilisateur
+     * --de type apprenti
+     */
+
     private function getApprenti()
     {
         $searchApprenti = $this->db->select("InfosApprenti", "idApprenti = " . $this->user['user']['id']);
@@ -194,7 +228,6 @@ final class maitreapprentissage extends user
         $searchIdContrat = $this->db->select("ContratApprentissage", "idMaitreApprentissage = " . $this->user['user']['id']);
         $this->user['user']['idcontrat'] = $searchIdContrat[0]['idContratApprentissage'];
     }
-    // Getters
     private function getEntreprise()
     {
         $stmt = <<<STR
@@ -305,7 +338,6 @@ final class tuteurpedagogique extends user
         $this->getApprenti();
         $this->getMaitreApprentissage();
     }
-    // Getters
     private function getTuteurPedagogique()
     {
         $stmtFormation = <<<STR

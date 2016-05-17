@@ -1,5 +1,6 @@
 <?php
 if(isset($_GET['save'])) {
+    //test PDF
     require_once CLSS_DIR . '/fpdf.php';
     $fiche = new FPDF('P','mm','A4');
     $fiche->AddPage();
@@ -71,12 +72,7 @@ if(isset($_GET['save'])) {
                 <option value="cdi">CDI</option>
             </select>
             <input placeholder="Fonctions attachées au poste" type="text" />
-            <h2>Entreprise</h2>
-            <input placeholder="Raison sociale" type="text" />
-            <input placeholder="Adresse du siège social" type="text" />
-            <input placeholder="Complément d'adresse" type="text" />
-            <input placeholder="Code postal" type="text" pattern="[0-9]{5}" />
-            <input placeholder="Ville" type="text" />
+            <input placeholder="Nom de l'entreprise" type="text" />
         </div>
     </div>
     <div class="conteneur large">

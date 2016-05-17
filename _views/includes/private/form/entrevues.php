@@ -1,6 +1,5 @@
 <?php
     if(isset($_GET['save'])) {
-        //Ecrire directives pour l'enregistrement en PDF
         $forms->setFormComplete($_GET['id'], '_files/formulaires/Contrat' . $userInfo['user']['idcontrat'] . '-' . $userInfo['user']['nom'] . '-' . $_GET['name'] . '.pdf');
         header('Location:index.php');
     }

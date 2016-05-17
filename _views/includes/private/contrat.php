@@ -81,7 +81,7 @@ if ($user->getSignature() == false) {
                     <div class="contenu">
                         <p>Je soussigné, M./Mme
 STR;
-    echo $userInfo['user']['prenom'] . ' ' . $userInfo['user']['nom'];
+    echo ' ' . $userInfo['user']['prenom'] . ' ' . $userInfo['user']['nom'];
     echo <<<STR
                         , accepte par la présente signature les différentes clauses du contrat et m'engage à les respecter.</p>
                         <input id="signature" type="checkbox" />
