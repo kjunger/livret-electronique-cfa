@@ -136,6 +136,12 @@ h3{
 .info{
 	font-size: 0.75em;
 }
+
+@media screen and (max-width: 400px){
+h3{
+	margin-left: 0;
+}
+}
 /******/
 
 
@@ -167,7 +173,7 @@ header p{
 	right:13.125em;
 	z-index:4;
 }
-#nom{
+#nom-user{
 	font-size:2em;
 }
 
@@ -287,14 +293,16 @@ header p{
   display: block;
   position: relative;
 }
+
 #cssmenu ul{
   margin:0;
-  overflow: auto;
 }
+
 #cssmenu ul ul {
 	margin:0;
   	font-size:0.8em;
 }
+
 #cssmenu > ul > li > a {
   padding: 16px 22px;
   cursor: pointer;
@@ -841,7 +849,6 @@ div.screen.animate-user{
 	margin: 1.5em auto;
 	width:90%;
 	min-width: 430px;
-	min-height:50%;
 }
 }
 
@@ -850,7 +857,6 @@ div.screen.animate-user{
 	margin: 1.5em auto;
 	width:90%;
 	min-width: 285px;
-	min-height:80%;
 }
 }
 /******/
@@ -858,6 +864,16 @@ div.screen.animate-user{
 
 
 /*FORMULAIRES*/
+fieldset{
+	margin: 1.5em 0;
+	padding-bottom: 2em;
+	border: 1px solid #b9c1ca;
+}
+
+fieldset h3:first-child{
+	margin-top: 1em;
+}
+
 /*champ de saisie*/
 input, textarea{
 	font-size: 100%;
@@ -1204,6 +1220,18 @@ input[type="radio"]:checked+label:before {
 }
 /****/
 
+/*date*/
+input.date{
+	width: 160px;
+	padding: 0.65em 0.5em; 
+}
+
+input.date + .input-label::before,
+input.date + .input-label::after{
+	height: 100%;
+}
+/****/
+
 /*bouton valider*/
 .submit{
 	overflow: hidden;
@@ -1283,8 +1311,11 @@ input[type="radio"]:checked+label:before {
 
 
 /*LISTES*/
-.ul-simple{
+ul{
 	list-style-type: none;
+}
+
+.ul-simple{
 	padding: 0;
 }
 
