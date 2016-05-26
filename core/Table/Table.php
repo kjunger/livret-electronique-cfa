@@ -15,8 +15,11 @@ class Table {
     public function all() {
         return $this->query('SELECT * FROM ' . $this->table);
     }
-    public function find($id) {
-        return $this->query("SELECT * FROM {$this->table} WHERE id{$this->table} = ?", [$id], true);
+    public function find($id, $append=null) {
+        if(is_null($append)) {
+            $append = $this->table;
+        }
+        return $this->query("SELECT * FROM {$this->table} WHERE id". ucfirst($append) ." = ?", [$id], true);
     }
     public function update($id, $fields) {
         $sql_parts  = array();

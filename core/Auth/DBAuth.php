@@ -22,6 +22,11 @@ class DBAuth {
             }
         }
     }
+    public function logout() {
+        $_SESSION = [];
+        session_destroy();
+        header('Location:login.php');
+    }
     public function logged() {
         return isset($_SESSION['auth']);
     }

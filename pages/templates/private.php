@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="?p=private.logout">
                         <img src="icons/deconnexion_blanc.svg" alt="" />Deconnexion
                     </a>
                 </li>
@@ -131,7 +131,7 @@
                     <li class="separateur">-
                     </li>
                     <li>
-                        <a href="">
+                        <a href="?p=private.logout">
                             <img src="icons/deconnexion.svg" alt="" />Deconnexion
                         </a>
                     </li>
