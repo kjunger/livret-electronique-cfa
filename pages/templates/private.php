@@ -58,7 +58,7 @@
         </ul>
     </nav>
     <div id="deconnexion-mobile">
-        <p></p>
+        <p><?= App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth'])->getFullName(); ?></p>
         <div id="contenu-menu-user">
             <ul>
                 <li>
@@ -112,7 +112,7 @@
             <p>
                 Bienvenue,
                 <br/>
-                <span id="nom"></span>
+                <span id="nom"><?= App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth'])->getFullName(); ?></span>
             </p>
             <div id="user">
                 <img src="icons/user.svg" alt="" />

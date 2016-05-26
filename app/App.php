@@ -2,7 +2,7 @@
 use Core\Config;
 use Core\Database\MysqlDatabase;
 class App {
-    public $title = "Blog";
+    //public $title = "Blog";
     private $db_instance;
     private static $_instance;
     public static function getInstance() {
@@ -17,6 +17,10 @@ class App {
         App\Autoloader::register();
         require ROOT . '/core/Autoloader.php';
         Core\Autoloader::register();
+    }
+    public function getTable($name) {
+        $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
+        return new $class_name($this->getDb());
     }
     public function getDb() {
         $config = Config::getInstance(ROOT . '/config/config.php');
