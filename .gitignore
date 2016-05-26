@@ -6,3 +6,4 @@
 *.ini
 *.sublime-workspace
 /nbproject/*
+*.ftpsync_settings
