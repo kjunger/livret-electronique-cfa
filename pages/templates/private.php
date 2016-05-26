@@ -22,7 +22,7 @@
         <img src="img/logo.png" alt="Logo CFA-CFC" id="menu-logo" />
         <ul>
             <li>
-                <a href="">
+                <a href="private.php">
                     <div class="accueil">Accueil</div>
                 </a>
             </li>
@@ -41,7 +41,7 @@
                 </ul>
             </li>
             <li>
-                <a href="">
+                <a href="?p=private.contrat">
                     <div class="contrat">Contrat</div>
                 </a>
             </li>
@@ -62,7 +62,7 @@
         <div id="contenu-menu-user">
             <ul>
                 <li>
-                    <a href="index.php?cat=profil">
+                    <a href="?p=private.profile">
                         <img src="icons/user_blanc.svg" alt="" />Profil
                     </a>
                 </li>
@@ -124,7 +124,7 @@
             <div id="deconnexion" class="">
                 <ul class="hidden">
                     <li>
-                        <a href="index.php?cat=profil">
+                        <a href="?p=private.profile">
                             <img src="icons/user.svg" alt="" />Profil
                         </a>
                     </li>

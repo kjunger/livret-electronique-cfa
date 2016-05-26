@@ -1,6 +1,9 @@
 <?php
+    $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
+    if($auth->logged()){
+        header('Location:private.php');
+    }
     if(!empty($_POST)){
-        $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
         if ($auth->login($_POST['login'], $_POST['pass'])) {
             header('Location:private.php');
         }
