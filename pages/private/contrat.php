@@ -41,7 +41,7 @@
         </ul>
     </div>
 </div>
-<form action="index.php?cat=' . $_GET['cat'] . '&save=1" method="post">
+<form action="" method="post">
     <div class="conteneur large">
         <div class="titre">
             <h2>Signature</h2>

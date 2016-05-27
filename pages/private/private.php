@@ -3,6 +3,7 @@
     $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
     if($user->type !== 'maitreApprentissage') {
         $maitreApp = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idMaitreApprentissage, "maitreApprentissage", $_SESSION['auth'], $user->type);
+        $formation = App::getInstance()->getTable('Utilisateur')->formation($_SESSION['auth']);
     }
     if($user->type !== 'tuteurPedagogique') {
         $tuteur = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idTuteurPedagogique, "tuteurPedagogique", $_SESSION['auth'], $user->type);
@@ -17,6 +18,23 @@
             <h1>Informations générales</h1>
         </div>
         <div class="contenu">
+            <?php
+            if($user->type === 'apprenti' || $user->type === 'tuteurPedagogique') {
+                if($user->type === 'apprenti') {
+                ?>
+                    <h2>Formation actuelle</h2>
+                <?php
+                } elseif($user->type === 'tuteurPedagogique') {
+                ?>
+                    <h2>Formation de rattachement</h2>
+                <?php
+                }
+            ?>
+                <p><?= $formation->intituleFormation; ?></p>
+                <span class="info"><?= $formation->nomComposante . ' - ' . $formation->villeComposante; ?></span>
+            <?php
+            }
+            ?>
             <?php
             if($user->type !== 'apprenti') {
             ?>

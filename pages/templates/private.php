@@ -1,3 +1,6 @@
+<?php
+header('content-type: text/html; charset=utf-8');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,6 +34,9 @@
                     <div class="form">Formulaires</div>
                 </a>
                 <ul>
+                    <?php foreach(App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], 'form') as $form): ?>
+                    <li><a href="<?= $form->getUrl(); ?>"><?= $form->intitule; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </li>
             <li class="has-sub">
@@ -38,6 +44,9 @@
                     <div class="eval">Evaluations</div>
                 </a>
                 <ul>
+                    <?php foreach(App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], 'eval') as $eval): ?>
+                    <li><a href="<?= $eval->getUrl(); ?>"><?= $eval->intitule; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </li>
             <li>

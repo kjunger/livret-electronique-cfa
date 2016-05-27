@@ -15,6 +15,10 @@ switch ($page) {
     case 'private.profile':
         require ROOT . '/pages/private/profile.php';
         break;
+    case 'private.form':
+    case 'private.eval':
+        require ROOT . '/pages/private/form.php';
+        break;
     case 'private.contrat':
         require ROOT . '/pages/private/contrat.php';
         break;
@@ -25,3 +29,4 @@ switch ($page) {
 }
 $content = ob_get_clean();
 require ROOT . '/pages/templates/private.php';
+ob_flush();

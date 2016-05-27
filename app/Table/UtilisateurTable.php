@@ -19,6 +19,17 @@ class UtilisateurTable extends Table {
         );
     }
     public function formation($id_utilisateur) {
-
+        return $this->query(
+            "SELECT *
+            FROM Composante INNER JOIN
+                (Formation INNER JOIN
+                    (RattachementFormation INNER JOIN Utilisateur
+                    ON RattachementFormation.idUtilisateur = Utilisateur.idUtilisateur)
+                ON Formation.idFormation = RattachementFormation.idFormation)
+            ON Composante.idComposante = Formation.idComposante
+            WHERE Utilisateur.idUtilisateur = ?",
+            [$id_utilisateur],
+            true
+        );
     }
 }
