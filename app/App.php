@@ -2,15 +2,21 @@
 use Core\Config;
 use Core\Database\MysqlDatabase;
 class App {
-    //public $title = "Blog";
     private $db_instance;
     private static $_instance;
+    /**
+     * [[Description]]
+     * @return [[Type]] [[Description]]
+     */
     public static function getInstance() {
         if (is_null(self::$_instance)) {
             self::$_instance = new App();
         }
         return self::$_instance;
     }
+    /**
+     * [[Description]]
+     */
     public static function load() {
         session_start();
         require ROOT . '/app/Autoloader.php';
@@ -18,10 +24,19 @@ class App {
         require ROOT . '/core/Autoloader.php';
         Core\Autoloader::register();
     }
+    /**
+     * [[Description]]
+     * @param  [[Type]] $name [[Description]]
+     * @return [[Type]] [[Description]]
+     */
     public function getTable($name) {
         $class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
         return new $class_name($this->getDb());
     }
+    /**
+     * [[Description]]
+     * @return [[Type]] [[Description]]
+     */
     public function getDb() {
         $config = Config::getInstance(ROOT . '/config/config.php');
         if (is_null($this->db_instance)) {
@@ -29,12 +44,18 @@ class App {
         }
         return $this->db_instance;
     }
-    public function forbidden() {
+    /**
+     * [[Description]]
+     */
+    public static function forbidden() {
         header('HTTP/1.0 403 Forbidden');
-        die('Accès interdit');
+        header('Location:403.php');
     }
-    public function notFound() {
+    /**
+     * [[Description]]
+     */
+    public static function notFound() {
         header('HTTP/1.0 404 Not Found');
-        die('Page introuvable');
+header('Location:404.php');
     }
 }

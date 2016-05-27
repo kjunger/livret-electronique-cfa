@@ -2,6 +2,10 @@
 define('ROOT', dirname(__DIR__));
 require ROOT . '/app/App.php';
 App::load();
+$auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
+if($auth->logged() === FALSE) {
+    App::forbidden();
+}
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
@@ -23,8 +27,10 @@ switch ($page) {
         require ROOT . '/pages/private/contrat.php';
         break;
     case 'private.logout':
-        $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
         $auth->logout();
+        break;
+    default:
+        App::notFound();
         break;
 }
 $content = ob_get_clean();

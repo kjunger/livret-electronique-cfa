@@ -7,3 +7,5 @@
 *.sublime-workspace
 /nbproject/*
 *.ftpsync_settings
+/latex/
+/html/

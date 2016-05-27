@@ -12,6 +12,9 @@ switch ($page) {
     case 'login':
         require ROOT . '/pages/login/login.php';
         break;
+    default:
+        App::notFound();
+        break;
 }
 $content = ob_get_clean();
 require ROOT . '/pages/templates/login.php';
