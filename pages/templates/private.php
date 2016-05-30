@@ -55,13 +55,8 @@ header('content-type: text/html; charset=utf-8');
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="?p=private.fichiers">
                     <div class="fichiers">Fichiers</div>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <div class="contacts">Contacts</div>
                 </a>
             </li>
         </ul>

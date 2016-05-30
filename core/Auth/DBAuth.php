@@ -23,4 +23,12 @@ class DBAuth {
     public function logged() {
         return isset($_SESSION['auth']);
     }
+    public function checkPassword($password) {
+        if($this->logged()) {
+            $user = $this->db->prepare('SELECT * FROM Utilisateur WHERE idUtilisateur = ?', [$_SESSION['auth']], null, true);
+            if($user->pass === md5($password)) {
+                return true;
+            }
+        }
+    }
 }

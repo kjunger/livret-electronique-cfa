@@ -26,6 +26,9 @@ switch ($page) {
     case 'private.contrat':
         require ROOT . '/pages/private/contrat.php';
         break;
+    case 'private.fichiers':
+        require ROOT . '/pages/private/fichiers.php';
+        break;
     case 'private.logout':
         $auth->logout();
         break;

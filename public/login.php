@@ -18,4 +18,3 @@ switch ($page) {
 }
 $content = ob_get_clean();
 require ROOT . '/pages/templates/login.php';
-ob_flush();
