@@ -12,7 +12,7 @@ if (isset($_GET['p'])) {
     $page = 'private';
 }
 ob_start();
-switch ($page) {
+switch ($page) {    //A améliorer (avec modèle MVC ?)
     case 'private':
         require ROOT . '/pages/private/private.php';
         break;

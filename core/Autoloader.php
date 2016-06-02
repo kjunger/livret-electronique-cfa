@@ -2,7 +2,7 @@
 namespace Core;
 class Autoloader {
     /**
-     * [[Description]]
+     * Méthode register - gère le chargement automatique des classes lors de leur appel - utilise la méthode autoload()
      */
     static function register() {
         spl_autoload_register(array(
@@ -11,8 +11,8 @@ class Autoloader {
         ));
     }
     /**
-     * [[Description]]
-     * @param [[Type]] $class [[Description]]
+     * Méthode autoload - parseur de classes
+     * @param string $class Nom de la classe avec les namespaces - ex : \Core\Table\Table
      */
     static function autoload($class) {
         if (strpos($class, __NAMESPACE__ . '\\') === 0) {

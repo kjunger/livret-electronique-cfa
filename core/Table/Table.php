@@ -5,7 +5,7 @@ class Table {
     protected $table;
     protected $db;
     /**
-     * Constructeur de la classe générique Table
+     * Constructeur de la classe mère Table
      * @private
      * @param object Database $db Demande un objet de classe Database pour pouvoir intéragir avec les tables d'une base de données
      */
@@ -19,16 +19,16 @@ class Table {
     }
     /**
      * Méthode all() - Exécute une requête SQL demandant la récupération de toutes les données d'une table
-     * @return object Entity Retourne un objet de classe Entity avec les résultats de la requête
+     * @return object Retourne un objet de classe avec les résultats de la requête
      */
     public function all() {
         return $this->query('SELECT * FROM ' . $this->table);
     }
     /**
      * Méthode find() - Exécute une requête SQL demandant la récupération de toutes les données d'une table quand l'id d'une ligne est égal à $id
-     * @param  integer $id                 L'id associé aux résultats souhaités
-     * @param  string  [$append=null]      Paramètre optionnel - dans le cas où le champ id ne s'appelle pas simplement id (exemple : "idNomDeLaTable") - stocke une string avec le suffixe à utiliser, ou équivaut à null par défaut
-     * @return object Entity               Retourne un objet de classe Entity avec les résultats de la requête
+     * @param  integer $id            L'id associé aux résultats souhaités
+     * @param  string  [$append=null] Paramètre optionnel - dans le cas où le champ id ne s'appelle pas simplement id (exemple : "idNomDeLaTable") - stocke une string avec le suffixe à utiliser, ou équivaut à null par défaut
+     * @return object  Retourne un objet avec les résultats de la requête
      */
     public function find($id, $append=null) {
         if(is_null($append)) {
@@ -83,7 +83,7 @@ class Table {
      * @param  string  $statement           Requête SQL à exécuter
      * @param  array   [$attributes = null] Paramètre optionnel - dans le cas où la requête SQL contient des conditions du type WHERE, LIKE, BETWEEN, etc... mais également dans le cas où la requête modifie la base (requête de type UPDATE, DELETE, INSERT...) - stocke un tableau associatif avec les valeurs nécessaires à la requête, ou équivaut à null par défaut
      * @param  boolean [$one = false]       Paramètre optionnel - pour spécifier (dans le cas d'une requête de type SELECT notamment) si l'on attend un seul résultat en retour (true) ou plusieurs (false, comportement par défaut)
-     * @return object Entity                Retourne un objet de classe Entity avec les résultats de la requête
+     * @return object  Retourne un objet de classe avec les résultats de la requête
      */
     public function query($statement, $attributes = null, $one = false) {
         if ($attributes) {

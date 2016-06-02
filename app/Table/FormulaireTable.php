@@ -2,6 +2,12 @@
 namespace App\Table;
 use \Core\Table\Table;
 class FormulaireTable extends Table {
+    /**
+     * Méthode allAccessible() - liste tous les formulaires accessibles en édition par l'utilisateur en cours
+     * @param integer $id_utilisateur 
+     * @param string $type_form 
+     * @return object Retourne la liste des formulaires concernés
+     */
     public function allAccessible($id_utilisateur, $type_form) {
         return $this->query(
             "SELECT Formulaire.nom, Formulaire.intitule, Formulaire.type
