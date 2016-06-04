@@ -1,11 +1,15 @@
 <?php
 use Core\Config;
 use Core\Database\MysqlDatabase;
+/**
+ * Classe App
+ * Classe centrale de l'application
+ */
 class App {
     private $db_instance;
     private static $_instance;
     /**
-     * méthode getInstance() - pour récupérer une instance de la classe App, à la volée ou non
+     * Méthode getInstance() - pour récupérer une instance de la classe App, à la volée ou non
      * @return object Retourne une instance de l'application sous la forme d'un objet de classe App
      */
     public static function getInstance() {

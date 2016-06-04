@@ -44,7 +44,7 @@
                 <br /><span class="info"><?= $apprenti->email; ?></span>
             <?php
             }
-            if($user->type !== 'maitreApprentissage') {
+            if($user->type !== 'maitreApprentissage' && $maitreApp !== false) {
             ?>
                 <h2>Maitre d'apprentissage</h2>
                 <p><?= $maitreApp->prenom . ' ' . $maitreApp->nom; ?></p>
@@ -52,7 +52,7 @@
                 <br /><span class="info"><?= $maitreApp->email; ?></span>
             <?php
             }
-            if($user->type !== 'tuteurPedagogique') {
+            if($user->type !== 'tuteurPedagogique' && $tuteur !== false) {
             ?>
                 <h2>Tuteur pédagogique</h2>
                 <p><?= $tuteur->prenom . ' ' . $tuteur->nom; ?></p>
@@ -67,6 +67,19 @@
         <div class="titre">
             <h1>Important</h1>
         </div>
-        <div class="contenu"></div>
+        <div class="contenu">
+            <?php
+            if($contrat->getSignature($user->type) === null) {
+            ?>
+            <h2>Contrat pédagogique</h2>
+            <p>Vous devez impérativement signer le contrat pédagogique.</p>
+            <?php
+            }
+            /*var_dump(App::getInstance()->getTable('Formulaire')->isComplete($_SESSION['auth']));*/
+            /*foreach(App::getInstance()->getTable('Formulaire')->isComplete($_SESSION['auth']) as $forms) {
+                var_dump($forms);
+            }*/
+            ?>
+        </div>
     </div>
 </div>

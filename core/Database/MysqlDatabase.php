@@ -1,6 +1,10 @@
 <?php
 namespace Core\Database;
 use \PDO;
+/**
+ * Classe Core\Database\MysqlDatabase
+ * Pour gérer une base de données MySQL en utilisant PDO
+ */
 class MysqlDatabase extends Database {
     private $db_name;
     private $db_user;

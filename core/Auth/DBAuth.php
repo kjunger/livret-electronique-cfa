@@ -1,26 +1,30 @@
 <?php
 namespace Core\Auth;
 use Core\Database\Database;
+/**
+ * Classe Core\Auth\DBAuth
+ * Gère l'authentification des utilisateurs enregistrés dans la base de données
+ */
 class DBAuth {
     private $db;
     /**
      * Constructeur de la class DBAuth
      * @private
-     * @param Database Database $db Demande une instance d'une base de données
+     * @param object Database $db Instance de la base de données
      */
     public function __construct(Database $db) {
         $this->db = $db;
     }
     /**
      * Méthode login() - pour la connexion d'un utilisateur
-     * @param  string  $username
-     * @param  string  $password
+     * @param  string  $username Login
+     * @param  string  $password Mot de passe
      * @return boolean True si le mot de passe est vérifié
      */
     public function login($username, $password) {
         $user = $this->db->prepare('SELECT * FROM Utilisateur WHERE login = ?', [$username], null, true);
         if ($user) {
-            if ($user->pass === md5($password)) {   //utiliser une méthode de cryptage plus sécurisée
+            if ($user->pass === hash('sha512', $password)) {
                 $_SESSION['auth'] = $user->idUtilisateur;
                 return true;
             }
@@ -43,13 +47,13 @@ class DBAuth {
     }
     /**
      * Méthode checkPassword() - pour vérifier le mot de passe de l'utilisateur s'il est demandé
-     * @param  string $password
-     * @return boolean  True s'il est vérifié
+     * @param  string  $password Mot de passe
+     * @return boolean True s'il est vérifié
      */
     public function checkPassword($password) {  //légère redondance avec la partie de vérification du mdp dans login()
         if($this->logged()) {
             $user = $this->db->prepare('SELECT * FROM Utilisateur WHERE idUtilisateur = ?', [$_SESSION['auth']], null, true);
-            if($user->pass === md5($password)) {    //utiliser une méthode de cryptage plus sécurisée
+            if($user->pass === hash('sha512', $password)) {
                 return true;
             }
         }

@@ -76,30 +76,6 @@ header('content-type: text/html; charset=utf-8');
                     </a>
                 </li>
             </ul>
-            <img src="img/logo_univ_rouen.png" alt="Logo Université de Rouen" id="logo_univ_blanc" />
-            <img src="img/logo_iut_rouen.png" alt="Logo Composante" id="logo_etab_blanc" />
-        </div>
-        <div class="footer-menu">
-            <div id="content-footer-menu">
-                <ul>
-                    <li>
-                        <a href="">Contact</a>
-                    </li>
-                    <li>
-                        <a href="">Mentions légales</a>
-                    </li>
-                </ul>
-                <ul class="img-footer-menu">
-                    <li>
-                        <img src="img/logo_region.png" alt="Logo Région Normandie" class="logo_region_menu" />
-                    </li>
-                    <li class="separateur">-
-                    </li>
-                    <li>
-                        <img src="img/logo_ministere.png" alt="Logo Ministère de l'Enseignement Supérieur et de la Recherche" class="logo_ministere_menu" />
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
     <div class="screen">
@@ -143,23 +119,7 @@ header('content-type: text/html; charset=utf-8');
             </div>
         </header>
         <div id="main">
-            <p id="breadcrumbs">
-                <?= $content; ?>
-            </p>
+            <p id="breadcrumbs"></p><?= $content; ?>
         </div>
-        <footer>
-            <img src="img/logo_univ_rouen.png" alt="Logo Université de Rouen" id="logo_univ" />
-            <img src="img/logo_iut_rouen.png" alt="Logo Composante" id="logo_etab" />
-            <ul>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-                <li>
-                    <a href="#">Mentions légales</a>
-                </li>
-            </ul>
-            <img src="img/logo_region.png" alt="Logo Région Normandie" id="logo_region" />
-            <img src="img/logo_ministere.png" alt="Logo Ministère de l'Enseignement Supérieur et de la Recherche" id="logo_ministere" />
-        </footer>
     </div>
 </body>

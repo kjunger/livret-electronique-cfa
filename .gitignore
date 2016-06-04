@@ -9,3 +9,4 @@
 *.ftpsync_settings
 /latex/
 /html/
+*.db

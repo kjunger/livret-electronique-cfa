@@ -1,5 +1,9 @@
 <?php
 namespace App;
+/**
+ * Classe App\Autoloader
+ * Gère le chargement automatique des classes dans le namespace (et dossier) App lors de l'instanciation d'un objet de la classe susvisée
+ */
 class Autoloader {
     /**
      * Méthode register - gère le chargement automatique des classes lors de leur appel - utilise la méthode autoload()

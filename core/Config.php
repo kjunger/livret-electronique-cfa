@@ -1,11 +1,15 @@
 <?php
 namespace Core;
+/**
+ * Classe Core\Config
+ * Récupère la configuration pour la base de données à utiliser
+ */
 class Config {
     private $settings = array();
     private static $_instance;
     /**
      * méthode getInstance() - pour récupérer une instance de la classe Config, à la volée ou non
-     * @param string $file Nom du fichier de configuration (plus le chemin y menant, le cas échéant) à récupérer
+     * @param  string $file Nom du fichier de configuration (plus le chemin y menant, le cas échéant) à récupérer
      * @return object Retourne une instance de l'application sous la forme d'un objet de classe Config
      */
     public static function getInstance($file) {
@@ -17,15 +21,15 @@ class Config {
     /**
      * Constructeur de la classe Config
      * @private string $file Nom du fichier de configuration (plus le chemin y menant, le cas échéant) à récupérer
-     * @param string $file 
+     * @param string $file
      */
     public function __construct($file) {
         $this->settings = require $file;
     }
     /**
      * Méthode get() - Pour récupérer une valeur du tableau stocké dans le fichier de configuration
-     * @param  string $key 
-     * @return Le contenu de la clé demandée (integer ou string)
+     * @param  string         $key La clé demandée
+     * @return integer/string Le contenu de la clé demandée (integer ou string)
      */
     public function get($key) {
         if (!isset($this->settings[$key])) {

@@ -1,3 +1,7 @@
+<?php
+$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
+$infos_apprenti = App::getInstance()->getTable('InfosApprenti')->find($_SESSION['auth'], 'Apprenti');
+?>
 <div class="content">
     <h1>Fiche de renseignements</h1>
     <form action="" method="post">
@@ -6,16 +10,16 @@
                 <h1>Apprenti</h1>
             </div>
             <div class="contenu">
-                <input placeholder="Nom" name="nomApprenti" type="text" value="" />
-                <input placeholder="Prénom" name="prenomApprenti" type="text" value="" />
-                <input placeholder="Date de naissance (jj/mm/aaaa)" name="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" />
-                <input placeholder="Lieu de naissance" name="lieuNaissanceApprenti" type="text" />
-                <input placeholder="Adresse" name="adresseApprenti" type="text" value="" />
-                <input placeholder="Code postal" name="cpApprenti" type="text" pattern="[0-9]{5}" value="" />
-                <input placeholder="Ville" name="villeApprenti" type="text" value="" />
-                <input placeholder="Email" name="mailApprenti" type="email" value="" />
-                <input placeholder="Téléphone" name="telApprenti" type="tel" pattern="0[0-9]{9}" value="" />
-                <input placeholder="Portable" name="portApprenti" type="tel" pattern="0[0-9]{9}" value="" />
+                <input placeholder="Nom" name="nomApprenti" type="text" value="<?= $user->nom; ?>" />
+                <input placeholder="Prénom" name="prenomApprenti" type="text" value="<?= $user->prenom; ?>" />
+                <input placeholder="Date de naissance (jj/mm/aaaa)" name="dateNaissanceApprenti" type="text" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" value="<?= str_replace("-", "/", $infos_apprenti->dateNaissance); ?>" />
+                <input placeholder="Ville de naissance" name="villeNaissanceApprenti" type="text" value="<?= $infos_apprenti->villeNaissance; ?>" />
+                <input placeholder="Adresse" name="adresseApprenti" type="text" value="<?= $infos_apprenti->adApprenti; ?>" />
+                <input placeholder="Code postal" name="cpApprenti" type="text" pattern="[0-9]{5}" value="<?= $infos_apprenti->cpApprenti; ?>" />
+                <input placeholder="Ville" name="villeApprenti" type="text" value="<?= $infos_apprenti->villeApprenti; ?>" />
+                <input placeholder="Email" name="mailApprenti" type="email" value="<?= $user->email; ?>" />
+                <input placeholder="Téléphone" name="telApprenti" type="tel" pattern="0[0-9]{9}" value="<?= $user->tel; ?>" />
+                <input placeholder="Portable" name="portApprenti" type="tel" pattern="0[0-9]{9}" value="<?= $user->port; ?>" />
             </div>
         </div>
         <div class="conteneur large">

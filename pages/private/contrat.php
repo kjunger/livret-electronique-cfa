@@ -1,15 +1,16 @@
 <?php
     $user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
+    $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
+    $apprenti = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idApprenti, "apprenti", $_SESSION['auth'], $user->type);
     if(!empty($_POST)) {
         if(isset($_POST['acceptation'])) {
             $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
             if($auth->checkPassword($_POST['password'])){
-                App::getInstance()->getTable('ContratApprentissage')->sign($_SESSION['auth'], $user->type);
+                App::getInstance()->getTable('ContratApprentissage')->sign($_SESSION['auth'], $user->type, $apprenti->idUtilisateur);
                 header('Location:private.php?p=private.contrat&sign=success');
             } else { header('Location:private.php?p=private.contrat&sign=failure'); }
         } else { header('Location:private.php?p=private.contrat&sign=hasNotAccepted'); }
     }
-    $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
 ?>
 <div class="content">
     <h1>Contrat pédagogique</h1>
@@ -77,7 +78,7 @@
                 <?php
                 } elseif(isset($_GET['sign']) && $_GET['sign'] === 'hasNotAccepted') {
                 ?>
-                <p><strong>Vous n'avez donné votre engagement. Vous devez cocher la case pour donner votre engagement.</strong></p>
+                <p><strong>Vous n'avez pas donné votre engagement. Vous devez cocher la case pour donner votre engagement.</strong></p>
                 <?php
                 }
                 ?>
@@ -101,7 +102,7 @@
             <?php } ?>
         </div>
         <div class="contenu">
-            <p>Ce contrat a été signé le <?= $contrat->getSignature($user->type); ?>.</p>
+            <p><strong>Ce contrat a été signé le <?= $contrat->getSignature($user->type); ?>.</strong></p>
         </div>
     </div>
     <?php

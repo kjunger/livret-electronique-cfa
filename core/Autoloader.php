@@ -1,5 +1,9 @@
 <?php
 namespace Core;
+/**
+ * Classe Core\Autoloader
+ * Gère le chargement automatique des classes dans le namespace (et dossier) Core lors de l'instanciation d'un objet de la classe susvisée
+ */
 class Autoloader {
     /**
      * Méthode register - gère le chargement automatique des classes lors de leur appel - utilise la méthode autoload()
