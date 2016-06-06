@@ -3,7 +3,7 @@ namespace App\Entity;
 use Core\Entity\Entity;
 /**
  * Classe ContratApprentissageEntity
- * Contient des méthodes supplémentaires pour tout objet instancié et stocké dans une variable, qui héritent des méthodes de la classe ContratApprentissageTable
+ * Contient des méthodes pour tout objet de classe ContratApprentissageEntity instancié et stocké dans une variable
  */
 class ContratApprentissageEntity extends Entity {
     /**

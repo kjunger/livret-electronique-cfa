@@ -31,9 +31,18 @@
                     <div class="form">Formulaires</div>
                 </a>
                 <ul>
-                    <?php foreach(App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage) as $form): ?>
+                    <?php
+                    $forms = App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage);
+                    if(count($forms) !== 0){
+                    foreach($forms as $form): ?>
                     <li><a href="<?= $form->getUrl(); ?>"><?= $form->intitule; ?></a></li>
-                    <?php endforeach; ?>
+                    <?php
+                    endforeach;
+                    } else {
+                    ?>
+                    <li>Rien à afficher !</li>
+                    <?php
+                    } ?>
                 </ul>
             </li>
             <li class="has-sub">
@@ -41,9 +50,18 @@
                     <div class="eval">Evaluations</div>
                 </a>
                 <ul>
-                    <?php foreach(App::getInstance()->getTable('Evaluation')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage) as $eval): ?>
+                    <?php
+                    $evals = App::getInstance()->getTable('Evaluation')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage);
+                    if(count($evals) !== 0){
+                    foreach($evals as $eval): ?>
                     <li><a href="<?= $eval->getUrl(); ?>"><?= $eval->intitule; ?></a></li>
-                    <?php endforeach; ?>
+                    <?php
+                    endforeach;
+                    } else {
+                    ?>
+                    <li>Rien à afficher !</li>
+                    <?php
+                    } ?>
                 </ul>
             </li>
             <li>

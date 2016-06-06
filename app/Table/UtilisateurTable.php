@@ -4,7 +4,7 @@ use \Core\Table\Table;
 /**
  * Classe App\Table\UtilisateurTable
  * Contient les méthodes utiles pour la table Utilisateur.
- * Utilisables à la volée, ou sur un objet instancié et stocké dans une variable (objet de classe UtilisateurEntity)
+ * Utilisables à la volée
  */
 class UtilisateurTable extends Table {
     /**
@@ -46,6 +46,21 @@ class UtilisateurTable extends Table {
             WHERE {$this->table}.idUtilisateur = ?",
             [$id_utilisateur],
             true
-        );
+        );  //Requête à améliorer
+    }
+    /**
+     * Méthode infosApprenti() - dans le cas d'un apprenti, récupère des infos personnelles supplémentaires
+     * @param  integer $id_utilisateur L'ID de l'utilisateur en cours
+     * @return object  Retourne les informations supplémentaires
+     */
+    public function infosApprenti($id_utilisateur) {
+        return $this->query(
+            "SELECT *
+            FROM InfosApprenti INNER JOIN {$this->table}
+            ON InfosApprenti.idApprenti = {$this->table}.idUtilisateur
+            WHERE Utilisateur.idUtilisateur = ?",
+            [$id_utilisateur],
+            true
+        );  //Là aussi
     }
 }

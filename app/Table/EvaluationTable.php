@@ -4,7 +4,7 @@ use \Core\Table\Table;
 /**
  * Classe App\Table\EvaluationTable
  * Contient les méthodes utiles pour la table Evaluation.
- * Utilisables à la volée, ou sur un objet instancié et stocké dans une variable (objet de classe EvaluationEntity)
+ * Utilisables à la volée
  */
 class EvaluationTable extends Table {
     /**

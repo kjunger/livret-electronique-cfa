@@ -4,7 +4,7 @@ use \Core\Table\Table;
 /**
  * Classe App\Table\ContratApprentissageTable
  * Contient les méthodes utiles pour la table ContratApprentissage.
- * Utilisables à la volée, ou sur un objet instancié et stocké dans une variable (objet de classe ContratApprentissageEntity)
+ * Utilisables à la volée
  */
 class ContratApprentissageTable extends Table {
     /**

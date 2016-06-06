@@ -3,7 +3,7 @@ namespace App\Entity;
 use Core\Entity\Entity;
 /**
  * Classe EvaluationEntity
- * Contient des méthodes supplémentaires pour tout objet instancié et stocké dans une variable, qui héritent des méthodes de la classe EvaluationTable
+ * Contient des méthodes pour tout objet  de classe EvaluationEntityinstancié et stocké dans une variable
  */
 class EvaluationEntity extends Entity {
     /**

@@ -4,7 +4,7 @@ use \Core\Table\Table;
 /**
  * Classe App\Table\FormulaireTable
  * Contient les méthodes utiles pour la table Formulaire.
- * Utilisables à la volée, ou sur un objet instancié et stocké dans une variable (objet de classe FormulaireEntity)
+ * Utilisables à la volée
  */
 class FormulaireTable extends Table {
     /**
