@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 01 Juin 2016 à 15:05
+-- Généré le :  Lun 06 Juin 2016 à 13:25
 -- Version du serveur :  5.5.49-0+deb8u1
 -- Version de PHP :  5.6.20-0+deb8u1
 
@@ -69,7 +69,72 @@ CREATE TABLE IF NOT EXISTS `ContratApprentissage` (
 INSERT INTO `ContratApprentissage` (`idContratApprentissage`, `idApprenti`, `dateSignatureApprenti`, `idMaitreApprentissage`, `dateSignatureMaitreApprentissage`, `idTuteurPedagogique`, `dateSignatureTuteurPedagogique`) VALUES
 (1, 2, NULL, 4, NULL, 7, NULL),
 (2, 3, NULL, 5, NULL, 6, NULL),
-(3, 1, '2016-05-30', 4, NULL, 6, NULL);
+(3, 1, NULL, 4, NULL, 6, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `DroitAccesEvaluation`
+--
+
+DROP TABLE IF EXISTS `DroitAccesEvaluation`;
+CREATE TABLE IF NOT EXISTS `DroitAccesEvaluation` (
+  `idContratApprentissage` int(11) NOT NULL,
+  `idUtilisateur` int(11) NOT NULL,
+  `idEvaluation` int(11) NOT NULL,
+  `typeDroit` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Contenu de la table `DroitAccesEvaluation`
+--
+
+INSERT INTO `DroitAccesEvaluation` (`idContratApprentissage`, `idUtilisateur`, `idEvaluation`, `typeDroit`) VALUES
+(1, 2, 1, 1),
+(1, 2, 2, 1),
+(1, 2, 3, 1),
+(1, 2, 4, 1),
+(1, 2, 5, 1),
+(1, 4, 1, 2),
+(1, 4, 2, 2),
+(1, 4, 3, 1),
+(1, 4, 4, 1),
+(1, 4, 5, 2),
+(1, 7, 1, 1),
+(1, 7, 2, 1),
+(1, 7, 3, 2),
+(1, 7, 4, 2),
+(1, 7, 5, 1),
+(2, 3, 1, 1),
+(2, 3, 2, 1),
+(2, 3, 3, 1),
+(2, 3, 4, 1),
+(2, 3, 5, 1),
+(2, 5, 1, 2),
+(2, 5, 2, 2),
+(2, 5, 3, 1),
+(2, 5, 4, 1),
+(2, 5, 5, 2),
+(2, 6, 1, 1),
+(2, 6, 2, 1),
+(2, 6, 3, 2),
+(2, 6, 4, 2),
+(2, 6, 5, 1),
+(3, 1, 1, 1),
+(3, 1, 2, 1),
+(3, 1, 3, 1),
+(3, 1, 4, 1),
+(3, 1, 5, 1),
+(3, 4, 1, 2),
+(3, 4, 2, 2),
+(3, 4, 3, 1),
+(3, 4, 4, 1),
+(3, 4, 5, 2),
+(3, 6, 1, 1),
+(3, 6, 2, 1),
+(3, 6, 3, 2),
+(3, 6, 4, 2),
+(3, 6, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -79,6 +144,7 @@ INSERT INTO `ContratApprentissage` (`idContratApprentissage`, `idApprenti`, `dat
 
 DROP TABLE IF EXISTS `DroitAccesFichier`;
 CREATE TABLE IF NOT EXISTS `DroitAccesFichier` (
+  `idContratApprentissage` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL,
   `idFichier` int(11) NOT NULL,
   `typeDroit` int(11) DEFAULT NULL
@@ -92,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `DroitAccesFichier` (
 
 DROP TABLE IF EXISTS `DroitAccesFormulaire`;
 CREATE TABLE IF NOT EXISTS `DroitAccesFormulaire` (
+  `idContratApprentissage` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL,
   `idFormulaire` int(11) NOT NULL,
   `typeDroit` int(11) DEFAULT NULL
@@ -101,91 +168,70 @@ CREATE TABLE IF NOT EXISTS `DroitAccesFormulaire` (
 -- Contenu de la table `DroitAccesFormulaire`
 --
 
-INSERT INTO `DroitAccesFormulaire` (`idUtilisateur`, `idFormulaire`, `typeDroit`) VALUES
-(1, 1, 0),
-(1, 2, 1),
-(1, 3, 2),
-(1, 4, 2),
-(1, 5, 0),
-(1, 6, 2),
-(1, 7, 0),
-(1, 8, 2),
-(1, 9, 1),
-(1, 10, 1),
-(1, 11, 1),
-(1, 12, 1),
-(2, 1, 0),
-(2, 2, 1),
-(2, 3, 2),
-(2, 4, 2),
-(2, 5, 0),
-(2, 6, 2),
-(2, 7, 0),
-(2, 8, 2),
-(2, 9, 1),
-(2, 10, 1),
-(2, 11, 1),
-(2, 12, 1),
-(3, 1, 0),
-(3, 2, 1),
-(3, 3, 2),
-(3, 4, 2),
-(3, 5, 0),
-(3, 6, 2),
-(3, 7, 0),
-(3, 8, 2),
-(3, 9, 1),
-(3, 10, 1),
-(3, 11, 1),
-(3, 12, 1),
-(4, 1, 0),
-(4, 2, 2),
-(4, 3, 0),
-(4, 4, 0),
-(4, 5, 0),
-(4, 6, 0),
-(4, 7, 2),
-(4, 8, 0),
-(4, 9, 1),
-(4, 10, 2),
-(4, 11, 2),
-(4, 12, 2),
-(5, 1, 0),
-(5, 2, 2),
-(5, 3, 0),
-(5, 4, 0),
-(5, 5, 0),
-(5, 6, 0),
-(5, 7, 2),
-(5, 8, 0),
-(5, 9, 1),
-(5, 10, 2),
-(5, 11, 2),
-(5, 12, 2),
-(6, 1, 2),
-(6, 2, 1),
-(6, 3, 0),
-(6, 4, 0),
-(6, 5, 2),
-(6, 6, 0),
-(6, 7, 0),
-(6, 8, 0),
-(6, 9, 2),
-(6, 10, 1),
-(6, 11, 1),
-(6, 12, 1),
-(7, 1, 2),
-(7, 2, 1),
-(7, 3, 0),
-(7, 4, 0),
-(7, 5, 2),
-(7, 6, 0),
-(7, 7, 0),
-(7, 8, 0),
-(7, 9, 2),
-(7, 10, 1),
-(7, 11, 1),
-(7, 12, 1);
+INSERT INTO `DroitAccesFormulaire` (`idContratApprentissage`, `idUtilisateur`, `idFormulaire`, `typeDroit`) VALUES
+(3, 1, 1, 2),
+(3, 1, 2, 2),
+(3, 1, 3, 2),
+(3, 1, 4, 1),
+(3, 1, 5, 0),
+(3, 1, 6, 2),
+(3, 1, 7, 1),
+(1, 2, 1, 2),
+(1, 2, 2, 2),
+(1, 2, 3, 2),
+(1, 2, 4, 1),
+(1, 2, 5, 0),
+(1, 2, 6, 2),
+(1, 2, 7, 1),
+(2, 3, 1, 2),
+(2, 3, 2, 2),
+(2, 3, 3, 2),
+(2, 3, 4, 1),
+(2, 3, 5, 0),
+(2, 3, 6, 2),
+(2, 3, 7, 1),
+(1, 4, 1, 0),
+(3, 4, 1, 0),
+(1, 4, 2, 0),
+(3, 4, 2, 0),
+(1, 4, 3, 0),
+(3, 4, 3, 0),
+(1, 4, 4, 1),
+(3, 4, 4, 1),
+(1, 4, 5, 2),
+(3, 4, 5, 2),
+(1, 4, 6, 0),
+(3, 4, 6, 0),
+(1, 4, 7, 1),
+(3, 4, 7, 1),
+(2, 5, 1, 0),
+(2, 5, 2, 0),
+(2, 5, 3, 0),
+(2, 5, 4, 1),
+(2, 5, 5, 2),
+(2, 5, 6, 0),
+(2, 5, 7, 1),
+(2, 6, 1, 0),
+(3, 6, 1, 0),
+(2, 6, 2, 0),
+(3, 6, 2, 0),
+(2, 6, 3, 0),
+(3, 6, 3, 0),
+(2, 6, 4, 2),
+(3, 6, 4, 2),
+(2, 6, 5, 0),
+(3, 6, 5, 0),
+(2, 6, 6, 1),
+(3, 6, 6, 1),
+(2, 6, 7, 2),
+(3, 6, 7, 2),
+(1, 7, 1, 0),
+(1, 7, 2, 0),
+(1, 7, 3, 0),
+(1, 7, 4, 2),
+(1, 7, 5, 0),
+(1, 7, 6, 1),
+(1, 7, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -213,13 +259,49 @@ INSERT INTO `Entreprise` (`idEntreprise`, `raisonSocialeEntreprise`, `adEntrepri
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `EvalRemplie`
+--
+
+DROP TABLE IF EXISTS `EvalRemplie`;
+CREATE TABLE IF NOT EXISTS `EvalRemplie` (
+  `idEvalRemplie` int(11) NOT NULL,
+  `idEvalOrigine` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Evaluation`
+--
+
+DROP TABLE IF EXISTS `Evaluation`;
+CREATE TABLE IF NOT EXISTS `Evaluation` (
+`idEvaluation` int(11) NOT NULL,
+  `nom` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `intitule` varchar(100) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Contenu de la table `Evaluation`
+--
+
+INSERT INTO `Evaluation` (`idEvaluation`, `nom`, `intitule`) VALUES
+(1, 'missionPonctuelle', 'Mission ponctuelle'),
+(2, 'savoirFaireSavoirEtre', 'Savoir-faire et savoir-être'),
+(3, 'comportementAppCours', 'Comportement de l''apprenti en cours'),
+(4, 'bilan', 'Bilan'),
+(5, 'missionPrincipale', 'Mission principale');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Fichier`
 --
 
 DROP TABLE IF EXISTS `Fichier`;
 CREATE TABLE IF NOT EXISTS `Fichier` (
-`idFichier` int(11) NOT NULL,
-  `emplacementFichier` varchar(200) CHARACTER SET utf8 DEFAULT NULL
+  `idFichier` int(11) NOT NULL,
+  `emplacementFichier` varchar(45) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -254,26 +336,21 @@ CREATE TABLE IF NOT EXISTS `Formulaire` (
 `idFormulaire` int(11) NOT NULL,
   `nom` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `intitule` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `type` varchar(10) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `dateEcheance` date DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `Formulaire`
 --
 
-INSERT INTO `Formulaire` (`idFormulaire`, `nom`, `intitule`, `type`) VALUES
-(1, 'entrevues', 'Entrevues', 'form'),
-(2, 'bilan', 'Bilan de l''année', 'eval'),
-(3, 'fiche_renseignements', 'Fiche de renseignements', 'form'),
-(4, 'insertion_pro', 'Insertion professionnelle & suivi des diplômés', 'form'),
-(5, 'visite_entreprise', 'Visites en entreprise', 'form'),
-(6, 'enquete_rentree', 'Enquête rentrée', 'form'),
-(7, 'depot-offre-alternance', 'Dépôt d''offre d''alternance', 'form'),
-(8, 'autorisation-notes', 'Autorisation de communication des résultats scolaires', 'form'),
-(9, 'comportement-app-cours', 'Comportement de l''apprenti en cours', 'eval'),
-(10, 'mission-ponctuelle', 'Mission ponctuelle', 'eval'),
-(11, 'mission-principale', 'Mission principale', 'eval'),
-(12, 'savoir-etre-savoir-faire', 'Savoir-être et savoir-faire', 'eval');
+INSERT INTO `Formulaire` (`idFormulaire`, `nom`, `intitule`, `dateEcheance`) VALUES
+(1, 'ficheRenseignements', 'Fiche de renseignements', NULL),
+(2, 'insertionProfessionnelle', 'Insertion professionnelle et suivi des diplômés', NULL),
+(3, 'enqueteRentree', 'Enquête rentrée', NULL),
+(4, 'visiteEntreprise', 'Visite en entreprise', NULL),
+(5, 'depotOffreAlternance', 'Dépôt d''offre d''alternance', NULL),
+(6, 'autorisationNotes', 'Autorisation de communication des résultats scolaires', NULL),
+(7, 'entrevue', 'Entrevue', NULL);
 
 -- --------------------------------------------------------
 
@@ -298,17 +375,21 @@ CREATE TABLE IF NOT EXISTS `InfosApprenti` (
   `idApprenti` int(11) NOT NULL,
   `adApprenti` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `cpApprenti` varchar(5) COLLATE utf8_bin DEFAULT NULL,
-  `villeApprenti` varchar(50) CHARACTER SET utf8 DEFAULT NULL
+  `villeApprenti` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `dateNaissance` date DEFAULT NULL,
+  `villeNaissance` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `autresRenseignements` varchar(300) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `InfosApprenti`
 --
 
-INSERT INTO `InfosApprenti` (`idApprenti`, `adApprenti`, `cpApprenti`, `villeApprenti`) VALUES
-(1, '3 rue Quelque Part', '27000', 'Evreux'),
-(2, '4 rue Bidule', '69000', 'Lyon'),
-(3, '5 rue Ici', '24000', 'Périgueux');
+INSERT INTO `InfosApprenti` (`idApprenti`, `adApprenti`, `cpApprenti`, `villeApprenti`, `dateNaissance`, `villeNaissance`, `age`, `autresRenseignements`) VALUES
+(1, '3 rue Quelque Part', '27000', 'Evreux', '1997-04-04', 'Bordeaux', NULL, NULL),
+(2, '4 rue Bidule', '69000', 'Lyon', '1978-06-17', 'Valenciennes', NULL, NULL),
+(3, '5 rue Ici', '24000', 'Périgueux', '2000-12-02', 'Strasbourg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -364,7 +445,7 @@ DROP TABLE IF EXISTS `Utilisateur`;
 CREATE TABLE IF NOT EXISTS `Utilisateur` (
 `idUtilisateur` int(11) NOT NULL,
   `login` varchar(8) CHARACTER SET utf8 DEFAULT NULL,
-  `pass` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
+  `pass` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `nom` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `prenom` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `type` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
@@ -378,13 +459,13 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
 --
 
 INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `pass`, `nom`, `prenom`, `type`, `tel`, `port`, `email`) VALUES
-(1, 'miyazaki', 'b154cfd982e333157a690e7679923a0a', 'Miyazaki', 'Hayao', 'apprenti', '0200000000', '0600000000', 'hayao.miyazaki@etu.univ-rouen.fr'),
-(2, 'takahata', '6dbbf3c865af23bd2f1cf83bbe08e65d', 'Takahata', 'Iszao', 'apprenti', '0200000000', '0600000000', 'iszao.takahata@etu.univ-rouen.fr'),
-(3, 'tezuka', '17b75b0c22300cf8a1b4dd96db2ec120', 'Tezuka', 'Osamu', 'apprenti', '0200000000', '0600000000', 'osamu.tezuka@etu.univ-rouen.fr'),
-(4, 'kurosawa', 'a577efa718b09de808898ca4d658099f', 'Kurosawa', 'Akira', 'maitreApprentissage', '0200000000', '0600000000', 'akira.kurosawa@entreprisex.com'),
-(5, 'fukasaku', '7ff765bd41987d5dcd97d1dfae28a61a', 'Fukasaku', 'Kinji', 'maitreApprentissage', '0200000000', '0600000000', 'kinji.fukasaku@entreprisey.com'),
-(6, 'nomura', 'fc198e7ec26fcbc753d1563b2fcc2ed6', 'Nomura', 'Tetsuya', 'tuteurPedagogique', '0200000000', '0600000000', 'tetsuya.nomura@univ-rouen.fr'),
-(7, 'baba', '21661093e56e24cd60b10092005c4ac7', 'Baba', 'Hideo', 'tuteurPedagogique', '0200000000', '0600000000', 'hideo.baba@univ-rouen.fr');
+(1, 'miyazaki', '35d9c6f2c843caa5f72bc90993b916788eaa0c8d1abfaa8594f50b1566bcb36805b648a53bb3835beb80d3a6937d3861b08b8f4e809825fba29634560e7e61b1', 'Miyazaki', 'Hayao', 'apprenti', '0200000000', '0600000000', 'hayao.miyazaki@etu.univ-rouen.fr'),
+(2, 'takahata', '48c085ce003b8d807c9308ca3b8b75d03cbbae7ad85f07fcaed64dd218841e9003ead20c04747a0ba4093d2c8e4f0b9551e0b915d918b7faae884fa98074a550', 'Takahata', 'Iszao', 'apprenti', '0200000000', '0600000000', 'iszao.takahata@etu.univ-rouen.fr'),
+(3, 'tezuka', '9872c3c7ba0b7ce68ef4bd348918d98b282e1ec46a4920ddfbcd86ade62b0a19085f44a6b143244c644a85a217262b5136c3c7d8b0a796aac4443aa83ae55322', 'Tezuka', 'Osamu', 'apprenti', '0200000000', '0600000000', 'osamu.tezuka@etu.univ-rouen.fr'),
+(4, 'kurosawa', '2e6182f39b18467de3c4b56fd63752b5a375d69cfee4b078c8329123cc44c04711e5ca9b897fdcd258011e227f72b3222096f001a0fff08b4f10067833f700af', 'Kurosawa', 'Akira', 'maitreApprentissage', '0200000000', '0600000000', 'akira.kurosawa@entreprisex.com'),
+(5, 'fukasaku', '5e5cdba46f516b4c70d978c8db15bb176d2e31582165d76bcf1a400eacef8ebec9d0c96b8eb5441bba672c00d66280f94a2dcadc606d6e26c99092a28b63e2c2', 'Fukasaku', 'Kinji', 'maitreApprentissage', '0200000000', '0600000000', 'kinji.fukasaku@entreprisey.com'),
+(6, 'nomura', '73a75e4511046845e2cdfc3917b065432baa6ab4939705e25646a7a254ca226e75dbf6c7781189dc3423e8308f8cbe11cca6e6dd9f9f01712b1052d9d766fc38', 'Nomura', 'Tetsuya', 'tuteurPedagogique', '0200000000', '0600000000', 'tetsuya.nomura@univ-rouen.fr'),
+(7, 'baba', '8d86eb09ff42189be46d828d51238501bc3345de6d3ea4fda2e1b589558a17f9262b80a8ae5e978b820d14c04f0f386a9ab7f8fe1044ca9e59ba536a2b3c046a', 'Baba', 'Hideo', 'tuteurPedagogique', '0200000000', '0600000000', 'hideo.baba@univ-rouen.fr');
 
 --
 -- Index pour les tables exportées
@@ -403,22 +484,40 @@ ALTER TABLE `ContratApprentissage`
  ADD PRIMARY KEY (`idContratApprentissage`,`idApprenti`,`idTuteurPedagogique`,`idMaitreApprentissage`), ADD KEY `signatureApprenti_idx` (`idApprenti`), ADD KEY `signatureMaitreApprentissage_idx` (`idMaitreApprentissage`), ADD KEY `signatureTuteurPedagogique_idx` (`idTuteurPedagogique`);
 
 --
+-- Index pour la table `DroitAccesEvaluation`
+--
+ALTER TABLE `DroitAccesEvaluation`
+ ADD PRIMARY KEY (`idContratApprentissage`,`idUtilisateur`,`idEvaluation`), ADD KEY `utilisateur_eval_idx` (`idUtilisateur`), ADD KEY `eval_idx` (`idEvaluation`);
+
+--
 -- Index pour la table `DroitAccesFichier`
 --
 ALTER TABLE `DroitAccesFichier`
- ADD PRIMARY KEY (`idUtilisateur`,`idFichier`), ADD KEY `utilisateur_fi_idx` (`idUtilisateur`), ADD KEY `fichier_idx` (`idFichier`);
+ ADD PRIMARY KEY (`idUtilisateur`,`idFichier`,`idContratApprentissage`), ADD KEY `utilisateur_fi_idx` (`idUtilisateur`), ADD KEY `fichier_idx` (`idFichier`), ADD KEY `contrat_fichier_idx` (`idContratApprentissage`);
 
 --
 -- Index pour la table `DroitAccesFormulaire`
 --
 ALTER TABLE `DroitAccesFormulaire`
- ADD PRIMARY KEY (`idUtilisateur`,`idFormulaire`), ADD KEY `contenuFormVide_idx` (`idFormulaire`);
+ ADD PRIMARY KEY (`idUtilisateur`,`idFormulaire`,`idContratApprentissage`), ADD KEY `contenuFormVide_idx` (`idFormulaire`), ADD KEY `contrat_idx` (`idContratApprentissage`);
 
 --
 -- Index pour la table `Entreprise`
 --
 ALTER TABLE `Entreprise`
  ADD PRIMARY KEY (`idEntreprise`);
+
+--
+-- Index pour la table `EvalRemplie`
+--
+ALTER TABLE `EvalRemplie`
+ ADD PRIMARY KEY (`idEvalRemplie`,`idEvalOrigine`), ADD KEY `eval_origine_idx` (`idEvalOrigine`);
+
+--
+-- Index pour la table `Evaluation`
+--
+ALTER TABLE `Evaluation`
+ ADD PRIMARY KEY (`idEvaluation`);
 
 --
 -- Index pour la table `Fichier`
@@ -454,7 +553,7 @@ ALTER TABLE `InfosApprenti`
 -- Index pour la table `RattachementEntreprise`
 --
 ALTER TABLE `RattachementEntreprise`
- ADD PRIMARY KEY (`idMaitreApprentissage`), ADD KEY `entreprise_idx` (`idEntreprise`);
+ ADD PRIMARY KEY (`idMaitreApprentissage`,`idEntreprise`), ADD KEY `entreprise_idx` (`idEntreprise`);
 
 --
 -- Index pour la table `RattachementFormation`
@@ -488,10 +587,10 @@ MODIFY `idContratApprentissage` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4
 ALTER TABLE `Entreprise`
 MODIFY `idEntreprise` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT pour la table `Fichier`
+-- AUTO_INCREMENT pour la table `Evaluation`
 --
-ALTER TABLE `Fichier`
-MODIFY `idFichier` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `Evaluation`
+MODIFY `idEvaluation` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `Formation`
 --
@@ -501,7 +600,7 @@ MODIFY `idFormation` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT pour la table `Formulaire`
 --
 ALTER TABLE `Formulaire`
-MODIFY `idFormulaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `idFormulaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `FormulaireRempli`
 --
@@ -521,22 +620,39 @@ MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 ALTER TABLE `ContratApprentissage`
 ADD CONSTRAINT `signatureApprenti` FOREIGN KEY (`idApprenti`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `signatureMaitreApprentissage` FOREIGN KEY (`idMaitreApprentissage`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `signatureTuteurPedagogique` FOREIGN KEY (`idTuteurPedagogique`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `signatureMaitreApprentissage` FOREIGN KEY (`idMaitreApprentissage`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `signatureTuteurPedagogique` FOREIGN KEY (`idTuteurPedagogique`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `DroitAccesEvaluation`
+--
+ALTER TABLE `DroitAccesEvaluation`
+ADD CONSTRAINT `contrat_eval` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `utilisateur_eval` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `eval` FOREIGN KEY (`idEvaluation`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `DroitAccesFichier`
 --
 ALTER TABLE `DroitAccesFichier`
+ADD CONSTRAINT `utilisateur_fichier` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `fichier` FOREIGN KEY (`idFichier`) REFERENCES `Fichier` (`idFichier`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `utilisateur_fichier` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `contrat_fichier` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `DroitAccesFormulaire`
 --
 ALTER TABLE `DroitAccesFormulaire`
+ADD CONSTRAINT `utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `form` FOREIGN KEY (`idFormulaire`) REFERENCES `Formulaire` (`idFormulaire`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `EvalRemplie`
+--
+ALTER TABLE `EvalRemplie`
+ADD CONSTRAINT `eval_origine` FOREIGN KEY (`idEvalOrigine`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `eval_remplie` FOREIGN KEY (`idEvalRemplie`) REFERENCES `Fichier` (`idFichier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Formation`
@@ -568,8 +684,8 @@ ADD CONSTRAINT `entreprise` FOREIGN KEY (`idEntreprise`) REFERENCES `Entreprise`
 -- Contraintes pour la table `RattachementFormation`
 --
 ALTER TABLE `RattachementFormation`
-ADD CONSTRAINT `formation` FOREIGN KEY (`idFormation`) REFERENCES `Formation` (`idFormation`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `utilisateurRattache` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `utilisateurRattache` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `formation` FOREIGN KEY (`idFormation`) REFERENCES `Formation` (`idFormation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

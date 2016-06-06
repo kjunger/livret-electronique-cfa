@@ -1,8 +1,8 @@
 <?php
-$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
-$contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
-$maitreApp = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idMaitreApprentissage, "maitreApprentissage", $_SESSION['auth'], $user->type);
-$apprenti = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idApprenti, "apprenti", $_SESSION['auth'], $user->type);
+if($user->type === 'tuteurPedagogique') {
+    $maitreApp = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idMaitreApprentissage, "maitreApprentissage", $_SESSION['auth'], $user->type);
+    $apprenti = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idApprenti, "apprenti", $_SESSION['auth'], $user->type);
+}
 ?>
 <div class="content">
     <h1>Visites en entreprise</h1>

@@ -1,6 +1,3 @@
-<?php
-$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
-?>
 <div class="content">
     <h1>Insertion professionnelle</h1>
     <form action="" method="post">

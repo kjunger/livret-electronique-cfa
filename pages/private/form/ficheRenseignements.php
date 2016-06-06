@@ -1,6 +1,7 @@
 <?php
-$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
-$infos_apprenti = App::getInstance()->getTable('InfosApprenti')->find($_SESSION['auth'], 'Apprenti');
+if($user->type === 'apprenti') {
+    $infos_apprenti = App::getInstance()->getTable('InfosApprenti')->find($_SESSION['auth'], $user->type);
+}
 ?>
 <div class="content">
     <h1>Fiche de renseignements</h1>

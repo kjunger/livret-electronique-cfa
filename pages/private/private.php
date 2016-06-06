@@ -1,6 +1,4 @@
 <?php
-    $user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
-    $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
     if($user->type !== 'maitreApprentissage') {
         $maitreApp = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idMaitreApprentissage, "maitreApprentissage", $_SESSION['auth'], $user->type);
         $formation = App::getInstance()->getTable('Utilisateur')->formation($_SESSION['auth']);

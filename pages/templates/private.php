@@ -1,6 +1,3 @@
-<?php
-header('content-type: text/html; charset=utf-8');
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,7 +31,7 @@ header('content-type: text/html; charset=utf-8');
                     <div class="form">Formulaires</div>
                 </a>
                 <ul>
-                    <?php foreach(App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], 'form') as $form): ?>
+                    <?php foreach(App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage) as $form): ?>
                     <li><a href="<?= $form->getUrl(); ?>"><?= $form->intitule; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
@@ -44,7 +41,7 @@ header('content-type: text/html; charset=utf-8');
                     <div class="eval">Evaluations</div>
                 </a>
                 <ul>
-                    <?php foreach(App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], 'eval') as $eval): ?>
+                    <?php foreach(App::getInstance()->getTable('Evaluation')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage) as $eval): ?>
                     <li><a href="<?= $eval->getUrl(); ?>"><?= $eval->intitule; ?></a></li>
                     <?php endforeach; ?>
                 </ul>

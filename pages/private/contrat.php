@@ -1,6 +1,4 @@
 <?php
-    $user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
-    $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
     if(!empty($_POST)) {
         if(isset($_POST['acceptation'])) {
             $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());

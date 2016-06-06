@@ -10,22 +10,23 @@ class FormulaireTable extends Table {
     /**
      * Méthode allAccessible() - liste tous les formulaires accessibles en édition par l'utilisateur en cours
      * @param  integer $id_utilisateur L'ID de l'utilisateur en cours
-     * @param  string  $type_form      Le type de formulaire souhaité ("form" ou "eval")
      * @return object  Retourne la liste des formulaires concernés
      */
-    public function allAccessible($id_utilisateur, $type_form) {
+    public function allAccessible($id_utilisateur, $id_contrat) {
         return $this->query(
-            "SELECT {$this->table}.nom, {$this->table}.intitule, {$this->table}.type
+            "SELECT {$this->table}.nom, {$this->table}.intitule
             FROM {$this->table} INNER JOIN
                 (DroitAccesFormulaire INNER JOIN Utilisateur
-                ON DroitAccesFormulaire.idUtilisateur = Utilisateur.idUtilisateur)
+                ON DroitAccesFormulaire.idUtilisateur = Utilisateur.idUtilisateur
+                INNER JOIN ContratApprentissage
+                ON DroitAccesFormulaire.idContratApprentissage = ContratApprentissage.idContratApprentissage)
             ON {$this->table}.idFormulaire = DroitAccesFormulaire.idFormulaire
             WHERE Utilisateur.idUtilisateur = :id_utilisateur
-            AND {$this->table}.type = :type_form
+            AND ContratApprentissage.idContratApprentissage = :id_contrat
             AND DroitAccesFormulaire.typeDroit = 2",
             array(
-                ':id_utilisateur' => $id_utilisateur,
-                ':type_form' => $type_form
+                ":id_utilisateur" => $id_utilisateur,
+                ":id_contrat" => $id_contrat
             )
         );
     }

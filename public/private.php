@@ -12,6 +12,8 @@ if (isset($_GET['p'])) {
     $page = 'private';
 }
 ob_start();
+$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
+$contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
 switch ($page) {    //A améliorer (avec modèle MVC ?)
     case 'private':
         require ROOT . '/pages/private/private.php';
@@ -20,8 +22,10 @@ switch ($page) {    //A améliorer (avec modèle MVC ?)
         require ROOT . '/pages/private/profile.php';
         break;
     case 'private.form':
-    case 'private.eval':
         require ROOT . '/pages/private/form.php';
+        break;
+    case 'private.eval':
+        require ROOT . '/pages/private/eval.php';
         break;
     case 'private.contrat':
         require ROOT . '/pages/private/contrat.php';
