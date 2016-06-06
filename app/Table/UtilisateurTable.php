@@ -31,7 +31,7 @@ class UtilisateurTable extends Table {
     }
     /**
      * Méthode formation() - dans le cas d'un apprenti ou d'un tuteur pédagogique, retourne les informations sur la formation à laquelle il est rattaché
-     * @param  integer $id_utilisateur L'ID de l'utilisateur en cours
+     * @param  integer $id_utilisateur L'ID de l'apprenti ou du tuteur susvisé
      * @return object  Retourne les informations sur la formation à laquelle l'utilisateur est rattachée
      */
     public function formation($id_utilisateur) {
@@ -50,17 +50,35 @@ class UtilisateurTable extends Table {
     }
     /**
      * Méthode infosApprenti() - dans le cas d'un apprenti, récupère des infos personnelles supplémentaires
-     * @param  integer $id_utilisateur L'ID de l'utilisateur en cours
+     * @param  integer $id_utilisateur L'ID de l'apprenti susvisé
      * @return object  Retourne les informations supplémentaires
      */
-    public function infosApprenti($id_utilisateur) {
+    public function infosApprenti($id_apprenti) {
         return $this->query(
             "SELECT *
             FROM InfosApprenti INNER JOIN {$this->table}
             ON InfosApprenti.idApprenti = {$this->table}.idUtilisateur
             WHERE Utilisateur.idUtilisateur = ?",
-            [$id_utilisateur],
+            [$id_apprenti],
             true
         );  //Là aussi
+    }
+
+    /**
+     * Méthode entreprise() - dans le cas d'un maître d'apprentissage, retourne les informations sur l'entreprise à laquelle il est rattaché
+     * @param  integer $id_utilisateur L'ID du maître d'apprentissage susvisé
+     * @return object  Retourne les informations sur l'entreprise à laquelle l'utilisateur est rattachée
+     */
+    public function entreprise($id_maitreApp) {
+        return $this->query(
+            "SELECT *
+            FROM Entreprise INNER JOIN
+                (RattachementEntreprise INNER JOIN {$this->table}
+                ON RattachementEntreprise.idMaitreApprentissage = {$this->table}.idUtilisateur)
+            ON Entreprise.idEntreprise = RattachementEntreprise.idEntreprise
+            WHERE {$this->table}.idUtilisateur = ?",
+            [$id_maitreApp],
+            true
+        );  //Idem
     }
 }
