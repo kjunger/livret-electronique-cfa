@@ -9,21 +9,21 @@ use \Core\Table\Table;
 class ContratApprentissageTable extends Table {
     /**
      * Méthode sign() - pour signer le contrat pédagogique
-     * @param  integer $id_utilisateur   L'id de l'utilisateur concerné
-     * @param  string  $type_utilisateur Le type de l'utilisateur (apprenti, maître d'apprentissage ou tuteur pédagogique)
-     * @param  integer $id_apprenti      L'ID de l'apprenti suivi
+     * @param  integer $id_utilisateur          L'id de l'utilisateur concerné
+     * @param  string  $type_utilisateur        Le type de l'utilisateur (apprenti, maître d'apprentissage ou tuteur pédagogique)
+     * @param  integer $id_contratApprentissage L'ID du contrat d'apprentissage concerné
      * @return object  PDOStatement Retourne soit un objet PDOStatement, soit false
      */
-    public function sign($id_utilisateur, $type_utilisateur, $id_apprenti) {
+    public function sign($id_utilisateur, $type_utilisateur, $id_contratApprentissage) {
         return $this->query(
             "UPDATE {$this->table}
             SET {$this->table}.dateSignature" . ucfirst($type_utilisateur) ." = \"" . date("Y-m-d H:i:s") . "\"
             WHERE id" . ucfirst($type_utilisateur) . " = :id_utilisateur
-            AND idApprenti = :id_apprenti",
+            AND idContratApprentissage = :id_contratApprentissage",
             array(
                 ":id_utilisateur" => $id_utilisateur,
-                ":id_apprenti" => $id_apprenti
+                ":id_contratApprentissage" => $id_contratApprentissage
             )
-        ); //fonctionnel, mais à modifier pour utiliser la méthode update de la classe \Core\Table\Table
+        ); //A noter qu'il aurait été logique à cet instant d'utiliser la méthode update() de la classe \Core\Table\Table dont cette classe hérite, mais la méthode en question étant générique, elle n'accepte qu'une seule clause WHERE. D'où l'utilisation préférée ici de la méthode query().
     }
 }

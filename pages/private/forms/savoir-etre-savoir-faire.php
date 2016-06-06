@@ -1,5 +1,5 @@
 <div class="content">
-    <h1>Evaluation "Savoir-être et savoir faire"e</h1>
+    <h1>Evaluation "Savoir-être et savoir faire"</h1>
     <form method="" action="">
         <div class="conteneur large">
             <div class="titre">
@@ -93,17 +93,6 @@
                     <option value="-">Moyenne</option>
                     <option value="--">Insuffisante</option>
                 </select>
-            </div>
-        </div>
-        <h1>Observations savoir-être et savoir-faire</h1>
-        <div class="conteneur large">
-            <div class="titre">
-                <h2>Commentaires</h2>
-            </div>
-            <div class="contenu">
-                <textarea placeholder="Commentaire du maître d'apprentissage" id="comMA"></textarea>
-                <textarea placeholder="Commentaire du tuteur pédagogique" id="comTP"></textarea>
-                <textarea placeholder="Commentaire de l'apprenti(e)" id="comApp"></textarea>
             </div>
         </div>
         <input type="submit" value="Valider">
