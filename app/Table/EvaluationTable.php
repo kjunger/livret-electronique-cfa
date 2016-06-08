@@ -14,7 +14,7 @@ class EvaluationTable extends Table {
      */
     public function allAccessible($id_utilisateur, $id_contrat) {
         return $this->query(
-            "SELECT *
+            "SELECT {$this->table}.idEvaluation, {$this->table}.nom, {$this->table}.intitule
             FROM {$this->table} INNER JOIN
                 (DroitAccesEvaluation INNER JOIN Utilisateur
                 ON DroitAccesEvaluation.idUtilisateur = Utilisateur.idUtilisateur
@@ -28,7 +28,7 @@ class EvaluationTable extends Table {
                 ":id_utilisateur" => $id_utilisateur,
                 ":id_contrat" => $id_contrat
             )
-        );  //Requête à améliorer
+        );
     }
     /**
      * [[Description]]
