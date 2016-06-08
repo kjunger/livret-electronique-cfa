@@ -1,3 +1,6 @@
+<?php
+    $formation = App::getInstance()->getTable('Utilisateur')->formation($_SESSION['auth']);
+?>
 <div class="content">
     <h1>Enquête rentrée</h1>
     <form action="" method="">
@@ -6,17 +9,7 @@
                 <h2>Pour améliorer nos services, nous souhaitons recueillir votre avis sur votre intégration au CFA.</h2>
             </div>
             <div class="contenu">
-                <select id="formation" name="formation" required>
-                    <option value="default" selected disabled>Votre formation</option>
-                    <option value="dut_rt">DUT Réseaux et Télécommunication</option>
-                    <option value="dut_tc">DUT Techniques de Commercialisation</option>
-                    <option value="lp_chimie">Licence Professionnelle Chimie</option>
-                    <option value="lp_indu">Licence Pro. Techniques de Commercialisation en Milieu Industriel</option>
-                    <option value="lp_pack">Licence Professionnelle Packaging</option>
-                    <option value="lp_metro">Licence Professionnelle Métrologie</option>
-                    <option value="lp_ncme">Licence Pro. Négociation Commerciale et Marchés Européens</option>
-                    <option value="master_bioinfo">Master Bioinformatique</option>
-                </select>
+                <input placeholder="Votre formation" type="text" value="<?= $formation->intituleFormation; ?>" />
                 <h3>Comment avez-vous eu connaissance de cette formation ?</h3>
                 <select id="connaissance" name="connaissance" required>
                     <option value="default" selected disabled>Choisissez une réponse</option>

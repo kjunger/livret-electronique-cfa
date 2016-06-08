@@ -5,7 +5,7 @@ if($user->type === 'tuteurPedagogique') {
 }
 ?>
 <div class="content">
-    <h1>Visites en entreprise</h1>
+    <h1>Visite en entreprise</h1>
     <form action="" method="post">
         <div class="conteneur large">
             <div class="contenu">

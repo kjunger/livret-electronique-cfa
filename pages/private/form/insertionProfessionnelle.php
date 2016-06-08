@@ -47,7 +47,6 @@ if($user->type === 'apprenti') {
                     <h2>Entreprise (si vous êtes en formation par alternance)</h2>
                     <input placeholder="Raison sociale" type="text" />
                     <input placeholder="Adresse du siège social" type="text" />
-                    <input placeholder="Complément d'adresse" type="text" />
                     <input placeholder="Code postal" id="cpEntAltApp" type="text" pattern="[0-9]{5}" />
                     <input placeholder="Ville" id="villeEntAltApp" type="text" />
                     <input placeholder="Fonctions attachées au poste" type="text" />

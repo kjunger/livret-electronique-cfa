@@ -13,7 +13,15 @@ if (isset($_GET['p'])) {
 }
 ob_start();
 $user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
-$contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
+if($user->type === 'maitreApprentissage' || $user->type === 'tuteurPedagogique') {
+    if(!isset($_GET['id_contrat'])) {
+        header('Location:choixApprenti.php');
+    } else {
+        $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_GET['id_contrat']); //méthode peut-être un peu sale
+    }
+} else {
+    $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
+}
 switch ($page) {    //A améliorer (avec modèle MVC ?)
     case 'private':
         require ROOT . '/pages/private/private.php';

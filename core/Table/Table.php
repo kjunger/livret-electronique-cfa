@@ -25,6 +25,18 @@ class Table {
         return $this->query('SELECT * FROM ' . $this->table);
     }
     /**
+     * Méthode allWhere() - Exécute une requête SQL demandant la récupération de toutes les données d'une table quand l'ID d'une ligne équivaut à $id
+     * @param  integer $id            L'id associé aux résultats souhaités
+     * @param  string  [$append=null] Paramètre optionnel - dans le cas où le champ id ne s'appelle pas simplement id (exemple : "idNomDeLaTable") - stocke une string avec le suffixe à utiliser, ou équivaut à null par défaut
+     * @return object   Retourne un objet avec les résultats de la requête
+     */
+    public function allWhere($id, $append=null) {   //Redondance avec find() ?
+        if(is_null($append)) {
+            $append = $this->table;
+        }
+        return $this->query("SELECT * FROM {$this->table} WHERE id". ucfirst($append) ." = ?", [$id]);
+    }
+    /**
      * Méthode find() - Exécute une requête SQL demandant la récupération de toutes les données d'une table quand l'id d'une ligne est égal à $id
      * @param  integer $id            L'id associé aux résultats souhaités
      * @param  string  [$append=null] Paramètre optionnel - dans le cas où le champ id ne s'appelle pas simplement id (exemple : "idNomDeLaTable") - stocke une string avec le suffixe à utiliser, ou équivaut à null par défaut

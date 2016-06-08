@@ -3,6 +3,9 @@
         $maitreApp = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idMaitreApprentissage, "maitreApprentissage", $_SESSION['auth'], $user->type);
         $formation = App::getInstance()->getTable('Utilisateur')->formation($_SESSION['auth']);
     }
+    if($user->type === 'maitreApprentissage') {
+        $entreprise = App::getInstance()->getTable('Utilisateur')->entreprise($_SESSION['auth']);
+    }
     if($user->type !== 'tuteurPedagogique') {
         $tuteur = App::getInstance()->getTable('Utilisateur')->whoIs($contrat->idTuteurPedagogique, "tuteurPedagogique", $_SESSION['auth'], $user->type);
     }
@@ -20,7 +23,7 @@
             if($user->type === 'apprenti' || $user->type === 'tuteurPedagogique') {
                 if($user->type === 'apprenti') {
                 ?>
-                    <h2>Formation actuelle</h2>
+                    <h2>Votre formation actuelle</h2>
                 <?php
                 } elseif($user->type === 'tuteurPedagogique') {
                 ?>
@@ -30,6 +33,14 @@
             ?>
                 <p><?= $formation->intituleFormation; ?></p>
                 <span class="info"><?= $formation->nomComposante . ' - ' . $formation->villeComposante; ?></span>
+            <?php
+            }
+            if($user->type === 'maitreApprentissage') {
+            ?>
+                <h2>Votre entreprise</h2>
+                <p><?= $entreprise->raisonSocialeEntreprise; ?></p>
+                <span class="info"><?= $entreprise->adEntreprise; ?></span>
+                <br /><span class="info"><?= $entreprise->cpEntreprise . ' ' . $entreprise->villeEntreprise; ?></span>
             <?php
             }
             ?>
@@ -73,10 +84,28 @@
             <p>Vous devez impérativement signer le contrat pédagogique.</p>
             <?php
             }
-            /*var_dump(App::getInstance()->getTable('Formulaire')->isComplete($_SESSION['auth']));*/
-            /*foreach(App::getInstance()->getTable('Formulaire')->isComplete($_SESSION['auth']) as $forms) {
-                var_dump($forms);
-            }*/
+            $forms = App::getInstance()->getTable('Formulaire')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage);
+            if(count($forms) !== 0) {
+                foreach($forms as $form) {
+                    if(sizeof(App::getInstance()->getTable('Formulaire')->isComplete($form->idFormulaire, $contrat->idContratApprentissage)) === 0) {
+                    ?>
+                    <h2>Formulaire à compléter</h2>
+                    <p><?= $form->intitule; ?></p>
+                    <?php
+                    }
+                }
+            }
+            $evals = App::getInstance()->getTable('Evaluation')->allAccessible($_SESSION['auth'], $contrat->idContratApprentissage);
+            if(count($evals) !== 0) {
+                foreach($evals as $eval) {
+                    if(sizeof(App::getInstance()->getTable('Evaluation')->isComplete($eval->idEvaluation, $contrat->idContratApprentissage)) === 0) {
+                    ?>
+                    <h2>Evaluation à compléter</h2>
+                    <p><?= $eval->intitule; ?></p>
+                    <?php
+                    }
+                }
+            }
             ?>
         </div>
     </div>

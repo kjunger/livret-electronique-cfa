@@ -14,7 +14,7 @@ class EvaluationTable extends Table {
      */
     public function allAccessible($id_utilisateur, $id_contrat) {
         return $this->query(
-            "SELECT {$this->table}.nom, {$this->table}.intitule
+            "SELECT *
             FROM {$this->table} INNER JOIN
                 (DroitAccesEvaluation INNER JOIN Utilisateur
                 ON DroitAccesEvaluation.idUtilisateur = Utilisateur.idUtilisateur
@@ -28,20 +28,24 @@ class EvaluationTable extends Table {
                 ":id_utilisateur" => $id_utilisateur,
                 ":id_contrat" => $id_contrat
             )
-        );
+        );  //Requête à améliorer
     }
-    /*public function isComplete($id_utilisateur) {
+    /**
+     * [[Description]]
+     * @param  [[Type]] $id_eval    [[Description]]
+     * @param  [[Type]] $id_contrat [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function isComplete($id_eval, $id_contrat) {
         return $this->query(
             "SELECT *
-            FROM EvaluationRempli INNER JOIN
-                ({$this->table} INNER JOIN
-                    (DroitAccesEvaluation INNER JOIN Utilisateur
-                    ON DroitAccesEvaluation.idUtilisateur = Utilisateur.idUtilisateur)
-                ON {$this->table}.idEvaluation = DroitAccesEvaluation.idEvaluation)
-            ON EvaluationRempli.idEvaluationOrigine = {$this->table}.idEvaluation
-            WHERE Utilisateur.idUtilisateur = ?
-            AND DroitAccesEvaluation.typeDroit = 2",
-            [$id_utilisateur]
+            FROM EvalRemplie
+            WHERE idContratApprentissage = :id_contrat
+            AND idEvalOrigine = :id_eval",
+            array(
+                ":id_contrat" => $id_contrat,
+                ":id_eval" => $id_eval
+            )
         );
-    }*/
+    }
 }

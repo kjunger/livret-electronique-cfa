@@ -11,15 +11,15 @@
     <script type="text/javascript" src="js/script.js">
     </script>
     <script type="text/javascript">
-      $(document).ready(function(){
-        $('.basic').fancySelect();
-      });
+        $(document).ready(function(){
+            $('.basic').fancySelect();
+        });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
     <nav id="cssmenu">
-        <img src="img/logo.png" alt="Logo CFA-CFC" id="menu-logo" />
+        <a href="private.php"><img src="img/logo.png" alt="Logo CFA-CFC" id="menu-logo" /></a>
         <ul>
             <li>
                 <a href="private.php">
@@ -77,7 +77,7 @@
         </ul>
     </nav>
     <div id="deconnexion-mobile">
-        <p><?= App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth'])->getFullName(); ?></p>
+        <p><?= $user->getFullName(); ?></p>
         <div id="contenu-menu-user">
             <ul>
                 <li>
@@ -107,7 +107,7 @@
             <p>
                 Bienvenue,
                 <br/>
-                <span id="nom"><?= App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth'])->getFullName(); ?></span>
+                <span id="nom"><?= $user->getFullName(); ?></span>
             </p>
             <div id="user">
                 <img src="icons/user.svg" alt="" />

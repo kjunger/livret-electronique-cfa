@@ -14,7 +14,7 @@ class FormulaireTable extends Table {
      */
     public function allAccessible($id_utilisateur, $id_contrat) {
         return $this->query(
-            "SELECT {$this->table}.nom, {$this->table}.intitule
+            "SELECT *
             FROM {$this->table} INNER JOIN
                 (DroitAccesFormulaire INNER JOIN Utilisateur
                 ON DroitAccesFormulaire.idUtilisateur = Utilisateur.idUtilisateur
@@ -28,20 +28,24 @@ class FormulaireTable extends Table {
                 ":id_utilisateur" => $id_utilisateur,
                 ":id_contrat" => $id_contrat
             )
-        );
+        );  //Requête à améliorer
     }
-    /*public function isComplete($id_utilisateur) {
+    /**
+     * [[Description]]
+     * @param  [[Type]] id_form     [[Description]]
+     * @param  [[Type]] $id_contrat [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function isComplete($id_form, $id_contrat) {
         return $this->query(
             "SELECT *
-            FROM FormulaireRempli INNER JOIN
-                ({$this->table} INNER JOIN
-                    (DroitAccesFormulaire INNER JOIN Utilisateur
-                    ON DroitAccesFormulaire.idUtilisateur = Utilisateur.idUtilisateur)
-                ON {$this->table}.idFormulaire = DroitAccesFormulaire.idFormulaire)
-            ON FormulaireRempli.idFormulaireOrigine = {$this->table}.idFormulaire
-            WHERE Utilisateur.idUtilisateur = ?
-            AND DroitAccesFormulaire.typeDroit = 2",
-            [$id_utilisateur]
+            FROM FormulaireRempli
+            WHERE idContratApprentissage = :id_contrat
+            AND idFormulaireOrigine = :id_form",
+            array(
+                ":id_contrat" => $id_contrat,
+                ":id_form" => $id_form
+            )
         );
-    }*/
+    }
 }
