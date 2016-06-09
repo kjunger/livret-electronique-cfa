@@ -5,20 +5,21 @@ $contracts = App::getInstance()->getTable('ContratApprentissage')->allWhere($_SE
 <table class="table">
     <thead>
         <tr>
-            <td>ID du contrat</td>
-            <td>Nom de l'apprenti suivi</td>
+            <td id="id-contrat">ID du contrat</td>
+            <td id="nom-apprenti">Nom de l'apprenti suivi</td>
             <?php if($user->type === 'maitreApprentissage') {
             ?>
-            <td>Formation</td>
-            <td>Tuteur pédagogique</td>
+            <td id="formation">Formation</td>
+            <td id="nom-tuteur-pedagogique">Tuteur pédagogique</td>
             <?php }
             if($user->type === 'tuteurPedagogique') {
             ?>
-            <td>Entreprise</td>
-            <td>Maître d'apprentissage</td>
+            <td id="entreprise">Entreprise</td>
+            <td id="nom-maitre-apprentissage">Maître d'apprentissage</td>
             <?php
             }
             ?>
+            <td class="selectionner">Sélectionner</td>
         </tr>
     </thead>
     <tbody>
@@ -34,21 +35,21 @@ $contracts = App::getInstance()->getTable('ContratApprentissage')->allWhere($_SE
             }
         ?>
         <tr>
-            <td><?= $contract->idContratApprentissage; ?></td>
-            <td><?= $apprenti->getFullName(); ?></td>
+            <td headers="id-contrat"><?= $contract->idContratApprentissage; ?></td>
+            <td headers="nom-apprenti"><?= $apprenti->getFullName(); ?></td>
             <?php if($user->type === 'maitreApprentissage') {
             ?>
-            <td><?= $formation->intituleFormation; ?></td>
-            <td><?= $tuteur->getFullName(); ?></td>
+            <td headers="formation"><?= $formation->intituleFormation; ?></td>
+            <td headers="nom-tuteur-pedagogique"><?= $tuteur->getFullName(); ?></td>
             <?php }
             if($user->type === 'tuteurPedagogique') {
             ?>
-            <td><?= $entreprise->raisonSocialeEntreprise; ?></td>
-            <td><?= $maitreApp->getFullName(); ?></td>
+            <td headers="entreprise"><?= $entreprise->raisonSocialeEntreprise; ?></td>
+            <td headers="nom-maitre-apprentissage"><?= $maitreApp->getFullName(); ?></td>
             <?php
             }
             ?>
-            <td><a href="private.php?id_contrat=<?= $contract->idContratApprentissage; ?>" class="btn btn-success">Sélectionner</a></td>
+            <td headers="selectionner"><a href="private.php?id_contrat=<?= $contract->idContratApprentissage; ?>" class="btn btn-success">Sélectionner</a></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
