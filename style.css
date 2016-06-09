@@ -145,6 +145,83 @@ h3{
 /******/
 
 
+/*TABLEAUX*/
+table{
+	width: 90%;
+	margin: 0 auto;
+	padding: 0;
+	border-collapse: collapse;
+	-moz-box-shadow: 3px 3px 5px 0px #363636;
+	-webkit-box-shadow: 3px 3px 5px 0px #363636;
+	-o-box-shadow: 3px 3px 5px 0px #363636;
+	box-shadow: 3px 3px 5px 0px #363636;
+}
+
+thead{
+	font-size: 1.2em;
+	padding: 0;
+	margin: 0;
+	background-color: #00767b;
+	color: #ffffff;
+}
+
+tbody tr{
+	border-bottom: 1px solid #363636;
+}
+tbody tr:last-child{
+	border-bottom: none;
+}
+
+tr{
+
+}
+
+td, th{
+	padding: 20px 10px;
+	text-align: center;
+}
+td a{
+	text-decoration: none;
+	color: #00767b;
+	font-weight: 600;
+	position: relative;
+}
+td a:after{
+	content: " ";
+	width: 100%;
+	height: 2px;
+	background-color: transparent;
+	position: absolute;
+	bottom: -5px;
+	left:0;
+	transform: translateX(-100%);
+}
+td a:hover:after{
+	transform: translateX(0);
+	transition-duration: 0.3s;
+	background-color: #00767b;
+}
+
+@media screen and (max-width: 999px){
+td a:after{
+	display: none;
+}
+}
+
+@media screen and (max-width: 630px){
+#id-app, td[headers="id-app"], #nom-tut, td[headers="nom-tut"]{
+	display: none;
+}
+}
+
+@media screen and (max-width: 400px){
+#formation, td[headers="formation"]{
+	display: none;
+}
+}
+/******/
+
+
 
 /*HEADER*/
 #header-logo{
