@@ -1,9 +1,5 @@
 <?php
-    if(!empty($_POST)){
-        App::getInstance()->getTable('Formulaire')->complete($_GET['id'], $_POST, $contrat->idContratApprentissage);
-    }
     $formation = App::getInstance()->getTable('Utilisateur')->formation($_SESSION['auth']);
-    $form_data = App::getInstance()->getTable('Formulaire')->getCompleted($_GET['id'], $_GET['name'], $contrat->idContratApprentissage);
 ?>
 <div class="content">
     <h1>Enquête rentrée</h1>
@@ -16,7 +12,7 @@
                 <input placeholder="Votre formation" type="text" value="<?= $formation->intituleFormation; ?>" readonly />
                 <h3>Comment avez-vous eu connaissance de cette formation ?</h3>
                 <select id="connaissance" name="EnqueteRentree_connaissanceFormation" required>
-                    <option value="default" selected disabled><?= $form_data->connaissanceFormation; ?></option>
+                    <option value="default" selected disabled><?php if(isset($form_data)){$form_data->connaissanceFormation;} ?></option>
                     <option value="Lors d'un forum, d'un salon ou d'une journée portes ouvertes">Lors d'un forum, d'un salon ou d'une journée portes ouvertes</option>
                     <option value="A l'Université">A l'Université</option>
                     <option value="Au lycée">Au lycée</option>
