@@ -11,6 +11,6 @@ class FormulaireEntity extends Entity {
      * @return string L'URL
      */
     public function getUrl(){
-        return '?p=private.form&name=' . $this->nom;
+        return "?p=private.form&name={$this->nom}&id={$this->idFormulaire}";
     }
 }

@@ -11,6 +11,6 @@ class EvaluationEntity extends Entity {
      * @return string L'URL
      */
     public function getUrl(){
-        return '?p=private.eval&name=' . $this->nom;
+        return "?p=private.eval&name={$this->nom}&id={$this->idEvaluation}";
     }
 }

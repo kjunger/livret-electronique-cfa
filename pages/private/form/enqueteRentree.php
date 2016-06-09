@@ -1,28 +1,32 @@
 <?php
+    if(!empty($_POST)){
+        App::getInstance()->getTable('Formulaire')->complete($_GET['id'], $_POST, $contrat->idContratApprentissage);
+    }
     $formation = App::getInstance()->getTable('Utilisateur')->formation($_SESSION['auth']);
+    $form_data = App::getInstance()->getTable('Formulaire')->getCompleted($_GET['id'], $_GET['name'], $contrat->idContratApprentissage);
 ?>
 <div class="content">
     <h1>Enquête rentrée</h1>
-    <form action="" method="">
+    <form action="" method="post">
         <div class="conteneur large">
             <div class="titre">
                 <h2>Pour améliorer nos services, nous souhaitons recueillir votre avis sur votre intégration au CFA.</h2>
             </div>
             <div class="contenu">
-                <input placeholder="Votre formation" type="text" value="<?= $formation->intituleFormation; ?>" />
+                <input placeholder="Votre formation" type="text" value="<?= $formation->intituleFormation; ?>" readonly />
                 <h3>Comment avez-vous eu connaissance de cette formation ?</h3>
-                <select id="connaissance" name="connaissance" required>
-                    <option value="default" selected disabled>Choisissez une réponse</option>
-                    <option value="forum">Lors d'un forum, d'un salon ou d'une journée portes ouvertes</option>
-                    <option value="univ">A l'Université</option>
-                    <option value="lycee">Au lycée</option>
-                    <option value="internet">Sur Internet</option>
-                    <option value="revue">Via une revue spécialisée</option>
-                    <option value="mio">A la MIO</option>
-                    <option value="autre">Autre</option>
+                <select id="connaissance" name="EnqueteRentree_connaissanceFormation" required>
+                    <option value="default" selected disabled><?= $form_data->connaissanceFormation; ?></option>
+                    <option value="Lors d'un forum, d'un salon ou d'une journée portes ouvertes">Lors d'un forum, d'un salon ou d'une journée portes ouvertes</option>
+                    <option value="A l'Université">A l'Université</option>
+                    <option value="Au lycée">Au lycée</option>
+                    <option value="Sur Internet">Sur Internet</option>
+                    <option value="Via une revue spécialisée">Via une revue spécialisée</option>
+                    <option value="A la MIO">A la MIO</option>
+                    <option value="Autre">Autre</option>
                 </select>
                 <h3>Pour quelle raison principale avoir choisi l'apprentissage ?</h3>
-                <select id="raison" name="raison" required>
+                <select id="raison" name="EnqueteRentree_raisonChoixApprentissage" required>
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="decouvrir">Découvrir vraiment le métier auquel on se destine</option>
                     <option value="trouver">Trouver plus rapidement du travail par la suite</option>
@@ -36,30 +40,30 @@
                     <li class="li-simple">Pour vos démarches administratives concernant vos contrats en alternance ?</li>
                     <li class="li-simple">Sur le contrat d'apprentissage ou de professionnalisation (modalités, rémunération, droits et obligations...) ?</li>
                 </ul>
-                <input type="radio" id="infos-contrat-oui" value="yes" name="infos_necessaires" />
+                <input type="radio" id="infos-contrat-oui" value="yes" name="" />
                 <label for="infos-contrat-oui" class="radio">Oui</label>
-                <input type="radio" id="infos-contrat-non" value="no" name="infos_necessaires" />
+                <input type="radio" id="infos-contrat-non" value="no" name="" />
                 <label for="infos-contrat-non" class="radio">Non</label>
                 <h3>Avez-vous participé aux Ateliers Techniques de Recherche d'Emploi proposés par le CFA</h3>
-                <select id="participation_ateliers" name="participation_ateliers" required>
+                <select id="participation_ateliers" name="" required>
                     <option value="yes">Oui</option>
                     <option value="no">Non</option>
                     <option value="non-concerne">Non concerné (LP DISTRISUP, Master Bioinfo.)</option>
                 </select>
                 <h3>Si oui, comment jugez-vous ces Ateliers ?</h3>
-                <select id="jugement_ateliers" name="jugement_ateliers" required="">
+                <select id="jugement_ateliers" name="" required="">
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="tres-utiles">Très utiles</option>
                     <option value="moyennement-utiles">Moyennement utiles</option>
                     <option value="inutiles">Inutiles</option>
                 </select>
                 <h3>Recommanderiez-vous les Ateliers Techniques de Recherche d'Emploi à un étudiant en recherche d'une entreprise ?</h3>
-                <input type="radio" id="recommander-oui" value="yes" name="recommander" />
+                <input type="radio" id="recommander-oui" value="yes" name="" />
                 <label for="recommander-oui" class="radio">Oui</label>
-                <input type="radio" id="recommander-non" value="no" name="recommander" />
+                <input type="radio" id="recommander-non" value="no" name="" />
                 <label for="recommander-non" class="radio">Non</label>
                 <h3>Pour vous, trouver une entreprise a été...</h3>
-                <select id="trouver_entreprise" name="trouver_entreprise" required="">
+                <select id="trouver_entreprise" name="" required="">
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="tres-facile">Très facile</option>
                     <option value="plutot-facile">Plutôt facile</option>
@@ -67,14 +71,14 @@
                     <option value="tres-difficile">Très difficile</option>
                 </select>
                 <h3>Avez-vous consulté les offres déposées sur le site Internet du CFA pour votre recherche d'entreprise ?</h3>
-                <select id="offres_cfa" name="offres_cfa" required="">
+                <select id="offres_cfa" name="" required="">
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="yes">Oui</option>
                     <option value="no">Non</option>
                     <option value="ne-savais-pas">Ne savait qu'il y avait des offres d'emploi sur le site</option>
                 </select>
                 <h3>Comment avez-vous trouvé votre entreprise ?</h3>
-                <select id="comment_trouver_entreprise" name="comment_trouver_entreprise" required="">
+                <select id="comment_trouver_entreprise" name="" required="">
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="offre-cfa">Offre du CFA</option>
                     <option value="aide">Aide du responsable pédagogique ou d'un enseignant</option>
@@ -101,7 +105,7 @@
                 <h3>Après quelques semaines d'expérience, quelle image avez-vous de l'alternance ?</h3>
                 <textarea placeholder="Réponse..."></textarea>
                 <h3>Avez-vous clairement identifié les différents interlocuteurs et les missions du CFA (accompagnement administratif pour le contrat d'apprentissage, gestion des heures d'abscence, relation avec l'entreprise, conseil quant au cadre légal relatif à l'apprentissage...) ?</h3>
-                <select id="clairement_identifie" name="clairement_identifie" required="">
+                <select id="clairement_identifie" name="" required="">
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="oui-parfaitement">Oui, parfaitement</option>
                     <option value="oui">Plutôt oui</option>
@@ -109,7 +113,7 @@
                     <option value="non-pas-du-tout">Non, pas du tout</option>
                 </select>
                 <h3>Si vous avez recherché un logement, quelles difficultés avez-vous rencontré ?</h3>
-                <select id="difficultes_logement" name="difficultes_logement" required="">
+                <select id="difficultes_logement" name="" required="">
                     <option value="default" selected disabled>Choisissez une réponse</option>
                     <option value="finances">Financières</option>
                     <option value="garant">Pas de garant</option>

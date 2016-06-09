@@ -32,11 +32,85 @@ class FormulaireTable extends Table {
     }
     /**
      * [[Description]]
-     * @param  [[Type]] id_form     [[Description]]
+     * @param  [[Type]] $id_form    [[Description]]
+     * @param  [[Type]] $nom_form   [[Description]]
      * @param  [[Type]] $id_contrat [[Description]]
      * @return [[Type]] [[Description]]
      */
-    public function isComplete($id_form, $id_contrat) {
+    public function getCompleted($id_form, $nom_form, $id_contrat) {
+        $completed_form = $this->query(
+            "SELECT idFormulaireRempli
+            FROM FormulaireRempli
+            WHERE idFormulaireOrigine = :id_form
+            AND idContratApprentissage = :id_contrat",
+            array(
+                ":id_form" => $id_form,
+                ":id_contrat" => $id_contrat
+            ),
+            true
+        );
+        return $this->query(
+            "SELECT *
+            FROM " . ucfirst($nom_form) . "
+            WHERE idFormRempli = ?",
+            [$completed_form->idFormulaireRempli],
+            true
+        );
+    }
+    /**
+     * Méthode complete() - pour compléter un formulaire en enregistrant les données qui le nécessitent dans une table de la base de données, et mentionne le formulaire concerné comme rempli (tout ou partie) pour tel contrat d'apprentissage
+     * @param integer $id_form    L'ID du formulaire d'origine (cf. table Formulaire)
+     * @param array   $data       Les données récupérées depuis le formulaire
+     * @param integer $id_contrat L'ID du contrat d'apprentissage concerné
+     */
+    public function complete($id_form, $data, $id_contrat) {
+        foreach($data as $key => $value) {
+            if(strpos('_', $key) !== 0) {
+                $exploded_key = explode('_', $key);
+                $table = $exploded_key[0];
+                $field = $exploded_key[1];
+            }
+            if(sizeof($this->isComplete($id_form, $id_contrat)) === 0) {
+                $this->query(
+                    "INSERT INTO FormulaireRempli
+                    SET idContratApprentissage = :id_contrat, idFormulaireOrigine = :id_form",
+                    array(
+                        ":id_contrat" => $id_contrat,
+                        ":id_form" => $id_form
+                    ),
+                    true
+                );
+                $this->query(
+                    "INSERT INTO {$table}
+                    SET idFormRempli = :idFormRempli, {$field} = :value",
+                    array(
+                        ":idFormRempli" => $this->db->lastInsertId(),
+                        ":value" => $value
+                    ),
+                    true
+                );
+            } else {
+                $this->query(
+                    "UPDATE {$table}
+                    SET {$field} = :value
+                    WHERE idFormRempli = :idFormRempli",
+                    array(
+                        ":value" => $value,
+                        ":idFormRempli" => $this->isComplete($id_form, $id_contrat, true)->idFormulaireRempli
+                    ),
+                    true
+                );
+            }
+        }
+    }
+    /**
+     * [[Description]]
+     * @param  [[Type]] $id_form     [[Description]]
+     * @param  [[Type]] $id_contrat  [[Description]]
+     * @param  [[Type]] [$one=false] [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function isComplete($id_form, $id_contrat, $one=false) {
         return $this->query(
             "SELECT *
             FROM FormulaireRempli
@@ -45,7 +119,8 @@ class FormulaireTable extends Table {
             array(
                 ":id_contrat" => $id_contrat,
                 ":id_form" => $id_form
-            )
+            ),
+            $one
         );
     }
 }

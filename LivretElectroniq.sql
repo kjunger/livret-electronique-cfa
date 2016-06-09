@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 08 Juin 2016 à 15:20
+-- Généré le :  Jeu 09 Juin 2016 à 13:34
 -- Version du serveur :  5.5.49-0+deb8u1
 -- Version de PHP :  5.6.20-0+deb8u1
 
@@ -30,7 +30,6 @@ USE `LivretElectroniq`;
 
 DROP TABLE IF EXISTS `Bilan`;
 CREATE TABLE IF NOT EXISTS `Bilan` (
-`id` int(11) NOT NULL,
   `idEvalRemplie` int(11) NOT NULL,
   `bilan` longtext COLLATE utf8_bin,
   `commentairesPostSoutenance` longtext COLLATE utf8_bin
@@ -44,7 +43,6 @@ CREATE TABLE IF NOT EXISTS `Bilan` (
 
 DROP TABLE IF EXISTS `ComportementAppCours`;
 CREATE TABLE IF NOT EXISTS `ComportementAppCours` (
-`id` int(11) NOT NULL,
   `idEvalRemplie` int(11) NOT NULL,
   `commentaires` longtext COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -106,7 +104,6 @@ INSERT INTO `ContratApprentissage` (`idContratApprentissage`, `idApprenti`, `dat
 
 DROP TABLE IF EXISTS `DepotOffreAlternance`;
 CREATE TABLE IF NOT EXISTS `DepotOffreAlternance` (
-`id` int(11) NOT NULL,
   `idFormRempli` int(11) NOT NULL,
   `siteInternet` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `service` varchar(100) COLLATE utf8_bin DEFAULT NULL,
@@ -180,20 +177,6 @@ INSERT INTO `DroitAccesEvaluation` (`idContratApprentissage`, `idUtilisateur`, `
 (3, 6, 3, 2),
 (3, 6, 4, 2),
 (3, 6, 5, 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `DroitAccesFichier`
---
-
-DROP TABLE IF EXISTS `DroitAccesFichier`;
-CREATE TABLE IF NOT EXISTS `DroitAccesFichier` (
-  `idContratApprentissage` int(11) NOT NULL,
-  `idUtilisateur` int(11) NOT NULL,
-  `idFichier` int(11) NOT NULL,
-  `typeDroit` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -286,7 +269,6 @@ INSERT INTO `DroitAccesFormulaire` (`idContratApprentissage`, `idUtilisateur`, `
 
 DROP TABLE IF EXISTS `EnqueteRentree`;
 CREATE TABLE IF NOT EXISTS `EnqueteRentree` (
-`id` int(11) NOT NULL,
   `idFormRempli` int(11) NOT NULL,
   `connaissanceFormation` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `raisonChoixApprentissage` varchar(45) COLLATE utf8_bin DEFAULT NULL,
@@ -338,7 +320,6 @@ INSERT INTO `Entreprise` (`idEntreprise`, `raisonSocialeEntreprise`, `adEntrepri
 
 DROP TABLE IF EXISTS `Entrevue`;
 CREATE TABLE IF NOT EXISTS `Entrevue` (
-`id` int(11) NOT NULL,
   `idFormRempli` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `observations` longtext COLLATE utf8_bin,
@@ -353,8 +334,8 @@ CREATE TABLE IF NOT EXISTS `Entrevue` (
 
 DROP TABLE IF EXISTS `EvalRemplie`;
 CREATE TABLE IF NOT EXISTS `EvalRemplie` (
-  `idContratApprentissage` int(11) NOT NULL,
   `idEvalRemplie` int(11) NOT NULL,
+  `idContratApprentissage` int(11) NOT NULL,
   `idEvalOrigine` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -381,18 +362,6 @@ INSERT INTO `Evaluation` (`idEvaluation`, `nom`, `intitule`) VALUES
 (3, 'comportementAppCours', 'Comportement de l''apprenti en cours'),
 (4, 'bilan', 'Bilan'),
 (5, 'missionPrincipale', 'Mission principale');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `Fichier`
---
-
-DROP TABLE IF EXISTS `Fichier`;
-CREATE TABLE IF NOT EXISTS `Fichier` (
-  `idFichier` int(11) NOT NULL,
-  `emplacementFichier` varchar(45) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -450,10 +419,10 @@ INSERT INTO `Formulaire` (`idFormulaire`, `nom`, `intitule`, `dateEcheance`) VAL
 
 DROP TABLE IF EXISTS `FormulaireRempli`;
 CREATE TABLE IF NOT EXISTS `FormulaireRempli` (
-  `idContratApprentissage` int(11) NOT NULL,
 `idFormulaireRempli` int(11) NOT NULL,
+  `idContratApprentissage` int(11) NOT NULL,
   `idFormulaireOrigine` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -491,7 +460,6 @@ INSERT INTO `InfosApprenti` (`idApprenti`, `adApprenti`, `cpApprenti`, `villeApp
 
 DROP TABLE IF EXISTS `InsertionProfessionnelle`;
 CREATE TABLE IF NOT EXISTS `InsertionProfessionnelle` (
-`id` int(11) NOT NULL,
   `idFormRempli` int(11) NOT NULL,
   `poursuiteEtudes_nomEtablissement` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `poursuiteEtudes_lieu` varchar(100) COLLATE utf8_bin DEFAULT NULL,
@@ -521,7 +489,6 @@ CREATE TABLE IF NOT EXISTS `InsertionProfessionnelle` (
 
 DROP TABLE IF EXISTS `MissionPonctuelle`;
 CREATE TABLE IF NOT EXISTS `MissionPonctuelle` (
-`id` int(11) NOT NULL,
   `idEvalRemplie` int(11) NOT NULL,
   `description` longtext COLLATE utf8_bin,
   `actionRealisee` varchar(30) COLLATE utf8_bin DEFAULT NULL,
@@ -537,7 +504,6 @@ CREATE TABLE IF NOT EXISTS `MissionPonctuelle` (
 
 DROP TABLE IF EXISTS `MissionPrincipale`;
 CREATE TABLE IF NOT EXISTS `MissionPrincipale` (
-`id` int(11) NOT NULL,
   `idEvalRemplie` int(11) NOT NULL,
   `description` longtext COLLATE utf8_bin,
   `actionRealisee` varchar(30) COLLATE utf8_bin DEFAULT NULL,
@@ -597,7 +563,6 @@ INSERT INTO `RattachementFormation` (`idUtilisateur`, `idFormation`) VALUES
 
 DROP TABLE IF EXISTS `SavoirEtreSavoirFaire`;
 CREATE TABLE IF NOT EXISTS `SavoirEtreSavoirFaire` (
-`id` int(11) NOT NULL,
   `idEvalRemplie` int(11) NOT NULL,
   `consciencePro` int(11) DEFAULT NULL,
   `sociabiliteVieGroupe` int(11) DEFAULT NULL,
@@ -651,7 +616,6 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `pass`, `nom`, `prenom`, `t
 
 DROP TABLE IF EXISTS `VisiteEntreprise`;
 CREATE TABLE IF NOT EXISTS `VisiteEntreprise` (
-`id` int(11) NOT NULL,
   `idFormRempli` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `presenceApprenti` int(11) DEFAULT NULL,
@@ -668,13 +632,13 @@ CREATE TABLE IF NOT EXISTS `VisiteEntreprise` (
 -- Index pour la table `Bilan`
 --
 ALTER TABLE `Bilan`
- ADD PRIMARY KEY (`id`,`idEvalRemplie`), ADD KEY `eval_bilan_idx` (`idEvalRemplie`);
+ ADD PRIMARY KEY (`idEvalRemplie`), ADD KEY `eval_bilan_idx` (`idEvalRemplie`);
 
 --
 -- Index pour la table `ComportementAppCours`
 --
 ALTER TABLE `ComportementAppCours`
- ADD PRIMARY KEY (`id`,`idEvalRemplie`), ADD KEY `eval_comportement-app-cours_idx` (`idEvalRemplie`);
+ ADD PRIMARY KEY (`idEvalRemplie`), ADD KEY `eval_comportement-app-cours_idx` (`idEvalRemplie`);
 
 --
 -- Index pour la table `Composante`
@@ -692,19 +656,13 @@ ALTER TABLE `ContratApprentissage`
 -- Index pour la table `DepotOffreAlternance`
 --
 ALTER TABLE `DepotOffreAlternance`
- ADD PRIMARY KEY (`id`,`idFormRempli`), ADD KEY `form_depot-offre-alternance_idx` (`idFormRempli`);
+ ADD PRIMARY KEY (`idFormRempli`), ADD KEY `form_depot-offre-alternance_idx` (`idFormRempli`);
 
 --
 -- Index pour la table `DroitAccesEvaluation`
 --
 ALTER TABLE `DroitAccesEvaluation`
  ADD PRIMARY KEY (`idContratApprentissage`,`idUtilisateur`,`idEvaluation`), ADD KEY `utilisateur_eval_idx` (`idUtilisateur`), ADD KEY `eval_idx` (`idEvaluation`);
-
---
--- Index pour la table `DroitAccesFichier`
---
-ALTER TABLE `DroitAccesFichier`
- ADD PRIMARY KEY (`idUtilisateur`,`idFichier`,`idContratApprentissage`), ADD KEY `utilisateur_fi_idx` (`idUtilisateur`), ADD KEY `fichier_idx` (`idFichier`), ADD KEY `contrat_fichier_idx` (`idContratApprentissage`);
 
 --
 -- Index pour la table `DroitAccesFormulaire`
@@ -716,7 +674,7 @@ ALTER TABLE `DroitAccesFormulaire`
 -- Index pour la table `EnqueteRentree`
 --
 ALTER TABLE `EnqueteRentree`
- ADD PRIMARY KEY (`id`,`idFormRempli`), ADD KEY `form_enquete-rentree_idx` (`idFormRempli`);
+ ADD PRIMARY KEY (`idFormRempli`), ADD KEY `form_enquete-rentree_idx` (`idFormRempli`);
 
 --
 -- Index pour la table `Entreprise`
@@ -728,25 +686,19 @@ ALTER TABLE `Entreprise`
 -- Index pour la table `Entrevue`
 --
 ALTER TABLE `Entrevue`
- ADD PRIMARY KEY (`id`,`idFormRempli`), ADD KEY `form_entrevue_idx` (`idFormRempli`);
+ ADD PRIMARY KEY (`idFormRempli`), ADD KEY `form_entrevue_idx` (`idFormRempli`);
 
 --
 -- Index pour la table `EvalRemplie`
 --
 ALTER TABLE `EvalRemplie`
- ADD PRIMARY KEY (`idContratApprentissage`,`idEvalRemplie`,`idEvalOrigine`), ADD KEY `eval_origine_idx` (`idEvalOrigine`), ADD KEY `eval_contrat_idx` (`idContratApprentissage`), ADD KEY `eval_remplie` (`idEvalRemplie`);
+ ADD PRIMARY KEY (`idEvalRemplie`,`idContratApprentissage`,`idEvalOrigine`), ADD KEY `eval_origine_idx` (`idEvalOrigine`), ADD KEY `eval_contrat_idx` (`idContratApprentissage`);
 
 --
 -- Index pour la table `Evaluation`
 --
 ALTER TABLE `Evaluation`
  ADD PRIMARY KEY (`idEvaluation`);
-
---
--- Index pour la table `Fichier`
---
-ALTER TABLE `Fichier`
- ADD PRIMARY KEY (`idFichier`);
 
 --
 -- Index pour la table `Formation`
@@ -764,7 +716,7 @@ ALTER TABLE `Formulaire`
 -- Index pour la table `FormulaireRempli`
 --
 ALTER TABLE `FormulaireRempli`
- ADD PRIMARY KEY (`idContratApprentissage`,`idFormulaireRempli`,`idFormulaireOrigine`), ADD KEY `formulaire_origine_idx` (`idFormulaireOrigine`), ADD KEY `formulaire_rempli` (`idFormulaireRempli`);
+ ADD PRIMARY KEY (`idFormulaireRempli`,`idContratApprentissage`,`idFormulaireOrigine`), ADD KEY `formulaire_origine_idx` (`idFormulaireOrigine`), ADD KEY `formulaire_contrat` (`idContratApprentissage`);
 
 --
 -- Index pour la table `InfosApprenti`
@@ -776,19 +728,19 @@ ALTER TABLE `InfosApprenti`
 -- Index pour la table `InsertionProfessionnelle`
 --
 ALTER TABLE `InsertionProfessionnelle`
- ADD PRIMARY KEY (`id`,`idFormRempli`), ADD KEY `form_insertion-pro_idx` (`idFormRempli`);
+ ADD PRIMARY KEY (`idFormRempli`), ADD KEY `form_insertion-pro_idx` (`idFormRempli`);
 
 --
 -- Index pour la table `MissionPonctuelle`
 --
 ALTER TABLE `MissionPonctuelle`
- ADD PRIMARY KEY (`id`,`idEvalRemplie`), ADD KEY `eval_mission-ponctuelle_idx` (`idEvalRemplie`);
+ ADD PRIMARY KEY (`idEvalRemplie`), ADD KEY `eval_mission-ponctuelle_idx` (`idEvalRemplie`);
 
 --
 -- Index pour la table `MissionPrincipale`
 --
 ALTER TABLE `MissionPrincipale`
- ADD PRIMARY KEY (`id`,`idEvalRemplie`), ADD KEY `eval_mission-principale_idx` (`idEvalRemplie`);
+ ADD PRIMARY KEY (`idEvalRemplie`), ADD KEY `eval_mission-principale_idx` (`idEvalRemplie`);
 
 --
 -- Index pour la table `RattachementEntreprise`
@@ -806,7 +758,7 @@ ALTER TABLE `RattachementFormation`
 -- Index pour la table `SavoirEtreSavoirFaire`
 --
 ALTER TABLE `SavoirEtreSavoirFaire`
- ADD PRIMARY KEY (`id`,`idEvalRemplie`), ADD KEY `eval_savoir-etre_idx` (`idEvalRemplie`);
+ ADD PRIMARY KEY (`idEvalRemplie`), ADD KEY `eval_savoir-etre_idx` (`idEvalRemplie`);
 
 --
 -- Index pour la table `Utilisateur`
@@ -818,22 +770,12 @@ ALTER TABLE `Utilisateur`
 -- Index pour la table `VisiteEntreprise`
 --
 ALTER TABLE `VisiteEntreprise`
- ADD PRIMARY KEY (`id`,`idFormRempli`), ADD KEY `form_visite-entreprise_idx` (`idFormRempli`);
+ ADD PRIMARY KEY (`idFormRempli`), ADD KEY `form_visite-entreprise_idx` (`idFormRempli`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
 --
 
---
--- AUTO_INCREMENT pour la table `Bilan`
---
-ALTER TABLE `Bilan`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `ComportementAppCours`
---
-ALTER TABLE `ComportementAppCours`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Composante`
 --
@@ -845,25 +787,10 @@ MODIFY `idComposante` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 ALTER TABLE `ContratApprentissage`
 MODIFY `idContratApprentissage` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `DepotOffreAlternance`
---
-ALTER TABLE `DepotOffreAlternance`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `EnqueteRentree`
---
-ALTER TABLE `EnqueteRentree`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT pour la table `Entreprise`
 --
 ALTER TABLE `Entreprise`
 MODIFY `idEntreprise` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `Entrevue`
---
-ALTER TABLE `Entrevue`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Evaluation`
 --
@@ -883,37 +810,12 @@ MODIFY `idFormulaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT pour la table `FormulaireRempli`
 --
 ALTER TABLE `FormulaireRempli`
-MODIFY `idFormulaireRempli` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `InsertionProfessionnelle`
---
-ALTER TABLE `InsertionProfessionnelle`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `MissionPonctuelle`
---
-ALTER TABLE `MissionPonctuelle`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `MissionPrincipale`
---
-ALTER TABLE `MissionPrincipale`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `SavoirEtreSavoirFaire`
---
-ALTER TABLE `SavoirEtreSavoirFaire`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idFormulaireRempli` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
 MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT pour la table `VisiteEntreprise`
---
-ALTER TABLE `VisiteEntreprise`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
 --
@@ -953,14 +855,6 @@ ADD CONSTRAINT `utilisateur_eval` FOREIGN KEY (`idUtilisateur`) REFERENCES `Util
 ADD CONSTRAINT `eval` FOREIGN KEY (`idEvaluation`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `DroitAccesFichier`
---
-ALTER TABLE `DroitAccesFichier`
-ADD CONSTRAINT `utilisateur_fichier` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `fichier` FOREIGN KEY (`idFichier`) REFERENCES `Fichier` (`idFichier`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `contrat_fichier` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Contraintes pour la table `DroitAccesFormulaire`
 --
 ALTER TABLE `DroitAccesFormulaire`
@@ -985,7 +879,6 @@ ADD CONSTRAINT `form_entrevue` FOREIGN KEY (`idFormRempli`) REFERENCES `Formulai
 --
 ALTER TABLE `EvalRemplie`
 ADD CONSTRAINT `eval_origine` FOREIGN KEY (`idEvalOrigine`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `eval_remplie` FOREIGN KEY (`idEvalRemplie`) REFERENCES `Fichier` (`idFichier`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `eval_contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -999,7 +892,6 @@ ADD CONSTRAINT `composante` FOREIGN KEY (`idComposante`) REFERENCES `Composante`
 --
 ALTER TABLE `FormulaireRempli`
 ADD CONSTRAINT `formulaire_origine` FOREIGN KEY (`idFormulaireOrigine`) REFERENCES `Formulaire` (`idFormulaire`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `formulaire_rempli` FOREIGN KEY (`idFormulaireRempli`) REFERENCES `Fichier` (`idFichier`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `formulaire_contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
