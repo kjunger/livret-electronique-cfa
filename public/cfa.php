@@ -9,21 +9,21 @@ if($auth->logged() === FALSE) {
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
-    $page = 'choix';
+    $page = 'cfa';
 }
-ob_start();
-$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
 switch ($page) {    //A améliorer (avec modèle MVC ?)
-    case 'choix':
-        require ROOT . '/pages/choixApprenti/choix.php';
+    case 'cfa':
+        require ROOT . '/pages/cfa/cfa.php';
         break;
-    case 'choix.logout':
+    case 'cfa.logout':
         $auth->logout();
         break;
     default:
         App::notFound();
         break;
 }
+ob_start();
+$user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
 $content = ob_get_clean();
-require ROOT . '/pages/templates/choixApprenti.php';
+require ROOT . '/pages/templates/cfa.php';
 ob_flush();

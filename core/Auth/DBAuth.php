@@ -46,6 +46,18 @@ class DBAuth {
         return isset($_SESSION['auth']);
     }
     /**
+     * [[Description]]
+     * @param  [[Type]] $username [[Description]]
+     * @param  [[Type]] $status   [[Description]]
+     * @return boolean  [[Description]]
+     */
+    public function status($username, $status) {
+        $user = $this->db->prepare('SELECT * FROM Utilisateur WHERE login = ?', [$username], null, true);
+        if ($user) {
+            if ($user->type === $status) { return true; }
+        }   //Redondances avec méthode login()
+    }
+    /**
      * Méthode checkPassword() - pour vérifier le mot de passe de l'utilisateur s'il est demandé
      * @param  string  $password Mot de passe
      * @return boolean True s'il est vérifié

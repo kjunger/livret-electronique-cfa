@@ -12,6 +12,9 @@ switch ($page) {
     case 'login':
         require ROOT . '/pages/login/login.php';
         break;
+    case 'login.cfa':
+        require ROOT . '/pages/login/cfa.php';
+        break;
     default:
         App::notFound();
         break;

@@ -1,7 +1,11 @@
 <?php
     $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
     if($auth->logged()){
-        header('Location:private.php');
+        if(isset($_SESSION['status'])){
+            header('Location:'.$_SESSION['status'].'.php');
+        } else {
+            header('Location:private.php');
+        }
     }
     if(!empty($_POST)){
         if ($auth->login($_POST['login'], $_POST['pass'])) {
@@ -14,6 +18,7 @@
         }
     }
 ?>
+<a href="?p=login.cfa">Accès CFA</a>
 <img src="img/lesa.png" alt="logo" />
 <div id="content">
     <h2>Bienvenue, <span>veuillez vous connecter.</span></h2>

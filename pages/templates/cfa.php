@@ -20,14 +20,14 @@
 </head>
 
 <body>
-    <div id="deconnexion-mobile">
+   <div id="deconnexion-mobile">
         <p>
             <?= $user->getFullName(); ?>
         </p>
         <div id="contenu-menu-user">
             <ul>
                 <li>
-                    <a href="?p=choix.logout">
+                    <a href="?p=cfa.logout">
                         <img src="icons/deconnexion_blanc.svg" alt="" />Deconnexion
                     </a>
                 </li>
@@ -60,7 +60,7 @@
             <div id="deconnexion" class="">
                 <ul class="hidden">
                     <li>
-                        <a href="?p=choix.logout">
+                        <a href="?p=cfa.logout">
                             <img src="icons/deconnexion.svg" alt="" />Deconnexion
                         </a>
                     </li>
@@ -72,3 +72,5 @@
         </div>
     </div>
 </body>
+
+</html>
