@@ -10,13 +10,13 @@ ob_start();
 if (isset($_GET['p'])) {
     $page = $_GET['p'];
 } else {
-    $page = 'cfa';
+    $page = 'rp';
 }
 switch ($page) {    //A améliorer (avec modèle MVC ?)
-    case 'cfa':
-        require ROOT . '/pages/cfa/cfa.php';
+    case 'rp':
+        require ROOT . '/pages/rp/rp.php';
         break;
-    case 'cfa.logout':
+    case 'rp.logout':
         $auth->logout();
         break;
     default:
@@ -25,4 +25,4 @@ switch ($page) {    //A améliorer (avec modèle MVC ?)
 }
 $user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
 $content = ob_get_clean();
-require ROOT . '/pages/templates/cfa.php';
+require ROOT . '/pages/templates/rp.php';

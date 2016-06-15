@@ -19,6 +19,7 @@
     }
 ?>
 <a href="?p=login.cfa">Accès CFA</a>
+<a href="?p=login.rp">Accès Responsables pédagogiques</a>
 <img src="img/lesa.png" alt="logo" />
 <div id="content">
     <h2>Bienvenue, <span>veuillez vous connecter.</span></h2>

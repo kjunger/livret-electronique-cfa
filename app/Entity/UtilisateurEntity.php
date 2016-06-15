@@ -3,7 +3,7 @@ namespace App\Entity;
 use Core\Entity\Entity;
 /**
  * Classe UtilisateurEntity
- * Contient des méthodes pour tout objet  de classe UtilisateurEntity instancié et stocké dans une variable
+ * Contient des méthodes pour tout objet de classe UtilisateurEntity instancié lors d'une requête sur la table Utilisateur via la classe UtilisateurTable
  */
 class UtilisateurEntity extends Entity {
     /**

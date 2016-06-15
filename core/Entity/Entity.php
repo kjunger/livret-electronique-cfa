@@ -2,7 +2,6 @@
 namespace Core\Entity;
 class Entity {
     //Classe mère Entity
-    //Ne pas supprimer, même si ce fichier est (selon toute vraisemblance) vide
     //Rajouter des méthodes communes aux classes héritant de Entity ici si besoin
 
     /**

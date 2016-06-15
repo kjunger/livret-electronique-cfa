@@ -3,8 +3,7 @@ namespace App\Table;
 use \Core\Table\Table;
 /**
  * Classe App\Table\UtilisateurTable
- * Contient les méthodes utiles pour la table Utilisateur.
- * Utilisables à la volée
+ * Contient les méthodes pour effectuer des requêtes relatives à la table Utilisateur (en plus des requêtes génériques de la classe Core\Table\Table).
  */
 class UtilisateurTable extends Table {
     /**

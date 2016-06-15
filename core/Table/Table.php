@@ -1,6 +1,10 @@
 <?php
 namespace Core\Table;
 use \Core\Database\Database;
+/**
+ * Classe mère Core\Table
+ * Contient les méthodes pour effectuer des requêtes génériques sur une table de la base de données
+ */
 class Table {
     protected $table;
     protected $db;

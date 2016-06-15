@@ -3,7 +3,7 @@ namespace App\Entity;
 use Core\Entity\Entity;
 /**
  * Classe FormulaireEntity
- * Contient des méthodes pour tout objet  de classe FormulaireEntity instancié et stocké dans une variable
+ * Contient des méthodes pour tout objet de classe FormulaireEntity instancié lors d'une requête sur la table Formulaire via la classe FormulaireTable
  */
 class FormulaireEntity extends Entity {
     /**

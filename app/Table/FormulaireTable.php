@@ -3,14 +3,14 @@ namespace App\Table;
 use \Core\Table\Table;
 /**
  * Classe App\Table\FormulaireTable
- * Contient les méthodes utiles pour la table Formulaire.
- * Utilisables à la volée
+ * Contient les méthodes pour effectuer des requêtes relatives à la table Formulaire (en plus des requêtes génériques de la classe Core\Table\Table).
  */
 class FormulaireTable extends Table {
     /**
      * Méthode allAccessible() - liste tous les formulaires accessibles en édition par l'utilisateur en cours
      * @param  integer $id_utilisateur L'ID de l'utilisateur en cours
-     * @return object  Retourne la liste des formulaires concernés
+     * @param  integer $id_contrat     L'ID du contrat
+     * @return object  FormulaireEntity Retourne la liste des formulaires concernés
      */
     public function allAccessible($id_utilisateur, $id_contrat) {
         return $this->query(
@@ -31,11 +31,11 @@ class FormulaireTable extends Table {
         );
     }
     /**
-     * [[Description]]
-     * @param  [[Type]] $id_form    [[Description]]
-     * @param  [[Type]] $nom_form   [[Description]]
-     * @param  [[Type]] $id_contrat [[Description]]
-     * @return [[Type]] [[Description]]
+     * Méthode getCompleted() - récupère les ID des formulaires complétés par l'une des parties du contrat susvisé
+     * @param  integer $id_form    L'ID du formulaire
+     * @param  string  $nom_form   Le nom du formulaire
+     * @param  integer $id_contrat L'ID du contrat
+     * @return object  FormulaireEntity Retourne la liste
      */
     public function getCompleted($id_form, $nom_form, $id_contrat) {
         $completed_form = $this->query(
@@ -104,11 +104,11 @@ class FormulaireTable extends Table {
         }
     }
     /**
-     * [[Description]]
-     * @param  [[Type]] $id_form     [[Description]]
-     * @param  [[Type]] $id_contrat  [[Description]]
-     * @param  [[Type]] [$one=false] [[Description]]
-     * @return [[Type]] [[Description]]
+     * Méthode isComplete() - Vérifie si tel ou tel formulaire a été complété par l'une des parties du contrat susvisé
+     * @param  integer $id_form     L'ID du formulaire
+     * @param  integer $id_contrat  L'ID du contrat
+     * @param  boolean [$one=false] Spécifie si l'on attend un seul résultat (true) ou non (false, par défaut)
+     * @return object  FormulaireEntity Retourne la liste
      */
     public function isComplete($id_form, $id_contrat, $one=false) {
         return $this->query(

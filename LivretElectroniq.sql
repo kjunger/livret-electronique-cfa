@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 09 Juin 2016 à 13:34
+-- Généré le :  Mer 15 Juin 2016 à 15:46
 -- Version du serveur :  5.5.49-0+deb8u1
 -- Version de PHP :  5.6.20-0+deb8u1
 
@@ -93,8 +93,8 @@ CREATE TABLE IF NOT EXISTS `ContratApprentissage` (
 
 INSERT INTO `ContratApprentissage` (`idContratApprentissage`, `idApprenti`, `dateSignatureApprenti`, `idMaitreApprentissage`, `dateSignatureMaitreApprentissage`, `idTuteurPedagogique`, `dateSignatureTuteurPedagogique`) VALUES
 (1, 2, NULL, 4, NULL, 7, NULL),
-(2, 3, NULL, 5, NULL, 6, NULL),
-(3, 1, NULL, 4, NULL, 6, NULL);
+(2, 3, NULL, 5, NULL, 6, '2016-06-10'),
+(3, 1, '2016-06-14', 4, NULL, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,24 +270,32 @@ INSERT INTO `DroitAccesFormulaire` (`idContratApprentissage`, `idUtilisateur`, `
 DROP TABLE IF EXISTS `EnqueteRentree`;
 CREATE TABLE IF NOT EXISTS `EnqueteRentree` (
   `idFormRempli` int(11) NOT NULL,
-  `connaissanceFormation` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `raisonChoixApprentissage` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `infosNecessaires` int(11) DEFAULT NULL,
-  `participationAteliers` int(11) DEFAULT NULL,
-  `avisAteliers` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `recommandationAteliers` int(11) DEFAULT NULL,
-  `difficulteTrouverEntreprise` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `consultationOffresCfa` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `trouverEntreprise` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `facebook` int(11) DEFAULT NULL,
-  `twitter` int(11) DEFAULT NULL,
-  `linkedin` int(11) DEFAULT NULL,
-  `viadeo` int(11) DEFAULT NULL,
+  `connaissanceFormation` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `raisonChoixApprentissage` varchar(100) COLLATE utf8_bin DEFAULT NULL,
+  `infosNecessaires` int(3) DEFAULT NULL,
+  `participationAteliers` int(15) DEFAULT NULL,
+  `avisAteliers` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `recommandationAteliers` varchar(3) COLLATE utf8_bin DEFAULT NULL,
+  `difficulteTrouverEntreprise` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `consultationOffresCfa` varchar(70) COLLATE utf8_bin DEFAULT NULL,
+  `trouverEntreprise` varchar(60) COLLATE utf8_bin DEFAULT NULL,
+  `tempsTrouverEntreprise` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `facebook` varchar(3) COLLATE utf8_bin DEFAULT NULL,
+  `twitter` varchar(3) COLLATE utf8_bin DEFAULT NULL,
+  `linkedin` varchar(3) COLLATE utf8_bin DEFAULT NULL,
+  `viadeo` varchar(3) COLLATE utf8_bin DEFAULT NULL,
   `avisAlternance` longtext COLLATE utf8_bin,
   `identificationCfa` varchar(45) COLLATE utf8_bin DEFAULT NULL,
-  `difficulteTrouverLogement` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `difficulteTrouverLogement` varchar(60) COLLATE utf8_bin DEFAULT NULL,
   `remarques` longtext COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Contenu de la table `EnqueteRentree`
+--
+
+INSERT INTO `EnqueteRentree` (`idFormRempli`, `connaissanceFormation`, `raisonChoixApprentissage`, `infosNecessaires`, `participationAteliers`, `avisAteliers`, `recommandationAteliers`, `difficulteTrouverEntreprise`, `consultationOffresCfa`, `trouverEntreprise`, `tempsTrouverEntreprise`, `facebook`, `twitter`, `linkedin`, `viadeo`, `avisAlternance`, `identificationCfa`, `difficulteTrouverLogement`, `remarques`) VALUES
+(1, 'Via une revue spÃ©cialisÃ©e', 'On me l''a conseillÃ©', 0, 0, 'TrÃ¨s utiles', 'Oui', 'PlutÃ´t facile', 'Non', 'Candidature spontanÃ©e', '2 Ã  3 mois', 'Oui', 'Oui', NULL, NULL, 'Blabla', 'PlutÃ´t oui', 'Pas de garant', 'Blabla');
 
 -- --------------------------------------------------------
 
@@ -422,7 +430,14 @@ CREATE TABLE IF NOT EXISTS `FormulaireRempli` (
 `idFormulaireRempli` int(11) NOT NULL,
   `idContratApprentissage` int(11) NOT NULL,
   `idFormulaireOrigine` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Contenu de la table `FormulaireRempli`
+--
+
+INSERT INTO `FormulaireRempli` (`idFormulaireRempli`, `idContratApprentissage`, `idFormulaireOrigine`) VALUES
+(1, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -593,7 +608,7 @@ CREATE TABLE IF NOT EXISTS `Utilisateur` (
   `tel` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `port` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `email` varchar(100) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `Utilisateur`
@@ -606,7 +621,11 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `login`, `pass`, `nom`, `prenom`, `t
 (4, 'kurosawa', '2e6182f39b18467de3c4b56fd63752b5a375d69cfee4b078c8329123cc44c04711e5ca9b897fdcd258011e227f72b3222096f001a0fff08b4f10067833f700af', 'Kurosawa', 'Akira', 'maitreApprentissage', '0200000000', '0600000000', 'akira.kurosawa@entreprisex.com'),
 (5, 'fukasaku', '5e5cdba46f516b4c70d978c8db15bb176d2e31582165d76bcf1a400eacef8ebec9d0c96b8eb5441bba672c00d66280f94a2dcadc606d6e26c99092a28b63e2c2', 'Fukasaku', 'Kinji', 'maitreApprentissage', '0200000000', '0600000000', 'kinji.fukasaku@entreprisey.com'),
 (6, 'nomura', '73a75e4511046845e2cdfc3917b065432baa6ab4939705e25646a7a254ca226e75dbf6c7781189dc3423e8308f8cbe11cca6e6dd9f9f01712b1052d9d766fc38', 'Nomura', 'Tetsuya', 'tuteurPedagogique', '0200000000', '0600000000', 'tetsuya.nomura@univ-rouen.fr'),
-(7, 'baba', '8d86eb09ff42189be46d828d51238501bc3345de6d3ea4fda2e1b589558a17f9262b80a8ae5e978b820d14c04f0f386a9ab7f8fe1044ca9e59ba536a2b3c046a', 'Baba', 'Hideo', 'tuteurPedagogique', '0200000000', '0600000000', 'hideo.baba@univ-rouen.fr');
+(7, 'baba', '8d86eb09ff42189be46d828d51238501bc3345de6d3ea4fda2e1b589558a17f9262b80a8ae5e978b820d14c04f0f386a9ab7f8fe1044ca9e59ba536a2b3c046a', 'Baba', 'Hideo', 'tuteurPedagogique', '0200000000', '0600000000', 'hideo.baba@univ-rouen.fr'),
+(8, 'uematsu', '5a070e64dea14bd5db29effc85a4020f367b463a8365737d46e08ac64c6cd8544ddf340ff2fdbc7b8d6d2bc58b7460c9f933320ae7c863a00464fce34fa435d2', 'Uematsu', 'Nobuo', 'cfa', '0235000000', '0736000000', 'nobuo.uematsu@univ-rouen.fr'),
+(9, 'shimomur', '0979fb747a50d4a3cececf0c7822d65bf05a807ca290a96c8ab40babf691b18ca42f35cae1816803b070b0cfd417bb5d2819d5cb666ec858c8cf6b326b82108e', 'Shimomura', 'Yoko', 'cfa', '0235000000', '0654000000', 'yoko.shimomura@univ-rouen.fr'),
+(10, 'yamauchi', 'e9142e577986a97d69f58d6d39a350789cd37129058fdeba9fe2a1cf2e8b3e8b5f3c2ad51865467664ddfe7acd7c418290c46c8fb23978ad73835e9d7e445691', 'Yamauchi', 'Kazunori', 'rp', '0235000000', '0600126549', 'kazunori.yamauchi@univ-rouen.fr'),
+(11, 'tsuchiya', '6b9104251f6c7f51d47100efe8828bc1204d727fac8d7326cf148409ba7d7289f10391e767171509a288acf6e7ec4128f4255e7ce33ea5739e7f948f453b8738', 'Tsuchiya', 'Keiichi', 'rp', '0232000000', '0706446855', 'keiichi.tsuchiya@univ-rouen.fr');
 
 -- --------------------------------------------------------
 
@@ -810,12 +829,12 @@ MODIFY `idFormulaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT pour la table `FormulaireRempli`
 --
 ALTER TABLE `FormulaireRempli`
-MODIFY `idFormulaireRempli` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `idFormulaireRempli` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `Utilisateur`
 --
 ALTER TABLE `Utilisateur`
-MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- Contraintes pour les tables exportées
 --
@@ -851,16 +870,16 @@ ADD CONSTRAINT `form_depot-offre-alternance` FOREIGN KEY (`idFormRempli`) REFERE
 --
 ALTER TABLE `DroitAccesEvaluation`
 ADD CONSTRAINT `contrat_eval` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `utilisateur_eval` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `eval` FOREIGN KEY (`idEvaluation`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `eval` FOREIGN KEY (`idEvaluation`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `utilisateur_eval` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `DroitAccesFormulaire`
 --
 ALTER TABLE `DroitAccesFormulaire`
-ADD CONSTRAINT `utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `form` FOREIGN KEY (`idFormulaire`) REFERENCES `Formulaire` (`idFormulaire`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `EnqueteRentree`
@@ -878,8 +897,8 @@ ADD CONSTRAINT `form_entrevue` FOREIGN KEY (`idFormRempli`) REFERENCES `Formulai
 -- Contraintes pour la table `EvalRemplie`
 --
 ALTER TABLE `EvalRemplie`
-ADD CONSTRAINT `eval_origine` FOREIGN KEY (`idEvalOrigine`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `eval_contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `eval_contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `eval_origine` FOREIGN KEY (`idEvalOrigine`) REFERENCES `Evaluation` (`idEvaluation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `Formation`
@@ -891,8 +910,8 @@ ADD CONSTRAINT `composante` FOREIGN KEY (`idComposante`) REFERENCES `Composante`
 -- Contraintes pour la table `FormulaireRempli`
 --
 ALTER TABLE `FormulaireRempli`
-ADD CONSTRAINT `formulaire_origine` FOREIGN KEY (`idFormulaireOrigine`) REFERENCES `Formulaire` (`idFormulaire`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `formulaire_contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `formulaire_contrat` FOREIGN KEY (`idContratApprentissage`) REFERENCES `ContratApprentissage` (`idContratApprentissage`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `formulaire_origine` FOREIGN KEY (`idFormulaireOrigine`) REFERENCES `Formulaire` (`idFormulaire`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `InfosApprenti`
@@ -929,8 +948,8 @@ ADD CONSTRAINT `entreprise` FOREIGN KEY (`idEntreprise`) REFERENCES `Entreprise`
 -- Contraintes pour la table `RattachementFormation`
 --
 ALTER TABLE `RattachementFormation`
-ADD CONSTRAINT `utilisateurRattache` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `formation` FOREIGN KEY (`idFormation`) REFERENCES `Formation` (`idFormation`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `formation` FOREIGN KEY (`idFormation`) REFERENCES `Formation` (`idFormation`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `utilisateurRattache` FOREIGN KEY (`idUtilisateur`) REFERENCES `Utilisateur` (`idUtilisateur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `SavoirEtreSavoirFaire`

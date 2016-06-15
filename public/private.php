@@ -1,17 +1,18 @@
 <?php
 define('ROOT', dirname(__DIR__));
-require ROOT . '/app/App.php';
-App::load();
+require ROOT . '/app/App.php';      //Inclusion classe App
+App::load();                        //Chargement application
+
+/** Vérifier si un utilisateur est connecté **/
 $auth = new \Core\Auth\DBAuth(App::getInstance()->getDb());
 if($auth->logged() === FALSE) {
     App::forbidden();
 }
-if (isset($_GET['p'])) {
-    $page = $_GET['p'];
-} else {
-    $page = 'private';
-}
-ob_start();
+/****/
+
+ob_start();     //Démarrage buffer
+
+/** Récupération contrat **/
 $user = App::getInstance()->getTable('Utilisateur')->find($_SESSION['auth']);
 if($user->type !== 'apprenti') {
     if(!isset($_SESSION['contract'])){
@@ -24,6 +25,14 @@ if($user->type !== 'apprenti') {
     $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['contract']);
 } else {
     $contrat = App::getInstance()->getTable('ContratApprentissage')->find($_SESSION['auth'], $user->type);
+}
+/****/
+
+/** Gestion des vues **/
+if (isset($_GET['p'])) {
+    $page = $_GET['p'];
+} else {
+    $page = 'private';
 }
 switch ($page) {    //A améliorer (avec modèle MVC ?)
     case 'private':
@@ -51,6 +60,7 @@ switch ($page) {    //A améliorer (avec modèle MVC ?)
         App::notFound();
         break;
 }
-$content = ob_get_clean();
-require ROOT . '/pages/templates/private.php';
-ob_flush();
+/****/
+
+$content = ob_get_clean();      //Enregistrement du contenu du buffer pour l'injecter dans le modèle
+require ROOT . '/pages/templates/private.php';      //Appel du modèle

@@ -3,8 +3,7 @@ namespace App\Table;
 use \Core\Table\Table;
 /**
  * Classe App\Table\ContratApprentissageTable
- * Contient les méthodes utiles pour la table ContratApprentissage.
- * Utilisables à la volée
+ * Contient les méthodes pour effectuer des requêtes relatives à la table ContratApprentissage (en plus des requêtes génériques de la classe Core\Table\Table).
  */
 class ContratApprentissageTable extends Table {
     /**
